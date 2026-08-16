@@ -15,7 +15,7 @@ export function Hero() {
             I design and build systems that connect the tools, data, and processes a business
             relies on. My background across operations, RevOps, customer success, implementation,
             and enterprise systems gives me a practical understanding of the work behind the
-            automation.
+            systems.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
