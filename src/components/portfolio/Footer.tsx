@@ -33,7 +33,7 @@ export function Footer() {
             Approach
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
-            Understand the process. Automate where it matters.
+            Understand the process. Design the right solution.
           </p>
         </div>
       </div>
