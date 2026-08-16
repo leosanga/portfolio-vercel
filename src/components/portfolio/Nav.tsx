@@ -32,7 +32,9 @@ export function Nav() {
           </nav>
 
           <a
-            href={`mailto:${CONTACT.email}`}
+            href={CONTACT.bookingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="rounded-full bg-lavender px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
           >
             Book a Call

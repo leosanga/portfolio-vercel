@@ -139,4 +139,5 @@ export const CONTACT = {
   email: "leo.j.sanga@gmail.com",
   linkedin: "linkedin.com/in/leo-sanga",
   linkedinUrl: "https://linkedin.com/in/leo-sanga",
+  bookingUrl: "https://calendar.app.google/YgudwUd16Y1ztDf17",
 };

@@ -20,7 +20,9 @@ export function Hero() {
 
           <div className="mt-8 flex flex-wrap gap-3">
             <a
-              href={`mailto:${CONTACT.email}`}
+              href={CONTACT.bookingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="rounded-full bg-lavender px-6 py-3 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Book a Call
