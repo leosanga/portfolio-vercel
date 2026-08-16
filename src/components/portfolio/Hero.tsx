@@ -14,8 +14,8 @@ export function Hero() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
             I design and build systems that connect the tools, data, and processes a business
             relies on. My background across operations, RevOps, customer success, implementation,
-            and enterprise systems gives me a practical understanding of the work behind the
-            systems.
+            and enterprise systems gives me a practical understanding of how the work gets done
+            and where systems can improve it.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
