@@ -5,10 +5,10 @@ export function Projects() {
     <section id="projects" className="py-24 md:py-28">
       <div className="container-page">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">
-          Proof of Work
+          Projects
         </p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          Projects
+          Proof of Work
         </h2>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">

@@ -5,14 +5,13 @@ export function Competencies() {
     <section id="skills" className="py-24 md:py-28">
       <div className="container-page">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">
-          Core Competencies
+          Skills
         </p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-          What I Build With
+          What I Build Across
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          The stack behind the automations, integrations and reporting systems I ship, grouped by
-          the kind of problem it solves.
+          The technical capabilities behind the systems, automations, and integrations I build.
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">

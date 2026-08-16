@@ -46,7 +46,7 @@ export function Hero() {
             <div className="mt-5">
               <p className="text-lg font-semibold text-foreground">Leo Sanga</p>
               <p className="text-sm text-muted-foreground">
-                Systems Engineer: Automation &amp; Integration
+                Systems Engineer: Automation &amp; Integration Specialist
               </p>
             </div>
           </div>

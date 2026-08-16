@@ -10,20 +10,20 @@ export const NAV_LINKS = [
 
 export const COMPETENCIES = [
   {
-    title: "Automation & Integration",
+    title: "Automation & Systems Integration",
     body: "JavaScript, REST API, Webhooks, Python, n8n, Zapier, Make.com, AI-driven automation, AI Agents, MCP connectors, CRM workflow automation, custom and cross-functional systems integration.",
   },
   {
-    title: "Revenue Operations & Business Systems",
-    body: "CRM architecture & administration (HubSpot super admin), business systems administration (Google & Microsoft Workspace, Slack, WordPress), pipelines & routing design, custom data dashboards & reporting (Power BI, Jira, Tableau, spreadsheets).",
+    title: "Business Systems & Process Architecture",
+    body: "CRM architecture, workflow design, routing logic, process mapping, business systems administration, data models, reporting, dashboards, operational workflows",
   },
   {
-    title: "Enterprise Identity & Access Deployments",
-    body: "SSO (SAML), SCIM automated user provisioning, Microsoft Entra ID / Azure AD, Okta, JSON Schema.",
+    title: "AI & Intelligent Automation",
+    body: "AI-driven workflows, AI Agents, LLM integration, prompt-driven automation, intelligent routing, data enrichment, human-in-the-loop workflows, MCP connectors",
   },
   {
-    title: "Technical Troubleshooting",
-    body: "Systems integration troubleshooting, root cause analysis, bug vs. configuration error diagnosis, documentation & governance standards.",
+    title: "Enterprise Systems & Technical Engineering",
+    body: "SSO/SAML, SCIM provisioning, Entra ID/Azure AD, Okta, API troubleshooting, root-cause analysis, enterprise deployments, systems reliability, documentation & governance",
   },
 ];
 

@@ -8,9 +8,9 @@ import { Projects } from "@/components/portfolio/Projects";
 import { ContactCTA } from "@/components/portfolio/ContactCTA";
 import { Footer } from "@/components/portfolio/Footer";
 
-const title = "Leo Sanga — Systems Engineer, Automation & Integration";
+const title = "Leo Sanga";
 const description =
-  "Systems Engineer building AI-driven automation, CRM workflows and revenue systems architecture with n8n, HubSpot, Make.com and Python.";
+  "Systems Engineer building automation, AI-driven workflows, CRM architecture and enterprise integrations with n8n, HubSpot, Python and Make.com.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
