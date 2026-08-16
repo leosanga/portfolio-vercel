@@ -9,14 +9,13 @@ export function ContactCTA() {
           Let's build a system for your systems
         </h2>
         <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
-          The best automation starts with understanding how the business actually works.
+          The best systems start with understanding how the business actually works.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
           Show me how the work gets done today.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          We'll identify the gaps, what can be improved, and where automation actually makes
-          sense.
+          We'll identify the gaps, the opportunities, and the right solution.
         </p>
       </div>
     </section>

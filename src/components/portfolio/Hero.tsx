@@ -12,9 +12,10 @@ export function Hero() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground">
-            I design business systems architecture, integrate revenue systems, and build
-            automations. I spent years running day-to-day operations, long enough to know which
-            processes are actually worth automating.
+            I design and build systems that connect the tools, data, and processes a business
+            relies on. My background across operations, RevOps, customer success, implementation,
+            and enterprise systems gives me a practical understanding of the work behind the
+            automation.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -40,7 +41,7 @@ export function Hero() {
             <div className="mt-5">
               <p className="text-lg font-semibold text-foreground">Leo Sanga</p>
               <p className="text-sm text-muted-foreground">
-                Systems Engineer: Automation &amp; Integration Specialist
+                Systems Engineer: Integration + Automation
               </p>
             </div>
           </div>

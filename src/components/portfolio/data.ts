@@ -10,7 +10,7 @@ export const NAV_LINKS = [
 
 export const COMPETENCIES = [
   {
-    title: "Automation & Systems Integration",
+    title: "Systems Integration + Automation",
     body: "JavaScript, REST API, Webhooks, Python, n8n, Zapier, Make.com, AI-driven automation, AI Agents, MCP connectors, CRM workflow automation, custom and cross-functional systems integration.",
   },
   {
@@ -36,7 +36,7 @@ export const PROCESS_STEPS = [
   {
     number: "02",
     title: "Plan",
-    body: "I write it down: how the automation works and connects, detailed enough that someone else could rebuild it without me.",
+    body: "I write it down: how the systems connect and how the automation works, detailed enough that someone else could rebuild it without me.",
   },
   {
     number: "03",

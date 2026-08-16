@@ -11,7 +11,7 @@ export function Competencies() {
           What I Build Across
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          The technical capabilities behind the systems, automations, and integrations I build.
+          Systems, integrations, and automations across the functions that keep a business running.
         </p>
 
         <div className="mt-12 grid gap-6 md:grid-cols-2">
