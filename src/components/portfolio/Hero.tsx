@@ -24,12 +24,6 @@ export function Hero() {
             >
               Book a Call
             </a>
-            <a
-              href="#projects"
-              className="rounded-full border border-border px-6 py-3 text-sm font-medium text-foreground transition-colors hover:bg-panel"
-            >
-              See the work
-            </a>
           </div>
         </div>
 
