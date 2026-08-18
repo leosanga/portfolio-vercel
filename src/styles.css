@@ -125,6 +125,85 @@
   section[id] {
     scroll-margin-top: 5.5rem;
   }
+
+  /* Single source of focus styling: consumes --ring, covers every interactive
+     element (links, buttons, inputs) without repeating classes per component. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+}
+
+/*
+ * Motion.
+ *
+ * Every hidden state lives INSIDE `prefers-reduced-motion: no-preference`, so
+ * reduced-motion users, no-JS visitors, crawlers, and browsers without
+ * scroll-driven animation support get no opacity rule at all and see the
+ * finished page. There is no state to get stuck in.
+ *
+ * Scroll reveals are scrubbed, not triggered: the range is confined to `entry`
+ * so a card is settled at opacity 1 for the whole time it occupies readable
+ * screen space, and the only scrub-back is in the sliver where it is already
+ * leaving the viewport. Ranges reaching into `cover` re-fade mid-screen.
+ */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes reveal-scale {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Above the fold: time-based, no scroll timeline. Stagger comes from an
+     inline animation-delay per element. */
+  .hero-rise {
+    animation: reveal-up 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .hero-rise-scale {
+    animation: reveal-scale 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Inner wrappers only — never an id-bearing <section>, whose box the
+       scrollspy measures with getBoundingClientRect(). */
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 25% entry 100%;
+    }
+  }
+}
+
+/* Reduce means reduce: hover/focus transitions collapse to instant and the
+   nav's smooth scroll becomes a jump. The reveal and hero animations already
+   do not exist here — they are declared only under `no-preference` above. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @utility container-page {

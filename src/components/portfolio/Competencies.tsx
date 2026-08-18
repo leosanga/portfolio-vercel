@@ -18,7 +18,7 @@ export function Competencies() {
           {COMPETENCIES.map((item) => (
             <article
               key={item.title}
-              className="rounded-xl border border-border bg-panel p-7 transition-colors hover:border-lavender/40"
+              className="reveal rounded-xl border border-border bg-panel p-7 transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-lavender/40 hover:shadow-lg"
             >
               <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
