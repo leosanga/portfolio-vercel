@@ -311,12 +311,20 @@ properties *only*. Adding `hover:-translate-y-1 hover:shadow-lg` on top of
 border color eases — visibly broken.
 
 Change those to an explicit
-`transition-[transform,box-shadow,border-color]` (or plain `transition`) at
+`transition-[translate,box-shadow,border-color]` (or plain `transition`) at
 the same time you add the hover utilities. Do not skip this.
+
+**The property is `translate`, not `transform`.** Tailwind v4 compiles
+`-translate-y-1` to the standalone `translate` property, so a list naming
+`transform` transitions nothing and the lift still snaps while border and
+shadow ease. Verified against the running page: with
+`transition-[transform,...]` the computed `translate` jumps straight to
+`0px -4px` on hover; with `transition-[translate,...]` it eases
+`0 → -0.98 → -2.89 → -3.97px` over ~160ms.
 
 Buttons (`Hero.tsx:26`, `Nav.tsx:38`) currently use `transition-opacity` —
 same issue if you add `hover:-translate-y-0.5 active:translate-y-0`. Widen the
-transition property list there too.
+transition property list there too, again with `translate`.
 
 Note that all card hover states are invisible on touch devices. That is
 acceptable — the cards carry no action — but it means roughly half this
