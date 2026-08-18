@@ -177,6 +177,32 @@ hover lift snaps while border and shadow ease. All card/button hovers use
 - **Reduced motion**: a `prefers-reduced-motion: reduce` block collapses
   remaining transition durations and disables the global smooth scroll.
 
+## In-flight plan: pipeline diagrams (not yet built)
+
+`PIPELINE_DIAGRAM_PLAN.md` — animated SVG/CSS system diagrams on the project
+cards. **Planned, not executed.** Unlike `ANIMATION_PLAN_PROMPT.md` above
+(which is history), this one is the current work; read it before touching
+`Projects.tsx` or the `PROJECTS`/`COMPETENCIES` data. It carries a
+"Rejected alternatives" table specifically so previously-declined approaches
+don't get re-proposed.
+
+## Project evidence is NDA-constrained
+
+Six of the seven projects on this site are prior-employer work that Leo no
+longer has access to and cannot show under NDA. **Screenshots, screen
+recordings, live links, repos, and real metrics are permanently unavailable
+for them** — this is a standing constraint, not a gap waiting to be filled.
+Do not suggest adding them.
+
+Architecture diagrams are the workaround: they show a system's topology
+without exposing the employer's data, instance, branding, or records. Keep
+any diagram at pattern level — tool names and flow shape only, no client or
+employer names, no real field names, no thresholds or scoring weights.
+
+The exception is the HubSpot RevOps build
+(`../hubspot-revops-architecture/`), which is Leo's own sandbox project with
+no NDA surface. A demo recording for that one is planned separately.
+
 ## Known state of `bun run lint`
 
 `bun run lint` is **red on a fresh checkout and always has been** — the repo is

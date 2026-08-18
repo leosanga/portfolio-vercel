@@ -21,7 +21,12 @@ export function Competencies() {
               className="reveal rounded-xl border border-border bg-panel p-7 transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-lavender/40 hover:shadow-lg"
             >
               <h3 className="text-lg font-bold text-foreground">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+              <p className="mt-3 text-base leading-relaxed text-foreground">{item.claim}</p>
+              <ul className="tool-list mt-5 border-t border-border pt-4">
+                {item.tools.map((tool) => (
+                  <li key={tool}>{tool}</li>
+                ))}
+              </ul>
             </article>
           ))}
         </div>
