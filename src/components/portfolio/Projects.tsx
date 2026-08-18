@@ -15,10 +15,29 @@ export function Projects() {
           {PROJECTS.map((project) => (
             <article
               key={project.title}
-              className="flex flex-col rounded-xl border border-border bg-panel p-7 transition-colors hover:border-lavender/40"
+              className={`flex flex-col rounded-xl border bg-panel transition-colors hover:border-lavender/40 ${
+                project.featured
+                  ? "border-lavender/30 p-8 md:col-span-2 md:p-10 [&>p]:max-w-3xl [&>ul]:max-w-3xl"
+                  : "border-border p-6"
+              }`}
             >
-              <h3 className="text-base font-bold leading-snug text-foreground">{project.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {project.featured && (
+                <p className="mb-3 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-lavender">
+                  Featured
+                </p>
+              )}
+              <h3
+                className={`font-bold leading-snug text-foreground ${
+                  project.featured ? "text-xl md:text-2xl" : "text-base"
+                }`}
+              >
+                {project.title}
+              </h3>
+              <p
+                className={`mt-3 leading-relaxed text-muted-foreground ${
+                  project.featured ? "text-base" : "text-sm"
+                }`}
+              >
                 {project.overview}
               </p>
 

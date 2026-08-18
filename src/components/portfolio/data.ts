@@ -50,8 +50,19 @@ export const PROCESS_STEPS = [
   },
 ];
 
-export const PROJECTS = [
+type Project = {
+  title: string;
+  overview: string;
+  problem: string;
+  impact: string[];
+  stack: string[];
+  /** Rendered at greater visual weight. Exactly one project should carry this. */
+  featured?: boolean;
+};
+
+export const PROJECTS: Project[] = [
   {
+    featured: true,
     title: "Automated Client Implementation Delivery System (n8n)",
     overview:
       "Generates client-specific implementation deliverables and updates a live project-tracking spreadsheet automatically.",
