@@ -15,7 +15,7 @@ export function Projects() {
           {PROJECTS.map((project) => (
             <article
               key={project.title}
-              className={`flex flex-col rounded-xl border bg-panel transition-colors hover:border-lavender/40 ${
+              className={`reveal flex flex-col rounded-xl border bg-panel transition-[translate,box-shadow,border-color] duration-200 hover:-translate-y-1 hover:border-lavender/40 hover:shadow-lg ${
                 project.featured
                   ? "border-lavender/30 p-8 md:col-span-2 md:p-10 [&>p]:max-w-3xl [&>ul]:max-w-3xl"
                   : "border-border p-6"

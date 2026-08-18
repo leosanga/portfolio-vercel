@@ -11,7 +11,7 @@ export function Process() {
 
         <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {PROCESS_STEPS.map((step) => (
-            <li key={step.number}>
+            <li key={step.number} className="reveal">
               <div className="flex items-center gap-4">
                 <p className="text-3xl font-bold leading-none text-lavender">{step.number}</p>
                 <span
