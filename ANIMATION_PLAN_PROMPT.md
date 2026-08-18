@@ -1,7 +1,31 @@
 # Prompt: portfolio-vercel polish pass (accessibility, hierarchy, motion)
 
-Paste this whole file as the first message in a fresh Claude Code session
-opened at `C:\Users\Leo\Downloads\claude` (or `cd portfolio-vercel` first).
+> **STATUS: EXECUTED AND MERGED — 2026-08-18. Do not re-run this plan.**
+>
+> All six steps shipped and merged to `main` as `2ea6a0b` (`--no-ff`, so
+> `git revert -m 1 2ea6a0b` undoes the pass in one commit). Rollback tags:
+> `pre-polish-2026-08-18` (`103a80f`) and `post-polish-2026-08-18` (`bc1a9f3`),
+> both on origin.
+>
+> This file is kept as the **rationale record** — why the steps are ordered
+> that way, why the constraints exist, which alternatives were rejected. The
+> durable rules extracted from it now live in `CLAUDE.md`; read that first and
+> come back here only when you need the reasoning behind a rule.
+>
+> What actually shipped, versus what this plan says:
+> - Steps 1-6 all landed. The fallback `useInView` path at the bottom was
+>   **not** built — the CSS scroll-timeline approach held.
+> - The step-6 hover guidance originally said `transition-[transform,…]`. That
+>   is wrong for Tailwind v4 and has been corrected in place (see the bolded
+>   note in that section) — v4 emits `-translate-y-*` as the standalone
+>   `translate` property, so a `transform` list leaves the lift snapping.
+> - Verification ran against `bun run dev` and the production build via
+>   `bun run preview`, not a Vercel preview deployment. Section transforms,
+>   scrollspy, reveal ranges, Slow 3G, and 390/768/1440 layout were checked
+>   in-browser. `prefers-reduced-motion` and JS-disabled were verified by
+>   parsing the built CSS (every `.reveal` / `.hero-rise` rule is guarded)
+>   rather than by browser emulation.
+> - The "Deferred" section at the bottom is still deferred and still accurate.
 
 ---
 

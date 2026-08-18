@@ -102,8 +102,120 @@ to a ratio-threshold `IntersectionObserver` — that bug was hit and fixed
 twice already. No active link is shown when scrolled above the first section
 (`active` starts as `""`, not defaulted to the first id).
 
+## Motion, hierarchy and accessibility (polish pass, merged 2026-08-18)
+
+Merge commit `2ea6a0b` on `main`. The plan that produced it is
+`ANIMATION_PLAN_PROMPT.md` (already executed — read it for the reasoning, do
+not re-run it).
+
+### The scrollspy rule now extends to `transform`
+
+`useActiveSection.ts:18` measures the `<section id>` elements with
+`getBoundingClientRect()`, which reports an element's box **after its own
+transform is applied**. So a `transform` or `opacity` transition on a measured
+section shifts its `rect.top`/`rect.bottom` every frame and reproduces the nav
+mis-highlight bug described above — through a property that is easy to miss.
+
+**Rule: the `id`-bearing `<section>` elements stay untransformed and
+untransitioned.** Every reveal class goes on an inner wrapper (`<article>`,
+`<li>`, the inner `<div>`), never the section. Transforms on a section's
+*children* are safe — they are paint-time and do not alter an ancestor's box.
+
+The older ban still holds and is widened: never animate `height`, `margin`,
+`padding`, `display`, **or `transform`** on a measured section.
+
+### How the reveals work (`styles.css`)
+
+Scroll reveals are pure CSS — `animation-timeline: view()`, no hook, no
+observer, no React state, no hydration dependency:
+
+```css
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal { animation-range: entry 25% entry 100%; /* … */ }
+  }
+}
+```
+
+The nesting is load-bearing. Outside either guard **no rule applies at all**,
+so the element renders at its natural `opacity: 1` — that single fact covers
+reduced-motion users, a failed/blocked JS bundle, non-JS crawlers, and browsers
+without scroll-timeline support. There is no hidden state that can get stuck.
+If you ever move the initial `opacity: 0` outside those guards, you ship
+permanently invisible content to some visitors.
+
+`animation-range: entry 25% entry 100%` is also deliberate. Scroll-driven
+animations are *scrubbed*, not triggered — they run backwards when the user
+scrolls up. Confining the range to `entry` means a card is settled at
+`opacity: 1` for the whole time it occupies readable screen space; ranges
+reaching into `cover` re-fade mid-screen and read as broken.
+
+Hero entrance is separate: `.hero-rise` / `.hero-rise-scale` are ordinary
+time-based keyframes (above the fold, so no scroll timeline), staggered with an
+inline `animationDelay` per element.
+
+### Tailwind v4 writes `translate`, not `transform`
+
+`hover:-translate-y-1` compiles to the standalone **`translate`** property.
+A transition list naming `transform` therefore transitions nothing, and the
+hover lift snaps while border and shadow ease. All card/button hovers use
+`transition-[translate,…]`. Check this before adding any new hover lift.
+
+### Other conventions from that pass
+
+- **Focus rings**: one `:focus-visible` rule in `@layer base` consumes the
+  `--ring` token and covers every interactive element. Do not add
+  per-component `focus-visible:` utilities. Note that elements carrying
+  `transition-colors` also transition `outline-color`, so the ring eases in
+  over ~150ms rather than appearing instantly — that is expected.
+- **Skip link** lives in `src/routes/index.tsx`, not `__root.tsx`, because the
+  404/error shells have no `<main>` to point at. `<main>` carries
+  `id="main-content"` and `tabIndex={-1}` so focus actually moves.
+- **Featured project** is a `featured?: boolean` flag on the `Project` type in
+  `data.ts` — not an array index and not array order. Changing which project
+  is featured is a one-line move of that flag.
+- **Reduced motion**: a `prefers-reduced-motion: reduce` block collapses
+  remaining transition durations and disables the global smooth scroll.
+
+## Known state of `bun run lint`
+
+`bun run lint` is **red on a fresh checkout and always has been** — the repo is
+checked out with CRLF line endings while `prettier/prettier` expects LF, so
+every file reports dozens of `Delete ␍` errors (an untouched `Nav.tsx` alone
+reports 43). This predates the polish pass and is not a signal that something
+broke. To see real problems, filter it:
+
+```sh
+npx eslint src/ 2>&1 | grep -v 'Delete `␍`'
+```
+
+Two `react-hooks/exhaustive-deps` warnings on `useActiveSection.ts:39` are also
+long-standing and deliberate — that hook's algorithm is not to be touched.
+
+Type-checking is the more useful gate and is clean: run the local binary
+(`./node_modules/.bin/tsc.exe --noEmit` on Windows). Plain `npx tsc` does
+**not** work here — TypeScript is not a direct dependency, so npx tries to
+fetch it and bails.
+
+## Rollback anchors
+
+Annotated tags, both pushed to origin:
+
+| Tag | Commit | State |
+| --- | --- | --- |
+| `pre-polish-2026-08-18` | `103a80f` | before the a11y/hierarchy/motion pass |
+| `post-polish-2026-08-18` | `bc1a9f3` | after it |
+
+The pass landed as a `--no-ff` merge, so `git revert -m 1 2ea6a0b` undoes the
+whole thing as one commit. Vercel also retains every production deployment —
+Dashboard → Deployments → Promote to Production rolls back with no rebuild.
+
 ## Notes
 
 - Hosting: Vercel. No CI config committed yet.
 - This is a design-in-progress upgrade of Leo's live portfolio — expect
   iterative small copy/layout tweaks rather than large feature work.
+- No second route exists yet. When one ships, the `Nav.tsx` anchors
+  (`href="#top"` and `href={"#" + link.id}`) must become `/#…` — they resolve
+  against the current path and will point at non-existent anchors on any other
+  route.
