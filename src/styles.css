@@ -125,6 +125,14 @@
   section[id] {
     scroll-margin-top: 5.5rem;
   }
+
+  /* Single source of focus styling: consumes --ring, covers every interactive
+     element (links, buttons, inputs) without repeating classes per component. */
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
 }
 
 @utility container-page {
