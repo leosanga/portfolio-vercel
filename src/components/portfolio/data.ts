@@ -8,22 +8,74 @@ export const NAV_LINKS = [
 
 
 
+/**
+ * `tools` is ordered by weight, heaviest first: named platforms and languages
+ * ahead of the descriptive phrases. The rendered separator is a CSS-generated
+ * middot, so never put commas or separators in these strings.
+ */
 export const COMPETENCIES = [
   {
     title: "Systems Integration + Automation",
-    body: "JavaScript, REST API, Webhooks, Python, n8n, Zapier, Make.com, AI-driven automation, AI Agents, MCP connectors, CRM workflow automation, custom and cross-functional systems integration.",
+    claim:
+      "Owning the layer that moves data between the systems a business depends on, and the automation built on top of it.",
+    tools: [
+      "n8n",
+      "Zapier",
+      "Make.com",
+      "Python",
+      "JavaScript",
+      "REST API",
+      "Webhooks",
+      "CRM workflow automation",
+      "cross-functional systems integration",
+    ],
   },
   {
     title: "Business Systems & Process Architecture",
-    body: "CRM architecture, workflow design, routing logic, process mapping, business systems administration, data models, reporting, dashboards, operational workflows",
+    claim:
+      "Translating how a team actually works into the way its systems are structured.",
+    tools: [
+      "CRM architecture",
+      "routing logic",
+      "data models",
+      "workflow design",
+      "process mapping",
+      "reporting",
+      "dashboards",
+      "business systems administration",
+      "operational workflows",
+    ],
   },
   {
     title: "AI & Intelligent Automation",
-    body: "AI-driven workflows, AI Agents, LLM integration, prompt-driven automation, intelligent routing, data enrichment, human-in-the-loop workflows, MCP connectors",
+    claim:
+      "Building AI into the operational workflows that need judgment, with human checkpoints on the decisions that carry risk.",
+    tools: [
+      "AI Agents",
+      "LLM integration",
+      "MCP connectors",
+      "prompt-driven automation",
+      "AI-driven workflows",
+      "intelligent routing",
+      "data enrichment",
+      "human-in-the-loop workflows",
+    ],
   },
   {
     title: "Enterprise Systems & Technical Engineering",
-    body: "SSO/SAML, SCIM provisioning, Entra ID/Azure AD, Okta, API troubleshooting, root-cause analysis, enterprise deployments, systems reliability, documentation & governance",
+    claim:
+      "Running identity and access across enterprise deployments, and the reliability of the integrations underneath them.",
+    tools: [
+      "SSO/SAML",
+      "SCIM provisioning",
+      "Entra ID/Azure AD",
+      "Okta",
+      "API troubleshooting",
+      "root-cause analysis",
+      "enterprise deployments",
+      "systems reliability",
+      "documentation & governance",
+    ],
   },
 ];
 

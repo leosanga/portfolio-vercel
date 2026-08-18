@@ -28,6 +28,7 @@
   --radius-4xl: calc(var(--radius) + 16px);
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -211,6 +212,40 @@
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: 1.5rem;
+}
+
+/*
+ * Competency tool lists. Terms are separated by a generated middot rather than
+ * commas in the source string, so each term stays an individual <li> that
+ * screen readers announce as a list item and that stays orderable in data.ts.
+ * The separator is decorative and comes from CSS, never from the content.
+ */
+@utility tool-list {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 2;
+  color: var(--muted-foreground);
+
+  /* Flex, not inline. JSX emits no whitespace between the <li> elements, so
+     inline layout offers no break opportunity between terms and can only wrap
+     inside them — "REST API" splitting across lines reads as two terms once a
+     middot is involved. Flex wraps at item boundaries instead, and `nowrap`
+     keeps each term whole. */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 0.5rem;
+
+  & > li {
+    white-space: nowrap;
+  }
+
+  & > li:not(:last-child)::after {
+    content: "·";
+    color: var(--lavender);
+    opacity: 0.75;
+    margin-inline-start: 0.5rem;
+  }
 }
 
 @utility lavender-glow {
