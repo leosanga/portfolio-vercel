@@ -422,7 +422,7 @@ export const PROJECTS: Project[] = [
       "Clients get live, self-service dashboards for metrics that previously required manual analysis and reporting. Complex reporting becomes accessible on demand, reducing recurring manual work and giving decision-makers current data.",
     hardPart:
       "Each metric required a different architecture: combining native functionality, data connectors, external modeling, or custom APIs to produce reporting the platform could not provide directly.",
-    stack: ["Claude Code", "Google Sheets/Excel", "Power BI", "Jira", "Tableau", "API data pull"],
+    stack: ["Google Sheets/Excel", "Power BI", "Jira", "Tableau", "API data pull"],
   },
   {
     title: "Support Ticket Pipeline Automation (HubSpot)",
