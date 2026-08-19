@@ -177,22 +177,105 @@ hover lift snaps while border and shadow ease. All card/button hovers use
 - **Reduced motion**: a `prefers-reduced-motion: reduce` block collapses
   remaining transition durations and disables the global smooth scroll.
 
-## In-flight plan: pipeline diagrams (not yet built)
+## Pipeline diagrams: built, with the RevOps card ON HOLD (2026-08-19)
 
-`PIPELINE_DIAGRAM_PLAN.md` — animated SVG/CSS system diagrams on the project
-cards. **Planned, not executed.** Unlike `ANIMATION_PLAN_PROMPT.md` above
-(which is history), this one is the current work; read it before touching
-`Projects.tsx` or the `PROJECTS`/`COMPETENCIES` data. It carries a
-"Rejected alternatives" table specifically so previously-declined approaches
-don't get re-proposed.
+`PIPELINE_DIAGRAM_PLAN.md` — animated CSS system diagrams on the project
+cards. Read it before touching `Projects.tsx`, `FlowDiagram.tsx`, the
+`.flow-*` block in `styles.css`, or the `PROJECTS`/`COMPETENCIES` data. It
+carries the current status, the two open decisions, and a "Rejected
+alternatives" table specifically so previously-declined approaches don't get
+re-proposed.
+
+**Built:** `FlowDiagram`, plus diagrams on two cards — the HubSpot RevOps card
+(on hold, holds `featured: true`, leave it alone unless Leo reopens it) and the
+n8n implementation-delivery card. Cards carrying a `flow` take the full row
+(`xl:col-span-3`), keyed on `project.flow` rather than on `featured`.
+
+Each diagram sits behind a native `<details>` ("See how it works") so the
+Projects section is not 4,800px tall. **Never animate that open/close.** The
+card is inside `section#projects`, whose box `useActiveSection.ts` measures
+every scroll frame, so a height transition there drags the scrollspy's
+reference box with it — the same bug class as the transform rule above.
+
+**Third instance of that bug class, found and fixed 2026-08-19: `.reveal`
+must never sit on an element that also contains a resizable `<details>`.**
+`.reveal`'s `animation-timeline: view()` recomputes against its own element's
+live box every scroll frame, same as `useActiveSection`'s
+`getBoundingClientRect()` does. Opening the flow diagram disclosure used to
+grow the `<article>` carrying `.reveal` by close to a screen's height;
+scrolling back up while it was open could land the title mid-viewport inside
+the recomputed "still entering" range and fade the whole card. Fix: `.reveal`
+sits on an inner wrapper that excludes the `<details>` (case-study cards), or
+on the `<summary>` alone, whose own box never changes size (the "Also built"
+accordion rows). Never put `.reveal` back on the `<article>` or the `<li>`
+that owns the disclosure.
+
+The plan doc holds a written account of how the n8n workflow works. That is the
+**only** record of it — the workflow lives in a prior employer's n8n tenant Leo
+no longer has access to. Do not edit that section away.
+
+**The RevOps card is hidden** as of 2026-08-19. `REVOPS_PIPELINE` still stands
+in `data.ts` as its own const, it is just not in the `PROJECTS` array, so
+`featured` went back to the n8n card. Restoring it means putting the const back
+and deciding which of the two carries `featured` — there is one wide slot.
+
+**Do not add a generic "how these get built" pattern diagram above the cards.**
+One was built and rolled back on sight the same hour. No reason was given, so
+do not assume the objection was fixable by redrawing it — ask first. Details in
+the plan's tier 0 section.
+
+**The section is tiered, and the tier is derived from `project.flow`.**
+`Projects.tsx` splits `PROJECTS` into case-study cards (those with a `flow`)
+and an "Also built" accordion (those without) — a project that can show its
+topology is exactly the project that has evidence to show, so there is no
+separate tier flag.
+
+Each accordion row is a native `<details>` (`.project-disclosure`), same
+reasoning as the diagram disclosures: content stays in the DOM, opens with JS
+off, no React state to get stuck. An open list was tried first and rejected —
+five entries at full depth buried everything under them. **Do not un-collapse
+them.**
+
+**Every project reads problem, then solution**, at both tiers, so a reader
+moving down the section reads them all the same way. **`solution` carries the
+impact, never the mechanism** — what changed for the people involved, not what
+the automation does. The diagram covers the how where there is one, and `stack`
+names the tools everywhere else. A solution draft that opens with a trigger and
+follows the data through the system has been written and rejected twice. An also-built row adds the
+optional `hardPart` last, as the extra. The solution carries its own outcome;
+there is no `Impact` block anywhere any more, because a result is what the
+solution produced and splitting them made a card say the same thing twice.
+`Project` is now `title`/`problem`/`solution`/`stack` with `overview` and
+`impact[]` deleted — do not reintroduce either, and do not add a one-line "what
+this is" above the problem, which is what `overview` was and which restated the
+solution two paragraphs early.
+
+`hardPart` is optional. As of the 2026-08-19 copy pass all four remaining
+"also built" projects have one — Employee Onboarding was removed from
+`PROJECTS` entirely rather than left without a hard part, and Outbound
+Prospecting's was added once Leo supplied the real difficulty (grounding the
+LLM in business context, not just running research). Still: invent nothing.
+A `hardPart` exists only where there is a real, Leo-supplied constraint —
+that discipline is why it took this long to give Outbound one.
+
+**Do not give the "also built" projects a flow of any kind.** A `FlowStrip`
+was built for that and removed the same day: a four-word flow beside a
+twenty-node diagram invites the comparison and loses it, reading as "this
+project was four steps".
+
+Note the diagrams deviate from what that plan originally specified: connectors
+are CSS pseudo-element borders in percentages, not an SVG layer. The plan's
+"Known ceiling" section describes the SVG approach that was not taken.
 
 ## Project evidence is NDA-constrained
 
-Six of the seven projects on this site are prior-employer work that Leo no
-longer has access to and cannot show under NDA. **Screenshots, screen
-recordings, live links, repos, and real metrics are permanently unavailable
-for them** — this is a standing constraint, not a gap waiting to be filled.
-Do not suggest adding them.
+Every project currently shown is prior-employer work that Leo no longer has
+access to and cannot show under NDA. **Screenshots, screen recordings, live
+links, repos, and real metrics are permanently unavailable for them** — this
+is a standing constraint, not a gap waiting to be filled. Do not suggest
+adding them. (The one exception, the HubSpot RevOps sandbox build, is hidden
+— see "Pipeline diagrams" above. If it's restored, it becomes the second
+project on the site with no NDA surface.)
 
 Architecture diagrams are the workaround: they show a system's topology
 without exposing the employer's data, instance, branding, or records. Keep

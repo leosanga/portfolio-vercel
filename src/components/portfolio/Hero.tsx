@@ -16,9 +16,9 @@ export function Hero() {
             style={{ animationDelay: "120ms" }}
           >
             I design and build systems that connect the tools, data, and processes a business
-            relies on. My background across operations, RevOps, customer success, implementation,
-            and enterprise systems gives me a practical understanding of how the work gets done
-            and where systems can improve it.
+            relies on. My background across cross-functional business operations and technical
+            systems gives me a practical understanding of how the work gets done and where
+            systems can improve it.
           </p>
 
           <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>

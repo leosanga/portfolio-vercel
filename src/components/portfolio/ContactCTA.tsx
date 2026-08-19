@@ -10,12 +10,14 @@ export function ContactCTA() {
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Let's build a system for your systems
         </h2>
-        <p className="mt-5 text-base leading-relaxed text-foreground md:text-lg">
+        <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
           The best systems start with understanding how the business actually works.
         </p>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Show me how the work gets done today, and I'll map where the tools, data, and handoffs
-          should connect.
+          Show me how the work gets done today.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+          We'll identify the gaps, the opportunities, and the right solution.
         </p>
 
         <div className="mt-8 flex justify-center">

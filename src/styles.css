@@ -252,3 +252,445 @@
   box-shadow: 0 0 80px -20px color-mix(in oklab, var(--lavender) 45%, transparent);
 }
 
+
+/*
+ * Project system diagrams (`FlowDiagram`).
+ *
+ * The connectors are pseudo-elements positioned in percentages of the row they
+ * belong to, so the geometry follows any reflow instead of being authored
+ * against one fixed width. Nothing here is SVG: the nodes are real HTML with
+ * selectable text, and the <ol>/<ul> order carries the sequence for a screen
+ * reader without the connectors needing to say anything.
+ *
+ * The pulse travels down the spine and, like every other motion on this site,
+ * is declared only inside `prefers-reduced-motion: no-preference`. Frozen, each
+ * connector is still a visible line, because the line is a background-color and
+ * only the gradient on top of it moves.
+ */
+@keyframes flow-travel {
+  from {
+    background-position: 0 100%;
+  }
+  to {
+    background-position: 0 0%;
+  }
+}
+
+.flow-figure {
+  margin: 0;
+}
+
+.flow-summary {
+  /* The diagram card spans the full row, which is wider than a readable line
+     of prose, so the summary keeps its own measure. */
+  max-width: 44rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--muted-foreground);
+}
+
+.flow-diagram {
+  /* Vertical distance a connector spans. Every offset below is derived from
+     it, so changing this one value rescales the whole diagram. */
+  --flow-gap: 1.9rem;
+  --flow-line: color-mix(in oklab, var(--lavender) 28%, transparent);
+
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--flow-gap);
+}
+
+.flow-row {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.flow-row > .flow-node {
+  max-width: 27rem;
+}
+
+.flow-branch {
+  --branch-gap: 1.75rem;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: var(--branch-gap);
+  width: 100%;
+  max-width: 36rem;
+}
+
+.flow-branch > li {
+  position: relative;
+  display: flex;
+}
+
+/* Every connector segment. The gradient sits below the visible area at rest,
+   so without the animation only `background-color` shows. */
+.flow-row:not(:first-child)::before,
+.flow-branch > li::before,
+.flow-branch > li::after {
+  content: "";
+  position: absolute;
+  width: 1px;
+  background-color: var(--flow-line);
+  background-image: linear-gradient(
+    180deg,
+    transparent 0%,
+    var(--lavender) 50%,
+    transparent 100%
+  );
+  background-size: 100% 300%;
+  background-repeat: no-repeat;
+  background-position: 0 0%;
+}
+
+/* Spine: one vertical across the whole gap above the row. */
+.flow-row:not(:first-child)::before {
+  left: 50%;
+  top: calc(var(--flow-gap) * -1);
+  height: var(--flow-gap);
+}
+
+/* Into a branch: stop halfway, where the split bar is drawn. */
+.flow-row--branch::before {
+  height: calc(var(--flow-gap) / 2);
+}
+
+/* Out of a branch: start halfway, where the merge bar is drawn. */
+.flow-row--merge::before {
+  top: calc(var(--flow-gap) / -2);
+  height: calc(var(--flow-gap) / 2);
+}
+
+/* Split and merge bars. A column's centre sits at (100% - gap) / 4 from the
+   grid's edge, which is exactly `25% - gap/4` — so the bars meet the drop
+   stubs below at any width, with no measuring. */
+.flow-branch::before,
+.flow-branch::after {
+  content: "";
+  position: absolute;
+  left: calc(25% - var(--branch-gap) / 4);
+  right: calc(25% - var(--branch-gap) / 4);
+  height: 1px;
+  background-color: var(--flow-line);
+}
+
+.flow-branch::before {
+  top: calc(var(--flow-gap) / -2);
+}
+
+.flow-branch::after {
+  bottom: calc(var(--flow-gap) / -2);
+}
+
+/* Drop from the split bar into each branch node, and rise back to the merge
+   bar underneath it. */
+.flow-branch > li::before {
+  left: 50%;
+  top: calc(var(--flow-gap) / -2);
+  height: calc(var(--flow-gap) / 2);
+}
+
+.flow-branch > li::after {
+  left: 50%;
+  bottom: calc(var(--flow-gap) / -2);
+  height: calc(var(--flow-gap) / 2);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flow-row:not(:first-child)::before,
+  .flow-branch > li::before,
+  .flow-branch > li::after {
+    animation: flow-travel 2.4s linear infinite;
+    /* --i is set inline per row and inherited by the branch children, so the
+       pulse reads as one signal moving down the diagram rather than every
+       segment blinking together. */
+    animation-delay: calc(var(--i, 0) * 0.18s);
+  }
+}
+
+.flow-node {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-left-width: 2px;
+  border-radius: var(--radius-sm);
+  background-color: var(--background);
+  padding: 0.7rem 0.9rem;
+}
+
+.flow-node--native {
+  border-left-color: var(--lavender);
+}
+
+.flow-node--service {
+  border-left-color: var(--rose);
+}
+
+.flow-node--manual {
+  border-left-color: var(--muted-foreground);
+}
+
+/* The kind tag is the reason this is a diagram and not a list: it records which
+   layer owns the step. It labels itself, so the figure needs no legend. */
+.flow-node-kind {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.flow-node--native .flow-node-kind {
+  color: var(--lavender);
+}
+
+.flow-node--service .flow-node-kind {
+  color: var(--rose);
+}
+
+.flow-node--manual .flow-node-kind {
+  color: var(--muted-foreground);
+}
+
+.flow-node-label {
+  margin-top: 0.3rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--foreground);
+}
+
+.flow-node-detail {
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--muted-foreground);
+}
+
+/* Narrow screens keep the branch as two columns rather than stacking it. A
+   stacked branch reads as two sequential steps, which is the one thing the
+   diagram exists to disprove, so the type tightens instead of the topology. */
+@media (max-width: 640px) {
+  .flow-diagram {
+    --flow-gap: 1.5rem;
+  }
+
+  .flow-branch {
+    --branch-gap: 0.8rem;
+  }
+
+  .flow-node {
+    padding: 0.55rem 0.65rem;
+  }
+
+  .flow-node-label {
+    font-size: 0.8rem;
+  }
+
+  .flow-node-detail {
+    font-size: 0.72rem;
+  }
+}
+
+/*
+ * Diagram disclosure.
+ *
+ * A native <details>, so open/closed is browser state rather than React state.
+ * Collapsed, the content is still in the DOM — indexable, findable by the
+ * browser's own find-in-page, and openable with JS disabled — which is the
+ * same reason every other hidden state on this page was removed.
+ *
+ * Nothing animates the open/close. The diagram sits inside a `section[id]`
+ * whose box `useActiveSection.ts` measures every frame, so a height transition
+ * here would drag the scrollspy's reference box with it. Only the caret moves,
+ * and a rotate is paint-time.
+ */
+.flow-disclosure > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--lavender);
+  transition:
+    border-color 200ms,
+    background-color 200ms;
+}
+
+/* Both are needed: the pseudo-element covers WebKit, `list-style` covers the
+   rest, and neither alone removes the default triangle everywhere. */
+.flow-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.flow-disclosure > summary {
+  list-style: none;
+}
+
+.flow-disclosure > summary:hover {
+  border-color: color-mix(in oklab, var(--lavender) 40%, transparent);
+  background-color: var(--background);
+}
+
+.flow-disclosure > summary::after {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentcolor;
+  border-bottom: 1.5px solid currentcolor;
+  rotate: 45deg;
+  translate: 0 -0.1rem;
+  transition: rotate 200ms;
+}
+
+.flow-disclosure[open] > summary::after {
+  rotate: 225deg;
+  translate: 0 0.1rem;
+}
+
+/* Clears the fixed header when an opened disclosure scrolls itself into view,
+   matching the `scroll-margin-top` the anchored sections already use. */
+.flow-disclosure {
+  scroll-margin-top: 5.5rem;
+}
+
+/*
+ * "Also built" accordion rows.
+ *
+ * A second `<details>` treatment, sharing the caret and the open transition
+ * with `.flow-disclosure` but not its summary chrome: that one is a button
+ * because it reveals a diagram inside a card, this one is a row in a list.
+ *
+ * The whole row is the summary, so the click target is the full width rather
+ * than the title's own text box.
+ */
+.project-disclosure > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  cursor: pointer;
+  list-style: none;
+  padding-block: 1.1rem;
+  transition: color 200ms;
+}
+
+.project-disclosure > summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-disclosure > summary > h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--foreground);
+  transition: color 200ms;
+}
+
+.project-disclosure > summary:hover > h4 {
+  color: var(--lavender);
+}
+
+.project-disclosure > summary::after {
+  content: "";
+  flex-shrink: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid var(--lavender);
+  border-bottom: 1.5px solid var(--lavender);
+  rotate: 45deg;
+  translate: 0 -0.1rem;
+  transition: rotate 200ms;
+}
+
+.project-disclosure[open] > summary::after {
+  rotate: 225deg;
+  translate: 0 0.1rem;
+}
+
+/*
+ * "The hard part" on an also-built entry.
+ *
+ * Deliberately the same dashed left edge and muted mono tag a `constraint` node
+ * carries inside a diagram, since both say the same thing: a limit that shaped
+ * the design rather than a step the system performs. It does not reuse
+ * `.flow-node` itself, because that carries a full border and a panel
+ * background, and a box per entry would put back the card affordance the
+ * also-built list exists to remove.
+ */
+.hard-part {
+  border-left: 2px dashed var(--muted-foreground);
+  padding-left: 0.9rem;
+}
+
+.hard-part-tag {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.hard-part-text {
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+/* A `constraint` node is not a step the system performs, it is a platform
+   limit that shaped the design. The dashed edge is what says so at a glance,
+   before the tag is read. */
+.flow-node--constraint {
+  border-left-style: dashed;
+  border-left-color: var(--muted-foreground);
+}
+
+.flow-node--constraint .flow-node-kind {
+  color: var(--muted-foreground);
+}
+
+/*
+ * Opening animation.
+ *
+ * `useActiveSection.ts` recomputes only on `scroll` and `resize`, so a height
+ * transition running while the page is stationary never reaches it. The one
+ * overlap is the scroll-into-view on open, which is brief and self-correcting
+ * on the next scroll. Do not extend this to anything that animates height
+ * continuously.
+ *
+ * `interpolate-size` is scoped to the disclosure rather than set on :root, and
+ * both it and the transition sit behind @supports, so a browser without
+ * `::details-content` gets the instant open it has now. There is no state to
+ * get stuck in either case: closed is closed because the element is closed,
+ * not because a rule is hiding it.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  @supports selector(::details-content) {
+    .flow-disclosure,
+    .project-disclosure {
+      interpolate-size: allow-keywords;
+    }
+
+    .flow-disclosure::details-content,
+    .project-disclosure::details-content {
+      block-size: 0;
+      overflow: hidden;
+      transition:
+        block-size 400ms cubic-bezier(0.16, 1, 0.3, 1),
+        content-visibility 400ms allow-discrete;
+    }
+
+    .flow-disclosure[open]::details-content,
+    .project-disclosure[open]::details-content {
+      block-size: auto;
+    }
+  }
+}
