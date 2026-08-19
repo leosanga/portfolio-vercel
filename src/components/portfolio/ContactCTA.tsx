@@ -25,7 +25,7 @@ export function ContactCTA() {
             href={CONTACT.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-lavender px-6 py-3 text-sm font-medium text-primary-foreground transition-[opacity,translate] duration-200 hover:-translate-y-0.5 hover:opacity-90 active:translate-y-0"
+            className="btn-cta px-6 py-3 text-sm"
           >
             Book a Call
           </a>

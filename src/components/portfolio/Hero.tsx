@@ -3,12 +3,13 @@ import { CONTACT } from "./data";
 
 export function Hero() {
   return (
-    <section id="top" className="pt-32 pb-20 md:pt-40 md:pb-28">
-      <div className="container-page grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+    <section id="top" className="relative isolate overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <div className="hero-backdrop" aria-hidden="true" />
+      <div className="container-page relative z-10 grid items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
         <div>
           <h1 className="hero-rise text-balance text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl">
             Build systems that{" "}
-            <span className="text-lavender whitespace-nowrap">run the business</span>
+            <span className="shimmer-accent text-lavender whitespace-nowrap">run the business</span>
           </h1>
 
           <p
@@ -26,7 +27,7 @@ export function Hero() {
               href={CONTACT.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full bg-lavender px-6 py-3 text-sm font-medium text-primary-foreground transition-[opacity,translate] duration-200 hover:-translate-y-0.5 hover:opacity-90 active:translate-y-0"
+              className="btn-cta px-6 py-3 text-sm"
             >
               Book a Call
             </a>

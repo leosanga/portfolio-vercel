@@ -207,6 +207,202 @@
   }
 }
 
+/*
+ * Skills card cursor spotlight.
+ *
+ * Pointer-driven only — the glow never moves on its own, so it needs no
+ * reduced-motion guard and there is no autoplay to freeze. Competencies.tsx
+ * writes --mx/--my on pointermove; here they position a radial-gradient layer.
+ * The layer sits at z-index -1 (above the card's background, below its text)
+ * and is clipped by the card's own overflow, so it never escapes the rounded
+ * border. The card is a child of section#skills, never the measured section
+ * itself, so tracking its pointer touches no scrollspy box.
+ */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 250ms;
+  background: radial-gradient(
+    9rem 9rem at var(--mx, 50%) var(--my, 50%),
+    color-mix(in oklab, var(--lavender) 22%, transparent),
+    transparent 70%
+  );
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/*
+ * Hero accent shimmer.
+ *
+ * A light band sweeps slowly across the one lavender phrase. Guarded like every
+ * other motion here: the clip and transparent fill live only inside
+ * `no-preference`, so reduced-motion users, no-support browsers, and a failed
+ * bundle all get the plain `text-lavender` the span still carries — nothing to
+ * get stuck mid-fade. Above the fold, so time-based, not a scroll timeline.
+ */
+@keyframes shimmer-sweep {
+  from {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shimmer-accent {
+    background-image: linear-gradient(
+      110deg,
+      var(--lavender) 0%,
+      var(--lavender) 42%,
+      oklch(0.97 0.03 300) 50%,
+      var(--lavender) 58%,
+      var(--lavender) 100%
+    );
+    background-size: 250% 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer-sweep 5s ease-in-out infinite;
+  }
+}
+
+/*
+ * Hero backdrop — faint drifting grid.
+ *
+ * A hairline lattice masked to concentrate behind the portrait (top-right) and
+ * fade to nothing at the edges, so it never competes with the headline. It sits
+ * as an absolute layer inside the hero (Hero.tsx makes the section
+ * `relative isolate overflow-hidden` and lifts the content with z-10), NOT on a
+ * measured section[id]: the drift animates `background-position` on this layer
+ * only, never a section's box, so it cannot reach useActiveSection's
+ * getBoundingClientRect() the way a transform on a measured section would.
+ *
+ * The base grid is unguarded, so everyone sees the lattice — reduced-motion
+ * users, no-support browsers, a failed bundle. Only the slow drift lives inside
+ * `no-preference`; frozen, the grid is simply still. There is no hidden state.
+ */
+.hero-backdrop {
+  position: absolute;
+  inset: -2px;
+  z-index: 0;
+  pointer-events: none;
+  --grid-line: color-mix(in oklab, var(--lavender) 9%, transparent);
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 46px 46px;
+  -webkit-mask-image: radial-gradient(120% 90% at 70% 35%, #000 0%, transparent 72%);
+  mask-image: radial-gradient(120% 90% at 70% 35%, #000 0%, transparent 72%);
+}
+
+/* A soft lavender pool behind the portrait side, so the grid sits in light. */
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 55%;
+  height: 90%;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--lavender-strong) 16%, transparent),
+    transparent
+  );
+  filter: blur(20px);
+}
+
+@keyframes grid-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 46px 46px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero-backdrop {
+    animation: grid-drift 34s linear infinite;
+  }
+}
+
+/*
+ * Primary CTA ("Book a Call"), shared by the nav, hero, and contact section so
+ * the press feel is identical everywhere. Padding and text size stay inline per
+ * use (the nav pill is smaller); everything that carries the polish lives here.
+ *
+ * Design-engineering choices (Emil Kowalski): the press is the point — a button
+ * must acknowledge the click, so `:active` scales to 0.97, and it does so faster
+ * (140ms) than the hover settles (200ms): slow where the user decides, snappy
+ * where the system responds. Every transitioned property is named explicitly
+ * (never `all`) on a strong custom ease-out curve, because the built-in easings
+ * are too weak to read as intentional. The lift is gated behind a real pointer
+ * so a tap on a touch screen does not fire a phantom hover.
+ */
+.btn-cta {
+  border-radius: 999px;
+  background-color: var(--lavender);
+  color: var(--primary-foreground);
+  font-weight: 500;
+  transition:
+    translate 200ms cubic-bezier(0.23, 1, 0.32, 1),
+    scale 140ms cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-cta:hover {
+    translate: 0 -2px;
+    opacity: 0.92;
+  }
+}
+
+/* Press wins over hover: cancel the lift and scale down, so a click always
+   reads as a press even when the pointer is still hovering. */
+.btn-cta:active {
+  translate: 0 0;
+  scale: 0.97;
+}
+
+/*
+ * Nav active-link underline — one indicator that slides between links as the
+ * scrollspy's active section changes, instead of a per-link span that hard-cuts.
+ *
+ * Nav.tsx measures the active link and writes `transform`/`width`/`opacity` as
+ * inline styles; this rule only carries the transition. On-screen movement, so a
+ * strong ease-in-out; a CSS transition (not a keyframe) so it retargets smoothly
+ * when `active` flips several times during a fast scroll rather than restarting.
+ * Position is `transform` (compositor-friendly); width animates too, but on a
+ * 1px out-of-flow bar that reflows nothing but itself.
+ */
+.nav-underline {
+  position: absolute;
+  left: 0;
+  bottom: -0.375rem;
+  height: 1px;
+  width: 0;
+  opacity: 0;
+  background-color: var(--lavender);
+  pointer-events: none;
+  transition:
+    transform 250ms cubic-bezier(0.77, 0, 0.175, 1),
+    width 250ms cubic-bezier(0.77, 0, 0.175, 1),
+    opacity 200ms ease;
+}
+
 @utility container-page {
   width: 100%;
   max-width: 1200px;

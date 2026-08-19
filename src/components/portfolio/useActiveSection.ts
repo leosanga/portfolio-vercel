@@ -20,6 +20,21 @@ export function useActiveSection(ids: string[]) {
           current = section.id;
         }
       }
+
+      // Bottom-of-page fallback. The last section (contact) is short and sits
+      // above the footer, so the page stops scrolling before its box can reach
+      // the viewport centre — the centre-line test above can therefore never
+      // elect it, and clicking its nav link lands here too. When scrolled to the
+      // bottom, force the last section active. This is additive: the centre-line
+      // loop is left exactly as-is, per the algorithm note in CLAUDE.md.
+      const last = sections[sections.length - 1];
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 2;
+      if (atBottom && last) {
+        current = last.id;
+      }
+
       setActive(current);
     };
 
