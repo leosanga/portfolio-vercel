@@ -57,9 +57,10 @@ export function Projects() {
                 >
                   {project.title}
                 </h3>
-                {/* Problem, then the solution carrying its own outcome. Same
-                    order as an "Also built" row, so a reader moving down the
-                    section reads every project the same way. */}
+                {/* Problem, then the solution: what Leo built, then a short
+                    outcome clause. Same order as an "Also built" row, so a
+                    reader moving down the section reads every project the same
+                    way. */}
                 <p className="mt-5 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-rose">
                   Problem
                 </p>
@@ -73,6 +74,17 @@ export function Projects() {
                 <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                   {project.solution}
                 </p>
+
+                {/* Same dashed-edge treatment as an "Also built" row and a
+                    diagram's `constraint` node: the constraint that shaped the
+                    build, after the solution because it is the extra, not the
+                    point. */}
+                {project.hardPart && (
+                  <div className="hard-part mt-5">
+                    <p className="hard-part-tag">The hard part</p>
+                    <p className="hard-part-text">{project.hardPart}</p>
+                  </div>
+                )}
 
                 {/* Same `tool-list` treatment as the Skills section: mono terms
                     separated by a CSS middot, no containers. */}
@@ -139,9 +151,9 @@ export function Projects() {
                     <h4>{project.title}</h4>
                   </summary>
 
-                  {/* Problem, then the solution carrying its own outcome. A
-                      result is what the solution produced, so a separate
-                      impact list said the same thing twice. */}
+                  {/* Problem, then the solution: what Leo built, then a short
+                      outcome clause. The hard part sits below as the extra,
+                      not the point. */}
                   <div className="pb-6">
                     <p className="text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-rose">
                       Problem

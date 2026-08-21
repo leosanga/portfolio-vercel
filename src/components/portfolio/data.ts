@@ -130,8 +130,12 @@ export type FlowNode = {
  * into the spine on the next row. Nothing else is drawable, on purpose.
  */
 export type Flow = {
-  /** Prose version of the whole path, rendered above the figure. */
-  summary: string;
+  /**
+   * Prose version of the whole path, rendered above the figure. Optional: a
+   * card whose problem and solution already carry the path does not need it
+   * restated over the diagram, so it is left off there.
+   */
+  summary?: string;
   rows: FlowNode[][];
 };
 
@@ -140,12 +144,16 @@ type Project = {
   /**
    * Every project reads problem first, then solution, at both tiers.
    *
-   * **`solution` is the impact, not the mechanism.** It says what changed for
-   * the people involved. It does not walk through what the automation does,
-   * step by step or otherwise: the `flow` diagram covers that where there is
-   * one, and `stack` names the tools everywhere else. A draft that opens with
-   * a trigger and follows the data through the system has got this wrong, and
-   * that draft has been written and rejected twice.
+   * **`solution` leads with what Leo built, then closes with a short outcome
+   * clause.** The portfolio card exists to say what he built, so the solution
+   * names the system and its main moving parts, then a trailing "so ..." says
+   * what changed. It is still a compact build summary, not a walkthrough: it
+   * does not open on a trigger and follow the data step by step through the
+   * system (the `flow` diagram is the detailed version where there is one, and
+   * `stack` names the tools). Naming the category over enumerating its members
+   * still holds. This reverses the earlier "impact, not mechanism" rule on
+   * Leo's instruction (2026-08-21); the step-by-step walkthrough it warned
+   * against is still wrong.
    *
    * Both fields are present tense throughout. A problem in the present reads as
    * the standing situation the system answers, and it keeps every card in one
@@ -292,7 +300,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Every new client requires a set of customized implementation deliverables, creating more than 8 hours of repetitive manual work each week and delaying the start of onboarding.",
     solution:
-      "Client-specific deliverables are auto-generated, eliminating manual work and allowing client onboarding to start immediately.",
+      "An n8n workflow builds each client's deliverables from the onboarding intake sheet, creating real copies in whichever workspace the client uses and replacing their specific details inside each file, so onboarding can start right away instead of waiting on manual setup.",
     stack: [
       "n8n",
       "JavaScript",
@@ -300,9 +308,9 @@ export const PROJECTS: Project[] = [
       "Microsoft SharePoint API",
       "Google Sheets",
     ],
+    hardPart:
+      "Each file is unique and needs specific changes in specific areas inside it, so a shared loop could not do the work. Each one gets its own chain and custom code that finds the exact place to change and edits it there.",
     flow: {
-      summary:
-        "Turns the client information collected during onboarding into a full set of client-specific deliverables, built in the workspace that client uses and handed over as a project overview.",
       rows: [
         [
           {
@@ -399,7 +407,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Complex lead qualification criteria involve manual research. That takes long enough that a lead's priority depends on who gets to it and when.",
     solution:
-      "A lead's priority no longer depends on who opens it or when. Manual research is gone from the qualification step entirely.",
+      "An n8n workflow runs the qualification research automatically and writes the result back into HubSpot for its native workflow to act on, so a lead's priority no longer depends on who opens it or when.",
     hardPart:
       "The workflow required n8n to integrate with HubSpot without disrupting its native execution, using webhooks and the HubSpot API to write custom properties the existing workflow could recognize and use to proceed. This qualification step is one portion of a much larger workflow.",
     stack: ["HubSpot API", "Webhooks", "n8n", "LLM", "Custom Properties"],
@@ -409,7 +417,7 @@ export const PROJECTS: Project[] = [
     problem:
       "Reps research each prospect by hand before writing to them, so outreach goes out long after the visit that prompted it.",
     solution:
-      "Reps no longer research prospects. What reaches them in Slack is a personalized draft ready to send, so outreach goes out while the visit is still recent.",
+      "An n8n workflow researches each prospect automatically, and an LLM turns that research into a personalized draft delivered to the rep in Slack, so outreach goes out while the visit is still recent.",
     hardPart:
       "The LLM needed enough business context to connect each prospect's researched data to relevant capabilities and proof points, then turn that context into a personalized draft that demonstrated value.",
     stack: ["n8n", "JavaScript", "LLM", "Slack API", "HubSpot API"],
@@ -419,7 +427,7 @@ export const PROJECTS: Project[] = [
     problem:
       "The platform supports extensive reporting, but some enterprise metrics are too complex for its built-in capabilities. Producing them requires combining platform functionality, external data modeling, or custom integrations.",
     solution:
-      "Clients get live, self-service dashboards for metrics that previously required manual analysis and reporting. Complex reporting becomes accessible on demand, reducing recurring manual work and giving decision-makers current data.",
+      "Each metric the platform could not report on directly gets its own pipeline feeding a live dashboard, so reporting that used to require manual analysis is available to clients on demand.",
     hardPart:
       "Each metric required a different architecture: combining native functionality, data connectors, external modeling, or custom APIs to produce reporting the platform could not provide directly.",
     stack: ["Google Sheets/Excel", "Power BI", "Jira", "Tableau", "API data pull"],
@@ -429,7 +437,7 @@ export const PROJECTS: Project[] = [
     problem:
       "The team needs a standardized way to manage support tickets from intake through resolution, but HubSpot's native ticket functionality cannot support the required lifecycle and routing logic directly.",
     solution:
-      "Every ticket follows the same lifecycle regardless of who picks it up, so misrouting drops and response times become predictable. The whole lifecycle can now be reported on, start to finish.",
+      "Custom properties and HubSpot workflows model the ticket lifecycle and routing that native tickets could not, so every ticket follows the same path from intake to resolution no matter who picks it up.",
     hardPart:
       "The required lifecycle and routing had to be modeled around HubSpot's confirmed platform limitations, combining custom properties and workflows to reproduce the desired behavior without native support.",
     stack: ["HubSpot", "Workflow Automation", "Custom Properties", "Process Mapping"],
