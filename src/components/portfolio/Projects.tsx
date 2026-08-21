@@ -133,8 +133,14 @@ export function Projects() {
             React state that can get stuck. */}
         <div className="mt-16">
           <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Also built
+            More builds
           </h3>
+          {/* The list is a selection, not the whole of the work. Without this
+              line the heading reads as the full inventory. */}
+          <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+            The builds involved enough to earn a place here, chosen from many
+            more.
+          </p>
           {/* The measure lives on the list, not the rows, so the top rule and
               every row rule end at the same place. */}
           <ul className="mt-6 max-w-3xl border-t border-border">
