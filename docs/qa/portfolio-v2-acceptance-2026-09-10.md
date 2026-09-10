@@ -8,6 +8,7 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 
 - Branch: `redesign/v2`
 - Base planning commit: `a767ce7fc6a7cc684b7d6127d0cd11995f1804f9`
+- Gate 1 implementation checkpoint: `a4d34c7728d6d35007da3873882a4b1ff62ffd44`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
