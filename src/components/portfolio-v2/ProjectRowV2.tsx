@@ -15,7 +15,7 @@ export function ProjectRowV2({ project, index }: ProjectRowV2Props) {
         <h3>{project.title}</h3>
         <div className="pv2-project-row__copy">
           <div className="pv2-project-field">
-            <p className="pv2-project-field__label">Problem</p>
+            <p className="pv2-project-field__label">The problem</p>
             <p>{project.problem}</p>
           </div>
           <div className="pv2-project-field">

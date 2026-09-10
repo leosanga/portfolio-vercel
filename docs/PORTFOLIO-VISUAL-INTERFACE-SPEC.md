@@ -476,6 +476,8 @@ site's visual identity.
 
 - Use the approved heading `Start with a conversation.`
 - Place the approved support copy within a readable 56-character measure.
+- Stack each support-copy sentence on its own line as a paragraph, using a
+  compact internal gap rather than one continuous text block.
 - `Schedule a Call` is the single prominent action.
 - Email and LinkedIn move to a quiet footer treatment and do not appear beside
   the primary button.

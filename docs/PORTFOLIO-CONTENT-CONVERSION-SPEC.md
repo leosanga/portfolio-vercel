@@ -280,14 +280,15 @@ Recommended information order inside the feature:
 
 1. Project type: `Featured system`
 2. Project title
-3. Problem
+3. The problem
 4. What I built
 5. Technology metadata
 6. The hard part
 7. `See how it works` disclosure
 8. Detailed implementation-delivery workflow
 
-The labels `What I built`, `The hard part`, and `See how it works` are `draft`.
+The labels `The problem`, `What I built`, and `The hard part` are `approved`.
+The label `See how it works` is `draft`.
 The project facts and locked content listed below must be sourced from
 `src/components/portfolio/data.ts`.
 
@@ -558,7 +559,7 @@ Status: `approved`
 
 ### Supporting copy
 
-`The best systems start with understanding how the business actually works. Schedule 30 minutes to discuss a role or a systems problem. I can walk you through my work, or you can show me how the work gets done today. We'll identify where the system can improve.`
+`The best solutions start with understanding how the business actually works. Schedule 30 minutes to discuss a role or a systems problem. I can walk you through my work, or you can show me how the work gets done today. We'll identify where the system can improve.`
 
 Status: `approved`
 
@@ -567,7 +568,7 @@ Status: `approved`
 ```text
 Start with a conversation.
 
-The best systems start with understanding how the business actually works.
+The best solutions start with understanding how the business actually works.
 Schedule 30 minutes to discuss a role or a systems problem. I can walk you
 through my work, or you can show me how the work gets done today. We'll identify
 where the system can improve.
@@ -578,6 +579,10 @@ Schedule a Call
 ```
 
 Status: `approved`
+
+Render each sentence as its own stacked paragraph. Keep the paragraphs within
+one support-copy group with a compact rhythm so the section scans as a sequence,
+not as four unrelated statements.
 
 The duration line is interface metadata. The private 30-minute buffer between
 bookings should not appear on the site.
@@ -910,14 +915,18 @@ enterprise platforms.`
 - Homepage project structure: one `Projects` section containing the featured
   project and the four remaining project entries
 - Approach heading: `My Approach`
-- Selected capability descriptions: option A for all three proposed groups
-- AI positioning: fold AI into Systems Integration + Automation and show it
-  within projects where it materially affects the implementation
+- Selected capability descriptions: approved copy for all four groups
+- AI positioning: use `AI + Intelligent Automation` as the second peer
+  capability while keeping Systems Integration + Automation as the primary
+  identity
+- Project evidence labels: `The problem`, `What I built`, and `The hard part`
 - Final conversation heading: `Start with a conversation.`
-- Final conversation supporting copy: `The best systems start with understanding
+- Final conversation supporting copy: `The best solutions start with understanding
 how the business actually works. Schedule 30 minutes to discuss a role or a
 systems problem. I can walk you through my work, or you can show me how the
 work gets done today. We'll identify where the system can improve.`
+- Final conversation presentation: render each supporting sentence as its own
+  stacked paragraph within one compact copy group
 - Current footer slogan: remove in the redesign
 - Secondary business audience: neutrally accommodated
 - Scheduled duration: 30 minutes

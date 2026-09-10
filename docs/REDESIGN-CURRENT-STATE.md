@@ -65,6 +65,10 @@ production change.
 Automation` is a distinct second capability so it is visible to skim readers
   without replacing the primary Systems Integration + Automation identity.
 - Every project evidence row now uses `The hard part` rather than `Constraint`.
+- Project evidence labels now use the uniform sequence `The problem`, `What I
+built`, and `The hard part`.
+- The final conversation opens with `The best solutions start with` and renders
+  each supporting sentence as a separate stacked paragraph for faster scanning.
 - The expanded featured-project workflow replays in discrete passes with a
   3.2-second cadence. Replay pauses when the disclosure is closed, the diagram
   is outside the viewport, the tab is hidden, or reduced motion is requested.

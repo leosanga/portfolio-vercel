@@ -126,8 +126,12 @@ export const APPROACH = LEGACY_APPROACH;
 
 export const CONVERSATION: ConversationContent = {
   heading: "Start with a conversation.",
-  support:
-    "The best systems start with understanding how the business actually works. Schedule 30 minutes to discuss a role or a systems problem. I can walk you through my work, or you can show me how the work gets done today. We'll identify where the system can improve.",
+  supportLines: [
+    "The best solutions start with understanding how the business actually works.",
+    "Schedule 30 minutes to discuss a role or a systems problem.",
+    "I can walk you through my work, or you can show me how the work gets done today.",
+    "We'll identify where the system can improve.",
+  ],
   callLabel: "Schedule a Call",
   duration: "30 minutes · Google Calendar",
 };

@@ -14,7 +14,11 @@ export function ConversationV2() {
           </div>
           <div className="pv2-conversation__copy">
             <h2 id="pv2-conversation-title">{CONVERSATION.heading}</h2>
-            <p>{CONVERSATION.support}</p>
+            <div className="pv2-conversation__support">
+              {CONVERSATION.supportLines.map((line) => (
+                <p key={line}>{line}</p>
+              ))}
+            </div>
           </div>
           <div className="pv2-conversation__action">
             <PrimaryCallLinkV2 />

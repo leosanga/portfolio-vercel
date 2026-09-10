@@ -11,7 +11,7 @@ export function FeaturedProjectV2({ project }: { project: ProjectViewModel }) {
       </div>
       <div className="pv2-featured-project__body">
         <div className="pv2-project-field">
-          <p className="pv2-project-field__label">Problem</p>
+          <p className="pv2-project-field__label">The problem</p>
           <p>{project.problem}</p>
         </div>
         <div className="pv2-project-field pv2-project-field--emphasis">

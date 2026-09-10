@@ -40,8 +40,8 @@ run passes with no findings.
 
 ## Bundle and asset evidence
 
-- Scoped version 2 CSS: 33.78 KB raw, 6.75 KB gzip.
-- Version 2 route JavaScript: 19.92 KB raw, 5.35 KB gzip.
+- Scoped version 2 CSS: 33.85 KB raw, 6.77 KB gzip.
+- Version 2 route JavaScript: 20.01 KB raw, 5.36 KB gzip.
 - Instrument Sans and IBM Plex Mono total: 138,032 bytes. This is below the
   160 KB ceiling and above the 120 KB preferred target.
 - Portrait derivatives cover AVIF, WebP, and progressive JPEG at the approved
@@ -99,6 +99,10 @@ run passes with no findings.
 - The featured workflow now replays in discrete passes every 3.2 seconds while
   it is open and near the viewport. It pauses while closed, out of view, in a
   hidden tab, or under a reduced-motion preference.
+- All project entries now use the uniform evidence labels `The problem`, `What I
+built`, and `The hard part`.
+- The final conversation now opens with `The best solutions start with` and
+  presents its four supporting sentences as a compact vertical sequence.
 
 ## Motion review
 

@@ -33,7 +33,7 @@ export type HeroContent = {
 
 export type ConversationContent = {
   heading: string;
-  support: string;
+  supportLines: readonly string[];
   callLabel: string;
   duration: string;
 };
