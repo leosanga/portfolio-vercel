@@ -50,15 +50,15 @@ approves this document and the later planning gates permit it.
 
 ## Current asset inventory
 
-| Asset | Current location | Observed properties | Current role | Redesign decision |
-|---|---|---|---|---|
-| Original portrait | `portrait image.heic` | 4283 by 5711 px; 8-bit; TopLeft orientation; sRGB; EXIF and XMP profiles; 6,639,893 bytes | User-provided master | Keep untouched, outside Git, and use only as the source for approved derivatives |
-| Current portrait | `src/assets/leo-portrait.jpg` | 1200 by 1600 px; 139,122 bytes; 3:4 portrait | Live hero image | Keep unchanged for rollback; do not reuse as the redesign master |
-| Current favicon SVG | `public/favicon.svg` | 100 by 100 viewBox; 425 bytes | Live scalable browser icon | Keep unchanged; replace only through a new versioned path at cutover |
-| Current favicon PNG | `public/favicon.png` | 32 by 32 px; 809 bytes | Live raster fallback | Keep unchanged; create a versioned redesign counterpart |
-| Current Apple touch icon | `public/apple-touch-icon.png` | 180 by 180 px; 3,577 bytes | Live saved-site icon | Keep unchanged; create a versioned redesign counterpart |
-| Current workflow diagram | `FlowDiagram.tsx` and `.flow-*` styles | Structured HTML and CSS driven by project data | Featured-project evidence | Redesign its visual grammar later without turning it into a raster asset |
-| Current social preview | None found | `summary_large_image` metadata exists without an image | Missing sharing asset | Create a static 1200 by 630 social image and add metadata only at cutover |
+| Asset                    | Current location                       | Observed properties                                                                       | Current role               | Redesign decision                                                                |
+| ------------------------ | -------------------------------------- | ----------------------------------------------------------------------------------------- | -------------------------- | -------------------------------------------------------------------------------- |
+| Original portrait        | `portrait image.heic`                  | 4283 by 5711 px; 8-bit; TopLeft orientation; sRGB; EXIF and XMP profiles; 6,639,893 bytes | User-provided master       | Keep untouched, outside Git, and use only as the source for approved derivatives |
+| Current portrait         | `src/assets/leo-portrait.jpg`          | 1200 by 1600 px; 139,122 bytes; 3:4 portrait                                              | Live hero image            | Keep unchanged for rollback; do not reuse as the redesign master                 |
+| Current favicon SVG      | `public/favicon.svg`                   | 100 by 100 viewBox; 425 bytes                                                             | Live scalable browser icon | Keep unchanged; replace only through a new versioned path at cutover             |
+| Current favicon PNG      | `public/favicon.png`                   | 32 by 32 px; 809 bytes                                                                    | Live raster fallback       | Keep unchanged; create a versioned redesign counterpart                          |
+| Current Apple touch icon | `public/apple-touch-icon.png`          | 180 by 180 px; 3,577 bytes                                                                | Live saved-site icon       | Keep unchanged; create a versioned redesign counterpart                          |
+| Current workflow diagram | `FlowDiagram.tsx` and `.flow-*` styles | Structured HTML and CSS driven by project data                                            | Featured-project evidence  | Redesign its visual grammar later without turning it into a raster asset         |
+| Current social preview   | None found                             | `summary_large_image` metadata exists without an image                                    | Missing sharing asset      | Create a static 1200 by 630 social image and add metadata only at cutover        |
 
 The original HEIC has SHA-256
 `816CC222D5E933F7CE333CDAA6D5A3348D72A7486E800BCE161BC68072D0BBF7`.
@@ -84,20 +84,20 @@ contain more detail or a different crop and remains the authority.
 
 ## Required first-release asset set
 
-| Asset family | Required now | Delivery type | Purpose |
-|---|---|---|---|
-| Hero portrait derivatives | Yes | AVIF, WebP, and JPEG fallback | Identity and trust |
-| Three-node master mark | Yes | SVG | Navigation identity and source for icon derivatives |
-| Browser favicon family | Yes | SVG and PNG | Browser chrome |
-| Apple touch icon | Yes | PNG | Saved-site and home-screen presentation |
-| Social-sharing image | Yes | JPEG or PNG | Deliberate link previews |
-| Featured workflow visual | Yes | Code-native structure with vector connectors | Explain the approved implementation-delivery system |
-| Capability icons | No | None | Open columns do not need decorative icons |
-| Technology logos | No | None | Tool names remain text metadata |
-| Remaining-project images | No | None | The projects lack approved visual evidence and should use editorial rows |
-| Background texture | No | None | Color, line, typography, and motion provide atmosphere |
-| Future booking-agent demo | Deferred | Video and poster | Produce only after the owned project is complete and approved |
-| Future case-study media | Deferred | Project-specific | Produce from real evidence when each project is ready |
+| Asset family              | Required now | Delivery type                                | Purpose                                                                  |
+| ------------------------- | ------------ | -------------------------------------------- | ------------------------------------------------------------------------ |
+| Hero portrait derivatives | Yes          | AVIF, WebP, and JPEG fallback                | Identity and trust                                                       |
+| Three-node master mark    | Yes          | SVG                                          | Navigation identity and source for icon derivatives                      |
+| Browser favicon family    | Yes          | SVG and PNG                                  | Browser chrome                                                           |
+| Apple touch icon          | Yes          | PNG                                          | Saved-site and home-screen presentation                                  |
+| Social-sharing image      | Yes          | JPEG or PNG                                  | Deliberate link previews                                                 |
+| Featured workflow visual  | Yes          | Code-native structure with vector connectors | Explain the approved implementation-delivery system                      |
+| Capability icons          | No           | None                                         | Open columns do not need decorative icons                                |
+| Technology logos          | No           | None                                         | Tool names remain text metadata                                          |
+| Remaining-project images  | No           | None                                         | The projects lack approved visual evidence and should use editorial rows |
+| Background texture        | No           | None                                         | Color, line, typography, and motion provide atmosphere                   |
+| Future booking-agent demo | Deferred     | Video and poster                             | Produce only after the owned project is complete and approved            |
+| Future case-study media   | Deferred     | Project-specific                             | Produce from real evidence when each project is ready                    |
 
 ## File and provenance strategy
 
@@ -180,12 +180,12 @@ support reduced motion. They should not be baked into the portrait.
 
 The asset-production pass should generate and compare these art-directed crops:
 
-| Crop | Target use | Composition requirement |
-|---|---|---|
-| 4:5 portrait | Desktop and laptop hero | Preserve face, shoulders, and enough environment to retain the city and water context |
-| 3:4 portrait | Tablet fallback | Preserve the natural balance of the current image |
-| 4:3 landscape | Mobile hero | Reduce empty skyline while keeping Leo's face and upper body clear |
-| 1:1 portrait-safe crop | Social card and future profile contexts | Keep facial position natural; do not use as the homepage hero |
+| Crop                   | Target use                              | Composition requirement                                                               |
+| ---------------------- | --------------------------------------- | ------------------------------------------------------------------------------------- |
+| 4:5 portrait           | Desktop and laptop hero                 | Preserve face, shoulders, and enough environment to retain the city and water context |
+| 3:4 portrait           | Tablet fallback                         | Preserve the natural balance of the current image                                     |
+| 4:3 landscape          | Mobile hero                             | Reduce empty skyline while keeping Leo's face and upper body clear                    |
+| 1:1 portrait-safe crop | Social card and future profile contexts | Keep facial position natural; do not use as the homepage hero                         |
 
 Crop coordinates remain open until the HEIC is decoded. The protected region
 must include Leo's complete face, hair, shoulders, and the arm position needed
@@ -195,12 +195,12 @@ for a natural silhouette. No headline or node line may cross the face.
 
 Generate only sizes that do not upscale the decoded master.
 
-| Art direction | Widths | Formats | Suggested filenames |
-|---|---|---|---|
-| Desktop 4:5 | 640, 960, 1200 px | AVIF and WebP | `leo-sanga-hero-4x5-{width}.{format}` |
-| Tablet 3:4 | 640, 960 px | AVIF and WebP | `leo-sanga-hero-3x4-{width}.{format}` |
-| Mobile 4:3 | 480, 768 px | AVIF and WebP | `leo-sanga-hero-4x3-{width}.{format}` |
-| Fallback | 1200 px maximum | Progressive JPEG | `leo-sanga-hero-fallback.jpg` |
+| Art direction | Widths            | Formats          | Suggested filenames                   |
+| ------------- | ----------------- | ---------------- | ------------------------------------- |
+| Desktop 4:5   | 640, 960, 1200 px | AVIF and WebP    | `leo-sanga-hero-4x5-{width}.{format}` |
+| Tablet 3:4    | 640, 960 px       | AVIF and WebP    | `leo-sanga-hero-3x4-{width}.{format}` |
+| Mobile 4:3    | 480, 768 px       | AVIF and WebP    | `leo-sanga-hero-4x3-{width}.{format}` |
+| Fallback      | 1200 px maximum   | Progressive JPEG | `leo-sanga-hero-fallback.jpg`         |
 
 If two crops prove visually identical at a breakpoint, remove the redundant
 family rather than shipping unnecessary files.
@@ -230,12 +230,12 @@ an empty alt instead. That choice must be tested in the final reading order.
 
 ### Portrait byte budgets
 
-| Delivered resource | Maximum target |
-|---|---:|
-| Typical desktop AVIF at approximately 960 px | 180 KB |
-| Typical desktop WebP at approximately 960 px | 240 KB |
-| JPEG fallback at up to 1200 px | 320 KB |
-| Typical mobile AVIF | 110 KB |
+| Delivered resource                           | Maximum target |
+| -------------------------------------------- | -------------: |
+| Typical desktop AVIF at approximately 960 px |         180 KB |
+| Typical desktop WebP at approximately 960 px |         240 KB |
+| JPEG fallback at up to 1200 px               |         320 KB |
+| Typical mobile AVIF                          |         110 KB |
 
 These are maximum targets, not instructions to accept visible artifacts. Adjust
 dimensions before reducing quality below a professional threshold.
@@ -269,14 +269,14 @@ diagram above. The branch must remain readable when rasterized to 16 px.
 - Use round line caps and joins.
 - Correct optical alignment at 16 and 32 px before accepting the vector master.
 
-### Color variants
+### Color treatment
 
-| Variant | Background | Start node | Connector | Output nodes | Use |
-|---|---|---|---|---|---|
-| Dark full-color | `canvas` | `lavender` | `lavender` at reduced emphasis | `mist` | Default browser and navigation |
-| Light monochrome | Transparent | White | White | White | Dark photographic or constrained contexts |
-| Dark monochrome | Transparent | `canvas` | `canvas` | `canvas` | Mask and print-safe contexts |
-| High contrast | Black | White | White | White | Forced or fallback icon testing |
+| Element      | Color                                                | Reason                                                             |
+| ------------ | ---------------------------------------------------- | ------------------------------------------------------------------ |
+| Background   | Transparent                                          | Keeps the browser icon independent of light or dark tab chrome     |
+| Start node   | Muted lavender `#B79DE9` with plum keyline `#51495A` | Retains the site identity while remaining visible on pale chrome   |
+| Connector    | Mid-tone plum `#8B809A`                              | Maintains useful contrast on both dark and light chrome            |
+| Output nodes | Muted blue `#82A3C1` with plum keyline `#51495A`     | Preserves the start-to-output distinction without requiring a tile |
 
 Color variation cannot be the only reason the nodes read as start and output.
 Node size and branch geometry carry the meaning.
@@ -296,14 +296,14 @@ Node size and branch geometry carry the meaning.
 
 ### Required outputs
 
-| File | Size | Notes |
-|---|---:|---|
-| `public/portfolio-v2/icons/favicon-v2.svg` | Vector | Dark full-color master optimized for browser use |
-| `public/portfolio-v2/icons/favicon-v2-16.png` | 16 by 16 | Pixel-inspected fallback |
-| `public/portfolio-v2/icons/favicon-v2-32.png` | 32 by 32 | Standard raster fallback |
-| `public/portfolio-v2/icons/favicon-v2-48.png` | 48 by 48 | Windows and browser fallback |
-| `public/portfolio-v2/icons/apple-touch-icon-v2.png` | 180 by 180 | Full square artwork with platform-safe inset |
-| `public/portfolio-v2/icons/safari-pinned-tab-v2.svg` | Vector | Single-color mask only if verified useful |
+| File                                                 |       Size | Notes                                                                      |
+| ---------------------------------------------------- | ---------: | -------------------------------------------------------------------------- |
+| `public/portfolio-v2/icons/favicon-v2.svg`           |     Vector | Transparent, theme-independent three-node master optimized for browser use |
+| `public/portfolio-v2/icons/favicon-v2-16.png`        |   16 by 16 | Pixel-inspected fallback                                                   |
+| `public/portfolio-v2/icons/favicon-v2-32.png`        |   32 by 32 | Standard raster fallback                                                   |
+| `public/portfolio-v2/icons/favicon-v2-48.png`        |   48 by 48 | Windows and browser fallback                                               |
+| `public/portfolio-v2/icons/apple-touch-icon-v2.png`  | 180 by 180 | Full square artwork with platform-safe inset                               |
+| `public/portfolio-v2/icons/safari-pinned-tab-v2.svg` |     Vector | Single-color mask only if verified useful                                  |
 
 Do not add 192 or 512 px application icons unless a web-app manifest becomes an
 approved requirement. The portfolio is not currently specified as an installed
@@ -525,15 +525,15 @@ tool and must not be invoked by the deployed application.
 
 ## Performance budgets
 
-| Asset group | First-view budget | Rule |
-|---|---:|---|
+| Asset group                                           |                              First-view budget | Rule                                           |
+| ----------------------------------------------------- | ---------------------------------------------: | ---------------------------------------------- |
 | Hero portrait resource selected for a typical desktop | 180 KB preferred; 240 KB hard review threshold | Select the smallest visually acceptable source |
-| Initially loaded fonts | 160 KB maximum | No unused families or weights |
-| Navigation brand SVG | 3 KB maximum | No editor metadata or hidden shapes |
-| Inline hero identity SVG | 8 KB maximum | Reuse geometry and avoid filters |
-| Favicon SVG | 3 KB maximum | Optimize paths after small-size QA |
-| Social image | Not part of page load; 300 KB maximum | Crawler asset only |
-| Project raster media above fold | 0 KB for the first release | Use the code-native workflow visual |
+| Initially loaded fonts                                |                                 160 KB maximum | No unused families or weights                  |
+| Navigation brand SVG                                  |                                   3 KB maximum | No editor metadata or hidden shapes            |
+| Inline hero identity SVG                              |                                   8 KB maximum | Reuse geometry and avoid filters               |
+| Favicon SVG                                           |                                   3 KB maximum | Optimize paths after small-size QA             |
+| Social image                                          |          Not part of page load; 300 KB maximum | Crawler asset only                             |
+| Project raster media above fold                       |                     0 KB for the first release | Use the code-native workflow visual            |
 
 Performance budgets may be tightened after real encodes are inspected. Visible
 quality and LCP behavior should be assessed together rather than optimizing a

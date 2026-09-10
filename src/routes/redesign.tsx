@@ -27,12 +27,12 @@ export const Route = createFileRoute("/redesign")({
       },
       {
         rel: "icon",
-        href: "/portfolio-v2/icons/favicon-v2.svg?v=2",
+        href: "/portfolio-v2/icons/favicon-v2.svg?v=3",
         type: "image/svg+xml",
       },
       {
         rel: "icon",
-        href: "/portfolio-v2/icons/favicon-v2-32.png?v=2",
+        href: "/portfolio-v2/icons/favicon-v2-32.png?v=3",
         type: "image/png",
         sizes: "32x32",
       },
