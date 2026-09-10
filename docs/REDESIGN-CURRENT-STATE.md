@@ -4,8 +4,10 @@ Last updated: 2026-09-11
 
 ## Current phase
 
-Gate 1 local implementation is active. The additive version 2 prototype is
-being built for localhost review. Gates 2, 3, and 4 remain closed.
+Gate 1 local implementation and the automated portion of final local QA are
+complete. The additive version 2 prototype remains on localhost. Gate 2 awaits
+Leo's explicit approval and the remaining human or unavailable-platform checks.
+Gates 3 and 4 remain closed.
 
 ## Repository state
 
@@ -19,6 +21,7 @@ being built for localhost review. Gates 2, 3, and 4 remain closed.
 - Project-label and conversation revision checkpoint: `0c21ec8`
 - Adaptive-theme and utility-dock checkpoint: `e28481b`
 - Transparent workflow favicon checkpoint: `492cdcb`
+- Light-default, social-card, and QA checkpoint: `6e35760`
 - Version 1 baseline commit: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - GitHub push: none
@@ -79,9 +82,9 @@ built`, and `The hard part`.
   controls. Home uses the approved three-node identity mark. Pointer proximity
   magnification is capped at 1.14 and is disabled for coarse pointers and
   reduced-motion preferences.
-- First visits follow the visitor's operating-system color preference. An
-  explicit light or dark selection is stored locally and restored before the
-  page hydrates. Both themes share the approved lavender-led visual system.
+- First visits use the light theme. An explicit light or dark selection is
+  stored locally and restored before the page hydrates. Both themes share the
+  approved lavender-led visual system.
 - The footer now closes with identity and copyright only. Email and LinkedIn
   are available from the persistent dock without competing with the call CTA.
 - Scrolled navigation state is remeasured after first paint and on hash changes,
@@ -97,17 +100,30 @@ built`, and `The hard part`.
   three-node geometry as the Home and hero mark, with no enclosing background.
   Theme-independent mid-tone colors keep it visible on light and dark browser
   chrome. Live root metadata and assets remain unchanged.
+- The approved social-sharing composition is now available as a 1200 by 630,
+  78,042-byte sRGB JPEG. Its reproducible HTML source, asset provenance, local
+  Open Graph metadata, and Twitter metadata are included. The preview remains
+  noindex and does not claim the production URL.
+- The local browser QA harness covers the complete 11-viewport matrix, default
+  and persisted themes, keyboard order, mobile-menu Escape handling, workflow
+  disclosure, 200 percent text sizing, preference modes, forced colors,
+  no-JavaScript rendering, console errors, and network hosts.
 - First integrated QA evidence:
   [`qa/portfolio-v2-acceptance-2026-09-10.md`](./qa/portfolio-v2-acceptance-2026-09-10.md)
 
 ## Open review items
 
-- Leo must visually approve the final hero portrait crops.
-- Leo must visually approve the redesigned three-node mark and browser tab icon.
-- Leo must review the complete desktop and mobile composition.
-- Leo must review motion feel after the first local render.
-- Apple Safari and VoiceOver coverage depends on an available Apple test
-  surface and remains a planned coverage check.
+- Leo must confirm the requested light-default behavior in the local preview.
+- Leo must visually approve the completed social-sharing image.
+- The required Windows screen-reader pass needs a human Narrator or NVDA run.
+  The automated accessibility tree, keyboard, and Lighthouse checks pass, but
+  they do not replace an actual screen reader.
+- Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome were not
+  available in the current tool environment. Chrome and Edge coverage passed.
+- Final performance ceilings must be rerun against the publication candidate.
+  The current additive preview intentionally inherits the version 1 root
+  stylesheet and Google Fonts request, so it is not the representative final
+  payload defined by the QA plan.
 
 ## Checks last run
 
@@ -120,25 +136,43 @@ built`, and `The hard part`.
   final CTA, calendar destination, theme bootstrap, and preview robots directive.
 - Locked source comparison: passed after line-ending normalization. Version 2
   imports the current project and workflow evidence rather than duplicating it.
-- Chrome 152 desktop visual and accessibility-tree inspection: passed for the
-  dark and light capability matrix, compact conversation composition, dock
-  semantics, theme persistence, and semantic reading order.
-- Exact 390 by 844 Chrome device emulation: passed with document width equal to
-  viewport width, one-column capabilities, and dock containment.
+- Chrome 152 and Microsoft Edge passed all 11 required viewports from 1920 by
+  1080 through 320 by 568 with zero horizontal-overflow failures and zero hero
+  CTA to utility-dock overlaps.
+- Default-theme testing passed while the emulated operating system requested
+  dark: the first visit remained light. An explicit dark selection persisted
+  across reload.
+- Keyboard order, mobile-menu Escape and focus return, native workflow
+  disclosure, 200 percent text sizing, reduced motion, reduced transparency,
+  increased contrast, forced colors, and no-JavaScript rendering passed.
+- Chrome console audit reported zero errors. The only third-party request was
+  the known version 1 Google Fonts stylesheet inherited by the additive route.
+- Lighthouse confirmation after contrast and accessible-name corrections:
+  desktop 100 performance, 100 accessibility, and 100 best practices; mobile
+  100 accessibility and 100 best practices. SEO remains intentionally reduced
+  by the preview's `noindex` directive.
+- Three-run Lighthouse medians for the current dual-stylesheet preview were
+  555 ms FCP and 604 ms LCP on desktop, and 1,921 ms FCP and 2,481 ms LCP on
+  mobile, with 0 ms TBT and 0 CLS. Mobile FCP and LCP exceed final ceilings, so
+  performance acceptance remains deferred to the representative publication
+  candidate rather than being misreported as a pass.
+- Social image inspection: passed at 1200 by 630, sRGB, and 78,042 bytes.
 - Favicon SVG and 16, 32, and 48 px PNG fallbacks: passed for transparent alpha,
   expected dimensions, three-node legibility, and light/dark background proofs.
 - Full-repository ESLint remains a known baseline failure dominated by existing
   CRLF formatting errors. Targeted version 2 files introduce no lint errors.
-- Responsive visual matrix, preference-mode interaction testing, screen-reader
-  runs, performance medians, and non-Chrome browser coverage remain pending.
+- A sandboxed build attempt could not spawn Vite's Windows native dependency.
+  The same final build passed outside the restricted sandbox with the normal
+  project command. This was tooling isolation, not an application failure.
 
 ## Exact next action
 
-Leo reviews the revised version 2 localhost surface, with particular attention
-to the light and dark palettes, utility dock behavior, compact capability
-matrix, conversation hierarchy, and transparent browser favicon. Record the
-next coherent revision batch before further implementation. Do not create the
-social card until the crop and mark are approved.
+Leo confirms the light-default revision and reviews the completed social card.
+Then complete the human Windows screen-reader check or explicitly accept its
+deferral. Gate 2 remains closed until Leo gives explicit approval. After Gate 2,
+prepare the publication candidate, remove inherited version 1 head and
+stylesheet dependencies from the final route shape, and rerun performance,
+canonical, social URL, privacy, and rollback checks before any GitHub action.
 
 ## Required read order
 

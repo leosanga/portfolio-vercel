@@ -1,8 +1,9 @@
-# Portfolio Version 2 QA Evidence, Reviews 1 to 3
+# Portfolio Version 2 QA Evidence, Reviews 1 to 4
 
 Dates: 2026-09-10 to 2026-09-11
 
-Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
+Status: Automated local QA is complete. Gate 2 awaits Leo's approval and the
+remaining human or unavailable-platform checks.
 
 ## Tested state
 
@@ -13,6 +14,7 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 - Project-label and conversation revision checkpoint: `0c21ec8`
 - Adaptive-theme and utility-dock checkpoint: `e28481b`
 - Transparent workflow favicon checkpoint: `492cdcb`
+- Light-default, social-card, and QA checkpoint: `6e35760`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
@@ -46,6 +48,8 @@ run passes with no findings.
 - Scoped version 2 CSS in review 1: 33.85 KB raw, 6.77 KB gzip.
 - Version 2 route JavaScript after review 2: 26.09 KB raw, 7.35 KB gzip.
 - Scoped version 2 CSS after review 2: 38.29 KB raw, 7.40 KB gzip.
+- Scoped version 2 CSS after review 4: 37.90 KB raw, 7.44 KB gzip.
+- Version 2 route JavaScript after review 4: 25.77 KB raw, 7.29 KB gzip.
 - Instrument Sans and IBM Plex Mono total: 138,032 bytes. This is below the
   160 KB ceiling and above the 120 KB preferred target.
 - Portrait derivatives cover AVIF, WebP, and progressive JPEG at the approved
@@ -58,7 +62,9 @@ run passes with no findings.
   worktree and public asset manifest.
 - Transparent browser favicon outputs exist at 16, 32, and 48 px. The 180 px
   Apple touch icon remains the previously approved platform-specific asset.
-- The social card is intentionally pending Leo's crop and mark approval.
+- The social card is 1200 by 630, sRGB, and 78,042 bytes. It uses the approved
+  portrait, three-node identity, name, and role without a CTA, metric, or client
+  logo. Its HTML production source and provenance are versioned with the asset.
 
 ## Visual and semantic findings
 
@@ -119,9 +125,9 @@ built`, and `The hard part`.
 - A persistent utility dock provides Home, Email, LinkedIn, and a color-theme
   control. Home uses the approved three-node workflow mark. The footer no
   longer repeats Email and LinkedIn.
-- The first visit follows the visitor's operating-system theme. A direct light
-  or dark choice persists in local storage and is applied by an inline bootstrap
-  before hydration.
+- The first visit uses the light theme regardless of operating-system
+  preference. A direct light or dark choice persists in local storage and is
+  applied by an inline bootstrap before hydration.
 - The dock uses pointer-proximity magnification capped at 1.14, 160 ms hover and
   tooltip responses, and a 220 ms theme-icon transition. Magnification is
   coalesced with `requestAnimationFrame` and disabled for reduced motion or
@@ -159,6 +165,23 @@ built`, and `The hard part`.
   branch, and two outputs distinguishable. The 16 px native-size asset retained
   the three-node structure.
 
+### Final local QA revision
+
+- First visits now use light mode even when the operating system requests dark.
+  A direct light or dark selection remains persisted locally.
+- Light-theme secondary text and featured-project index contrast were
+  strengthened. The conversation panel no longer depends on partial parent
+  opacity before its observer runs.
+- The mobile menu and primary call links now expose stable accessible names.
+- At 320 by 568, the dock joins normal document flow after the footer so it
+  cannot cover the hero call. It remains fixed from 360 px upward.
+- A reusable Chrome DevTools Protocol harness now records the 11 required
+  viewports, keyboard sequence, preference modes, disclosure state, metadata,
+  no-JavaScript rendering, console errors, network hosts, and review captures.
+- The completed 1200 by 630 social image is connected to local Open Graph and
+  Twitter preview metadata. Absolute production URLs remain deliberately
+  deferred until the final route and domain are confirmed.
+
 ## Motion review
 
 - Entrance motion is one-time and uses opacity plus a 10 px translation for
@@ -173,36 +196,69 @@ built`, and `The hard part`.
   scheduling when the preference is active.
 - Motion feel requires Leo's live localhost review before acceptance.
 
+## Review 4 automated coverage
+
+- Chrome 152 and Microsoft Edge passed all 11 required viewports from 1920 by
+  1080 through 320 by 568. Every viewport reported document width equal to
+  viewport width, correct capability columns, contained dock geometry, and no
+  hero call overlap. The minimum viewport also exercises the 400 percent reflow
+  equivalent of a 1280 CSS-pixel desktop layout.
+- The first visit remained light under an emulated dark operating-system
+  preference. An explicit dark selection survived reload.
+- Mobile-menu open, Escape close, and trigger-focus return passed.
+- The first 11 keyboard stops followed the expected sequence from skip link and
+  navigation through calls, workflow disclosure, utility links, and theme.
+- The workflow disclosure opened with six semantic nodes and no overflow.
+- A 200 percent text-size override kept the H1 and hero call visible with no
+  horizontal overflow.
+- Reduced motion removed hero and workflow animation. Reduced transparency
+  removed dock backdrop filtering. Increased contrast exposed a 3 px focus
+  outline. Forced-colors mode was active with control fallbacks.
+- No-JavaScript rendering preserved the approved H1 and light color scheme.
+- Chrome reported zero console errors.
+- The only third-party request was the known Google Fonts stylesheet inherited
+  from the version 1 root during additive preview. Version 2 itself uses local
+  fonts.
+- Social metadata reported the expected 1200 by 630 image and approved alt text.
+
+## Lighthouse evidence
+
+- Three desktop production-preview runs produced a 100 performance median, 0
+  ms TBT, 0 CLS, 555 ms FCP, and 604 ms LCP.
+- Three mobile production-preview runs produced a 96 performance median, 0 ms
+  TBT, 0 CLS, 1,921 ms FCP, and 2,481 ms LCP.
+- After accessible-name and contrast corrections, confirmation runs scored 100
+  accessibility and 100 best practices on desktop and mobile. Desktop
+  performance remained 100. The mobile confirmation performance score was 91.
+- SEO scored 66 because the local `/redesign` preview is intentionally
+  `noindex`. This is correct preview behavior, not a release result.
+- The mobile FCP and LCP medians do not satisfy the final 1.8-second and
+  2.2-second ceilings. The waterfall attributes the largest delay to the
+  inherited version 1 Google Fonts stylesheet and shared root CSS. The QA plan
+  excludes this dual-stylesheet route from final scoring. Performance must be
+  rerun after Gate 2 against the representative publication candidate.
+- Lighthouse wrote valid reports but its Windows launcher returned an `EPERM`
+  warning while deleting its temporary directory. Report generation completed.
+
 ## Coverage still required
 
-- Remaining viewport matrix from 1920 by 1080 through 320 by 568. Exact 390 by
-  844 coverage passed in review 2.
-- Mobile menu operation, touch behavior, and portrait crop review on physical
-  or touch-emulated mobile hardware.
-- Keyboard-only navigation, disclosure operation, focus order, and Escape
-  behavior.
-- Browser preference toggles for reduced motion, reduced transparency, forced
-  colors, and increased contrast.
-- NVDA and Windows Narrator passes.
-- Edge, Firefox, Safari, iOS Safari, and Android Chrome. Only Chrome was exposed
-  to the available browser review surface in this round.
-- 200 percent text size and 400 percent browser zoom.
-- Production Lighthouse runs and median performance measurements.
-- Console and network request audit.
-- Workflow connector inspection while open at desktop and mobile widths.
-- Social image production and metadata review after visual asset approval.
+- Human NVDA or Windows Narrator navigation and announcement pass.
+- Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome when those
+  test surfaces are available.
+- Physical touch review remains recommended. Chrome and Edge touch emulation
+  passed.
+- Final Lighthouse medians, canonical URL, absolute social image URL, privacy,
+  and network verification on the publication candidate.
 
 ## Review decisions required from Leo
 
-1. Approve or revise the 4:5 desktop portrait crop and 4:3 mobile art direction.
-2. Approve or revise the orthogonal three-node workflow mark and browser icon.
-3. Approve or revise the desktop hierarchy, typography, spacing, and palette.
-4. Judge whether the entrance, navigation, signal, and portrait motion feel
-   premium and restrained in the live preview.
+1. Confirm that a first visit now opens in the requested light theme.
+2. Approve or revise the finished social-sharing image.
+3. Complete the Windows screen-reader pass or explicitly accept its deferral.
+4. Explicitly approve Gate 2 before publication-candidate work begins.
 
 ## Exact next action
 
-Leo reviews the revised version 2 localhost surface, especially both color
-themes, the persistent utility dock, the compact capability matrix, and the
-conversation hierarchy, plus the transparent browser favicon. Leo then returns
-one coherent revision batch. Gate 2 remains closed.
+Leo reviews the light-default behavior and social image, then gives the Gate 2
+decision after the remaining screen-reader item is resolved or accepted. No
+GitHub push, Vercel action, merge, or production change is authorized.
