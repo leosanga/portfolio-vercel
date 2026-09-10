@@ -265,7 +265,10 @@ PortfolioV2Page
 |   `-- ConversationV2
 |       |-- SignalTerminalV2
 |       `-- PrimaryCallLinkV2
-`-- FooterV2
+|-- FooterV2
+`-- PortfolioUtilityDockV2
+    |-- SignalMarkV2
+    `-- usePortfolioThemeV2
 ```
 
 Keep components purpose-specific. Do not create a universal card, section, or
@@ -366,8 +369,11 @@ make an entire non-navigating row focusable.
 
 ### `CapabilitiesV2`
 
-- Renders the four approved capability groups as an open two-by-two matrix.
+- Renders the four approved capability groups as an open four-column matrix on
+  wide screens, two columns at intermediate widths, and one compact column on
+  mobile.
 - Keeps technology terms as supporting text, not logos or decorative pills.
+- Uses a wrapping technical index rather than individually ruled rows.
 - Places AI + Intelligent Automation second for scan and search visibility.
 - Uses semantic headings and lists.
 - Does not add pointer spotlights, proficiency scores, or icon headers.
@@ -389,29 +395,53 @@ make an entire non-navigating row focusable.
 - Uses one terminal signal arrival, then becomes still.
 - Opens Google Calendar in the same tab.
 - Keeps email out of the primary conversion block.
+- Uses the approved compact 16 to 18 px support-copy scale and paragraph rhythm.
 
 ### `FooterV2`
 
-- Includes name, professional label, email, LinkedIn, and copyright.
+- Includes name, professional label, and copyright.
 - Does not include resume, GitHub, availability, or the old footer slogan.
-- Keeps email and LinkedIn visually secondary.
-- May open LinkedIn in a new tab only with an accessible announcement and the
-  required security relationship. Email remains a normal mail link.
+- Leaves contact utilities to the persistent dock so they are not duplicated.
+
+### `PortfolioUtilityDockV2`
+
+- Renders Home, Email, LinkedIn, and theme controls in a fixed bottom utility
+  rail.
+- Uses the three-node identity mark for Home.
+- Keeps 44 px semantic link and button targets at every breakpoint.
+- Samples pointer proximity only for fine pointers without a reduced-motion
+  preference, coalesced through `requestAnimationFrame`.
+- Applies transform directly to each control surface and never animates layout
+  dimensions.
+- Shows one custom tooltip on hover or keyboard focus and does not use native
+  `title` attributes.
+- Opens LinkedIn in a new tab with an accessible announcement and secure
+  relationship. Email remains a normal mail link.
+
+### `usePortfolioThemeV2`
+
+- Resolves the visitor's system preference on first visit.
+- Persists an explicit light or dark selection in local storage.
+- Uses a small pre-hydration bootstrap to prevent a stored-theme flash.
+- Removes route-specific document state when version 2 unmounts.
+- Uses CSS variables for both palettes rather than duplicating component styles.
 
 ## Interaction and state ownership
 
 Use the smallest state mechanism that expresses the behavior:
 
-| Behavior                  | Owner                  | Mechanism                                                                      | Persistent state               |
-| ------------------------- | ---------------------- | ------------------------------------------------------------------------------ | ------------------------------ |
-| Active navigation section | `useActiveSectionV2`   | Passive scroll and resize measurement using the approved center-line algorithm | No                             |
-| Mobile menu               | `PortfolioNavV2`       | React boolean plus Escape and focus-return effects                             | No                             |
-| Disclosure open state     | Browser                | Native `<details>`                                                             | Browser-owned during the visit |
-| Workflow playback restart | `WorkflowDisclosureV2` | Toggle event, local sequence key, and one visibility-gated replay timer        | No                             |
-| Hero entry and signal     | `HeroV2`               | CSS guarded by motion preference and support                                   | No                             |
-| Portrait depth            | `usePortraitDepth`     | CSS variables updated in a coalesced requestAnimationFrame while hovered       | No                             |
-| Approach activation       | Page-level motion hook | One IntersectionObserver                                                       | No                             |
-| Conversation arrival      | Page-level motion hook | Same observer instance                                                         | No                             |
+| Behavior                  | Owner                    | Mechanism                                                                      | Persistent state               |
+| ------------------------- | ------------------------ | ------------------------------------------------------------------------------ | ------------------------------ |
+| Active navigation section | `useActiveSectionV2`     | Passive scroll and resize measurement using the approved center-line algorithm | No                             |
+| Mobile menu               | `PortfolioNavV2`         | React boolean plus Escape and focus-return effects                             | No                             |
+| Disclosure open state     | Browser                  | Native `<details>`                                                             | Browser-owned during the visit |
+| Workflow playback restart | `WorkflowDisclosureV2`   | Toggle event, local sequence key, and one visibility-gated replay timer        | No                             |
+| Hero entry and signal     | `HeroV2`                 | CSS guarded by motion preference and support                                   | No                             |
+| Portrait depth            | `usePortraitDepth`       | CSS variables updated in a coalesced requestAnimationFrame while hovered       | No                             |
+| Approach activation       | Page-level motion hook   | One IntersectionObserver                                                       | No                             |
+| Conversation arrival      | Page-level motion hook   | Same observer instance                                                         | No                             |
+| Dock magnification        | `PortfolioUtilityDockV2` | Fine-pointer proximity sampled through `requestAnimationFrame`                 | No                             |
+| Theme selection           | `usePortfolioThemeV2`    | System media query, document data attribute, and local storage                 | Yes, after explicit selection  |
 
 Do not add global state, React context, React Query data, URL state, local
 storage, cookies, or a canvas loop for the homepage redesign. The only approved
@@ -643,6 +673,7 @@ src/content/portfolio-v2/types.ts
 src/components/portfolio-v2/PortfolioV2Page.tsx
 src/components/portfolio-v2/SkipLinkV2.tsx
 src/components/portfolio-v2/PortfolioNavV2.tsx
+src/components/portfolio-v2/PortfolioUtilityDockV2.tsx
 src/components/portfolio-v2/SignalMarkV2.tsx
 src/components/portfolio-v2/PrimaryCallLinkV2.tsx
 src/components/portfolio-v2/HeroV2.tsx
@@ -659,6 +690,7 @@ src/components/portfolio-v2/FooterV2.tsx
 src/components/portfolio-v2/useActiveSectionV2.ts
 src/components/portfolio-v2/usePortfolioV2Motion.ts
 src/components/portfolio-v2/usePortraitDepth.ts
+src/components/portfolio-v2/usePortfolioThemeV2.ts
 src/styles/portfolio-v2.css
 src/assets/portfolio-v2/ASSET-SOURCES.md
 src/assets/portfolio-v2/brand/*

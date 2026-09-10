@@ -63,26 +63,26 @@ the implementation target.
 Breakpoints describe changes in composition, not target devices. The layout
 must remain usable at every width between them.
 
-| Range | Grid | Margin | Gutter | Primary behavior |
-|---|---:|---:|---:|---|
-| 1440 px and wider | 12 columns | At least 64 px | 28 px | Full editorial canvas with controlled maximum width |
-| 1024 to 1439 px | 12 columns | 40 px | 24 px | Laptop composition with reduced overlap and unchanged content |
-| 768 to 1023 px | 8 columns | 32 px | 20 px | Tablet composition that may stack the hero |
-| 480 to 767 px | 4 columns | 20 px | 16 px | Mobile composition with compact header and vertical systems |
-| 320 to 479 px | 4 columns | 20 px, reducible to 16 px at 320 | 12 to 16 px | Narrow mobile with zero nonessential overlap |
+| Range             |       Grid |                           Margin |      Gutter | Primary behavior                                              |
+| ----------------- | ---------: | -------------------------------: | ----------: | ------------------------------------------------------------- |
+| 1440 px and wider | 12 columns |                   At least 64 px |       28 px | Full editorial canvas with controlled maximum width           |
+| 1024 to 1439 px   | 12 columns |                            40 px |       24 px | Laptop composition with reduced overlap and unchanged content |
+| 768 to 1023 px    |  8 columns |                            32 px |       20 px | Tablet composition that may stack the hero                    |
+| 480 to 767 px     |  4 columns |                            20 px |       16 px | Mobile composition with compact header and vertical systems   |
+| 320 to 479 px     |  4 columns | 20 px, reducible to 16 px at 320 | 12 to 16 px | Narrow mobile with zero nonessential overlap                  |
 
 Use content-driven wrapping inside each range. Do not add a breakpoint to repair
 one isolated line when a fluid measure or grid adjustment solves it.
 
 ## Required viewport matrix
 
-| Class | Required viewports | Why |
-|---|---|---|
-| Wide desktop | 1920 by 1080, 1440 by 900 | Maximum-width composition and large type |
-| Laptop | 1366 by 768, 1280 by 800, 1024 by 768 | Common constrained-height layouts and current hero-gap risk |
-| Tablet | 834 by 1112, 768 by 1024 | Grid transition and portrait stacking |
-| Mobile | 430 by 932, 390 by 844, 360 by 800 | Common modern narrow layouts |
-| Minimum width | 320 by 568 | Reflow, menu, long titles, and tap targets |
+| Class         | Required viewports                    | Why                                                         |
+| ------------- | ------------------------------------- | ----------------------------------------------------------- |
+| Wide desktop  | 1920 by 1080, 1440 by 900             | Maximum-width composition and large type                    |
+| Laptop        | 1366 by 768, 1280 by 800, 1024 by 768 | Common constrained-height layouts and current hero-gap risk |
+| Tablet        | 834 by 1112, 768 by 1024              | Grid transition and portrait stacking                       |
+| Mobile        | 430 by 932, 390 by 844, 360 by 800    | Common modern narrow layouts                                |
+| Minimum width | 320 by 568                            | Reflow, menu, long titles, and tap targets                  |
 
 Portrait and landscape orientation must be checked at tablet and mobile sizes.
 No design is accepted from a single desktop screenshot.
@@ -234,12 +234,11 @@ This destination behavior remains a decision for Leo.
 
 ## Capabilities responsiveness
 
-- Wide desktop uses three open columns with vertical rules.
-- Tablet may retain three columns only if each remains at least 220 px wide.
-- Otherwise switch to a single vertical sequence with horizontal rules.
-- Mobile always uses the vertical sequence.
+- Wide desktop uses four open columns with shared vertical rules.
+- Layout changes to two columns below 1280 px and one column below 768 px.
+- Mobile uses a compact vertical sequence with horizontal rules.
 - No capability description is hidden or shortened by breakpoint.
-- Tool metadata wraps by complete term.
+- Technical metadata remains visible and wraps by complete term without pills.
 - No pointer spotlight appears on touch devices.
 
 ## My Approach responsiveness
@@ -254,17 +253,22 @@ This destination behavior remains a decision for Leo.
 - Motion attaches to an inner wrapper, not the section or list item used for
   layout measurement.
 
-## Final conversation and footer responsiveness
+## Final conversation, utility dock, and footer responsiveness
 
 - Wide layouts may place the approved copy and CTA in separate grid areas within
   the same final field.
 - Narrow layouts stack heading, support copy, and CTA.
 - Keep the CTA near its supporting sentence and do not isolate it at the far
   edge of a mobile panel.
-- Footer links wrap into a vertical list when horizontal spacing falls below
-  their target areas.
-- Email and LinkedIn remain visually secondary but meet contrast and focus
-  requirements.
+- The conversation support copy uses 16 to 18 px text, 1.5 line height, and a
+  compact paragraph rhythm.
+- The utility dock stays centered above the bottom safe area.
+- Its four controls remain at least 44 by 44 px. Magnification is disabled for
+  touch and coarse-pointer input.
+- Email and LinkedIn remain visually secondary to the call action while meeting
+  contrast and focus requirements.
+- Footer identity and copyright reflow without depending on the dock's visual
+  position.
 - No footer content relies on an icon alone.
 
 ## Semantic structure
@@ -280,6 +284,7 @@ Required landmarks and order:
 7. My Approach
 8. Final conversation
 9. Footer
+10. Utility navigation
 
 Use one H1. Section headings use H2. Project and capability headings use H3.
 Disclosure-internal headings use the next logical level without skipping for
@@ -357,7 +362,8 @@ wording.
 - Disclosure summary: minimum 44 px high across its full row.
 - Inline footer links may rely on spacing where a 44 px box would damage reading,
   but adjacent targets must remain clearly separated.
-- Do not use tiny icon-only controls.
+- Icon-only utility controls must be at least 44 by 44 px and have accessible
+  names plus visible hover or focus tooltips on fine-pointer layouts.
 - The mobile call control may use the visible label `Call`, never an unlabeled
   phone icon.
 
@@ -474,11 +480,11 @@ Use the public good thresholds documented by
 [threshold methodology](https://web.dev/articles/defining-core-web-vitals-thresholds)
 at the 75th percentile for field evaluation:
 
-| Metric | Public good threshold | Internal redesign target |
-|---|---:|---:|
-| Largest Contentful Paint | 2.5 seconds or less | 2.2 seconds or less on representative mobile lab conditions |
-| Interaction to Next Paint | 200 ms or less | 150 ms or less for portfolio interactions |
-| Cumulative Layout Shift | 0.10 or less | 0.05 or less, with zero avoidable shift |
+| Metric                    | Public good threshold |                                    Internal redesign target |
+| ------------------------- | --------------------: | ----------------------------------------------------------: |
+| Largest Contentful Paint  |   2.5 seconds or less | 2.2 seconds or less on representative mobile lab conditions |
+| Interaction to Next Paint |        200 ms or less |                   150 ms or less for portfolio interactions |
+| Cumulative Layout Shift   |          0.10 or less |                     0.05 or less, with zero avoidable shift |
 
 Field data may be unavailable at low traffic. In that case, report lab evidence
 as lab evidence and do not describe it as real-user performance.
@@ -500,15 +506,15 @@ be interpreted separately from unexpected CLS.
 Budgets are transferred compressed sizes for the first homepage view unless
 otherwise noted.
 
-| Resource group | Preferred target | Review ceiling | Action if exceeded |
-|---|---:|---:|---|
-| Initial JavaScript | 150 KB | 180 KB | Inspect route imports and remove unused client dependencies |
-| Initial CSS | 35 KB | 50 KB | Remove unused utilities, legacy v2 overlap, and duplicated tokens |
-| Initially requested fonts | 120 KB | 160 KB | Remove unused weight or mono preload and improve subsetting |
-| Selected hero AVIF | 180 KB | 240 KB | Reduce dimensions before accepting visible artifacts |
-| Navigation and hero SVG combined | 10 KB | 16 KB | Simplify groups, metadata, and path precision |
-| Initial document plus critical assets | 450 KB | 600 KB | Treat as a blocking performance review |
-| Third-party runtime JavaScript | 0 KB | 0 KB | Do not ship it without a new approved requirement |
+| Resource group                        | Preferred target | Review ceiling | Action if exceeded                                                |
+| ------------------------------------- | ---------------: | -------------: | ----------------------------------------------------------------- |
+| Initial JavaScript                    |           150 KB |         180 KB | Inspect route imports and remove unused client dependencies       |
+| Initial CSS                           |            35 KB |          50 KB | Remove unused utilities, legacy v2 overlap, and duplicated tokens |
+| Initially requested fonts             |           120 KB |         160 KB | Remove unused weight or mono preload and improve subsetting       |
+| Selected hero AVIF                    |           180 KB |         240 KB | Reduce dimensions before accepting visible artifacts              |
+| Navigation and hero SVG combined      |            10 KB |          16 KB | Simplify groups, metadata, and path precision                     |
+| Initial document plus critical assets |           450 KB |         600 KB | Treat as a blocking performance review                            |
+| Third-party runtime JavaScript        |             0 KB |           0 KB | Do not ship it without a new approved requirement                 |
 
 The social image does not count toward page-load transfer because it is a
 crawler asset. Future project video is intent-loaded and measured separately.
@@ -516,13 +522,15 @@ crawler asset. Future project video is intent-loaded and measured separately.
 ## Server rendering and hydration
 
 - Role, headline, supporting copy, project summaries, capabilities, approach,
-  final conversation copy, and footer links render on the server.
+  final conversation copy, footer identity, and utility links render on the
+  server.
 - Do not put viewport-dependent markup behind an initial client-only branch.
 - Prefer one responsive DOM structure styled through CSS.
 - Mobile and desktop navigation may differ only when semantic behavior requires
   it. Avoid rendering duplicate focusable navigation trees.
 - Motion-only state does not change semantic content.
-- Hydration may attach scrollspy, menu, pointer depth, and one-time activation.
+- Hydration may attach scrollspy, menu, pointer depth, dock magnification, theme
+  state, and one-time activation.
 - No hydration mismatch is acceptable.
 - The static initial state is visually complete and truthful.
 
@@ -671,12 +679,12 @@ not an accessibility sign-off.
 
 ## Defect severity
 
-| Severity | Examples | Release effect |
-|---|---|---|
-| Blocking | Missing content without JavaScript, keyboard trap, unusable call action, horizontal overflow at 320 px, severe hydration failure | Cannot proceed to visual approval |
-| High | Focus obscured, diagram reading order wrong, LCP or JS above review ceiling, motion ignores reduced preference | Must fix before acceptance |
-| Medium | Intermediate-width collision, inconsistent target size, noncritical budget miss, subtle layout shift | Fix before release unless Leo explicitly accepts a documented limit |
-| Low | Minor optical spacing or browser-specific polish with no lost function | May be scheduled before final cutover |
+| Severity | Examples                                                                                                                         | Release effect                                                      |
+| -------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| Blocking | Missing content without JavaScript, keyboard trap, unusable call action, horizontal overflow at 320 px, severe hydration failure | Cannot proceed to visual approval                                   |
+| High     | Focus obscured, diagram reading order wrong, LCP or JS above review ceiling, motion ignores reduced preference                   | Must fix before acceptance                                          |
+| Medium   | Intermediate-width collision, inconsistent target size, noncritical budget miss, subtle layout shift                             | Fix before release unless Leo explicitly accepts a documented limit |
+| Low      | Minor optical spacing or browser-specific polish with no lost function                                                           | May be scheduled before final cutover                               |
 
 ## Required evidence record
 

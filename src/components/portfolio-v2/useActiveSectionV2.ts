@@ -35,12 +35,15 @@ export function useActiveSectionV2(ids: readonly SectionId[]) {
     };
 
     update();
+    frame = window.requestAnimationFrame(update);
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule);
+    window.addEventListener("hashchange", schedule);
 
     return () => {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      window.removeEventListener("hashchange", schedule);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, [ids]);

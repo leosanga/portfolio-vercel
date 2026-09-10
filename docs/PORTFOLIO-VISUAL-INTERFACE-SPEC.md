@@ -215,6 +215,31 @@ and explanatory diagrams are its complete first-release scope.
 | `line-strong`    | `#51485D` | Active or emphasized boundaries                         |
 | `button-ink`     | `#17121F` | Text and icons on lavender controls                     |
 
+### Light palette
+
+The first visit follows the visitor's system preference. A manual light or
+dark selection persists locally for later visits.
+
+| Token            | HEX       | Role                                 |
+| ---------------- | --------- | ------------------------------------ |
+| `canvas`         | `#F7F3F8` | Page background                      |
+| `canvas-soft`    | `#F0EAF3` | Alternating section field            |
+| `surface`        | `#F8F4FA` | Diagrams and compact controls        |
+| `surface-raised` | `#FFFCFF` | Elevated or selected surfaces        |
+| `text-primary`   | `#211B29` | Headings and high-priority text      |
+| `text-body`      | `#51495A` | Body copy                            |
+| `text-muted`     | `#6E6575` | Metadata and supporting labels       |
+| `lavender`       | `#CBB7F5` | Primary action fill                  |
+| `lavender-hover` | `#BDA3EE` | Primary-action hover state           |
+| `mist`           | `#526F8A` | Focus and active system signal       |
+| `sage`           | `#536D5A` | Optional completed-state accent      |
+| `line`           | `#D9D0DF` | Structural rules and default borders |
+| `line-strong`    | `#B9ACC3` | Active or emphasized boundaries      |
+| `button-ink`     | `#17121F` | Text and icons on lavender controls  |
+
+The portrait keeps its dark photographic field in light mode. Do not recolor,
+invert, or regenerate the image to match the light canvas.
+
 ### Contrast baseline
 
 Calculated contrast on `canvas`:
@@ -263,17 +288,18 @@ default technical aesthetic.
 
 ### Type scale
 
-| Token             | Size                                       | Line height |   Tracking |     Weight | Use                                 |
-| ----------------- | ------------------------------------------ | ----------: | ---------: | ---------: | ----------------------------------- |
-| `display-hero`    | `clamp(3.25rem, 7vw, 7rem)`                |      `0.94` | `-0.045em` | 580 to 620 | One homepage H1                     |
-| `display-section` | `clamp(2.25rem, 4.5vw, 4.5rem)`            |      `1.00` | `-0.035em` | 560 to 600 | Section headings                    |
-| `heading-project` | `clamp(1.75rem, 2.8vw, 2.75rem)`           |      `1.08` | `-0.025em` | 560 to 600 | Featured project title              |
-| `heading-card`    | `clamp(1.25rem, 1.8vw, 1.625rem)`          |      `1.18` | `-0.015em` |        560 | Project and capability titles       |
-| `body-large`      | `clamp(1.125rem, 1.35vw, 1.375rem)`        |      `1.55` | `-0.005em` |        400 | Hero and final conversation support |
-| `body`            | `clamp(1rem, 0.25vw + 0.95rem, 1.0625rem)` |      `1.65` |        `0` |        400 | Standard copy                       |
-| `navigation`      | `0.9375rem`                                |      `1.20` | `-0.005em` |        520 | Navigation and buttons              |
-| `label`           | `0.75rem`                                  |      `1.30` |   `0.08em` |        600 | Rare section labels and statuses    |
-| `metadata`        | `0.8125rem`                                |      `1.55` |  `0.015em` |        450 | Project and diagram metadata        |
+| Token             | Size                                       | Line height |   Tracking |     Weight | Use                              |
+| ----------------- | ------------------------------------------ | ----------: | ---------: | ---------: | -------------------------------- |
+| `display-hero`    | `clamp(3.25rem, 7vw, 7rem)`                |      `0.94` | `-0.045em` | 580 to 620 | One homepage H1                  |
+| `display-section` | `clamp(2.25rem, 4.5vw, 4.5rem)`            |      `1.00` | `-0.035em` | 560 to 600 | Section headings                 |
+| `heading-project` | `clamp(1.75rem, 2.8vw, 2.75rem)`           |      `1.08` | `-0.025em` | 560 to 600 | Featured project title           |
+| `heading-card`    | `clamp(1.25rem, 1.8vw, 1.625rem)`          |      `1.18` | `-0.015em` |        560 | Project and capability titles    |
+| `body-large`      | `clamp(1.125rem, 1.35vw, 1.375rem)`        |      `1.55` | `-0.005em` |        400 | Hero support copy                |
+| `conversation`    | `clamp(1rem, 1.05vw, 1.125rem)`            |      `1.50` |        `0` |        400 | Final conversation support       |
+| `body`            | `clamp(1rem, 0.25vw + 0.95rem, 1.0625rem)` |      `1.65` |        `0` |        400 | Standard copy                    |
+| `navigation`      | `0.9375rem`                                |      `1.20` | `-0.005em` |        520 | Navigation and buttons           |
+| `label`           | `0.75rem`                                  |      `1.30` |   `0.08em` |        600 | Rare section labels and statuses |
+| `metadata`        | `0.8125rem`                                |      `1.55` |  `0.015em` |        450 | Project and diagram metadata     |
 
 Use optical sizing where the selected font supports it. Large type uses tighter
 tracking. Small type uses neutral or slightly positive tracking. All-caps text is
@@ -435,16 +461,18 @@ distinguish the lead project, but the page must not create a separate `Work` or
 
 ## Capabilities
 
-The four approved capability groups should appear as an open two-by-two matrix
+The four approved capability groups should appear as one open editorial matrix
 made from shared rules, not four separate floating card shells. AI + Intelligent
 Automation appears second so it is visible in the first capability scan.
 
 ### Desktop
 
-- Use two columns and two rows separated by shared vertical and horizontal
-  rules.
-- Each capability has a short functional heading, approved description, and one
-  quiet metadata line.
+- Use four equal columns at 1280 px and above.
+- Use two columns from 768 through 1279 px, then one column below 768 px.
+- Each capability has a short functional heading, approved description, and a
+  compact wrapping technical index.
+- Remove forced statement heights and individually ruled technology rows.
+- Use small orthogonal markers and plain metadata text rather than pills.
 - No icons are required.
 - A local cursor or focus response may brighten the nearest rule or node, but the
   content itself remains stable.
@@ -453,6 +481,7 @@ Automation appears second so it is visible in the first capability scan.
 
 - Stack the capabilities with horizontal separators.
 - Preserve natural content order.
+- Keep the compact technical index visible and allow it to wrap naturally.
 - Avoid horizontal carousels.
 
 AI + Intelligent Automation remains a distinct capability group. Its treatment
@@ -478,9 +507,11 @@ site's visual identity.
 - Place the approved support copy within a readable 56-character measure.
 - Stack each support-copy sentence on its own line as a paragraph, using a
   compact internal gap rather than one continuous text block.
+- Set support copy at 16 to 18 px with 1.5 line height, an 8 px paragraph gap,
+  and 24 px separation from the heading.
 - `Schedule a Call` is the single prominent action.
-- Email and LinkedIn move to a quiet footer treatment and do not appear beside
-  the primary button.
+- Email and LinkedIn remain outside the primary conversion block and move to the
+  persistent utility dock.
 - The final section may use `surface` as a contained field with a 24 px radius,
   provided it is the only large rounded panel on the homepage.
 - The system path ends at one terminal node adjacent to the call action.
@@ -490,12 +521,26 @@ site's visual identity.
 ## Footer
 
 - Keep the footer visually small.
-- Include Leo's name, current year, email, and LinkedIn as low-emphasis text
-  links.
+- Include Leo's name, professional label, and current year.
 - Do not include a resume, GitHub, availability statement, navigation sitemap,
   or the removed slogan.
 - Repeat the small static three-node mark only if it improves balance. The mark
   should not animate again in the footer.
+
+## Persistent utility dock
+
+- Keep one fixed bottom utility dock with Home, Email, LinkedIn, and theme
+  controls.
+- Use the three-node identity mark for Home rather than a generic house icon.
+- Keep the dock neutral at rest so it does not compete with `Schedule a Call`.
+- Use soft squared controls from the approved radius scale, not copied circular
+  macOS controls.
+- Show one custom tooltip on hover or keyboard focus. Do not add native `title`
+  attributes that can create duplicate tooltips.
+- Desktop fine pointers may magnify the nearest control subtly. Touch devices
+  retain static 44 px targets.
+- Position the dock above the safe area and reserve enough footer space that it
+  never obscures content.
 
 ## Controls and states
 
@@ -737,7 +782,8 @@ accessibility, and performance specification.
 - Bento layout used only because it is fashionable
 - Profile-card treatment around the hero portrait
 - Technology logo wall
-- Floating mobile dock
+- Floating docks that duplicate section navigation or imitate a stock macOS
+  control strip
 - Command palette without a portfolio-specific need
 - Skill percentages or proficiency meters
 - Employment status or availability pill

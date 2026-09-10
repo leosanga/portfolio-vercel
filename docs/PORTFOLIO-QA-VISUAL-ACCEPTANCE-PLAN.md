@@ -235,7 +235,8 @@ Reject the review if it shows any of these generic signals:
 - Repeated pill clusters.
 - Bento dashboard composition.
 - Terminal or command-palette styling.
-- Floating dock navigation.
+- A copied macOS-style dock or a dock that duplicates primary section
+  navigation.
 - AI chat or agent decoration.
 - Repeated equal-weight cards.
 - Decorative logo wall.
@@ -263,10 +264,13 @@ Checks at every required viewport:
 - Featured project disclosure remains understandable and touch-friendly.
 - Workflow branches stack in a readable order.
 - Project rows preserve labels, full copy, and metadata.
-- Capability columns become a deliberate vertical rhythm.
+- Capability layout resolves to four, two, and one columns at the approved
+  breakpoints without clipping or excessive vertical height.
 - Approach progression remains legible without a tiny horizontal timeline.
 - Final copy and CTA remain together.
-- Footer links wrap without crowding.
+- The utility dock clears content and the device safe area.
+- Footer identity and copyright remain readable without duplicated contact
+  links.
 - No body or project copy is line-clamped.
 
 Pass condition: all required viewports pass, and intermediate resizing reveals
@@ -295,6 +299,11 @@ Mechanical checks:
 - Approach and Conversation use one-shot activation and disconnect afterward.
 - Reduced motion removes spatial travel and leaves complete content.
 - Touch states do not depend on hover.
+- Dock magnification runs only for a fine pointer without reduced motion,
+  remains at or below 1.14 scale, and resets on pointer exit.
+- Dock tooltips appear once on hover or keyboard focus without a duplicate
+  native tooltip.
+- Theme icon state transitions complete within 220 ms and remain interruptible.
 - Fast repeated interactions cancel or reverse cleanly.
 - Scrolling during any animation does not produce stale or misplaced state.
 
@@ -308,6 +317,14 @@ Feel checks:
 - Signals feel like information moving through a system, not decorative
   particles.
 - Several effects never compete in the same viewport.
+
+Theme checks:
+
+- First visit follows the operating-system theme.
+- An explicit selection persists across reloads.
+- Light and dark modes both meet contrast and focus requirements.
+- The theme bootstrap does not hide or delay server-rendered content.
+- The portrait retains its intended photographic treatment in light mode.
 
 Pass condition: all mechanical checks pass and Leo approves motion feel on
 desktop and mobile.

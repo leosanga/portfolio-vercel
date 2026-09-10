@@ -74,13 +74,13 @@ a deliberate blend of specific strengths:
 
 | Reference                                             | Useful observation                                                              | Decision for Leo                                                                                                                            |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Luca Félix](https://luca-felix.com/)                 | A compact project index can feel premium when typography carries the hierarchy  | Adapt compactness later as the archive grows. Reject the floating dock, letter-by-letter reveal, and initially blank content state          |
+| [Luca Félix](https://luca-felix.com/)                 | A compact project index can feel premium when typography carries the hierarchy  | Adapt compactness later as the archive grows. Reject copied dock styling, letter-by-letter reveal, and initially blank content state        |
 | [Ilan Lenzner](https://ilans.net/)                    | Detailed project evidence and case-study depth are useful for future owned work | Use the evidence depth, not the dotted grid, script accent, AI assistant, status pill, metric parade, or multiple competing calls to action |
 | [Shubhanshu Singh](https://shubhanshusingh.com/)      | Systematic labels suit a platform-engineering profile                           | Reject the terminal metaphor, orange-on-black treatment, resume density, and competing calls to action                                      |
 | [Malaka Venugopal Reddy](https://malakavenu.com/)     | Role-adjacent projects can expose architecture and tooling clearly              | Treat the neon gradients, glowing portrait, badges, animated role text, filters, and AI assistant as anti-patterns for this redesign        |
 | [Bruno Simon](https://bruno-simon.com/)               | Motion can explain a spatial environment when the experience itself is the work | Reject a WebGL portfolio shell. A contained future project demo may borrow the principle of spatial explanation                             |
 | [Nikhil Madaravena](https://www.nikhilmadaravena.me/) | A coherent system metaphor can create a memorable identity                      | Reject the boot loader, cyber treatment, animated tickers, skill percentages, and motion that prevents immediate access to content          |
-| [Brihadeesh](https://briha.xyz/)                      | Minimal layout can preserve focus                                               | Reject the generic command-palette and floating-dock pattern, plus typewriter text that makes the visitor wait                              |
+| [Brihadeesh](https://briha.xyz/)                      | Minimal layout can preserve focus                                               | Reject the generic command-palette, copied macOS dock treatment, and typewriter text that makes the visitor wait                            |
 
 ## Design synthesis
 
@@ -159,7 +159,7 @@ may occur at the same time when they respond directly to visitor input.
 
 ## Motion opportunities
 
-The following seven opportunities passed the frequency, purpose, speed, and
+The following nine opportunities passed the frequency, purpose, speed, and
 function gate. They are a design brief for the later motion specification, not
 implementation approval.
 
@@ -172,6 +172,8 @@ implementation approval.
 | Project workflow diagram           | Open a project evidence disclosure                                |       Repeated while open and visible | Explanation and state               | Reveal the diagram content, then route signals through its nodes in reading order. Leave a quiet resting interval before replaying                                    | 900 ms per connection; 70 ms path offsets; 3,200 ms replay cadence | `linear` signal travel                                                                               | `transform`, `opacity`                          | Show the completed diagram immediately and disable replay                                    | Do not animate disclosure height. Pause replay when closed, outside the viewport, in a hidden tab, or under reduced motion. Keep labels readable throughout |
 | My Approach                        | Each step crosses the view threshold                              |                Once in normal reading | Explanation and progress            | Activate the step and extend its connector toward the next step as the visitor moves through the sequence                                                             |                                      420 ms step; 620 ms connector | `cubic-bezier(0.23, 1, 0.32, 1)` step; `cubic-bezier(0.77, 0, 0.175, 1)` connector                   | `transform`, `opacity`, `color`                 | Show the complete sequence with no connector growth                                          | Reveal stable inner wrappers only. Use horizontal progression on wide screens and vertical progression on narrow screens                                    |
 | Final conversation section         | Section enters view; hover, focus, and press on `Schedule a Call` | Once for entrance; a few interactions | Conversion and feedback             | Let one quiet signal reach the terminal node beside the call action. Give the button immediate hover, focus, and press response                                       |                520 ms section arrival; 700 ms signal; 140 ms press | `cubic-bezier(0.23, 1, 0.32, 1)` arrival; `cubic-bezier(0.77, 0, 0.175, 1)` signal; `ease-out` press | `transform`, `opacity`, `color`                 | Show the terminal node as active and remove travel; retain color feedback                    | The signal should support the action without pulsing indefinitely. Press scale must not go below `0.97`                                                     |
+| Persistent utility dock            | Pointer approaches a control; hover, focus, or press              |               Several times per visit | Feedback and spatial consistency    | Magnify the nearest surface from 1 to a maximum of 1.14 while adjacent controls receive a smaller proximity response. Show one anchored tooltip                       |                  160 ms surface and tooltip; 120 ms press response | `cubic-bezier(0.23, 1, 0.32, 1)`                                                                     | `transform`, `opacity`, `color`, `border-color` | Disable proximity scaling and tooltip travel; retain focus and color feedback                | Gate pointer sampling behind `(hover: hover) and (pointer: fine)`. Coalesce pointer work with `requestAnimationFrame`. Never animate layout dimensions      |
+| Theme control                      | Visitor switches between light and dark                           |                  Occasional per visit | State indication                    | Crossfade and rotate the sun and moon icons within the fixed control while the palette changes immediately                                                            |                                                             220 ms | `cubic-bezier(0.77, 0, 0.175, 1)`                                                                    | `transform`, `opacity`                          | Crossfade only and remove rotation                                                           | Initial theme follows the system. Persist an explicit visitor choice locally and avoid a theme flash before hydration                                       |
 
 ### Motion limits
 
@@ -185,6 +187,8 @@ implementation approval.
 - No universal stagger applied to every card and list item.
 - No use of `transition: all`.
 - Default interaction feedback should complete within 300 ms.
+- Dock magnification stays below 1.15 scale and never runs on touch or under a
+  reduced-motion preference.
 - Explanatory motion may run up to 1,100 ms when the full content is already
   readable.
 - Motion should use composited `transform` and `opacity` wherever possible.
