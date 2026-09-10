@@ -514,16 +514,10 @@
 }
 
 .pv2-portrait-caption {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding-top: 0.875rem;
-  color: var(--pv2-text-muted);
-  font-size: 0.625rem;
-}
-
-.pv2-portrait-caption span:first-child {
-  color: var(--pv2-mist);
+  padding-top: 1rem;
+  color: var(--pv2-lavender);
+  font-size: 0.75rem;
+  line-height: 1.5;
 }
 
 .pv2-hero-signal {
@@ -925,16 +919,18 @@
 
 .pv2-capabilities__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   margin-top: var(--pv2-space-12);
+  border-top: 1px solid var(--pv2-line);
 }
 
 .pv2-capability {
   padding: var(--pv2-space-8);
   border-left: 1px solid var(--pv2-line);
+  border-bottom: 1px solid var(--pv2-line);
 }
 
-.pv2-capability:last-child {
+.pv2-capability:nth-child(even) {
   border-right: 1px solid var(--pv2-line);
 }
 
@@ -953,7 +949,7 @@
 }
 
 .pv2-capability__statement {
-  min-height: 8.25rem;
+  min-height: 6.75rem;
   margin-top: var(--pv2-space-6);
   color: var(--pv2-text-body);
   font-size: 1rem;
@@ -1589,7 +1585,8 @@
   }
 
   .pv2-capability,
-  .pv2-capability:last-child {
+  .pv2-capability:last-child,
+  .pv2-capability:nth-child(even) {
     display: grid;
     grid-template-columns: 3rem minmax(0, 1fr) minmax(14rem, 0.75fr);
     gap: 1.25rem;
@@ -1801,17 +1798,6 @@
     aspect-ratio: 4 / 3;
   }
 
-  .pv2-portrait-caption {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .pv2-portrait-caption span:not(:last-child)::after {
-    content: "/";
-    margin-left: 0.75rem;
-    color: var(--pv2-line-strong);
-  }
-
   .pv2-hero-signal {
     inset: auto -40% 6% 32%;
     width: 110%;
@@ -1907,7 +1893,8 @@
   }
 
   .pv2-capability,
-  .pv2-capability:last-child {
+  .pv2-capability:last-child,
+  .pv2-capability:nth-child(even) {
     display: block;
     padding-block: var(--pv2-space-8);
   }

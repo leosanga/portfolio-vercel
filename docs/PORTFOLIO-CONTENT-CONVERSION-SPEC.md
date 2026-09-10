@@ -1,6 +1,6 @@
 # Portfolio Content and Conversion Specification
 
-Status: Approved by Leo, no implementation authorized
+Status: Approved by Leo; Gate 1 local implementation authorized
 Last updated: 2026-09-10
 Decision authority: Leo Sanga
 Goal anchor: [`PROJECT-GOAL.md`](./PROJECT-GOAL.md)
@@ -60,13 +60,13 @@ in a source document does not automatically make it approved for publication.
 
 Every content decision in this specification uses one of these states:
 
-| Status | Meaning | Implementation rule |
-|---|---|---|
-| `locked` | Leo explicitly approved the fact and wording boundary | Preserve it exactly unless Leo later approves a change |
-| `approved` | Leo explicitly approved the strategic or copy decision | It may be implemented as specified |
-| `draft` | Recommended language awaiting Leo's review | Do not publish or treat as final |
-| `deferred` | Intentionally excluded until a stated condition is met | Do not create a placeholder or coming-soon treatment |
-| `prohibited` | Explicitly outside the public portfolio direction | Do not implement |
+| Status       | Meaning                                                | Implementation rule                                    |
+| ------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `locked`     | Leo explicitly approved the fact and wording boundary  | Preserve it exactly unless Leo later approves a change |
+| `approved`   | Leo explicitly approved the strategic or copy decision | It may be implemented as specified                     |
+| `draft`      | Recommended language awaiting Leo's review             | Do not publish or treat as final                       |
+| `deferred`   | Intentionally excluded until a stated condition is met | Do not create a placeholder or coming-soon treatment   |
+| `prohibited` | Explicitly outside the public portfolio direction      | Do not implement                                       |
 
 ## Strategic outcome
 
@@ -127,11 +127,11 @@ the primary action:
 
 ### Primary audiences
 
-| Audience | What they need to know | Evidence that answers it | Desired next step |
-|---|---|---|---|
-| Hiring manager or department leader | Whether Leo can understand the operation and own the systems work | Role clarity, project outcomes, implementation judgment, working approach | Schedule a call |
-| Technical interviewer | Whether the work has architectural depth and accounts for constraints | System flow, hard parts, validation behavior, platform boundaries | Schedule a call |
-| Recruiter | Whether the role fit is legible and supported by credible examples | Search-aligned title, visible specialization, capability labels, project index | Schedule a call |
+| Audience                            | What they need to know                                                | Evidence that answers it                                                       | Desired next step |
+| ----------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------- |
+| Hiring manager or department leader | Whether Leo can understand the operation and own the systems work     | Role clarity, project outcomes, implementation judgment, working approach      | Schedule a call   |
+| Technical interviewer               | Whether the work has architectural depth and accounts for constraints | System flow, hard parts, validation behavior, platform boundaries              | Schedule a call   |
+| Recruiter                           | Whether the role fit is legible and supported by credible examples    | Search-aligned title, visible specialization, capability labels, project index | Schedule a call   |
 
 ### Secondary audience
 
@@ -148,15 +148,15 @@ role, or selling consulting services.
 
 ## Visitor questions and content answers
 
-| Visitor question | Page answer |
-|---|---|
-| Who is this? | Leo Sanga, Systems Engineer: Integration + Automation |
-| What does he actually do? | He connects business systems and builds automation around how the work operates |
-| Is there proof? | Selected projects show the problem, implementation, constraint, and system behavior |
-| Is the work technically credible? | The featured workflow and hard-part descriptions expose engineering judgment without exposing confidential internals |
-| Can he work beyond a single tool? | Capability groups and project stacks show cross-platform systems experience |
-| How does he approach ambiguous work? | The working approach explains how he understands, plans, builds, and validates |
-| What should I do next? | Schedule a 30-minute call |
+| Visitor question                     | Page answer                                                                                                          |
+| ------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Who is this?                         | Leo Sanga, Systems Engineer: Integration + Automation                                                                |
+| What does he actually do?            | He connects business systems and builds automation around how the work operates                                      |
+| Is there proof?                      | Selected projects show the problem, implementation, constraint, and system behavior                                  |
+| Is the work technically credible?    | The featured workflow and hard-part descriptions expose engineering judgment without exposing confidential internals |
+| Can he work beyond a single tool?    | Capability groups and project stacks show cross-platform systems experience                                          |
+| How does he approach ambiguous work? | The working approach explains how he understands, plans, builds, and validates                                       |
+| What should I do next?               | Schedule a 30-minute call                                                                                            |
 
 ## Persuasion sequence
 
@@ -177,15 +177,15 @@ capabilities and approach.
 
 ## Recommended homepage information architecture
 
-| Order | Section | Purpose | Required content | Excluded content |
-|---:|---|---|---|---|
-| 1 | Navigation | Orientation and persistent conversion access | Projects, Capabilities, Approach, Schedule a Call | Resume, GitHub, availability |
-| 2 | Hero | Establish role, relevance, and human presence | Professional label, value headline, short support copy, portrait, primary CTA | Tool cloud, career history, animated slogans |
-| 3 | Projects | Present the complete current project set in one section, with the strongest evidence first | Featured project, locked evidence, system flow disclosure, four compact project entries | Confidential media, invented outcomes, unfinished booking agent |
-| 4 | Capabilities | Translate proof into role breadth | Three recommended capability groups and supporting technologies | AI as the dominant identity, logo wall |
-| 5 | Approach | Show how Leo handles work | Understand, Plan, Build, Validate | Long methodology essay, sales process |
-| 6 | Conversation | Resolve the page into one next step | Neutral call invitation, 30-minute expectation, Schedule a Call | Visitor-type form, service pitch, availability claim |
-| 7 | Footer | Identity and quiet fallback routes | Name, professional label, email, LinkedIn, copyright | Resume and GitHub |
+| Order | Section      | Purpose                                                                                    | Required content                                                                        | Excluded content                                                |
+| ----: | ------------ | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+|     1 | Navigation   | Orientation and persistent conversion access                                               | Projects, Capabilities, Approach, Schedule a Call                                       | Resume, GitHub, availability                                    |
+|     2 | Hero         | Establish role, relevance, and human presence                                              | Professional label, value headline, short support copy, portrait, primary CTA           | Tool cloud, career history, animated slogans                    |
+|     3 | Projects     | Present the complete current project set in one section, with the strongest evidence first | Featured project, locked evidence, system flow disclosure, four compact project entries | Confidential media, invented outcomes, unfinished booking agent |
+|     4 | Capabilities | Translate proof into role breadth                                                          | Four approved capability groups, with AI visible as a distinct second group             | Unsupported AI claims, logo wall                                |
+|     5 | Approach     | Show how Leo handles work                                                                  | Understand, Plan, Build, Validate                                                       | Long methodology essay, sales process                           |
+|     6 | Conversation | Resolve the page into one next step                                                        | Neutral call invitation, 30-minute expectation, Schedule a Call                         | Visitor-type form, service pitch, availability claim            |
+|     7 | Footer       | Identity and quiet fallback routes                                                         | Name, professional label, email, LinkedIn, copyright                                    | Resume and GitHub                                               |
 
 ## Navigation specification
 
@@ -193,13 +193,13 @@ Status: `approved`
 
 Recommended desktop and mobile labels:
 
-| Item | Destination | Priority | Rule |
-|---|---|---:|---|
-| Leo Sanga | Top of page | Identity | Text identity, not an additional logo concept |
-| Projects | Projects | 1 | Use the familiar portfolio label while the current list remains small |
-| Capabilities | Capability map | 2 | Keep terminology professional and searchable |
-| Approach | My Approach | 3 | Preserve the current four-step model |
-| Schedule a Call | External scheduler | Primary | Maintain visual priority on desktop and mobile |
+| Item            | Destination        | Priority | Rule                                                                  |
+| --------------- | ------------------ | -------: | --------------------------------------------------------------------- |
+| Leo Sanga       | Top of page        | Identity | Text identity, not an additional logo concept                         |
+| Projects        | Projects           |        1 | Use the familiar portfolio label while the current list remains small |
+| Capabilities    | Capability map     |        2 | Keep terminology professional and searchable                          |
+| Approach        | My Approach        |        3 | Preserve the current four-step model                                  |
+| Schedule a Call | External scheduler |  Primary | Maintain visual priority on desktop and mobile                        |
 
 Do not add a separate Contact navigation item. The persistent primary CTA and
 final conversation section already provide the destination.
@@ -212,8 +212,9 @@ final conversation section already provide the destination.
 
 Status: `approved`
 
-Use the complete label as visible text near the primary heading. Do not split it
-into decorative fragments that weaken readability or search meaning.
+Use the complete label as visible text directly below the hero portrait. It
+remains near the primary heading within the same hero composition. Do not split
+it into decorative fragments that weaken readability or search meaning.
 
 ### Headline
 
@@ -383,11 +384,11 @@ Status: `approved`
 
 #### Systems Integration + Automation
 
-| Option | Copy |
-|---|---|
+| Option      | Copy                                                                                                                                |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | A, selected | `I build the layer that moves information between the systems a business depends on, then automate the work that sits across them.` |
-| B | `I connect business systems and build the automation that carries work reliably between them.` |
-| C | `I design integrations for work that has to move reliably across platform and team boundaries.` |
+| B           | `I connect business systems and build the automation that carries work reliably between them.`                                      |
+| C           | `I design integrations for work that has to move reliably across platform and team boundaries.`                                     |
 
 Supporting terms:
 
@@ -396,15 +397,30 @@ Supporting terms:
 - Python and JavaScript
 - CRM workflow automation
 - Cross-functional systems integration
-- AI-assisted workflow steps where they are appropriate
+
+#### AI + Intelligent Automation
+
+| Option      | Copy                                                                                                                 |
+| ----------- | -------------------------------------------------------------------------------------------------------------------- |
+| A, selected | `I build AI into operational workflows that need judgment, with human checkpoints on the decisions that carry risk.` |
+
+Supporting terms:
+
+- AI agents
+- LLM integration
+- MCP connectors
+- AI-assisted workflows
+- Intelligent routing
+- Lead enrichment
+- Human-in-the-loop workflows
 
 #### Business Systems + Process Architecture
 
-| Option | Copy |
-|---|---|
+| Option      | Copy                                                                                                                    |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------- |
 | A, selected | `I translate an operating process into a system structure and workflow that people can keep using as the work changes.` |
-| B | `I turn the way a team operates into system behavior that can be understood and maintained.` |
-| C | `I map the real process before shaping the systems that support it.` |
+| B           | `I turn the way a team operates into system behavior that can be understood and maintained.`                            |
+| C           | `I map the real process before shaping the systems that support it.`                                                    |
 
 Supporting terms:
 
@@ -417,11 +433,11 @@ Supporting terms:
 
 #### Enterprise Systems + Reliability
 
-| Option | Copy |
-|---|---|
-| A, selected | `I handle enterprise identity and the reliability problems that appear between connected platforms.` |
-| B | `I work across identity and connected platforms to diagnose failures and keep enterprise workflows dependable.` |
-| C | `I resolve the integration and access problems that appear when enterprise systems have to operate together.` |
+| Option      | Copy                                                                                                            |
+| ----------- | --------------------------------------------------------------------------------------------------------------- |
+| A, selected | `I handle enterprise identity and the reliability problems that appear between connected platforms.`            |
+| B           | `I work across identity and connected platforms to diagnose failures and keep enterprise workflows dependable.` |
+| C           | `I resolve the integration and access problems that appear when enterprise systems have to operate together.`   |
 
 Supporting terms:
 
@@ -434,30 +450,24 @@ Supporting terms:
 
 ### AI positioning rule
 
-AI should appear as an implementation method or project characteristic. It
-should not remain a standalone top-level capability card. This prevents one tool
-category from becoming Leo's professional identity and keeps the hierarchy
-aligned with Systems Engineer, Integration, and Automation.
+AI is a standalone top-level capability group and appears second, immediately
+after Systems Integration + Automation. This is a scan and search decision. It
+does not replace `Systems Engineer: Integration + Automation` as Leo's primary
+professional identity.
 
-This remains the recommendation because:
+Leo's review of hundreds of relevant job posts found that AI capabilities often
+appear as a distinct hiring requirement. Recruiters and hiring managers may scan
+capability headings without reading the project details, so project evidence
+alone does not provide enough first-pass visibility.
 
-- Leo's target position is Systems Engineer, with Integration and Automation as
-  the searchable specialization.
-- AI is one implementation method inside that work rather than a separate area
-  of systems ownership.
-- Project-level AI details are more credible than a broad capability claim.
-- Removing a standalone AI card reduces one of the strongest generic AI-site
-  signals in the current content hierarchy.
-- The structure remains useful if the preferred models and tools change.
+The AI group stays grounded in capabilities Leo can discuss and support. It
+names AI agents, LLM integration, MCP connectors, AI-assisted workflows,
+intelligent routing, lead enrichment, and human-in-the-loop workflows. It does
+not use generic innovation language or imply model research experience.
 
-This does not hide AI experience. Keep `AI-assisted workflow steps` under
-Systems Integration + Automation. Name AI in a project title, stack, or hard
-part when it materially shaped that implementation. The future booking-agent
-case study can give AI a prominent architectural role once the project is ready.
-
-Remove the current standalone AI capability card in the redesign. Retain useful
-AI evidence under Systems Integration + Automation and inside the projects where
-it materially shaped the implementation.
+Project-level AI details remain the strongest evidence. The capability group
+makes that experience discoverable before a visitor decides whether to inspect
+the projects.
 
 ### Capability presentation rules
 
@@ -511,13 +521,13 @@ accurately.
 
 ### Release states
 
-| State | Public behavior | Gate |
-|---|---|---|
-| In progress | Invisible | Current state |
-| Content-ready | Draft case study exists privately | Facts, architecture, and outcome reviewed by Leo |
-| Demo-ready | Recording and fallback media pass review | Demonstration represents final behavior and exposes no sensitive data |
-| Approved | May appear on homepage and dedicated route | Leo explicitly approves copy and media |
-| Published | Route is live and indexed | Separate production approval gate completed |
+| State         | Public behavior                            | Gate                                                                  |
+| ------------- | ------------------------------------------ | --------------------------------------------------------------------- |
+| In progress   | Invisible                                  | Current state                                                         |
+| Content-ready | Draft case study exists privately          | Facts, architecture, and outcome reviewed by Leo                      |
+| Demo-ready    | Recording and fallback media pass review   | Demonstration represents final behavior and exposes no sensitive data |
+| Approved      | May appear on homepage and dedicated route | Leo explicitly approves copy and media                                |
+| Published     | Route is live and indexed                  | Separate production approval gate completed                           |
 
 ### Future case-study content model
 
@@ -688,24 +698,24 @@ claims that are not explicitly supported.
 The future content model should support the following fields even if the first
 implementation renders only a subset:
 
-| Field | Required | Purpose |
-|---|---:|---|
-| `slug` | For dedicated routes | Stable project URL |
-| `title` | Yes | Clear public name |
-| `summary` | Yes | One-sentence definition |
-| `problem` | Yes | Operational reason the work mattered |
-| `build` | Yes | What Leo implemented |
-| `hardPart` | Yes | Constraint or engineering judgment |
-| `stack` | Yes | Supporting technology context |
-| `flow` | When useful | Structured system behavior |
-| `ownership` | Yes | What Leo personally owned, using approved facts |
-| `visibility` | Yes | Private, summary, case-study-ready, or public |
-| `featured` | Yes | Homepage curation flag |
-| `categories` | Later | Internal archive organization |
-| `demo` | Future | Video, poster, captions or transcript, and fallback |
-| `caseStudy` | Future | Long-form route content |
-| `claimSources` | Internal | Traceability for every public fact |
-| `contentStatus` | Internal | Locked, approved, draft, deferred, or prohibited |
+| Field           |             Required | Purpose                                             |
+| --------------- | -------------------: | --------------------------------------------------- |
+| `slug`          | For dedicated routes | Stable project URL                                  |
+| `title`         |                  Yes | Clear public name                                   |
+| `summary`       |                  Yes | One-sentence definition                             |
+| `problem`       |                  Yes | Operational reason the work mattered                |
+| `build`         |                  Yes | What Leo implemented                                |
+| `hardPart`      |                  Yes | Constraint or engineering judgment                  |
+| `stack`         |                  Yes | Supporting technology context                       |
+| `flow`          |          When useful | Structured system behavior                          |
+| `ownership`     |                  Yes | What Leo personally owned, using approved facts     |
+| `visibility`    |                  Yes | Private, summary, case-study-ready, or public       |
+| `featured`      |                  Yes | Homepage curation flag                              |
+| `categories`    |                Later | Internal archive organization                       |
+| `demo`          |               Future | Video, poster, captions or transcript, and fallback |
+| `caseStudy`     |               Future | Long-form route content                             |
+| `claimSources`  |             Internal | Traceability for every public fact                  |
+| `contentStatus` |             Internal | Locked, approved, draft, deferred, or prohibited    |
 
 The implementation specification will decide the TypeScript structure. This
 document defines only the content requirements.
@@ -757,14 +767,14 @@ support.
 
 Recommended events:
 
-| Event | Trigger | Useful property |
-|---|---|---|
-| `schedule_call_click` | Click to the external scheduler | `placement`: `nav`, `hero`, or `final` |
-| `project_detail_open` | Open the featured workflow disclosure | Project slug or stable ID |
-| `project_case_study_open` | Open a future public case study | Project slug |
-| `project_demo_play` | Start a future demonstration | Project slug |
-| `project_demo_complete` | Reach a reliable completion threshold | Project slug and duration |
-| `email_link_click` | Use the footer email fallback | `placement`: `footer` |
+| Event                     | Trigger                               | Useful property                        |
+| ------------------------- | ------------------------------------- | -------------------------------------- |
+| `schedule_call_click`     | Click to the external scheduler       | `placement`: `nav`, `hero`, or `final` |
+| `project_detail_open`     | Open the featured workflow disclosure | Project slug or stable ID              |
+| `project_case_study_open` | Open a future public case study       | Project slug                           |
+| `project_demo_play`       | Start a future demonstration          | Project slug                           |
+| `project_demo_complete`   | Reach a reliable completion threshold | Project slug and duration              |
+| `email_link_click`        | Use the footer email fallback         | `placement`: `footer`                  |
 
 Do not record names, email addresses, optional scheduler messages, or private
 form content in portfolio analytics.
@@ -781,13 +791,13 @@ until traffic supports a valid experiment.
 
 ### Evidence classes
 
-| Class | Example | Publication rule |
-|---|---|---|
-| Public and approved | Role title, portfolio-owned identity, approved project summary | May publish |
-| Locked prior-employer evidence | 8+ hours per week, 70 files, current workflow and platform constraints | Preserve exactly within the approved boundary |
-| Owned but unfinished | n8n booking agent | Keep invisible until its release gate is met |
-| Private context | Resume detail, interview preparation, internal career notes | Use for strategy only unless separately approved |
-| Prohibited inference | Client identity, internal fields, credentials, thresholds, unpublished screenshots | Never add by deduction |
+| Class                          | Example                                                                            | Publication rule                                 |
+| ------------------------------ | ---------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Public and approved            | Role title, portfolio-owned identity, approved project summary                     | May publish                                      |
+| Locked prior-employer evidence | 8+ hours per week, 70 files, current workflow and platform constraints             | Preserve exactly within the approved boundary    |
+| Owned but unfinished           | n8n booking agent                                                                  | Keep invisible until its release gate is met     |
+| Private context                | Resume detail, interview preparation, internal career notes                        | Use for strategy only unless separately approved |
+| Prohibited inference           | Client identity, internal fields, credentials, thresholds, unpublished screenshots | Never add by deduction                           |
 
 ### Claim review procedure
 
@@ -838,15 +848,15 @@ adding a concrete reason to schedule the call.
 The visual specification will define exact treatments. Content currently
 requires these asset roles:
 
-| Asset | Section | Content purpose | Current decision |
-|---|---|---|---|
-| Portrait | Hero | Human identity and trust | Keep; derive optimized versions later from `portrait image.heic` |
-| Workflow diagram | Featured project | Explain system behavior | Keep as structured interface content, not a screenshot |
-| Technology marks | Projects or capabilities | Optional context | Prefer text; do not create a logo wall |
-| Project demo | Future owned case studies | Show real behavior | Deferred until each project is complete and approved |
-| Project poster image | Future case studies | Preview the demo and support loading | Create with the demo, not as a placeholder |
-| Social sharing image | Metadata | Present a deliberate identity when shared | Required in the design phase |
-| Favicon family | Browser and device chrome | Preserve the three-node workflow identity | Redesign in the visual phase |
+| Asset                | Section                   | Content purpose                           | Current decision                                                 |
+| -------------------- | ------------------------- | ----------------------------------------- | ---------------------------------------------------------------- |
+| Portrait             | Hero                      | Human identity and trust                  | Keep; derive optimized versions later from `portrait image.heic` |
+| Workflow diagram     | Featured project          | Explain system behavior                   | Keep as structured interface content, not a screenshot           |
+| Technology marks     | Projects or capabilities  | Optional context                          | Prefer text; do not create a logo wall                           |
+| Project demo         | Future owned case studies | Show real behavior                        | Deferred until each project is complete and approved             |
+| Project poster image | Future case studies       | Preview the demo and support loading      | Create with the demo, not as a placeholder                       |
+| Social sharing image | Metadata                  | Present a deliberate identity when shared | Required in the design phase                                     |
+| Favicon family       | Browser and device chrome | Preserve the three-node workflow identity | Redesign in the visual phase                                     |
 
 The favicon should retain one starting node and two downstream nodes. Its form
 should read as a workflow at small sizes rather than as a generic share icon.
@@ -889,12 +899,12 @@ None. Leo approved the remaining content decisions on 2026-09-10.
 - Public professional label: `Systems Engineer: Integration + Automation`
 - Hero headline: `I build systems that run the business`
 - Hero supporting copy: `I design and build the systems a business relies on.
-  My background across operations and technical delivery helps me see how the
-  work gets done before I decide how the system should support it.`
+My background across operations and technical delivery helps me see how the
+work gets done before I decide how the system should support it.`
 - Search title: `Leo Sanga | Systems Engineer, Integration & Automation`
 - Search description: `Portfolio of Leo Sanga, a Systems Engineer focused on
-  reliable systems integration and automation for business operations and
-  enterprise platforms.`
+reliable systems integration and automation for business operations and
+enterprise platforms.`
 - Primary conversion: `Schedule a Call`
 - Navigation labels: `Projects`, `Capabilities`, and `Approach`
 - Homepage project structure: one `Projects` section containing the featured
@@ -905,9 +915,9 @@ None. Leo approved the remaining content decisions on 2026-09-10.
   within projects where it materially affects the implementation
 - Final conversation heading: `Start with a conversation.`
 - Final conversation supporting copy: `The best systems start with understanding
-  how the business actually works. Schedule 30 minutes to discuss a role or a
-  systems problem. I can walk you through my work, or you can show me how the
-  work gets done today. We'll identify where the system can improve.`
+how the business actually works. Schedule 30 minutes to discuss a role or a
+systems problem. I can walk you through my work, or you can show me how the
+work gets done today. We'll identify where the system can improve.`
 - Current footer slogan: remove in the redesign
 - Secondary business audience: neutrally accommodated
 - Scheduled duration: 30 minutes

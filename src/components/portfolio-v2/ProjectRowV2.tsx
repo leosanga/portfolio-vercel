@@ -24,7 +24,7 @@ export function ProjectRowV2({ project, index }: ProjectRowV2Props) {
           </div>
           {project.hardPart ? (
             <div className="pv2-project-field">
-              <p className="pv2-project-field__label">Constraint</p>
+              <p className="pv2-project-field__label">The hard part</p>
               <p>{project.hardPart}</p>
             </div>
           ) : null}

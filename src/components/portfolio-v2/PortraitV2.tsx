@@ -13,6 +13,7 @@ import portrait4x5960Webp from "@/assets/portfolio-v2/portrait/leo-sanga-hero-4x
 import portrait4x51200Avif from "@/assets/portfolio-v2/portrait/leo-sanga-hero-4x5-1200.avif";
 import portrait4x51200Webp from "@/assets/portfolio-v2/portrait/leo-sanga-hero-4x5-1200.webp";
 import portraitFallback from "@/assets/portfolio-v2/portrait/leo-sanga-hero-fallback.jpg";
+import { HERO } from "@/content/portfolio-v2/content";
 
 import { usePortraitDepth } from "./usePortraitDepth";
 
@@ -20,7 +21,7 @@ export function PortraitV2() {
   const depthRef = usePortraitDepth();
 
   return (
-    <div className="pv2-portrait-shell">
+    <figure className="pv2-portrait-shell">
       <div className="pv2-portrait-frame" ref={depthRef} data-depth-active="false">
         <picture>
           <source
@@ -68,12 +69,7 @@ export function PortraitV2() {
         </picture>
         <div className="pv2-portrait-frame__edge" aria-hidden="true" />
       </div>
-      <div className="pv2-portrait-caption" aria-hidden="true">
-        <span>01</span>
-        <span>Operations</span>
-        <span>Systems</span>
-        <span>Reliability</span>
-      </div>
-    </div>
+      <figcaption className="pv2-portrait-caption">{HERO.role}</figcaption>
+    </figure>
   );
 }

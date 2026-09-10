@@ -1,6 +1,6 @@
 # Portfolio Visual Identity and Interface Specification
 
-Status: Approved by Leo; no implementation authorized
+Status: Approved by Leo; Gate 1 local implementation authorized
 Last updated: 2026-09-10
 Decision authority: Leo Sanga
 Goal anchor: [`PROJECT-GOAL.md`](./PROJECT-GOAL.md)
@@ -57,8 +57,7 @@ systems layer running through the composition.
 
 - A translucent full-width navigation layer sits above the page without a
   floating capsule around the entire menu.
-- The hero uses an asymmetric 12-column layout. Copy occupies columns 1 through
-  7. The portrait occupies columns 8 through 12 and extends farther vertically.
+- The hero uses an asymmetric 12-column layout. Copy occupies columns 1 through 7. The portrait occupies columns 8 through 12 and extends farther vertically.
 - The headline becomes the dominant typographic element and overlaps the
   portrait's visual territory without covering Leo's face.
 - A thin three-node system path moves from the copy field toward the portrait.
@@ -177,12 +176,12 @@ The construction should use:
 
 The mark may appear in four roles:
 
-| Role | Treatment |
-|---|---|
-| Browser favicon | Static, high-contrast simplified form |
-| Navigation identity | 20 to 24 px mark beside `Leo Sanga` |
-| Hero system path | Enlarged line construction integrated with the portrait composition |
-| Diagram grammar | Node and connector primitives reused to explain real project flow |
+| Role                | Treatment                                                           |
+| ------------------- | ------------------------------------------------------------------- |
+| Browser favicon     | Static, high-contrast simplified form                               |
+| Navigation identity | 20 to 24 px mark beside `Leo Sanga`                                 |
+| Hero system path    | Enlarged line construction integrated with the portrait composition |
+| Diagram grammar     | Node and connector primitives reused to explain real project flow   |
 
 Do not scatter the mark as a decorative pattern. The favicon, navigation, hero,
 and explanatory diagrams are its complete first-release scope.
@@ -199,35 +198,35 @@ and explanatory diagrams are its complete first-release scope.
 
 ### Core palette
 
-| Token | HEX | Role |
-|---|---|---|
-| `canvas` | `#0F0E14` | Page background and deepest surface |
-| `canvas-soft` | `#14121A` | Alternating section field where separation is necessary |
-| `surface` | `#1A1722` | Diagrams, mobile menu, and elevated content |
-| `surface-raised` | `#211D2B` | Selected or interactive evidence area |
-| `text-primary` | `#F7F3FA` | Headings and high-priority text |
-| `text-body` | `#C8C0D0` | Body copy |
-| `text-muted` | `#9D94A6` | Metadata and supporting labels |
-| `lavender` | `#CBB7F5` | Primary accent and call action |
-| `lavender-hover` | `#D9C9FA` | Primary-action hover state |
-| `mist` | `#AFC9E8` | Secondary accent, focus, and active system signal |
-| `sage` | `#B8CDBD` | Optional completed-state accent in diagrams only |
-| `line` | `#393341` | Structural rules and default borders |
-| `line-strong` | `#51485D` | Active or emphasized boundaries |
-| `button-ink` | `#17121F` | Text and icons on lavender controls |
+| Token            | HEX       | Role                                                    |
+| ---------------- | --------- | ------------------------------------------------------- |
+| `canvas`         | `#0F0E14` | Page background and deepest surface                     |
+| `canvas-soft`    | `#14121A` | Alternating section field where separation is necessary |
+| `surface`        | `#1A1722` | Diagrams, mobile menu, and elevated content             |
+| `surface-raised` | `#211D2B` | Selected or interactive evidence area                   |
+| `text-primary`   | `#F7F3FA` | Headings and high-priority text                         |
+| `text-body`      | `#C8C0D0` | Body copy                                               |
+| `text-muted`     | `#9D94A6` | Metadata and supporting labels                          |
+| `lavender`       | `#CBB7F5` | Primary accent and call action                          |
+| `lavender-hover` | `#D9C9FA` | Primary-action hover state                              |
+| `mist`           | `#AFC9E8` | Secondary accent, focus, and active system signal       |
+| `sage`           | `#B8CDBD` | Optional completed-state accent in diagrams only        |
+| `line`           | `#393341` | Structural rules and default borders                    |
+| `line-strong`    | `#51485D` | Active or emphasized boundaries                         |
+| `button-ink`     | `#17121F` | Text and icons on lavender controls                     |
 
 ### Contrast baseline
 
 Calculated contrast on `canvas`:
 
-| Pair | Ratio | Use |
-|---|---:|---|
-| `text-primary` on `canvas` | 17.52:1 | All text sizes |
-| `text-body` on `canvas` | 10.89:1 | Body copy |
-| `text-muted` on `canvas` | 6.60:1 | Metadata and labels |
-| `lavender` on `canvas` | 10.64:1 | Accent text and focus-adjacent states |
-| `mist` on `canvas` | 11.29:1 | Links and active signals |
-| `button-ink` on `lavender` | 10.18:1 | Primary button |
+| Pair                       |   Ratio | Use                                   |
+| -------------------------- | ------: | ------------------------------------- |
+| `text-primary` on `canvas` | 17.52:1 | All text sizes                        |
+| `text-body` on `canvas`    | 10.89:1 | Body copy                             |
+| `text-muted` on `canvas`   |  6.60:1 | Metadata and labels                   |
+| `lavender` on `canvas`     | 10.64:1 | Accent text and focus-adjacent states |
+| `mist` on `canvas`         | 11.29:1 | Links and active signals              |
+| `button-ink` on `lavender` | 10.18:1 | Primary button                        |
 
 These ratios are inputs to implementation testing. Final browser rendering must
 still be verified.
@@ -250,11 +249,11 @@ still be verified.
 
 ### Recommended families
 
-| Role | Typeface | Source and use |
-|---|---|---|
-| Display and body | [`Instrument Sans`](https://github.com/Instrument/instrument-sans) variable | SIL Open Font License 1.1; headings, body, navigation, and controls |
-| Technical metadata | [`IBM Plex Mono`](https://github.com/IBM/plex) | SIL Open Font License 1.1; project IDs, diagram labels, and compact metadata only |
-| Fallback | `ui-sans-serif, system-ui, sans-serif` | Immediate fallback and failure-safe rendering |
+| Role               | Typeface                                                                    | Source and use                                                                    |
+| ------------------ | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| Display and body   | [`Instrument Sans`](https://github.com/Instrument/instrument-sans) variable | SIL Open Font License 1.1; headings, body, navigation, and controls               |
+| Technical metadata | [`IBM Plex Mono`](https://github.com/IBM/plex)                              | SIL Open Font License 1.1; project IDs, diagram labels, and compact metadata only |
+| Fallback           | `ui-sans-serif, system-ui, sans-serif`                                      | Immediate fallback and failure-safe rendering                                     |
 
 The fonts should be self-hosted as subset WOFF2 assets during implementation.
 Only the weights used by the interface should ship. Space Grotesk should be
@@ -264,17 +263,17 @@ default technical aesthetic.
 
 ### Type scale
 
-| Token | Size | Line height | Tracking | Weight | Use |
-|---|---|---:|---:|---:|---|
-| `display-hero` | `clamp(3.25rem, 7vw, 7rem)` | `0.94` | `-0.045em` | 580 to 620 | One homepage H1 |
-| `display-section` | `clamp(2.25rem, 4.5vw, 4.5rem)` | `1.00` | `-0.035em` | 560 to 600 | Section headings |
-| `heading-project` | `clamp(1.75rem, 2.8vw, 2.75rem)` | `1.08` | `-0.025em` | 560 to 600 | Featured project title |
-| `heading-card` | `clamp(1.25rem, 1.8vw, 1.625rem)` | `1.18` | `-0.015em` | 560 | Project and capability titles |
-| `body-large` | `clamp(1.125rem, 1.35vw, 1.375rem)` | `1.55` | `-0.005em` | 400 | Hero and final conversation support |
-| `body` | `clamp(1rem, 0.25vw + 0.95rem, 1.0625rem)` | `1.65` | `0` | 400 | Standard copy |
-| `navigation` | `0.9375rem` | `1.20` | `-0.005em` | 520 | Navigation and buttons |
-| `label` | `0.75rem` | `1.30` | `0.08em` | 600 | Rare section labels and statuses |
-| `metadata` | `0.8125rem` | `1.55` | `0.015em` | 450 | Project and diagram metadata |
+| Token             | Size                                       | Line height |   Tracking |     Weight | Use                                 |
+| ----------------- | ------------------------------------------ | ----------: | ---------: | ---------: | ----------------------------------- |
+| `display-hero`    | `clamp(3.25rem, 7vw, 7rem)`                |      `0.94` | `-0.045em` | 580 to 620 | One homepage H1                     |
+| `display-section` | `clamp(2.25rem, 4.5vw, 4.5rem)`            |      `1.00` | `-0.035em` | 560 to 600 | Section headings                    |
+| `heading-project` | `clamp(1.75rem, 2.8vw, 2.75rem)`           |      `1.08` | `-0.025em` | 560 to 600 | Featured project title              |
+| `heading-card`    | `clamp(1.25rem, 1.8vw, 1.625rem)`          |      `1.18` | `-0.015em` |        560 | Project and capability titles       |
+| `body-large`      | `clamp(1.125rem, 1.35vw, 1.375rem)`        |      `1.55` | `-0.005em` |        400 | Hero and final conversation support |
+| `body`            | `clamp(1rem, 0.25vw + 0.95rem, 1.0625rem)` |      `1.65` |        `0` |        400 | Standard copy                       |
+| `navigation`      | `0.9375rem`                                |      `1.20` | `-0.005em` |        520 | Navigation and buttons              |
+| `label`           | `0.75rem`                                  |      `1.30` |   `0.08em` |        600 | Rare section labels and statuses    |
+| `metadata`        | `0.8125rem`                                |      `1.55` |  `0.015em` |        450 | Project and diagram metadata        |
 
 Use optical sizing where the selected font supports it. Large type uses tighter
 tracking. Small type uses neutral or slightly positive tracking. All-caps text is
@@ -293,12 +292,12 @@ section-heading treatment.
 
 ### Page frame
 
-| Viewport | Outer margin | Columns | Gutter | Content maximum |
-|---|---:|---:|---:|---:|
-| 1440 px and wider | 64 px minimum | 12 | 28 px | 1320 px |
-| 1024 to 1439 px | 40 px | 12 | 24 px | Fluid |
-| 768 to 1023 px | 32 px | 8 | 20 px | Fluid |
-| Below 768 px | 20 px | 4 | 16 px | Fluid |
+| Viewport          |  Outer margin | Columns | Gutter | Content maximum |
+| ----------------- | ------------: | ------: | -----: | --------------: |
+| 1440 px and wider | 64 px minimum |      12 |  28 px |         1320 px |
+| 1024 to 1439 px   |         40 px |      12 |  24 px |           Fluid |
+| 768 to 1023 px    |         32 px |       8 |  20 px |           Fluid |
+| Below 768 px      |         20 px |       4 |  16 px |           Fluid |
 
 Do not center every section into the same narrow text column. Alignment should
 repeat across the hero, projects, capabilities, approach, and final action so
@@ -308,17 +307,17 @@ the page feels composed rather than stacked.
 
 Use a 4 px base unit with named steps:
 
-| Token | Value | Typical use |
-|---|---:|---|
-| `space-1` | 4 px | Optical adjustment |
-| `space-2` | 8 px | Icon and label gaps |
-| `space-3` | 12 px | Compact metadata groups |
-| `space-4` | 16 px | Control internals |
-| `space-6` | 24 px | Local content groups |
-| `space-8` | 32 px | Card or diagram padding |
-| `space-12` | 48 px | Subsection separation |
-| `space-16` | 64 px | Major internal section gap |
-| `space-24` | 96 px | Small-screen section space |
+| Token      |  Value | Typical use                       |
+| ---------- | -----: | --------------------------------- |
+| `space-1`  |   4 px | Optical adjustment                |
+| `space-2`  |   8 px | Icon and label gaps               |
+| `space-3`  |  12 px | Compact metadata groups           |
+| `space-4`  |  16 px | Control internals                 |
+| `space-6`  |  24 px | Local content groups              |
+| `space-8`  |  32 px | Card or diagram padding           |
+| `space-12` |  48 px | Subsection separation             |
+| `space-16` |  64 px | Major internal section gap        |
+| `space-24` |  96 px | Small-screen section space        |
 | `space-36` | 144 px | Wide-screen section space ceiling |
 
 Default section padding is `clamp(6rem, 10vw, 9rem)`. The hero-to-projects
@@ -436,12 +435,14 @@ distinguish the lead project, but the page must not create a separate `Work` or
 
 ## Capabilities
 
-The three approved capability groups should appear as one open band rather than
-a two-by-two card grid.
+The four approved capability groups should appear as an open two-by-two matrix
+made from shared rules, not four separate floating card shells. AI + Intelligent
+Automation appears second so it is visible in the first capability scan.
 
 ### Desktop
 
-- Use three columns separated by vertical rules.
+- Use two columns and two rows separated by shared vertical and horizontal
+  rules.
 - Each capability has a short functional heading, approved description, and one
   quiet metadata line.
 - No icons are required.
@@ -454,8 +455,9 @@ a two-by-two card grid.
 - Preserve natural content order.
 - Avoid horizontal carousels.
 
-AI remains folded into Systems Integration + Automation and appears only where
-it materially affects a project or implementation.
+AI + Intelligent Automation remains a distinct capability group. Its treatment
+must match the other capability groups so AI is visible without becoming the
+site's visual identity.
 
 ## My Approach
 
@@ -497,19 +499,19 @@ it materially affects a project or implementation.
 
 ### Primary button
 
-| Property | Specification |
-|---|---|
-| Label | `Schedule a Call` except compact mobile header may use `Call` |
-| Height | 48 px default; 44 px compact header |
-| Horizontal padding | 20 px default; 16 px compact |
-| Radius | 12 px |
-| Fill | `lavender` |
-| Text | `button-ink`, 15 px, weight 600 |
-| Icon | Optional 16 px directional arrow, after the label |
-| Hover | `lavender-hover`, 1 px lift, controlled shadow |
-| Press | Scale to `0.97`, 100 to 140 ms |
-| Focus | 2 px `mist` ring with 2 px separation |
-| Disabled | Not applicable to the outbound call link |
+| Property           | Specification                                                 |
+| ------------------ | ------------------------------------------------------------- |
+| Label              | `Schedule a Call` except compact mobile header may use `Call` |
+| Height             | 48 px default; 44 px compact header                           |
+| Horizontal padding | 20 px default; 16 px compact                                  |
+| Radius             | 12 px                                                         |
+| Fill               | `lavender`                                                    |
+| Text               | `button-ink`, 15 px, weight 600                               |
+| Icon               | Optional 16 px directional arrow, after the label             |
+| Hover              | `lavender-hover`, 1 px lift, controlled shadow                |
+| Press              | Scale to `0.97`, 100 to 140 ms                                |
+| Focus              | 2 px `mist` ring with 2 px separation                         |
+| Disabled           | Not applicable to the outbound call link                      |
 
 Avoid pill buttons. A moderate radius feels more deliberate and gives the call
 action a stronger silhouette.
@@ -552,10 +554,10 @@ Do not place translucent surfaces on top of other translucent surfaces.
 
 ### Radius scale
 
-| Token | Value | Use |
-|---|---:|---|
-| `radius-control` | 12 px | Buttons, menu items, compact controls |
-| `radius-content` | 16 px | Diagrams and project media |
+| Token            | Value | Use                                       |
+| ---------------- | ----: | ----------------------------------------- |
+| `radius-control` | 12 px | Buttons, menu items, compact controls     |
+| `radius-content` | 16 px | Diagrams and project media                |
 | `radius-feature` | 24 px | Portrait crop or final conversation panel |
 
 Use no more than these three radii. Full pills are reserved for a true status
@@ -563,10 +565,10 @@ chip if a future project needs one.
 
 ### Shadows
 
-| Token | Value | Use |
-|---|---|---|
-| `shadow-control` | `0 8px 24px rgba(5, 3, 10, 0.24)` | Primary button hover |
-| `shadow-nav` | `0 14px 48px rgba(5, 3, 10, 0.30)` | Sticky navigation after scroll |
+| Token            | Value                              | Use                                                      |
+| ---------------- | ---------------------------------- | -------------------------------------------------------- |
+| `shadow-control` | `0 8px 24px rgba(5, 3, 10, 0.24)`  | Primary button hover                                     |
+| `shadow-nav`     | `0 14px 48px rgba(5, 3, 10, 0.30)` | Sticky navigation after scroll                           |
 | `shadow-feature` | `0 28px 80px rgba(5, 3, 10, 0.38)` | Portrait or final panel only when separation is required |
 
 Shadows indicate elevation. They may not become colored glows.
@@ -590,39 +592,39 @@ the visual relationship the animation must preserve.
 
 ### Hero sequence
 
-| Frame | Visual state |
-|---|---|
-| Initial | Layout space is final. The role label, H1, support copy, call action, portrait, and node system occupy their final semantic order |
-| Hierarchy settles | Copy moves no more than 10 px into place with short stagger. The portrait resolves from a maximum scale of `0.98` |
-| Identity signal | One mist signal moves from the starting node to the two downstream nodes after the headline is readable |
-| Resting | All content is static. Fine-pointer portrait depth becomes available only while the pointer is inside the portrait region |
+| Frame             | Visual state                                                                                                                      |
+| ----------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| Initial           | Layout space is final. The role label, H1, support copy, call action, portrait, and node system occupy their final semantic order |
+| Hierarchy settles | Copy moves no more than 10 px into place with short stagger. The portrait resolves from a maximum scale of `0.98`                 |
+| Identity signal   | One mist signal moves from the starting node to the two downstream nodes after the headline is readable                           |
+| Resting           | All content is static. Fine-pointer portrait depth becomes available only while the pointer is inside the portrait region         |
 
 ### Project interaction
 
-| Frame | Visual state |
-|---|---|
-| Closed | Title, summary, metadata, and disclosure affordance are fully readable |
-| Intent | Focus or hover increases local contrast and moves the internal directional cue up to 4 px |
-| Open | Evidence appears in place. A workflow signal traverses once and leaves the completed diagram static |
-| Close | Internal movement follows the same anchored path in reverse. Layout state changes without height animation |
+| Frame  | Visual state                                                                                               |
+| ------ | ---------------------------------------------------------------------------------------------------------- |
+| Closed | Title, summary, metadata, and disclosure affordance are fully readable                                     |
+| Intent | Focus or hover increases local contrast and moves the internal directional cue up to 4 px                  |
+| Open   | Evidence appears in place. A workflow signal traverses once and leaves the completed diagram static        |
+| Close  | Internal movement follows the same anchored path in reverse. Layout state changes without height animation |
 
 ### Approach progression
 
-| Frame | Visual state |
-|---|---|
+| Frame            | Visual state                                                            |
+| ---------------- | ----------------------------------------------------------------------- |
 | Before threshold | All text remains readable; future connector segments use lower contrast |
-| Active step | Step text and node reach full contrast |
-| Progress | Connector scales toward the next node without moving the text block |
-| Complete | The full route remains static and readable |
+| Active step      | Step text and node reach full contrast                                  |
+| Progress         | Connector scales toward the next node without moving the text block     |
+| Complete         | The full route remains static and readable                              |
 
 ### Final conversation
 
-| Frame | Visual state |
-|---|---|
-| Entry | Heading, support copy, and call action settle as one group |
+| Frame          | Visual state                                                  |
+| -------------- | ------------------------------------------------------------- |
+| Entry          | Heading, support copy, and call action settle as one group    |
 | Signal arrival | One signal reaches the terminal node beside `Schedule a Call` |
-| Interaction | Hover, focus, and press respond immediately at the button |
-| Resting | No pulse or loop remains |
+| Interaction    | Hover, focus, and press respond immediately at the button     |
+| Resting        | No pulse or loop remains                                      |
 
 ## Responsive specification
 

@@ -52,11 +52,11 @@ console errors is not approval by itself.
 
 ### Side-by-side local environments
 
-| Surface | Worktree | URL | Purpose |
-|---|---|---|---|
-| Version 1 reference | `portfolio-vercel` | `http://127.0.0.1:8080/` | Confirm current behavior and detect accidental change |
-| Version 2 review | `portfolio-vercel-redesign` | `http://127.0.0.1:8081/redesign` | Design, interaction, accessibility, and content review |
-| Version 2 production preview | redesign worktree after local cutover preparation | local preview URL recorded in current state | Final bundle and metadata measurement |
+| Surface                      | Worktree                                          | URL                                         | Purpose                                                |
+| ---------------------------- | ------------------------------------------------- | ------------------------------------------- | ------------------------------------------------------ |
+| Version 1 reference          | `portfolio-vercel`                                | `http://127.0.0.1:8080/`                    | Confirm current behavior and detect accidental change  |
+| Version 2 review             | `portfolio-vercel-redesign`                       | `http://127.0.0.1:8081/redesign`            | Design, interaction, accessibility, and content review |
+| Version 2 production preview | redesign worktree after local cutover preparation | local preview URL recorded in current state | Final bundle and metadata measurement                  |
 
 Record command, process identifier, commit, browser version, viewport, device
 pixel ratio where relevant, and cache state. Do not publish a remote preview to
@@ -64,19 +64,19 @@ perform QA.
 
 ### Required viewport matrix
 
-| Class | Viewport | Primary risks |
-|---|---:|---|
-| Wide desktop | 1920 by 1080 | Excessive emptiness, weak max-width, stretched rules |
-| Design desktop | 1440 by 900 | Intended composition and type hierarchy |
-| Common laptop | 1366 by 768 | Short-height hero, sticky nav, project transition |
-| Compact laptop | 1280 by 800 | Grid compression and line lengths |
-| Landscape tablet | 1024 by 768 | Hero rearrangement and navigation threshold |
-| Portrait tablet | 834 by 1112 | Project rows, capability band, portrait crop |
-| Narrow tablet | 768 by 1024 | Mobile transition boundary and disclosure width |
-| Large mobile | 430 by 932 | Hero crop, mobile menu, CTA reachability |
-| Reference mobile | 390 by 844 | Primary mobile art direction |
-| Narrow mobile | 360 by 800 | Wrapped labels and workflow reflow |
-| Minimum supported | 320 by 568 | Horizontal overflow, focus clipping, content survival |
+| Class             |     Viewport | Primary risks                                         |
+| ----------------- | -----------: | ----------------------------------------------------- |
+| Wide desktop      | 1920 by 1080 | Excessive emptiness, weak max-width, stretched rules  |
+| Design desktop    |  1440 by 900 | Intended composition and type hierarchy               |
+| Common laptop     |  1366 by 768 | Short-height hero, sticky nav, project transition     |
+| Compact laptop    |  1280 by 800 | Grid compression and line lengths                     |
+| Landscape tablet  |  1024 by 768 | Hero rearrangement and navigation threshold           |
+| Portrait tablet   |  834 by 1112 | Project rows, capability band, portrait crop          |
+| Narrow tablet     |  768 by 1024 | Mobile transition boundary and disclosure width       |
+| Large mobile      |   430 by 932 | Hero crop, mobile menu, CTA reachability              |
+| Reference mobile  |   390 by 844 | Primary mobile art direction                          |
+| Narrow mobile     |   360 by 800 | Wrapped labels and workflow reflow                    |
+| Minimum supported |   320 by 568 | Horizontal overflow, focus clipping, content survival |
 
 Also test representative portrait and landscape rotations, intermediate drag
 resizing, 200 percent text resizing, and 400 percent browser zoom from a 1280
@@ -151,12 +151,12 @@ Do not modify `.gitignore` merely to store temporary review output.
 
 ### Severity
 
-| Severity | Examples | Release effect |
-|---|---|---|
-| Blocking | Keyboard trap, missing content without JavaScript, unusable call link, horizontal overflow at 320 px, hydration failure, private asset committed | Stop review and release |
-| High | Locked copy changed, focus obscured, wrong diagram order, reduced motion ignored, required browser failure, performance review ceiling exceeded | Must fix before acceptance |
-| Medium | Intermediate breakpoint collision, inconsistent target size, visible layout shift, noncritical budget miss, weak empty state | Fix before release unless Leo accepts a documented limit |
-| Low | Minor optical spacing, subtle browser-specific polish, nonfunctional visual inconsistency | May remain only with an explicit follow-up decision |
+| Severity | Examples                                                                                                                                         | Release effect                                           |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- |
+| Blocking | Keyboard trap, missing content without JavaScript, unusable call link, horizontal overflow at 320 px, hydration failure, private asset committed | Stop review and release                                  |
+| High     | Locked copy changed, focus obscured, wrong diagram order, reduced motion ignored, required browser failure, performance review ceiling exceeded  | Must fix before acceptance                               |
+| Medium   | Intermediate breakpoint collision, inconsistent target size, visible layout shift, noncritical budget miss, weak empty state                     | Fix before release unless Leo accepts a documented limit |
+| Low      | Minor optical spacing, subtle browser-specific polish, nonfunctional visual inconsistency                                                        | May remain only with an explicit follow-up decision      |
 
 No Blocking or High defects may remain at Gate 2. A Medium defect needs an
 explicit written acceptance with rationale, owner, and revisit trigger.
@@ -288,7 +288,10 @@ Mechanical checks:
 - Hero signal runs once after the headline becomes readable.
 - Portrait response runs only for a fine pointer while the pointer is inside.
 - Project response is local and does not make non-links appear clickable.
-- Workflow playback runs once on open and settles into a static diagram.
+- Workflow playback repeats in discrete passes while open and visible, with a
+  quiet resting interval between passes.
+- Workflow playback pauses when the disclosure closes, leaves the viewport, the
+  tab is hidden, or reduced motion is active.
 - Approach and Conversation use one-shot activation and disconnect afterward.
 - Reduced motion removes spatial travel and leaves complete content.
 - Touch states do not depend on hover.

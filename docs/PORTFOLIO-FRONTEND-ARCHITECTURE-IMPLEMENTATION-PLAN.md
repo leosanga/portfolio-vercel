@@ -173,7 +173,7 @@ This preserves the current source of record for:
 - Existing employer-derived architecture and platform constraints.
 
 The new content module owns approved version 2 copy that does not exist in the
-legacy source, including navigation labels, hero copy, three capability groups,
+legacy source, including navigation labels, hero copy, four capability groups,
 final conversation copy, metadata, and display labels.
 
 ### Proposed content types
@@ -259,7 +259,7 @@ PortfolioV2Page
 |   |   |       `-- WorkflowDiagramV2
 |   |   `-- ProjectRowV2 x 4
 |   |-- CapabilitiesV2
-|   |   `-- CapabilityColumnV2 x 3
+|   |   `-- CapabilityColumnV2 x 4
 |   |-- ApproachV2
 |   |   `-- ApproachStepV2 x 4
 |   `-- ConversationV2
@@ -335,15 +335,17 @@ viewport and behaves modally.
 - Reuses the existing narrow row-and-branch data shape.
 - Renders nodes and labels as semantic HTML.
 - Uses a decorative inline SVG overlay for trunk, branch, merge, and signal
-  paths because SVG path geometry gives the one-shot signal a stable route
-  while semantic text remains responsive HTML.
+  paths because SVG path geometry gives each signal pass a stable route while
+  semantic text remains responsive HTML.
 - Measures connector anchors only when the disclosure opens and after a
   relevant resize, not during scroll or every animation frame.
 - Uses one `ResizeObserver` scoped to the open diagram when connector geometry
   needs recalculation.
 - Draws a completed static topology when JavaScript, animation support, or
   motion permission is absent.
-- Runs workflow playback once per open action and leaves the diagram static.
+- Replays workflow playback while the disclosure is open and near the viewport,
+  with a resting interval between passes. It pauses when hidden, out of view, or
+  reduced motion is active.
 - Keeps the overlay `aria-hidden="true"` and non-focusable.
 
 The connector decision intentionally changes the current all-CSS connector
@@ -364,9 +366,9 @@ make an entire non-navigating row focusable.
 
 ### `CapabilitiesV2`
 
-- Renders the three approved capability groups as an open band.
+- Renders the four approved capability groups as an open two-by-two matrix.
 - Keeps technology terms as supporting text, not logos or decorative pills.
-- Keeps AI within Systems Integration + Automation and relevant project facts.
+- Places AI + Intelligent Automation second for scan and search visibility.
 - Uses semantic headings and lists.
 - Does not add pointer spotlights, proficiency scores, or icon headers.
 
@@ -400,19 +402,21 @@ make an entire non-navigating row focusable.
 
 Use the smallest state mechanism that expresses the behavior:
 
-| Behavior | Owner | Mechanism | Persistent state |
-|---|---|---|---|
-| Active navigation section | `useActiveSectionV2` | Passive scroll and resize measurement using the approved center-line algorithm | No |
-| Mobile menu | `PortfolioNavV2` | React boolean plus Escape and focus-return effects | No |
-| Disclosure open state | Browser | Native `<details>` | Browser-owned during the visit |
-| Workflow playback restart | `WorkflowDisclosureV2` | Toggle event and local sequence key or WAAPI cancellation/restart | No |
-| Hero entry and signal | `HeroV2` | CSS guarded by motion preference and support | No |
-| Portrait depth | `usePortraitDepth` | CSS variables updated in a coalesced requestAnimationFrame while hovered | No |
-| Approach activation | Page-level motion hook | One IntersectionObserver | No |
-| Conversation arrival | Page-level motion hook | Same observer instance | No |
+| Behavior                  | Owner                  | Mechanism                                                                      | Persistent state               |
+| ------------------------- | ---------------------- | ------------------------------------------------------------------------------ | ------------------------------ |
+| Active navigation section | `useActiveSectionV2`   | Passive scroll and resize measurement using the approved center-line algorithm | No                             |
+| Mobile menu               | `PortfolioNavV2`       | React boolean plus Escape and focus-return effects                             | No                             |
+| Disclosure open state     | Browser                | Native `<details>`                                                             | Browser-owned during the visit |
+| Workflow playback restart | `WorkflowDisclosureV2` | Toggle event, local sequence key, and one visibility-gated replay timer        | No                             |
+| Hero entry and signal     | `HeroV2`               | CSS guarded by motion preference and support                                   | No                             |
+| Portrait depth            | `usePortraitDepth`     | CSS variables updated in a coalesced requestAnimationFrame while hovered       | No                             |
+| Approach activation       | Page-level motion hook | One IntersectionObserver                                                       | No                             |
+| Conversation arrival      | Page-level motion hook | Same observer instance                                                         | No                             |
 
 Do not add global state, React context, React Query data, URL state, local
-storage, cookies, timers, or a canvas loop for the homepage redesign.
+storage, cookies, or a canvas loop for the homepage redesign. The only approved
+timer is the local workflow replay scheduler, which exists only while the
+disclosure is open and pauses when playback is not visible or permitted.
 
 ## CSS architecture
 
@@ -598,6 +602,8 @@ information, analytics, trackers, or a scheduler embed.
 - Use one passive scroll listener for scrollspy.
 - Use one IntersectionObserver for Approach and Conversation.
 - Use one ResizeObserver only while the workflow needs connector measurement.
+- Keep one workflow replay timer only while its disclosure is open, visible,
+  and permitted by the motion preference.
 - Use requestAnimationFrame only while a fine pointer is inside the portrait.
 - Stop and disconnect observers when their work is complete.
 - Reserve portrait space through intrinsic dimensions and aspect ratio.
@@ -838,14 +844,14 @@ bypass hooks.
 
 ## Verification by phase
 
-| Phase | Minimum checks before review commit |
-|---|---|
-| Skeleton | TypeScript, server-rendered content, no-JavaScript reading order, `/` unchanged |
-| Visual system | TypeScript, lint delta, build, responsive screenshots, overflow, zoom |
-| Assets | Dimensions, formats, byte sizes, metadata stripping, crop review, favicon pixel review |
-| Projects | Locked-content comparison, disclosure keyboard behavior, diagram reading order, resize behavior |
-| Motion | Reduced motion, interruption, keyboard, touch, scroll performance, no layout animation |
-| Integrated | Full QA plan, performance medians, browser matrix, metadata, rollback rehearsal |
+| Phase         | Minimum checks before review commit                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------- |
+| Skeleton      | TypeScript, server-rendered content, no-JavaScript reading order, `/` unchanged                 |
+| Visual system | TypeScript, lint delta, build, responsive screenshots, overflow, zoom                           |
+| Assets        | Dimensions, formats, byte sizes, metadata stripping, crop review, favicon pixel review          |
+| Projects      | Locked-content comparison, disclosure keyboard behavior, diagram reading order, resize behavior |
+| Motion        | Reduced motion, interruption, keyboard, touch, scroll performance, no layout animation          |
+| Integrated    | Full QA plan, performance medians, browser matrix, metadata, rollback rehearsal                 |
 
 Known baseline lint failures must be listed separately from changes introduced
 by version 2. A passing build does not substitute for visual, keyboard, motion,

@@ -38,7 +38,20 @@ export const CAPABILITIES = [
       "Python and JavaScript",
       "CRM workflow automation",
       "Cross-functional systems integration",
-      "AI-assisted workflow steps where they are appropriate",
+    ],
+  },
+  {
+    title: "AI + Intelligent Automation",
+    statement:
+      "I build AI into operational workflows that need judgment, with human checkpoints on the decisions that carry risk.",
+    terms: [
+      "AI agents",
+      "LLM integration",
+      "MCP connectors",
+      "AI-assisted workflows",
+      "Intelligent routing",
+      "Lead enrichment",
+      "Human-in-the-loop workflows",
     ],
   },
   {
