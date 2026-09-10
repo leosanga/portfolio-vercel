@@ -1,4 +1,4 @@
-# Portfolio Version 2 QA Evidence, Reviews 1 and 2
+# Portfolio Version 2 QA Evidence, Reviews 1 to 3
 
 Dates: 2026-09-10 to 2026-09-11
 
@@ -12,6 +12,7 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 - Positioning and workflow revision checkpoint: `cf621e6`
 - Project-label and conversation revision checkpoint: `0c21ec8`
 - Adaptive-theme and utility-dock checkpoint: `e28481b`
+- Transparent workflow favicon checkpoint: `492cdcb`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
@@ -55,8 +56,8 @@ run passes with no findings.
 - All checked portrait derivatives report sRGB and expected dimensions.
 - The original HEIC and private source path are absent from the redesign
   worktree and public asset manifest.
-- Favicon outputs exist at 16, 32, 48, and 180 px. The 180 px PNG is 6,534
-  bytes.
+- Transparent browser favicon outputs exist at 16, 32, and 48 px. The 180 px
+  Apple touch icon remains the previously approved platform-specific asset.
 - The social card is intentionally pending Leo's crop and mark approval.
 
 ## Visual and semantic findings
@@ -143,6 +144,21 @@ built`, and `The hard part`.
 - A direct anchor-navigation timing defect in the sticky header was reproduced,
   corrected, and visually rechecked in the persisted light theme.
 
+### Revision after Leo's third review
+
+- The browser favicon now uses the same orthogonal three-node geometry as the
+  Home and hero mark, without an enclosing tile or background.
+- The static icon uses a muted lavender start node, mid-tone plum connectors,
+  and muted blue output nodes. Plum keylines preserve node edges on pale browser
+  chrome without requiring a theme-changing favicon.
+- The SVG remains transparent and the route now references cache-busted version
+  3 SVG and 32 px PNG assets. Live root favicon files remain unchanged.
+- ImageMagick regenerated 16, 32, and 48 px transparent PNG fallbacks. All
+  report exact dimensions and `srgba` channels.
+- Enlarged pixel proofs on `#0F0E14` and `#F7F3F8` backgrounds kept the input,
+  branch, and two outputs distinguishable. The 16 px native-size asset retained
+  the three-node structure.
+
 ## Motion review
 
 - Entrance motion is one-time and uses opacity plus a 10 px translation for
@@ -188,5 +204,5 @@ built`, and `The hard part`.
 
 Leo reviews the revised version 2 localhost surface, especially both color
 themes, the persistent utility dock, the compact capability matrix, and the
-conversation hierarchy. Leo then returns one coherent revision batch. Gate 2
-remains closed.
+conversation hierarchy, plus the transparent browser favicon. Leo then returns
+one coherent revision batch. Gate 2 remains closed.

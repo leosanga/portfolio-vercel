@@ -18,6 +18,7 @@ being built for localhost review. Gates 2, 3, and 4 remain closed.
 - Positioning and workflow revision checkpoint: `cf621e6`
 - Project-label and conversation revision checkpoint: `0c21ec8`
 - Adaptive-theme and utility-dock checkpoint: `e28481b`
+- Transparent workflow favicon checkpoint: `492cdcb`
 - Version 1 baseline commit: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - GitHub push: none
@@ -92,7 +93,10 @@ built`, and `The hard part`.
 - The three-node identity was refined from curved circular geometry to an
   orthogonal rounded-square workflow mark after the first small-size review.
 - Version 2 route metadata includes `noindex, nofollow` and versioned preview
-  favicon references. Live root metadata and assets remain unchanged.
+  favicon references. The preview favicon now uses the same orthogonal
+  three-node geometry as the Home and hero mark, with no enclosing background.
+  Theme-independent mid-tone colors keep it visible on light and dark browser
+  chrome. Live root metadata and assets remain unchanged.
 - First integrated QA evidence:
   [`qa/portfolio-v2-acceptance-2026-09-10.md`](./qa/portfolio-v2-acceptance-2026-09-10.md)
 
@@ -121,6 +125,8 @@ built`, and `The hard part`.
   semantics, theme persistence, and semantic reading order.
 - Exact 390 by 844 Chrome device emulation: passed with document width equal to
   viewport width, one-column capabilities, and dock containment.
+- Favicon SVG and 16, 32, and 48 px PNG fallbacks: passed for transparent alpha,
+  expected dimensions, three-node legibility, and light/dark background proofs.
 - Full-repository ESLint remains a known baseline failure dominated by existing
   CRLF formatting errors. Targeted version 2 files introduce no lint errors.
 - Responsive visual matrix, preference-mode interaction testing, screen-reader
@@ -130,9 +136,9 @@ built`, and `The hard part`.
 
 Leo reviews the revised version 2 localhost surface, with particular attention
 to the light and dark palettes, utility dock behavior, compact capability
-matrix, and conversation hierarchy. Record the next coherent revision batch
-before further implementation. Do not create the social card until the crop and
-mark are approved.
+matrix, conversation hierarchy, and transparent browser favicon. Record the
+next coherent revision batch before further implementation. Do not create the
+social card until the crop and mark are approved.
 
 ## Required read order
 
