@@ -9,6 +9,7 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 - Branch: `redesign/v2`
 - Base planning commit: `a767ce7fc6a7cc684b7d6127d0cd11995f1804f9`
 - Gate 1 implementation checkpoint: `a4d34c7728d6d35007da3873882a4b1ff62ffd44`
+- Positioning and workflow revision checkpoint: `cf621e6`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
@@ -22,15 +23,15 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 
 ## Automated checks
 
-| Check                   | Result | Evidence                                                                                                                                             |
-| ----------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TypeScript              | Pass   | `tsc --noEmit` exited 0                                                                                                                              |
-| Version 2 lint          | Pass   | ESLint exited 0 for the new components, content, and route                                                                                           |
-| Version 2 formatting    | Pass   | Prettier check exited 0 for all new implementation paths                                                                                             |
-| Production build        | Pass   | `bun run build` exited 0                                                                                                                             |
-| Server-rendered content | Pass   | Approved H1, 8-hour figure, 70-file figure, final CTA, calendar URL, and `noindex, nofollow` were present in the HTML response                       |
-| Locked source integrity | Pass   | Original and redesign `data.ts` content matched after line-ending normalization; version 2 imports this source directly                              |
-| Motion guard search     | Pass   | No `transition: all`, infinite animation, stroke-dash animation, disclosure height animation, or ID-bearing section transform was found in version 2 |
+| Check                   | Result | Evidence                                                                                                                                                          |
+| ----------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| TypeScript              | Pass   | `tsc --noEmit` exited 0                                                                                                                                           |
+| Version 2 lint          | Pass   | ESLint exited 0 for the new components, content, and route                                                                                                        |
+| Version 2 formatting    | Pass   | Prettier check exited 0 for all new implementation paths                                                                                                          |
+| Production build        | Pass   | `bun run build` exited 0                                                                                                                                          |
+| Server-rendered content | Pass   | Approved H1, role, four capability headings, five `The hard part` labels, both locked figures, final CTA, calendar URL, and preview robots directive were present |
+| Locked source integrity | Pass   | Original and redesign `data.ts` content matched after line-ending normalization; version 2 imports this source directly                                           |
+| Motion guard search     | Pass   | No `transition: all`, infinite animation, stroke-dash animation, disclosure height animation, or ID-bearing section transform was found in version 2              |
 
 The full repository lint command reports 5,930 existing problems, including
 5,922 CRLF-related Prettier errors and 8 warnings across the version 1
@@ -39,8 +40,8 @@ run passes with no findings.
 
 ## Bundle and asset evidence
 
-- Scoped version 2 CSS: 33.92 KB raw, 6.77 KB gzip.
-- Version 2 route JavaScript: 19.54 KB raw, 5.22 KB gzip.
+- Scoped version 2 CSS: 33.78 KB raw, 6.75 KB gzip.
+- Version 2 route JavaScript: 19.92 KB raw, 5.35 KB gzip.
 - Instrument Sans and IBM Plex Mono total: 138,032 bytes. This is below the
   160 KB ceiling and above the 120 KB preferred target.
 - Portrait derivatives cover AVIF, WebP, and progressive JPEG at the approved
@@ -82,6 +83,23 @@ run passes with no findings.
 - Workflow playback initially relied on stroke-dash animation. It now uses
   transform and opacity on small signal circles over static connectors.
 
+### Revision after Leo's first review
+
+- `Systems Engineer: Integration + Automation` moved from the hero copy column
+  to a semantic caption directly beneath the portrait. It replaces the
+  decorative `01`, `Operations`, `Systems`, and `Reliability` labels.
+- Project rows two through five now use `The hard part`. The same label is used
+  across all five projects for consistent evidence framing.
+- `AI + Intelligent Automation` is now a peer capability placed second in the
+  scan order. It covers AI agents, LLM integration, MCP connectors,
+  AI-assisted workflows, intelligent routing, lead enrichment, and
+  human-in-the-loop workflows without implying model research or training.
+- The four capabilities now form a two-by-two open rule matrix at desktop
+  widths and retain the established stacked responsive treatment.
+- The featured workflow now replays in discrete passes every 3.2 seconds while
+  it is open and near the viewport. It pauses while closed, out of view, in a
+  hidden tab, or under a reduced-motion preference.
+
 ## Motion review
 
 - Entrance motion is one-time and uses opacity plus a 10 px translation for
@@ -92,7 +110,8 @@ run passes with no findings.
   coalesced with `requestAnimationFrame`, and gated to fine pointers without a
   reduced-motion preference.
 - Reduced-motion CSS removes entrance and signal playback, neutralizes
-  transforms, and keeps content visible.
+  transforms, and keeps content visible. JavaScript also suppresses replay
+  scheduling when the preference is active.
 - Motion feel requires Leo's live localhost review before acceptance.
 
 ## Coverage still required
@@ -122,5 +141,6 @@ run passes with no findings.
 
 ## Exact next action
 
-Create the first local implementation checkpoint. Leo then compares both local
-URLs and returns one coherent revision batch. Gate 2 remains closed.
+Leo reviews the revised version 2 localhost surface, especially the capability
+matrix and the workflow's repeated playback. Leo then returns one coherent
+revision batch. Gate 2 remains closed.

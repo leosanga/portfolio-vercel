@@ -15,6 +15,7 @@ being built for localhost review. Gates 2, 3, and 4 remain closed.
 - Redesign branch: `redesign/v2`
 - Planning commit: `a767ce7fc6a7cc684b7d6127d0cd11995f1804f9`
 - Gate 1 implementation checkpoint: `a4d34c7728d6d35007da3873882a4b1ff62ffd44`
+- Positioning and workflow revision checkpoint: `cf621e6`
 - Version 1 baseline commit: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - GitHub push: none
@@ -57,6 +58,16 @@ production change.
 - The scoped visual system, responsive art direction, one-time entrance
   choreography, scroll-aware navigation, portrait depth, and interaction
   feedback are implemented without a new motion dependency.
+- The approved role line, `Systems Engineer: Integration + Automation`, now
+  appears directly below the portrait in place of the decorative four-part
+  caption.
+- Capabilities now use a balanced two-by-two matrix. `AI + Intelligent
+Automation` is a distinct second capability so it is visible to skim readers
+  without replacing the primary Systems Integration + Automation identity.
+- Every project evidence row now uses `The hard part` rather than `Constraint`.
+- The expanded featured-project workflow replays in discrete passes with a
+  3.2-second cadence. Replay pauses when the disclosure is closed, the diagram
+  is outside the viewport, the tab is hidden, or reduced motion is requested.
 - The three-node identity was refined from curved circular geometry to an
   orthogonal rounded-square workflow mark after the first small-size review.
 - Version 2 route metadata includes `noindex, nofollow` and versioned preview
@@ -79,8 +90,9 @@ production change.
 - Targeted version 2 ESLint: passed.
 - Version 2 Prettier check: passed.
 - Production build: passed.
-- Server-rendered content presence: passed for the approved H1, both locked
-  figures, final CTA, calendar destination, and preview robots directive.
+- Server-rendered content presence: passed for the approved H1, role line, four
+  capability headings, all five `The hard part` labels, both locked figures,
+  final CTA, calendar destination, and preview robots directive.
 - Locked source comparison: passed after line-ending normalization. Version 2
   imports the current project and workflow evidence rather than duplicating it.
 - Chrome 152 desktop visual and accessibility-tree inspection: passed for the
@@ -93,10 +105,11 @@ production change.
 
 ## Exact next action
 
-Create the first local implementation checkpoint, then have Leo compare version
-1 and version 2 on localhost and record decisions about the hero crop, workflow
-mark, overall composition, and motion feel. Continue Gate 1 revisions only after
-that review. Do not create the social card until the crop and mark are approved.
+Leo reviews the revised version 2 localhost surface, with particular attention
+to the role beneath the portrait, the AI capability in the top row, and the
+repeated workflow playback after opening `See how it works`. Record the next
+coherent revision batch before further implementation. Do not create the social
+card until the crop and mark are approved.
 
 ## Required read order
 
