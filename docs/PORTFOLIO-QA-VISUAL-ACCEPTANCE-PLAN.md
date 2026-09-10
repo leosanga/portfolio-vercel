@@ -320,7 +320,7 @@ Feel checks:
 
 Theme checks:
 
-- First visit follows the operating-system theme.
+- First visit uses the light theme regardless of the operating-system theme.
 - An explicit selection persists across reloads.
 - Light and dark modes both meet contrast and focus requirements.
 - The theme bootstrap does not hide or delay server-rendered content.

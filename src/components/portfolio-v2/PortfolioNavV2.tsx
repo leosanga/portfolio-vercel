@@ -75,6 +75,7 @@ export function PortfolioNavV2() {
           <button
             className="pv2-nav__menu-trigger"
             type="button"
+            aria-label="Menu"
             aria-expanded={menuOpen}
             aria-controls="pv2-primary-navigation"
             ref={menuButtonRef}

@@ -7,7 +7,11 @@ type PrimaryCallLinkV2Props = {
 
 export function PrimaryCallLinkV2({ compact = false, className = "" }: PrimaryCallLinkV2Props) {
   return (
-    <a className={`pv2-primary-call ${className}`} href={CONTACT.bookingUrl}>
+    <a
+      className={`pv2-primary-call ${className}`}
+      href={CONTACT.bookingUrl}
+      aria-label="Schedule a Call"
+    >
       <span className={compact ? "pv2-primary-call__full" : undefined}>Schedule a Call</span>
       {compact ? <span className="pv2-primary-call__compact">Call</span> : null}
       <svg aria-hidden="true" viewBox="0 0 16 16" focusable="false">

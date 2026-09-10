@@ -48,3 +48,17 @@ manifest and Git history.
 - Production tools: hand-authored SVG and ImageMagick rasterization
 - License: original portfolio asset owned by Leo Sanga
 - Produced: 2026-09-10
+
+## Social-sharing image
+
+- Purpose: Open Graph and Twitter large-image preview
+- File: `public/portfolio-v2/social/leo-sanga-portfolio-v2.jpg`
+- Reproducible source: `scripts/portfolio-v2-social-card.html`
+- Source assets: approved 4:5 portrait derivative, Instrument Sans, IBM Plex
+  Mono, and the three-node identity
+- Production tools: headless Chrome rendering and ImageMagick JPEG encoding
+- Transformations: fixed 1200 by 630 composition, sRGB conversion, metadata
+  removal, progressive encoding, and 4:2:0 chroma sampling
+- License: original portfolio composition and owned portrait supplied by Leo
+  Sanga
+- Produced: 2026-09-11

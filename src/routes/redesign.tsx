@@ -14,7 +14,25 @@ export const Route = createFileRoute("/redesign")({
       { property: "og:title", content: METADATA.title },
       { property: "og:description", content: METADATA.description },
       { property: "og:type", content: "website" },
+      {
+        property: "og:image",
+        content: "/portfolio-v2/social/leo-sanga-portfolio-v2.jpg",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      {
+        property: "og:image:alt",
+        content: "Leo Sanga, Systems Engineer focused on integration and automation.",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:image",
+        content: "/portfolio-v2/social/leo-sanga-portfolio-v2.jpg",
+      },
+      {
+        name: "twitter:image:alt",
+        content: "Leo Sanga, Systems Engineer focused on integration and automation.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: portfolioV2Css },

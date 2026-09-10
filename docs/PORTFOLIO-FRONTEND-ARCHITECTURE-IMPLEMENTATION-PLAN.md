@@ -420,7 +420,7 @@ make an entire non-navigating row focusable.
 
 ### `usePortfolioThemeV2`
 
-- Resolves the visitor's system preference on first visit.
+- Resolves to the light theme on first visit.
 - Persists an explicit light or dark selection in local storage.
 - Uses a small pre-hydration bootstrap to prevent a stored-theme flash.
 - Removes route-specific document state when version 2 unmounts.

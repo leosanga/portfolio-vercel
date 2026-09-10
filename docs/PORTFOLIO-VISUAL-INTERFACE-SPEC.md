@@ -217,8 +217,8 @@ and explanatory diagrams are its complete first-release scope.
 
 ### Light palette
 
-The first visit follows the visitor's system preference. A manual light or
-dark selection persists locally for later visits.
+The first visit uses the light theme. A manual light or dark selection persists
+locally for later visits.
 
 | Token            | HEX       | Role                                 |
 | ---------------- | --------- | ------------------------------------ |

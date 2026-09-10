@@ -263,6 +263,9 @@ This destination behavior remains a decision for Leo.
 - The conversation support copy uses 16 to 18 px text, 1.5 line height, and a
   compact paragraph rhythm.
 - The utility dock stays centered above the bottom safe area.
+- At the minimum 320 by 568 class, the utility dock joins normal document flow
+  after the footer so it cannot obstruct the primary hero call. It remains
+  fixed from 360 px upward.
 - Its four controls remain at least 44 by 44 px. Magnification is disabled for
   touch and coarse-pointer input.
 - Email and LinkedIn remain visually secondary to the call action while meeting
