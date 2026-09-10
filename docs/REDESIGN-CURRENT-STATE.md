@@ -43,6 +43,9 @@ Gate 1 local implementation on 2026-09-10. This permits local file changes,
 asset production, verification, localhost review, and local commits within the
 approved redesign worktree.
 
+On 2026-09-11, Leo approved the requested light-default behavior and the final
+social-sharing image. The redesign's visual review is complete.
+
 It does not permit a GitHub push, remote preview, Vercel action, merge, or
 production change.
 
@@ -113,8 +116,6 @@ built`, and `The hard part`.
 
 ## Open review items
 
-- Leo must confirm the requested light-default behavior in the local preview.
-- Leo must visually approve the completed social-sharing image.
 - The required Windows screen-reader pass needs a human Narrator or NVDA run.
   The automated accessibility tree, keyboard, and Lighthouse checks pass, but
   they do not replace an actual screen reader.
@@ -167,12 +168,12 @@ built`, and `The hard part`.
 
 ## Exact next action
 
-Leo confirms the light-default revision and reviews the completed social card.
-Then complete the human Windows screen-reader check or explicitly accept its
-deferral. Gate 2 remains closed until Leo gives explicit approval. After Gate 2,
-prepare the publication candidate, remove inherited version 1 head and
-stylesheet dependencies from the final route shape, and rerun performance,
-canonical, social URL, privacy, and rollback checks before any GitHub action.
+Complete the human Windows screen-reader check or explicitly accept its
+deferral. Gate 2 remains closed until that required accessibility decision is
+recorded. After Gate 2, prepare the publication candidate, remove inherited
+version 1 head and stylesheet dependencies from the final route shape, and
+rerun performance, canonical, social URL, privacy, and rollback checks before
+any GitHub action.
 
 ## Required read order
 

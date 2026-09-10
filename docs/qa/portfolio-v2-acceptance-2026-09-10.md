@@ -2,8 +2,8 @@
 
 Dates: 2026-09-10 to 2026-09-11
 
-Status: Automated local QA is complete. Gate 2 awaits Leo's approval and the
-remaining human or unavailable-platform checks.
+Status: Automated local QA and visual approval are complete. Gate 2 awaits the
+required human Windows screen-reader decision.
 
 ## Tested state
 
@@ -252,13 +252,13 @@ built`, and `The hard part`.
 
 ## Review decisions required from Leo
 
-1. Confirm that a first visit now opens in the requested light theme.
-2. Approve or revise the finished social-sharing image.
-3. Complete the Windows screen-reader pass or explicitly accept its deferral.
-4. Explicitly approve Gate 2 before publication-candidate work begins.
+Leo approved the requested light-default behavior and finished social-sharing
+image on 2026-09-11. The remaining decision is to complete the Windows
+screen-reader pass or explicitly accept its deferral. Gate 2 remains closed
+until that decision is recorded.
 
 ## Exact next action
 
-Leo reviews the light-default behavior and social image, then gives the Gate 2
-decision after the remaining screen-reader item is resolved or accepted. No
-GitHub push, Vercel action, merge, or production change is authorized.
+Complete or explicitly defer the remaining human screen-reader check, then
+record the Gate 2 decision. No GitHub push, Vercel action, merge, or production
+change is authorized.
