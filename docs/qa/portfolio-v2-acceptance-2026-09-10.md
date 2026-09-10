@@ -1,6 +1,6 @@
-# Portfolio Version 2 QA Evidence, Review 1
+# Portfolio Version 2 QA Evidence, Reviews 1 and 2
 
-Date: 2026-09-10
+Dates: 2026-09-10 to 2026-09-11
 
 Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 
@@ -11,6 +11,7 @@ Status: Gate 1 implementation review in progress. This is not Gate 2 approval.
 - Gate 1 implementation checkpoint: `a4d34c7728d6d35007da3873882a4b1ff62ffd44`
 - Positioning and workflow revision checkpoint: `cf621e6`
 - Project-label and conversation revision checkpoint: `0c21ec8`
+- Adaptive-theme and utility-dock checkpoint: `e28481b`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
@@ -41,8 +42,9 @@ run passes with no findings.
 
 ## Bundle and asset evidence
 
-- Scoped version 2 CSS: 33.85 KB raw, 6.77 KB gzip.
-- Version 2 route JavaScript: 20.01 KB raw, 5.36 KB gzip.
+- Scoped version 2 CSS in review 1: 33.85 KB raw, 6.77 KB gzip.
+- Version 2 route JavaScript after review 2: 26.09 KB raw, 7.35 KB gzip.
+- Scoped version 2 CSS after review 2: 38.29 KB raw, 7.40 KB gzip.
 - Instrument Sans and IBM Plex Mono total: 138,032 bytes. This is below the
   160 KB ceiling and above the 120 KB preferred target.
 - Portrait derivatives cover AVIF, WebP, and progressive JPEG at the approved
@@ -105,6 +107,42 @@ built`, and `The hard part`.
 - The final conversation now opens with `The best solutions start with` and
   presents its four supporting sentences as a compact vertical sequence.
 
+### Revision after Leo's second review
+
+- The four capabilities now use one four-column row on wide screens, two
+  columns at medium widths, and one column on mobile. Technical terms remain
+  visible as a compact index because they carry search and skim value.
+- The final conversation retains its four-sentence sequence at a smaller body
+  scale and tighter rhythm. The primary call action now holds more visual weight
+  without changing the approved copy.
+- A persistent utility dock provides Home, Email, LinkedIn, and a color-theme
+  control. Home uses the approved three-node workflow mark. The footer no
+  longer repeats Email and LinkedIn.
+- The first visit follows the visitor's operating-system theme. A direct light
+  or dark choice persists in local storage and is applied by an inline bootstrap
+  before hydration.
+- The dock uses pointer-proximity magnification capped at 1.14, 160 ms hover and
+  tooltip responses, and a 220 ms theme-icon transition. Magnification is
+  coalesced with `requestAnimationFrame` and disabled for reduced motion or
+  coarse pointers.
+- Reduced-transparency and forced-colors fallbacks include the dock surface.
+- Direct anchor navigation now rechecks scroll state after first paint and on
+  hash changes, keeping the sticky header legible after restoration.
+
+### Review 2 browser evidence
+
+- Chrome 152 rendered the four-column capability matrix in dark and light
+  themes without layout shift.
+- Theme control semantics updated from `Use light theme` to `Use dark theme`
+  after activation, and the light preference survived same-origin navigation.
+- The accessibility tree exposed a named `Utility navigation` landmark with
+  Home, Email, LinkedIn, and theme controls in logical order.
+- Exact Chrome device emulation at 390 by 844 reported `innerWidth: 390` and
+  `scrollWidth: 390`. The capabilities stacked to one column and the dock stayed
+  inside the viewport.
+- A direct anchor-navigation timing defect in the sticky header was reproduced,
+  corrected, and visually rechecked in the persisted light theme.
+
 ## Motion review
 
 - Entrance motion is one-time and uses opacity plus a 10 px translation for
@@ -121,8 +159,10 @@ built`, and `The hard part`.
 
 ## Coverage still required
 
-- Exact viewport matrix from 1920 by 1080 through 320 by 568.
-- Mobile menu operation, touch behavior, and portrait crop review on mobile.
+- Remaining viewport matrix from 1920 by 1080 through 320 by 568. Exact 390 by
+  844 coverage passed in review 2.
+- Mobile menu operation, touch behavior, and portrait crop review on physical
+  or touch-emulated mobile hardware.
 - Keyboard-only navigation, disclosure operation, focus order, and Escape
   behavior.
 - Browser preference toggles for reduced motion, reduced transparency, forced
@@ -146,6 +186,7 @@ built`, and `The hard part`.
 
 ## Exact next action
 
-Leo reviews the revised version 2 localhost surface, especially the capability
-matrix and the workflow's repeated playback. Leo then returns one coherent
-revision batch. Gate 2 remains closed.
+Leo reviews the revised version 2 localhost surface, especially both color
+themes, the persistent utility dock, the compact capability matrix, and the
+conversation hierarchy. Leo then returns one coherent revision batch. Gate 2
+remains closed.

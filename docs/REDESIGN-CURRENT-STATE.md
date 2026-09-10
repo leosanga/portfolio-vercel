@@ -1,6 +1,6 @@
 # Portfolio Redesign Current State
 
-Last updated: 2026-09-10
+Last updated: 2026-09-11
 
 ## Current phase
 
@@ -17,6 +17,7 @@ being built for localhost review. Gates 2, 3, and 4 remain closed.
 - Gate 1 implementation checkpoint: `a4d34c7728d6d35007da3873882a4b1ff62ffd44`
 - Positioning and workflow revision checkpoint: `cf621e6`
 - Project-label and conversation revision checkpoint: `0c21ec8`
+- Adaptive-theme and utility-dock checkpoint: `e28481b`
 - Version 1 baseline commit: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - GitHub push: none
@@ -62,7 +63,8 @@ production change.
 - The approved role line, `Systems Engineer: Integration + Automation`, now
   appears directly below the portrait in place of the decorative four-part
   caption.
-- Capabilities now use a balanced two-by-two matrix. `AI + Intelligent
+- Capabilities now use a compact four-column matrix on wide screens, two
+  columns at medium widths, and one column on mobile. `AI + Intelligent
 Automation` is a distinct second capability so it is visible to skim readers
   without replacing the primary Systems Integration + Automation identity.
 - Every project evidence row now uses `The hard part` rather than `Constraint`.
@@ -70,6 +72,20 @@ Automation` is a distinct second capability so it is visible to skim readers
 built`, and `The hard part`.
 - The final conversation opens with `The best solutions start with` and renders
   each supporting sentence as a separate stacked paragraph for faster scanning.
+  Its supporting type is smaller and more compact so the call action holds the
+  correct visual weight.
+- A persistent utility dock now provides Home, Email, LinkedIn, and theme
+  controls. Home uses the approved three-node identity mark. Pointer proximity
+  magnification is capped at 1.14 and is disabled for coarse pointers and
+  reduced-motion preferences.
+- First visits follow the visitor's operating-system color preference. An
+  explicit light or dark selection is stored locally and restored before the
+  page hydrates. Both themes share the approved lavender-led visual system.
+- The footer now closes with identity and copyright only. Email and LinkedIn
+  are available from the persistent dock without competing with the call CTA.
+- Scrolled navigation state is remeasured after first paint and on hash changes,
+  preventing the fixed header from losing its surface after direct anchor
+  navigation.
 - The expanded featured-project workflow replays in discrete passes with a
   3.2-second cadence. Replay pauses when the disclosure is closed, the diagram
   is outside the viewport, the tab is hidden, or reduced motion is requested.
@@ -97,12 +113,14 @@ built`, and `The hard part`.
 - Production build: passed.
 - Server-rendered content presence: passed for the approved H1, role line, four
   capability headings, all five `The hard part` labels, both locked figures,
-  final CTA, calendar destination, and preview robots directive.
+  final CTA, calendar destination, theme bootstrap, and preview robots directive.
 - Locked source comparison: passed after line-ending normalization. Version 2
   imports the current project and workflow evidence rather than duplicating it.
 - Chrome 152 desktop visual and accessibility-tree inspection: passed for the
-  initial hero and semantic reading order after correcting one CSS Grid
-  placement defect.
+  dark and light capability matrix, compact conversation composition, dock
+  semantics, theme persistence, and semantic reading order.
+- Exact 390 by 844 Chrome device emulation: passed with document width equal to
+  viewport width, one-column capabilities, and dock containment.
 - Full-repository ESLint remains a known baseline failure dominated by existing
   CRLF formatting errors. Targeted version 2 files introduce no lint errors.
 - Responsive visual matrix, preference-mode interaction testing, screen-reader
@@ -111,10 +129,10 @@ built`, and `The hard part`.
 ## Exact next action
 
 Leo reviews the revised version 2 localhost surface, with particular attention
-to the role beneath the portrait, the AI capability in the top row, and the
-repeated workflow playback after opening `See how it works`. Record the next
-coherent revision batch before further implementation. Do not create the social
-card until the crop and mark are approved.
+to the light and dark palettes, utility dock behavior, compact capability
+matrix, and conversation hierarchy. Record the next coherent revision batch
+before further implementation. Do not create the social card until the crop and
+mark are approved.
 
 ## Required read order
 
