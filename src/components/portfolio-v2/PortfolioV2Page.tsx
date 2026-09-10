@@ -6,7 +6,6 @@ import { HeroV2 } from "./HeroV2";
 import { PortfolioNavV2 } from "./PortfolioNavV2";
 import { PortfolioUtilityDockV2 } from "./PortfolioUtilityDockV2";
 import { ProjectsV2 } from "./ProjectsV2";
-import { PORTFOLIO_THEME_BOOTSTRAP_SCRIPT } from "./usePortfolioThemeV2";
 import { usePortfolioV2Motion } from "./usePortfolioV2Motion";
 
 export function PortfolioV2Page() {
@@ -14,10 +13,6 @@ export function PortfolioV2Page() {
 
   return (
     <div className="portfolio-v2" id="top">
-      <script
-        data-pv2-theme-bootstrap
-        dangerouslySetInnerHTML={{ __html: PORTFOLIO_THEME_BOOTSTRAP_SCRIPT }}
-      />
       <a className="pv2-skip-link" href="#main-content-v2">
         Skip to content
       </a>

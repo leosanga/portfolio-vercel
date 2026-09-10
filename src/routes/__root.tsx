@@ -9,25 +9,20 @@ import {
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
-import appCss from "../styles.css?url";
+import instrumentFontUrl from "@/assets/portfolio-v2/fonts/InstrumentSans-Variable.woff2?url";
+import { PORTFOLIO_THEME_BOOTSTRAP_SCRIPT } from "@/components/portfolio-v2/usePortfolioThemeV2";
+import portfolioV2Css from "@/styles/portfolio-v2.css?url";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+    <div className="portfolio-v2 pv2-system-state">
+      <div className="pv2-system-state__content">
+        <p className="pv2-system-state__code">404</p>
+        <h1>Page not found</h1>
+        <p>The page you're looking for doesn't exist or has been moved.</p>
+        <Link to="/" className="pv2-system-state__action">
+          Go home
+        </Link>
       </div>
     </div>
   );
@@ -38,28 +33,23 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   const router = useRouter();
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+    <div className="portfolio-v2 pv2-system-state">
+      <div className="pv2-system-state__content">
+        <p className="pv2-system-state__code">System response</p>
+        <h1>This page didn't load</h1>
+        <p>Something went wrong on our end. You can try refreshing or head back home.</p>
+        <div className="pv2-system-state__actions">
           <button
+            type="button"
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="pv2-system-state__action"
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="pv2-system-state__action pv2-system-state__action--secondary">
             Go home
           </a>
         </div>
@@ -73,32 +63,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Leo Sanga" },
-      { name: "description", content: "Leo Sanga — portfolio" },
       { name: "author", content: "Leo Sanga" },
-      { property: "og:title", content: "Leo Sanga" },
-      { property: "og:description", content: "Leo Sanga — portfolio" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
-        href: appCss,
+        href: portfolioV2Css,
       },
-      { rel: "preconnect", href: "https://fonts.googleapis.com" },
       {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
+        rel: "preload",
+        href: instrumentFontUrl,
+        as: "font",
+        type: "font/woff2",
         crossOrigin: "anonymous",
       },
       {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400&display=swap",
+        rel: "icon",
+        href: "/portfolio-v2/icons/favicon-v2.svg?v=3",
+        type: "image/svg+xml",
       },
-      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
-      { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "32x32" },
-      { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      {
+        rel: "icon",
+        href: "/portfolio-v2/icons/favicon-v2-32.png?v=3",
+        type: "image/png",
+        sizes: "32x32",
+      },
+      {
+        rel: "apple-touch-icon",
+        href: "/portfolio-v2/icons/apple-touch-icon-v2.png",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -111,6 +104,10 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script
+          data-pv2-theme-bootstrap
+          dangerouslySetInnerHTML={{ __html: PORTFOLIO_THEME_BOOTSTRAP_SCRIPT }}
+        />
         <HeadContent />
       </head>
       <body>

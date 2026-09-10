@@ -15,6 +15,20 @@
   font-weight: 400;
 }
 
+html,
+body {
+  min-width: 20rem;
+  min-height: 100%;
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
 .portfolio-v2 {
   color-scheme: dark;
   --pv2-canvas: #0f0e14;
@@ -132,6 +146,90 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 
 .portfolio-v2 main:focus {
   outline: none;
+}
+
+.pv2-system-state {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  padding: clamp(1.5rem, 4vw, 4rem);
+}
+
+.pv2-system-state__content {
+  width: min(100%, 34rem);
+  text-align: center;
+}
+
+.pv2-system-state__code {
+  margin: 0 0 var(--pv2-space-4);
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.pv2-system-state h1 {
+  margin: 0;
+  color: var(--pv2-text-primary);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 620;
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}
+
+.pv2-system-state__content > p:not(.pv2-system-state__code) {
+  max-width: 30rem;
+  margin: var(--pv2-space-6) auto 0;
+  color: var(--pv2-text-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pv2-system-state__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--pv2-space-3);
+  margin-top: var(--pv2-space-8);
+}
+
+.pv2-system-state__action {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--pv2-space-8);
+  padding: 0.7rem 1rem;
+  color: var(--pv2-button-ink);
+  background: var(--pv2-lavender);
+  border: 1px solid transparent;
+  border-radius: var(--pv2-radius-control);
+  font-weight: 620;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) ease-out,
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.pv2-system-state__actions .pv2-system-state__action {
+  margin-top: 0;
+}
+
+.pv2-system-state__action:hover {
+  background: var(--pv2-lavender-hover);
+  transform: translateY(-1px);
+}
+
+.pv2-system-state__action--secondary {
+  color: var(--pv2-text-primary);
+  background: transparent;
+  border-color: var(--pv2-line-strong);
+}
+
+.pv2-system-state__action--secondary:hover {
+  background: var(--pv2-surface-raised);
 }
 
 .pv2-frame {
