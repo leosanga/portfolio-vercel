@@ -28,7 +28,7 @@ rewrite, direct push to `main`, or branch deletion occurred.
 - The Vercel and Vercel Preview Comments checks passed on the reviewed head.
 - GitHub reports pull request 1 as merged by `leosanga` at
   `2026-09-11T02:37:22Z`.
-- Remote `main` resolves to merge commit `b0bbd04`.
+- The application changes entered `main` through merge commit `b0bbd04`.
 - Vercel production deployment `6385275062` was created for that exact merge
   commit and completed successfully.
 - Deployment URL: `https://leosanga-po6wvj3jq-leo-c2f6.vercel.app`
