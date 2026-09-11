@@ -4,9 +4,9 @@ Last updated: 2026-09-11
 
 ## Current phase
 
-Gate 3 is complete. The verified `redesign/v2` branch is published, pull
-request 1 is open, and the Vercel Preview checks pass. Gate 4 remains closed
-pending Leo's separate merge and production-cutover approval.
+Gate 4 is complete. Pull request 1 was merged through merge commit `b0bbd04`,
+and Vercel successfully deployed that commit to production. The canonical site
+at `https://leosanga.vercel.app/` now serves portfolio version 2.
 
 ## Repository state
 
@@ -28,9 +28,13 @@ pending Leo's separate merge and production-cutover approval.
 - GitHub branch: `redesign/v2` published
 - Gate 3 implementation and evidence checkpoint: `85bdd2d`
 - Pull request: `https://github.com/leosanga/portfolio-vercel/pull/1`
+- Pull request state: merged
+- Production merge commit: `b0bbd04cd567711dd6562083ef6f8c4830db0cbd`
 - Vercel Preview:
   `https://leosanga-hd7gwe7tp-leo-c2f6.vercel.app`
-- Production change: none
+- Vercel production deployment: `6385275062`
+- Deployment URL: `https://leosanga-po6wvj3jq-leo-c2f6.vercel.app`
+- Canonical production URL: `https://leosanga.vercel.app/`
 
 ## Local review surfaces
 
@@ -56,6 +60,11 @@ authorized local Gate 3 preparation.
 Leo explicitly authorized Gate 3 on 2026-09-11: push `redesign/v2` and open the
 pull request. The branch and pull request are now published. This approval does
 not authorize merging or production cutover.
+
+After reviewing the Gate 4 instructions, Leo approved the production cutover on
+2026-09-11. Pull request 1 was merged with a merge commit as required by the
+rollback plan, and the resulting Vercel production deployment completed
+successfully.
 
 ## Current implementation state
 
@@ -123,15 +132,16 @@ built`, and `The hard part`.
   [`qa/portfolio-v2-acceptance-2026-09-10.md`](./qa/portfolio-v2-acceptance-2026-09-10.md)
 - Gate 3 release review and exact branch manifest:
   [`qa/portfolio-v2-gate3-release-review-2026-09-11.md`](./qa/portfolio-v2-gate3-release-review-2026-09-11.md)
+- Gate 4 production release evidence:
+  [`qa/portfolio-v2-gate4-production-release-2026-09-11.md`](./qa/portfolio-v2-gate4-production-release-2026-09-11.md)
 
 ## Open review items
 
-- Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome were not
-  available in the current tool environment. Chrome and Edge coverage passed.
-- The canonical social-image URL cannot resolve on the current live version 1
-  deployment until Gate 4. The same asset resolves from the Vercel Preview at
-  78,042 bytes with `image/jpeg` content type.
-- Gate 4 merge and production approval is not granted.
+- Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome remain
+  unverified because those test surfaces were unavailable. Chrome and Edge
+  coverage passed before release.
+- An unrelated local edit to `HANDOFF.md` remains unstaged in the redesign
+  worktree. It was not included in the pull request or production release.
 
 ## Checks last run
 
@@ -171,13 +181,17 @@ built`, and `The hard part`.
 - Rollback rehearsal passed. A fresh detached worktree at baseline tag
   `portfolio-v1-baseline-2026-09-10` installed, built, served, and returned the
   version 1 homepage. The temporary rehearsal worktree was then removed.
-- `origin/main` remains at the baseline commit `de93ea4`; no remote drift was
-  detected.
-- Pull request 1 is open and mergeable against `main` at `de93ea4`. Vercel and
-  Vercel Preview Comments checks pass.
+- Pull request 1 merged cleanly through merge commit `b0bbd04`. Remote `main`
+  resolves to the same commit.
+- Vercel recorded production deployment `6385275062` for the merge commit and
+  marked it successful.
 - The remote Vercel Preview returns 200, serves the correct title and canonical,
   contains no Google Fonts request, serves the social image at 200, returns 404
   for `/redesign`, and includes Vercel's `X-Robots-Tag: noindex` response header.
+- The canonical production homepage returns 200 without a preview noindex
+  header. `/redesign` returns 404. The production social image returns 200 as a
+  78,042-byte JPEG. The live title, canonical, Open Graph image, and Twitter
+  image metadata match the approved release.
 - Social image inspection: passed at 1200 by 630, sRGB, and 78,042 bytes.
 - Favicon SVG and 16, 32, and 48 px PNG fallbacks: passed for transparent alpha,
   expected dimensions, three-node legibility, and light/dark background proofs.
@@ -189,10 +203,10 @@ built`, and `The hard part`.
 
 ## Exact next action
 
-Leo reviews pull request 1 and the Vercel Preview. Any required revision returns
-to the local branch, repeats proportional QA, and is pushed as a reviewed update.
-If the remote result is approved, Leo must separately authorize Gate 4 before
-the pull request is merged into `main` and Vercel production changes.
+Leo performs a final visual confirmation on the canonical production URL. Keep
+the baseline tag and `redesign/v2` branch intact during stabilization. If a
+release defect appears, assess severity first and use a reviewed revert of merge
+commit `b0bbd04`; never rewrite `main` history.
 
 ## Required read order
 
