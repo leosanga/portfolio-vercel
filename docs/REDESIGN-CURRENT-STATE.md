@@ -29,10 +29,10 @@ at `https://leosanga.vercel.app/` now serves portfolio version 2.
 - Gate 3 implementation and evidence checkpoint: `85bdd2d`
 - Pull request: `https://github.com/leosanga/portfolio-vercel/pull/1`
 - Pull request state: merged
-- Production merge commit: `b0bbd04cd567711dd6562083ef6f8c4830db0cbd`
+- Application cutover merge commit: `b0bbd04cd567711dd6562083ef6f8c4830db0cbd`
 - Vercel Preview:
   `https://leosanga-hd7gwe7tp-leo-c2f6.vercel.app`
-- Vercel production deployment: `6385275062`
+- Application cutover Vercel deployment: `6385275062`
 - Deployment URL: `https://leosanga-po6wvj3jq-leo-c2f6.vercel.app`
 - Canonical production URL: `https://leosanga.vercel.app/`
 
@@ -181,8 +181,8 @@ built`, and `The hard part`.
 - Rollback rehearsal passed. A fresh detached worktree at baseline tag
   `portfolio-v1-baseline-2026-09-10` installed, built, served, and returned the
   version 1 homepage. The temporary rehearsal worktree was then removed.
-- Pull request 1 merged cleanly through merge commit `b0bbd04`. Remote `main`
-  resolves to the same commit.
+- Pull request 1 merged cleanly, and the application changes entered `main`
+  through merge commit `b0bbd04`.
 - Vercel recorded production deployment `6385275062` for the merge commit and
   marked it successful.
 - The remote Vercel Preview returns 200, serves the correct title and canonical,
