@@ -4,10 +4,9 @@ Last updated: 2026-09-11
 
 ## Current phase
 
-Gate 2 is complete. Leo approved the finished local design and reported that
-the Windows screen-reader check passed. The final publication candidate is
-implemented and verified locally. Gate 3 awaits explicit GitHub push approval.
-Gate 4 remains closed.
+Gate 3 is complete. The verified `redesign/v2` branch is published, pull
+request 1 is open, and the Vercel Preview checks pass. Gate 4 remains closed
+pending Leo's separate merge and production-cutover approval.
 
 ## Repository state
 
@@ -26,8 +25,11 @@ Gate 4 remains closed.
 - Reversible homepage cutover checkpoint: `5240bfc`
 - Version 1 baseline commit: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
-- GitHub push: none
-- Vercel action: none
+- GitHub branch: `redesign/v2` published
+- Gate 3 implementation and evidence checkpoint: `85bdd2d`
+- Pull request: `https://github.com/leosanga/portfolio-vercel/pull/1`
+- Vercel Preview:
+  `https://leosanga-hd7gwe7tp-leo-c2f6.vercel.app`
 - Production change: none
 
 ## Local review surfaces
@@ -51,8 +53,9 @@ social-sharing image. Leo then completed the Windows screen-reader check and
 confirmed that it passed without problems. Gate 2 is complete, and Leo
 authorized local Gate 3 preparation.
 
-It does not permit a GitHub push, remote preview, Vercel action, merge, or
-production change.
+Leo explicitly authorized Gate 3 on 2026-09-11: push `redesign/v2` and open the
+pull request. The branch and pull request are now published. This approval does
+not authorize merging or production cutover.
 
 ## Current implementation state
 
@@ -125,11 +128,10 @@ built`, and `The hard part`.
 
 - Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome were not
   available in the current tool environment. Chrome and Edge coverage passed.
-- The absolute social-image URL cannot resolve on the current live version 1
-  deployment until the version 2 asset is published. Its local candidate path,
-  dimensions, color space, size, and metadata wiring pass.
-- Gate 3 GitHub push approval is not granted. Repository deployment history
-  confirms that a branch push can create a Vercel Preview deployment.
+- The canonical social-image URL cannot resolve on the current live version 1
+  deployment until Gate 4. The same asset resolves from the Vercel Preview at
+  78,042 bytes with `image/jpeg` content type.
+- Gate 4 merge and production approval is not granted.
 
 ## Checks last run
 
@@ -171,6 +173,11 @@ built`, and `The hard part`.
   version 1 homepage. The temporary rehearsal worktree was then removed.
 - `origin/main` remains at the baseline commit `de93ea4`; no remote drift was
   detected.
+- Pull request 1 is open and mergeable against `main` at `de93ea4`. Vercel and
+  Vercel Preview Comments checks pass.
+- The remote Vercel Preview returns 200, serves the correct title and canonical,
+  contains no Google Fonts request, serves the social image at 200, returns 404
+  for `/redesign`, and includes Vercel's `X-Robots-Tag: noindex` response header.
 - Social image inspection: passed at 1200 by 630, sRGB, and 78,042 bytes.
 - Favicon SVG and 16, 32, and 48 px PNG fallbacks: passed for transparent alpha,
   expected dimensions, three-node legibility, and light/dark background proofs.
@@ -182,10 +189,10 @@ built`, and `The hard part`.
 
 ## Exact next action
 
-Review the Gate 3 release manifest and reversible cutover diff. If approved,
-Leo must separately authorize pushing `redesign/v2` to GitHub. That push is
-expected to create a Vercel Preview deployment but will not change production.
-Do not push, open a pull request, merge, or invoke Vercel before that approval.
+Leo reviews pull request 1 and the Vercel Preview. Any required revision returns
+to the local branch, repeats proportional QA, and is pushed as a reviewed update.
+If the remote result is approved, Leo must separately authorize Gate 4 before
+the pull request is merged into `main` and Vercel production changes.
 
 ## Required read order
 

@@ -2,7 +2,7 @@
 
 Date: 2026-09-11
 
-Status: Local publication candidate verified. GitHub push approval is pending.
+Status: Gate 3 passed. Pull request and Vercel Preview are ready for review.
 
 ## Release boundary
 
@@ -11,8 +11,11 @@ Status: Local publication candidate verified. GitHub push approval is pending.
 - Redesign branch: `redesign/v2`
 - Reversible homepage cutover commit: `5240bfc`
 - Canonical URL: `https://leosanga.vercel.app/`
-- GitHub push: none
-- Vercel Preview: none for this branch
+- GitHub branch: `redesign/v2` published
+- Gate 3 implementation and evidence checkpoint: `85bdd2d`
+- Pull request: `https://github.com/leosanga/portfolio-vercel/pull/1`
+- Vercel Preview:
+  `https://leosanga-hd7gwe7tp-leo-c2f6.vercel.app`
 - Production change: none
 
 The cutover commit changes the existing homepage route, root shell, and
@@ -84,15 +87,20 @@ has not drifted. GitHub deployment history contains Vercel Preview and
 Production records. A push of `redesign/v2` must therefore be treated as likely
 to create a Vercel Preview deployment.
 
-Gate 3 approval would authorize only the reviewed branch push and pull request.
-It would not authorize merging into `main` or changing production.
+Leo authorized the reviewed branch push and pull request on 2026-09-11. Pull
+request 1 is open and mergeable. Vercel and Vercel Preview Comments checks
+pass. The remote preview returns 200, serves the expected metadata without a
+Google Fonts request, serves the 78,042-byte social image, and returns 404 for
+`/redesign`. Vercel adds `X-Robots-Tag: noindex` to the Preview response.
+
+Gate 3 does not authorize merging into `main` or changing production.
 
 ## Known limits
 
 - Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome were not
   available in the current tool environment. Chrome and Edge passed.
-- The absolute social-image URL will resolve only after the new asset exists on
-  a remote deployment. The local candidate path and metadata pass.
+- The canonical production social-image URL will resolve only after Gate 4.
+  The same asset resolves correctly from the Vercel Preview.
 - Full-repository lint retains the documented version 1 CRLF baseline failures.
   Targeted changed-file lint passes.
 

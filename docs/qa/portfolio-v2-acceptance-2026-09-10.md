@@ -2,8 +2,8 @@
 
 Dates: 2026-09-10 to 2026-09-11
 
-Status: Gate 2 passed. The publication candidate is locally verified for Gate 3
-review.
+Status: Gate 3 passed. Pull request 1 and its Vercel Preview are ready for Gate
+4 review.
 
 ## Tested state
 
@@ -24,8 +24,11 @@ review.
 - Version 2 development URL: `http://127.0.0.1:8081/`
 - Version 2 production-candidate URL: `http://127.0.0.1:8082/`
 - Browser: Google Chrome 152.0.7977.76 on Windows
-- GitHub push: none
-- Vercel action: none
+- GitHub branch: `redesign/v2` published
+- Gate 3 implementation and evidence checkpoint: `85bdd2d`
+- Pull request: `https://github.com/leosanga/portfolio-vercel/pull/1`
+- Vercel Preview:
+  `https://leosanga-hd7gwe7tp-leo-c2f6.vercel.app`
 - Production change: none
 
 ## Automated checks
@@ -250,8 +253,7 @@ built`, and `The hard part`.
   test surfaces are available.
 - Physical touch review remains recommended. Chrome and Edge touch emulation
   passed.
-- The absolute social image URL needs a resolution check after its asset is
-  remotely available. Its local file and metadata wiring pass.
+- The canonical production social image URL needs a resolution check after Gate 4. The same asset resolves from the Vercel Preview.
 
 ## Review decisions required from Leo
 
@@ -261,8 +263,8 @@ reported no problems. Gate 2 passed.
 
 ## Exact next action
 
-Review the Gate 3 release manifest and cutover diff. No GitHub push, pull
-request, Vercel action, merge, or production change is authorized.
+Review pull request 1 and its Vercel Preview. No merge or production change is
+authorized.
 
 ## Publication-candidate evidence
 
@@ -296,3 +298,7 @@ request, Vercel action, merge, or production change is authorized.
 - A read-only remote check found `origin/main` still at `de93ea4`. GitHub
   deployment history shows Vercel Preview and Production records, so a branch
   push must be treated as a Vercel Preview trigger.
+- The authorized branch push created pull request 1 and a successful Vercel
+  Preview. Both GitHub Vercel checks pass. Remote smoke testing confirmed root
+  200, `/redesign` 404, correct title and canonical, no Google Fonts request,
+  social image 200 at 78,042 bytes, and Vercel's preview-level noindex header.
