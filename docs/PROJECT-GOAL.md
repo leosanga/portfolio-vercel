@@ -1,8 +1,9 @@
 # Portfolio Redesign Goal
 
-Status: Approved goal anchor; Gate 1 local implementation authorized
+Status: Approved goal anchor. Current release phase is recorded in
+[`REDESIGN-CURRENT-STATE.md`](./REDESIGN-CURRENT-STATE.md).
 
-Last updated: 2026-09-10
+Last updated: 2026-09-11
 
 ## Goal
 

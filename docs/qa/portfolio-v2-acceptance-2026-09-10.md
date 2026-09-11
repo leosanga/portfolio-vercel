@@ -2,8 +2,8 @@
 
 Dates: 2026-09-10 to 2026-09-11
 
-Status: Automated local QA and visual approval are complete. Gate 2 awaits the
-required human Windows screen-reader decision.
+Status: Gate 2 passed. The publication candidate is locally verified for Gate 3
+review.
 
 ## Tested state
 
@@ -15,12 +15,14 @@ required human Windows screen-reader decision.
 - Adaptive-theme and utility-dock checkpoint: `e28481b`
 - Transparent workflow favicon checkpoint: `492cdcb`
 - Light-default, social-card, and QA checkpoint: `6e35760`
+- Final visual approval checkpoint: `6368990`
+- Reversible homepage cutover checkpoint: `5240bfc`
 - Version 1 baseline: `de93ea40bddbcf08cce6bb391bf6df1e5e0e6dd2`
 - Version 1 baseline tag: `portfolio-v1-baseline-2026-09-10`
 - Version 1 URL: `http://127.0.0.1:8080/`
 - Version 1 process: PID 28532 at time of review
-- Version 2 URL: `http://127.0.0.1:8081/redesign`
-- Version 2 process: PID 94372 at time of review
+- Version 2 development URL: `http://127.0.0.1:8081/`
+- Version 2 production-candidate URL: `http://127.0.0.1:8082/`
 - Browser: Google Chrome 152.0.7977.76 on Windows
 - GitHub push: none
 - Vercel action: none
@@ -242,23 +244,55 @@ built`, and `The hard part`.
 
 ## Coverage still required
 
-- Human NVDA or Windows Narrator navigation and announcement pass.
+- Leo completed the human Windows screen-reader check and reported no problems
+  on 2026-09-11.
 - Firefox, Apple Safari, VoiceOver, iOS Safari, and Android Chrome when those
   test surfaces are available.
 - Physical touch review remains recommended. Chrome and Edge touch emulation
   passed.
-- Final Lighthouse medians, canonical URL, absolute social image URL, privacy,
-  and network verification on the publication candidate.
+- The absolute social image URL needs a resolution check after its asset is
+  remotely available. Its local file and metadata wiring pass.
 
 ## Review decisions required from Leo
 
 Leo approved the requested light-default behavior and finished social-sharing
-image on 2026-09-11. The remaining decision is to complete the Windows
-screen-reader pass or explicitly accept its deferral. Gate 2 remains closed
-until that decision is recorded.
+image on 2026-09-11. Leo then completed the Windows screen-reader check and
+reported no problems. Gate 2 passed.
 
 ## Exact next action
 
-Complete or explicitly defer the remaining human screen-reader check, then
-record the Gate 2 decision. No GitHub push, Vercel action, merge, or production
-change is authorized.
+Review the Gate 3 release manifest and cutover diff. No GitHub push, pull
+request, Vercel action, merge, or production change is authorized.
+
+## Publication-candidate evidence
+
+- Version 2 now renders at `/`. The private `/redesign` route is absent and
+  returns 404.
+- The root shell loads only the scoped version 2 stylesheet and self-hosted
+  fonts. Google Fonts, Space Grotesk, JetBrains Mono, and the version 1 shared
+  stylesheet are absent from the built candidate.
+- The verified canonical URL is `https://leosanga.vercel.app/`. Open Graph and
+  Twitter image metadata use the corresponding absolute social-image URL.
+- Chrome and Edge repeated the complete 11-viewport harness with no horizontal
+  overflow, no hero-call collision, no console errors, and no third-party
+  requests. Edge's initial automated theme click ran before hydration; the
+  harness now waits for the stateful label, and the clean rerun passed light to
+  dark selection and reload persistence.
+- Three Lighthouse desktop runs scored 100 performance, accessibility, best
+  practices, and SEO. Median results were 422 ms FCP, 548 ms LCP, 422 ms Speed
+  Index, 0 ms TBT, and 0 CLS.
+- Three Lighthouse mobile runs scored 98 performance and 100 accessibility,
+  best practices, and SEO. Median results were 1,471 ms FCP, 2,181 ms LCP,
+  1,471 ms Speed Index, 0 ms TBT, and 0 CLS.
+- Lighthouse generated all six valid reports. Its Windows launcher again
+  reported `EPERM` while deleting its own temporary directories; report
+  generation and scores were unaffected.
+- Locked source comparison passed after line-ending normalization. Build scans
+  found no private source path, HEIC filename, confidential company name,
+  common secret assignment, legacy font reference, or preview-route reference.
+- Baseline rollback rehearsal passed from the immutable `de93ea4` tag in a
+  fresh detached worktree. The baseline installed, built, served, and returned
+  its original homepage before the temporary worktree was removed.
+- A read-only remote check found `origin/main` still at `de93ea4`. GitHub
+  deployment history shows Vercel Preview and Production records, so a branch
+  push must be treated as a Vercel Preview trigger.

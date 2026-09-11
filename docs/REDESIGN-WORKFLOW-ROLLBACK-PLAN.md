@@ -1,7 +1,8 @@
 # Portfolio Redesign Workflow and Rollback Plan
 
-Status: Approved; Gate 1 local implementation authorized
-Last updated: 2026-09-10
+Status: Approved workflow. Current gate status is recorded in
+[`REDESIGN-CURRENT-STATE.md`](./REDESIGN-CURRENT-STATE.md).
+Last updated: 2026-09-11
 Owner: Leo Sanga
 Goal anchor: [`PROJECT-GOAL.md`](./PROJECT-GOAL.md)
 Strategy rationale: [`PORTFOLIO-REDESIGN-ANALYSIS.md`](./PORTFOLIO-REDESIGN-ANALYSIS.md)
@@ -32,21 +33,21 @@ Before each substantive phase, state which senior roles govern the work and why
 they are relevant. Apply their standards together rather than handing separate,
 inconsistent decisions to each role.
 
-| Phase or task | Required senior perspective |
-|---|---|
-| Positioning, audience, and conversion | Senior web strategist and senior conversion strategist |
-| Content architecture and user journeys | Senior UX architect and senior content designer |
-| Public copy and metadata | Senior conversion copywriter and technical SEO strategist |
-| Visual system and page design | High-end digital product designer and senior UI/UX designer |
-| Asset selection and art direction | Senior art director and senior digital product designer |
-| Motion and interaction | Senior interaction and motion designer |
-| Technical specification and implementation | Senior frontend architect and senior frontend developer |
-| Responsive behavior and accessibility | Senior accessibility engineer and senior frontend developer |
-| Performance review | Senior web performance engineer |
-| Testing and defect resolution | Senior QA engineer and senior debugging engineer |
-| Security, privacy, and data exposure | Senior security-minded and privacy-minded engineer |
-| Git, cutover, and rollback | Senior release engineer |
-| Final integrated review | Staff-level frontend reviewer and high-end digital product designer |
+| Phase or task                              | Required senior perspective                                         |
+| ------------------------------------------ | ------------------------------------------------------------------- |
+| Positioning, audience, and conversion      | Senior web strategist and senior conversion strategist              |
+| Content architecture and user journeys     | Senior UX architect and senior content designer                     |
+| Public copy and metadata                   | Senior conversion copywriter and technical SEO strategist           |
+| Visual system and page design              | High-end digital product designer and senior UI/UX designer         |
+| Asset selection and art direction          | Senior art director and senior digital product designer             |
+| Motion and interaction                     | Senior interaction and motion designer                              |
+| Technical specification and implementation | Senior frontend architect and senior frontend developer             |
+| Responsive behavior and accessibility      | Senior accessibility engineer and senior frontend developer         |
+| Performance review                         | Senior web performance engineer                                     |
+| Testing and defect resolution              | Senior QA engineer and senior debugging engineer                    |
+| Security, privacy, and data exposure       | Senior security-minded and privacy-minded engineer                  |
+| Git, cutover, and rollback                 | Senior release engineer                                             |
+| Final integrated review                    | Staff-level frontend reviewer and high-end digital product designer |
 
 The task owner remains responsible for reconciling these perspectives into one
 cohesive recommendation. Role assignment does not authorize additional product
@@ -343,8 +344,8 @@ If any tool, GitHub integration, or hosting automation would create a remote dep
 
 ## Approval gates
 
-Gate 1 was explicitly authorized by Leo on 2026-09-10. Gates 2, 3, and 4 remain
-closed.
+This section defines gate meaning. The authoritative live gate status is kept
+in [`REDESIGN-CURRENT-STATE.md`](./REDESIGN-CURRENT-STATE.md).
 
 ### Gate 1: start local implementation
 

@@ -81,6 +81,17 @@ const evaluate = async (expression) => {
   return result.result.value;
 };
 
+const waitFor = async (expression, timeout = 3000) => {
+  const startedAt = Date.now();
+
+  while (Date.now() - startedAt < timeout) {
+    if (await evaluate(expression)) return;
+    await wait(100);
+  }
+
+  throw new Error(`Timed out waiting for: ${expression}`);
+};
+
 const emulateViewport = (width, height) =>
   Promise.all([
     send("Emulation.setDeviceMetricsOverride", {
@@ -169,7 +180,12 @@ for (const [width, height] of viewports) {
 await emulateViewport(390, 844);
 await navigate("theme-persistence");
 await evaluate(`localStorage.removeItem('leo-portfolio-theme'); location.reload(); true`);
-await wait(600);
+await waitFor(
+  `(() => {
+    const control = document.querySelector('.pv2-utility-dock__control:last-child');
+    return control && control.getAttribute('aria-label') !== 'Change color theme';
+  })()`,
+);
 const themeBeforeToggle = await evaluate(`document.documentElement.dataset.pv2Theme`);
 await evaluate(`document.querySelector('.pv2-utility-dock__control:last-child').click(); true`);
 await wait(250);
