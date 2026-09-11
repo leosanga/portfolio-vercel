@@ -1,49 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { Nav } from "@/components/portfolio/Nav";
-import { Hero } from "@/components/portfolio/Hero";
-import { Competencies } from "@/components/portfolio/Competencies";
-import { Process } from "@/components/portfolio/Process";
-import { Projects } from "@/components/portfolio/Projects";
-import { ContactCTA } from "@/components/portfolio/ContactCTA";
-import { Footer } from "@/components/portfolio/Footer";
+import { PortfolioV2Page } from "@/components/portfolio-v2/PortfolioV2Page";
+import { METADATA } from "@/content/portfolio-v2/content";
 
-const title = "Leo Sanga";
-const description =
-  "Systems Engineer building automation, AI-driven workflows, CRM architecture and enterprise integrations with n8n, HubSpot, Python and Make.com.";
+const canonicalUrl = "https://leosanga.vercel.app/";
+const socialImageUrl = `${canonicalUrl}portfolio-v2/social/leo-sanga-portfolio-v2.jpg`;
+const socialImageAlt = "Leo Sanga, Systems Engineer focused on integration and automation.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title },
-      { name: "description", content: description },
-      { property: "og:title", content: title },
-      { property: "og:description", content: description },
+      { title: METADATA.title },
+      { name: "description", content: METADATA.description },
+      { property: "og:title", content: METADATA.title },
+      { property: "og:description", content: METADATA.description },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: canonicalUrl },
+      { property: "og:image", content: socialImageUrl },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: socialImageAlt },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: METADATA.title },
+      { name: "twitter:description", content: METADATA.description },
+      { name: "twitter:image", content: socialImageUrl },
+      { name: "twitter:image:alt", content: socialImageAlt },
     ],
+    links: [{ rel: "canonical", href: canonicalUrl }],
   }),
-  component: Index,
+  component: PortfolioV2Page,
 });
-
-function Index() {
-  return (
-    <div className="min-h-screen bg-background">
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-lavender focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary-foreground"
-      >
-        Skip to main content
-      </a>
-      <Nav />
-      <main id="main-content" tabIndex={-1}>
-        <Hero />
-        <Competencies />
-        <Process />
-        <Projects />
-        <ContactCTA />
-      </main>
-      <Footer />
-    </div>
-  );
-}
