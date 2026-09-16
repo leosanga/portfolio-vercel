@@ -57,7 +57,7 @@ function DockControl({ children, label, surfaceRef, ...action }: DockControlProp
   );
 }
 
-export function PortfolioUtilityDockV2() {
+export function PortfolioUtilityDockV2({ homeHref = "#top" }: { homeHref?: string } = {}) {
   const surfaceRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const animationFrameRef = useRef(0);
   const magnificationEnabledRef = useRef(false);
@@ -121,7 +121,7 @@ export function PortfolioUtilityDockV2() {
         onPointerMove={handlePointerMove}
         onPointerLeave={resetSurfaces}
       >
-        <DockControl href="#top" label="Home" surfaceRef={setSurfaceRef(0)}>
+        <DockControl href={homeHref} label="Home" surfaceRef={setSurfaceRef(0)}>
           <SignalMarkV2 />
         </DockControl>
         <DockControl href={`mailto:${CONTACT.email}`} label="Email" surfaceRef={setSurfaceRef(1)}>

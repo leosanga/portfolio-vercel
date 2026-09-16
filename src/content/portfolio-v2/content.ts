@@ -12,6 +12,7 @@ import type {
   NavigationItem,
   ProjectViewModel,
 } from "./types";
+import { BOOKING_AGENT_PROJECT } from "./booking-agent";
 
 export const NAVIGATION = [
   { id: "projects", label: "Projects" },
@@ -92,7 +93,7 @@ const PROJECT_SLUGS: Record<string, string> = {
   "Support Ticket Pipeline Automation (HubSpot)": "support-ticket-pipeline-automation",
 };
 
-export const PROJECTS: readonly ProjectViewModel[] = LEGACY_PROJECTS.map(
+const LEGACY_PROJECT_VIEW_MODELS: readonly ProjectViewModel[] = LEGACY_PROJECTS.map(
   (project): ProjectViewModel => {
     const slug = PROJECT_SLUGS[project.title];
     if (!slug) {
@@ -105,16 +106,21 @@ export const PROJECTS: readonly ProjectViewModel[] = LEGACY_PROJECTS.map(
       problem: project.problem,
       solution: project.solution,
       stack: project.stack,
-      featured: project.featured === true,
+      featured: false,
       ...(project.hardPart ? { hardPart: project.hardPart } : {}),
       ...(project.flow ? { flow: project.flow } : {}),
     };
   },
 );
 
-if (PROJECTS.length !== 5) {
+export const PROJECTS: readonly ProjectViewModel[] = [
+  BOOKING_AGENT_PROJECT,
+  ...LEGACY_PROJECT_VIEW_MODELS,
+];
+
+if (PROJECTS.length !== 6) {
   throw new Error(
-    `Portfolio version 2 expects exactly 5 current projects, received ${PROJECTS.length}.`,
+    `Portfolio version 2 expects exactly 6 current projects, received ${PROJECTS.length}.`,
   );
 }
 

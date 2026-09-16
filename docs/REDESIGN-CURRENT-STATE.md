@@ -143,6 +143,63 @@ built`, and `The hard part`.
 - An unrelated local edit to `HANDOFF.md` remains unstaged in the redesign
   worktree. It was not included in the pull request or production release.
 
+## Booking-agent case study
+
+Leo approved and Codex completed the local first-release implementation for the
+n8n Booking Agent case study on 2026-09-15. The evidence matrix, publication
+gates, approved copy, homepage role, dedicated-route structure, media strategy,
+and brand requirements are recorded in
+[`N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md`](./N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md).
+
+The homepage now has six projects with `AI Booking Agent (n8n)` as the only
+featured project. `/projects/n8n-booking-agent` contains the approved text-led
+case study, scroll-led architecture handoff, four proof chapters, architecture
+evolution, adaptability section, and final scheduling action. It intentionally
+has no Loom, screenshot placeholder, public agent, or new dependency. The
+previous featured project remains second and keeps its workflow disclosure.
+
+The featured booking-agent card now includes a focused failure-safe outcome
+record. It shows a valid request, a passed rule check, a failed booking-calendar
+connection, a released temporary hold, a booking that remains unconfirmed, and a
+team alert. Its lead statement is `When the booking calendar fails, the agent
+stops before it sends a false confirmation.` The record repeats on a calm
+6.5-second cadence while visible and pauses when it is offscreen, the tab is
+hidden, or reduced motion is requested. It does not call the live workflow or
+depend on a third-party asset.
+
+The case-study architecture section now answers `Who controls the booking` with
+one persistent system. Its four scroll chapters show direct AI control, the AI
+becoming a proposer, tested rules taking authority, and only a verified action
+reaching the connected system. A viewport-center resolver replaces the prior
+ratio-based intersection thresholds so ordinary scrolling does not skip the
+tested-validation chapter. Completed chapters stay legible while the current
+chapter receives the strongest emphasis.
+
+Tablet, mobile, reduced-motion, and no-JavaScript use a static before-and-after
+comparison instead of depending on the scroll sequence. Tablet keeps the two
+systems side by side; mobile stacks them. Desktop, 768 px, 390 px, and 320 px were
+checked on 2026-09-16. The 320 px layout has no horizontal overflow. The
+case-study metadata label remains `TECH STACK`, and the homepage link remains
+`See how the safeguards work`.
+
+The reusable reasoning that produced the homepage outcome record is documented
+in the case-study specification under `How the homepage visual direction was
+selected`.
+
+The former `Current scope` section has been replaced by `Designed to adapt
+without rebuilding the core`. It now closes the evidence narrative with calendar
+and meeting-provider replaceability, centralized business rules, and deliberate
+human escalation. Private-demo logistics and unfinished deployment controls no
+longer interrupt the path into the final call to action.
+
+Local build, TypeScript, targeted lint, formatting, desktop Chrome, dark-theme,
+320 through 1440 px responsive checks passed. The proof stays static and complete
+without JavaScript or motion, pauses offscreen, and keeps Project 2's disclosure
+unchanged. There is no horizontal overflow and no new browser-console issue. The
+existing theme-bootstrap hydration warning remains a known baseline. Publication
+was approved on 2026-09-16 for the canonical production site. Later media
+additions are not yet approved.
+
 ## Checks last run
 
 - TypeScript: passed.
@@ -203,10 +260,11 @@ built`, and `The hard part`.
 
 ## Exact next action
 
-Leo performs a final visual confirmation on the canonical production URL. Keep
-the baseline tag and `redesign/v2` branch intact during stabilization. If a
-release defect appears, assess severity first and use a reviewed revert of merge
-commit `b0bbd04`; never rewrite `main` history.
+Verify the canonical production homepage and booking-agent case study after the
+approved deployment. Later, create a reusable case-study design reference that
+captures structure, audience, value, visualizations, motion, experience, and the
+decision process behind this release. Keep the baseline tag and `redesign/v2`
+branch intact, and never rewrite `main` history.
 
 ## Required read order
 

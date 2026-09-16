@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsN8nBookingAgentRouteImport } from './routes/projects/n8n-booking-agent'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsN8nBookingAgentRoute = ProjectsN8nBookingAgentRouteImport.update({
+  id: '/projects/n8n-booking-agent',
+  path: '/projects/n8n-booking-agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/projects/n8n-booking-agent'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/projects/n8n-booking-agent'
+  id: '__root__' | '/' | '/projects/n8n-booking-agent'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsN8nBookingAgentRoute: typeof ProjectsN8nBookingAgentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/n8n-booking-agent': {
+      id: '/projects/n8n-booking-agent'
+      path: '/projects/n8n-booking-agent'
+      fullPath: '/projects/n8n-booking-agent'
+      preLoaderRoute: typeof ProjectsN8nBookingAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsN8nBookingAgentRoute: ProjectsN8nBookingAgentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

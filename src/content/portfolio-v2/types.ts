@@ -13,6 +13,24 @@ export type Capability = {
   terms: readonly string[];
 };
 
+export type BookingReliabilityProofExperience = {
+  kind: "booking-reliability";
+  eyebrow: string;
+  heading: string;
+  boundary: string;
+  rows: readonly {
+    label: string;
+    pendingValue: string;
+    resolvedValue: string;
+    resolvedAt: number;
+    tone: "verified" | "failed" | "recovered";
+  }[];
+  outcomeHeading: string;
+  outcomeBody: string;
+};
+
+export type ProjectProofExperience = BookingReliabilityProofExperience;
+
 export type ProjectViewModel = {
   slug: string;
   title: string;
@@ -20,6 +38,9 @@ export type ProjectViewModel = {
   solution: string;
   stack: readonly string[];
   featured: boolean;
+  caseStudyPath?: string;
+  caseStudyLabel?: string;
+  proofExperience?: ProjectProofExperience;
   hardPart?: string;
   flow?: Flow;
 };
