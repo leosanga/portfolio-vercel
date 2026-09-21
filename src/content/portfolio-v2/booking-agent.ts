@@ -138,27 +138,34 @@ export const BOOKING_AGENT_CASE_STUDY = {
     ],
   },
   protection: {
-    heading: "How the workflow protects the booking",
+    heading: "What happens when...",
+    intro: "Each situation shows what the agent does and how that behavior was checked.",
     chapters: [
       {
-        title: "The AI cannot book on its own.",
-        body: "The AI identifies what the user wants. Tested JavaScript checks the request before the workflow can create or change a booking.",
-        evidence: "Tested validation and source-to-workflow checks",
+        situation: "The AI suggests a booking",
+        outcome: "The AI cannot make the booking decision on its own.",
+        body: "Tested rules check the request before a booking action can proceed.",
+        checked:
+          "Automated tests cover the booking rules and confirm the tested code is included in the workflow.",
       },
       {
-        title: "Two people cannot book the same time.",
-        body: "PostgreSQL reserves the time before the calendar is changed. If another request arrives at the same moment, only one can continue. If a later step fails, the workflow releases the reservation safely.",
-        evidence: "Database slot lock and recorded live conflict test",
+        situation: "Two people request the same time",
+        outcome: "Only one request can continue.",
+        body: "The time is reserved before the calendar is changed.",
+        checked: "A live test sent competing requests for the same time. Only one could continue.",
       },
       {
-        title: "The workflow checks what really changed.",
-        body: "Meetings added outside the agent can be brought into its records without claiming that the agent created them. A missing calendar event does not automatically erase the booking history.",
-        evidence: "Calendar adoption and booking-history checks",
+        situation: "A guest asks about a meeting booked elsewhere",
+        outcome: "The agent can recognize the meeting without claiming it created it.",
+        body: "It checks for a matching meeting and preserves where that booking came from.",
+        checked: "Tests cover matching outside meetings and keeping their origin intact.",
       },
       {
-        title: "Booking and calendar failures do not become success messages.",
-        body: "On the verified failure paths, the workflow stops the requested change, tells the guest what happened, records the result, and alerts the people who need to respond.",
-        evidence: "Explicit error routes and notification-delivery checks",
+        situation: "The booking calendar cannot be read",
+        outcome: "The agent stops before sending a false confirmation.",
+        body: "On the tested failure paths, it tells the guest what happened and attempts to alert the people responsible.",
+        checked:
+          "Live failure tests check that an unreadable calendar never appears available. Separate tests check alert delivery.",
       },
     ],
   },
@@ -206,7 +213,7 @@ export const BOOKING_AGENT_CASE_STUDY = {
   },
   close: {
     heading: "Build a workflow that survives production.",
-    support: "Map the failure modes before they become incidents.",
+    support: "Design the response to failure before it becomes an incident.",
     callLabel: "Schedule a Call",
     duration: "30 minutes · Google Calendar",
   },

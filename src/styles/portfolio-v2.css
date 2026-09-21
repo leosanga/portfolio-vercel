@@ -2718,9 +2718,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 .pv2-case-hero__stack > p,
-.pv2-case-section__index,
-.pv2-case-proof__number,
-.pv2-case-proof__evidence span {
+.pv2-case-section__index {
   color: var(--pv2-mist);
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.6875rem;
@@ -2984,8 +2982,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   display: none;
 }
 
-.pv2-architecture-story__visual[data-interactive="false"]
-  .pv2-architecture-story__comparison {
+.pv2-architecture-story__visual[data-interactive="false"] .pv2-architecture-story__comparison {
   display: grid;
 }
 
@@ -3110,12 +3107,21 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   padding-bottom: 0;
 }
 
-.pv2-case-proof__number {
-  grid-column: 1 / 2;
+.pv2-case-proof__situation {
+  grid-column: 3 / 7;
 }
 
-.pv2-case-proof__chapter h3 {
-  grid-column: 3 / 7;
+.pv2-case-proof__label {
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.pv2-case-proof__situation h3 {
+  margin-top: var(--pv2-space-4);
   max-width: 21ch;
   color: var(--pv2-text-primary);
   font-size: clamp(1.5rem, 2.4vw, 2.25rem);
@@ -3124,11 +3130,23 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   letter-spacing: -0.025em;
 }
 
-.pv2-case-proof__chapter > div {
+.pv2-case-proof__response {
   grid-column: 8 / 13;
 }
 
-.pv2-case-proof__chapter > div > p:first-child,
+.pv2-case-proof__outcome {
+  margin-top: var(--pv2-space-4);
+  color: var(--pv2-text-primary);
+  font-size: clamp(1.125rem, 1.7vw, 1.375rem);
+  font-weight: 580;
+  line-height: 1.35;
+}
+
+.pv2-case-proof__body {
+  margin-top: var(--pv2-space-3);
+}
+
+.pv2-case-proof__body,
 .pv2-case-evolution__chapter > p,
 .pv2-case-adaptability__list p {
   color: var(--pv2-text-body);
@@ -3136,18 +3154,17 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   line-height: 1.68;
 }
 
-.pv2-case-proof__evidence {
+.pv2-case-proof__check {
   margin-top: var(--pv2-space-6);
   padding-top: var(--pv2-space-4);
-  color: var(--pv2-text-muted);
   border-top: 1px solid var(--pv2-line);
-  font-size: 0.875rem;
-  line-height: 1.55;
 }
 
-.pv2-case-proof__evidence span {
-  display: block;
-  margin-bottom: 0.4rem;
+.pv2-case-proof__check > p:last-child {
+  margin-top: var(--pv2-space-3);
+  color: var(--pv2-text-muted);
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
 .pv2-case-evolution {
@@ -3336,12 +3353,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     column-gap: var(--pv2-space-6);
   }
 
-  .pv2-case-proof__chapter h3,
+  .pv2-case-proof__situation,
   .pv2-case-evolution__chapter h3 {
     grid-column: 2 / 5;
   }
 
-  .pv2-case-proof__chapter > div,
+  .pv2-case-proof__response,
   .pv2-case-evolution__chapter > p {
     grid-column: 5 / 9;
   }
@@ -3465,12 +3482,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     min-height: 0;
   }
 
-  .pv2-case-proof__chapter h3,
+  .pv2-case-proof__situation h3,
   .pv2-case-evolution__chapter h3 {
     margin-top: var(--pv2-space-4);
   }
 
-  .pv2-case-proof__chapter > div,
+  .pv2-case-proof__response,
   .pv2-case-evolution__chapter > p {
     margin-top: var(--pv2-space-6);
   }

@@ -103,7 +103,7 @@ The close keeps the live site's current `Schedule a Call` button and scheduling
 context. Its approved project-specific message is:
 
 - Heading: `Build a workflow that survives production.`
-- Supporting line: `Map the failure modes before they become incidents.`
+- Supporting line: `Design the response to failure before it becomes an incident.`
 
 No outcome claim is drafted until the final behavior and its evidence are frozen.
 
@@ -150,25 +150,18 @@ shape.
 
 ## Four proof chapters
 
-Leo selected the reader-first Option A as the working public direction. The
-technical notes under each chapter remain the evidence authority.
+Leo approved a situation-first revision of the reader-first Option A on
+2026-09-21. The section keeps four launch-safe claims. Each chapter now has a
+familiar situation on the left, a clear response on the right, and a plain
+description of how the behavior was checked. The technical notes below remain
+the evidence authority. The public wording is:
 
-1. **The AI cannot book on its own.** The AI identifies what the user wants.
-   Tested JavaScript checks the request before the workflow can create or change a
-   booking.
-2. **Two people cannot book the same time.** Postgres reserves the time before the
-   calendar is changed. If another request arrives at the same moment, only one can
-   continue. If a later step fails, the workflow releases the reservation safely.
-3. **The workflow checks what really changed.** Meetings added outside the agent
-   can be brought into its records without claiming that the agent created them. A
-   missing calendar event does not automatically erase the booking history.
-4. **Booking and calendar failures do not become success messages.** On the
-   verified failure paths, the workflow stops the requested change, tells the
-   guest what happened, records the result, and alerts the people who need to
-   respond.
-
-This is selected working copy, not locked final wording. Each claim still has to
-pass the final evidence review.
+| Situation                                     | Outcome                                                             | Explanation                                                                                                 | How this was checked                                                                                               |
+| --------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| The AI suggests a booking                     | The AI cannot make the booking decision on its own.                 | Tested rules check the request before a booking action can proceed.                                         | Automated tests cover the booking rules and confirm the tested code is included in the workflow.                   |
+| Two people request the same time              | Only one request can continue.                                      | The time is reserved before the calendar is changed.                                                        | A live test sent competing requests for the same time. Only one could continue.                                    |
+| A guest asks about a meeting booked elsewhere | The agent can recognize the meeting without claiming it created it. | It checks for a matching meeting and preserves where that booking came from.                                | Tests cover matching outside meetings and keeping their origin intact.                                             |
+| The booking calendar cannot be read           | The agent stops before sending a false confirmation.                | On the tested failure paths, it tells the guest what happened and attempts to alert the people responsible. | Live failure tests check that an unreadable calendar never appears available. Separate tests check alert delivery. |
 
 ### 1. Action authority
 
@@ -442,11 +435,19 @@ Production-safe build:
 
 Section heading:
 
-> How the workflow protects the booking
+> What happens when...
+
+Section introduction:
+
+> Each situation shows what the agent does and how that behavior was checked.
 
 Proof chapter copy uses the four launch-safe chapters under `Four proof chapters`
-above. Evidence appears inside its related chapter rather than in a separate
-technical appendix.
+above. The section number `03` remains; chapter numbers are removed. The left
+column is labeled `When`. The right column is labeled `What the agent does` and
+leads with the outcome. Each related verification line is labeled `How this was
+checked` rather than `Evidence`. The layout stacks situation, response, and
+verification in that order on narrow screens. This section stays static so the
+proof remains easy to scan after the preceding scroll-led architecture section.
 
 ### Architecture evolution
 
@@ -487,7 +488,7 @@ Adaptability points:
 
 **Supporting line**
 
-> Map the failure modes before they become incidents.
+> Design the response to failure before it becomes an incident.
 
 **Button**
 
@@ -849,9 +850,10 @@ diagram library.
 
 ### Proof and evidence behavior
 
-Each proof chapter pairs the approved plain-language explanation with a compact
-evidence line sourced from the launch matrix. Evidence is rendered as text, not
-as an evaluator-facing appendix.
+Each proof chapter pairs its plain-language outcome with a concrete check
+sourced from the launch matrix. The check is rendered as text inside its
+related situation, not as an evaluator-facing appendix or an implied link to a
+public test artifact.
 
 - AI authority: tested validation module and generated-workflow synchronization
 - Competing bookings: database uniqueness rule and recorded live race behavior
@@ -1238,7 +1240,7 @@ a meeting could be booked.`
 - Daytime theme as the primary presentation and dark mode as secondary
 - One tailored bottom call to action using:
   - Heading: `Build a workflow that survives production.`
-  - Supporting line: `Map the failure modes before they become incidents.`
+  - Supporting line: `Design the response to failure before it becomes an incident.`
   - Button: `Schedule a Call`
   - Scheduling context: `30 minutes · Google Calendar`
 - Evidence placed inside the relevant proof chapters rather than repeated in a public
@@ -1279,3 +1281,8 @@ a meeting could be booked.`
   handoff on desktop and a stable final state on mobile or with reduced motion.
 
 Leo approved the local first-release implementation. Publication was not approved.
+
+On 2026-09-21, Leo approved the Section 3 situation-first revision documented
+above. Its heading and chapter presentation supersede the first-release proof
+label and wording in this historical approval list. This approval covers local
+implementation and verification, not a new deployment.

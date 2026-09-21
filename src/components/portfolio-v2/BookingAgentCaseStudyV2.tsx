@@ -76,25 +76,28 @@ export function BookingAgentCaseStudyV2() {
 
         <section className="pv2-case-section pv2-case-proof" aria-labelledby="protection-title">
           <div className="pv2-frame">
-            <header className="pv2-case-section__header pv2-case-section__header--compact">
+            <header className="pv2-case-section__header">
               <p className="pv2-case-section__index" aria-hidden="true">
                 03
               </p>
               <h2 id="protection-title">{protection.heading}</h2>
+              <p>{protection.intro}</p>
             </header>
             <div className="pv2-case-proof__chapters">
-              {protection.chapters.map((chapter, index) => (
-                <article className="pv2-case-proof__chapter" key={chapter.title}>
-                  <p className="pv2-case-proof__number" aria-hidden="true">
-                    {String(index + 1).padStart(2, "0")}
-                  </p>
-                  <h3>{chapter.title}</h3>
-                  <div>
-                    <p>{chapter.body}</p>
-                    <p className="pv2-case-proof__evidence">
-                      <span>Evidence</span>
-                      {chapter.evidence}
-                    </p>
+              {protection.chapters.map((chapter) => (
+                <article className="pv2-case-proof__chapter" key={chapter.situation}>
+                  <div className="pv2-case-proof__situation">
+                    <p className="pv2-case-proof__label">When</p>
+                    <h3>{chapter.situation}</h3>
+                  </div>
+                  <div className="pv2-case-proof__response">
+                    <p className="pv2-case-proof__label">What the agent does</p>
+                    <p className="pv2-case-proof__outcome">{chapter.outcome}</p>
+                    <p className="pv2-case-proof__body">{chapter.body}</p>
+                    <div className="pv2-case-proof__check">
+                      <p className="pv2-case-proof__label">How this was checked</p>
+                      <p>{chapter.checked}</p>
+                    </div>
                   </div>
                 </article>
               ))}
