@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { BOOKING_AGENT_CASE_STUDY } from "@/content/portfolio-v2/booking-agent";
 
+import { BookingWorkflowMapV2 } from "./BookingWorkflowMapV2";
+
 const FINAL_ARCHITECTURE_STAGE = 3;
 
 export function BookingAgentArchitectureV2() {
@@ -206,6 +208,8 @@ export function BookingAgentArchitectureV2() {
             ))}
           </ol>
         </div>
+
+        <BookingWorkflowMapV2 />
       </div>
     </section>
   );

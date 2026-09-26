@@ -4,6 +4,7 @@ import {
 } from "@/content/portfolio-v2/booking-agent";
 
 import { BookingAgentArchitectureV2 } from "./BookingAgentArchitectureV2";
+import { CaseEvidenceFigureV2 } from "./CaseEvidenceFigureV2";
 import { FooterV2 } from "./FooterV2";
 import { PortfolioUtilityDockV2 } from "./PortfolioUtilityDockV2";
 import { PrimaryCallLinkV2 } from "./PrimaryCallLinkV2";
@@ -99,6 +100,7 @@ export function BookingAgentCaseStudyV2() {
                       <p>{chapter.checked}</p>
                     </div>
                   </div>
+                  <CaseEvidenceFigureV2 evidence={chapter.evidence} />
                 </article>
               ))}
             </div>
@@ -118,6 +120,7 @@ export function BookingAgentCaseStudyV2() {
                 <article className="pv2-case-evolution__chapter" key={chapter.title}>
                   <h3>{chapter.title}</h3>
                   <p>{chapter.body}</p>
+                  {"evidence" in chapter && <CaseEvidenceFigureV2 evidence={chapter.evidence} />}
                 </article>
               ))}
             </div>

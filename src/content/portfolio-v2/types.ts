@@ -63,3 +63,14 @@ export type MetadataContent = {
   title: string;
   description: string;
 };
+
+// A real screenshot placed under the claim it proves. The caption is live text and states what the
+// image shows and where its proof stops, per the case-study evidence rule.
+export type CaseEvidenceMedia = {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  label: string;
+  caption: string;
+};

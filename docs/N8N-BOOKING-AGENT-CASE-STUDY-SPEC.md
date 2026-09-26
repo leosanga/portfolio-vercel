@@ -1286,3 +1286,184 @@ On 2026-09-21, Leo approved the Section 3 situation-first revision documented
 above. Its heading and chapter presentation supersede the first-release proof
 label and wording in this historical approval list. This approval covers local
 implementation and verification, not a new deployment.
+
+## Media release, 2026-09-27
+
+Status: built and verified locally on branch `feature/booking-case-study-media`,
+awaiting Leo's visual review. Release steps and rollback:
+[`BOOKING-MEDIA-RELEASE-RUNBOOK.md`](./BOOKING-MEDIA-RELEASE-RUNBOOK.md).
+
+Leo asked for the screenshots and related ideas from the booking agent's
+portfolio work to be placed on this case study, with a review under the relevant
+senior roles, autonomous work up to a local preview, and a professional rollback
+path. His instruction to proceed with the recommendations covers the decisions
+below up to that preview. Every item remains open to his review there.
+
+### Active senior perspectives
+
+- Portfolio and conversion strategist
+- Information architect and information designer
+- Content designer, under `voice.md` Mode 4
+- Brand systems designer
+- Automation architect for claim accuracy
+- Frontend architect
+- Accessibility and performance engineer
+- Privacy reviewer
+- QA and release engineer
+- The two readers named by the case-study guidelines: a hiring manager and a
+  business owner
+
+### What the images do
+
+They prove that behavior the page already explains runs in the real system. The
+copy and the code-native visuals explain; each image sits under the claim it
+proves, with a live-text caption stating what it shows and where its proof stops.
+This is the platform-evidence half of the guidelines' principle-versus-platform
+rule, and it follows the HubSpot precedent of a principle visual followed by
+`Implemented in HubSpot`.
+
+For the technical reader, the canvas screenshots show that the safeguards are
+real nodes. For the business owner, the alert screenshots are the readable proof:
+a message saying what broke and what to do next needs no n8n knowledge. The
+homepage is unchanged, per the 2026-09-15 decision that a canvas capture rewards
+apparent complexity there.
+
+### Composition
+
+| Place                                                                     | Evidence                                           | Claim status                                         |
+| ------------------------------------------------------------------------- | -------------------------------------------------- | ---------------------------------------------------- |
+| Section 02, after the architecture handoff, `Implemented in n8n`          | Overview map of the 12 workflow stages, inline SVG | Structure only                                       |
+| Section 03, `The AI suggests a booking`                                   | Stage 2 canvas: AI reply checked by code           | Existing claim                                       |
+| Section 03, `Two people request the same time`                            | Stage 5 canvas: check the time and hold it         | Existing claim                                       |
+| Section 03, `A guest asks about a meeting booked elsewhere`               | Stage 3 canvas: meetings booked outside the chat   | Existing claim                                       |
+| Section 03, `The booking calendar cannot be read`                         | Calendar-read-failed Slack alert                   | Existing claim                                       |
+| Section 04, `Notifications became shared infrastructure`                  | Notify sub-workflow canvas                         | Existing claim, caption adds the verified crash lane |
+| Section 04, `Business settings were centralized`                          | Config-problem Slack alert                         | New verified caption claim                           |
+| Section 04, new fifth story `One failure could hide a successful booking` | Confirmation-email-failed Slack alert              | New verified story                                   |
+
+Left out, with reasons:
+
+- The other eight stage screenshots. The map carries the whole system, and
+  showing every stage brings back the apparent-complexity problem. They remain in
+  the booking repository for the recording and for interviews.
+- Stage 7, whose Zoom and Teams branches are placeholders.
+- Both crash-alert screenshots. They show the probe's throwaway workflow
+  (`PROBE crash`, `Crash Here`). Recapturing them from the real workflow would mean
+  forcing a production crash of the real agent, which no claim needs. The Notify
+  canvas shows the crash lane instead, and its caption states what it does.
+
+### Re-evaluation decisions
+
+These reverse or refine recommendations made earlier the same day, each for a
+stated reason.
+
+1. **The overview map was redrawn.** The first layout put routing top-right and
+   its lanes bottom-left, so its arrows crossed the whole drawing, and its key used
+   the word `bus`. Routing is now a tall left column with one lane per request type;
+   the shared line into stage 11 became a marker on each stage that feeds it, with
+   the key `Each marked stage also ends here`. The source test still proves every
+   real stage connection is drawn and none is invented.
+2. **The back edges stay.** Dropping them had been recommended to reduce clutter,
+   but they are real connections, and the map's credibility rests on a test that
+   says every connection is drawn. The redraw removed the clutter instead.
+3. **Stage 3 is used as captured.** A re-layout had been recommended for its
+   stepped look. At page size it reads clearly, and its shape follows the real
+   branching. A re-layout would change the live workflow for appearance only.
+4. **The map is inlined, not copied as a themed file.** The page recolors the
+   byte-identical source through CSS attribute selectors, so its hash matches the
+   tested file and the dark theme still works.
+5. **Lossless WebP.** Each image decodes pixel-identical to its capture, so the
+   published evidence is provably the screenshot, including its blurring.
+
+### Claim re-check, 2026-09-27
+
+Run against `n8n-booking-agent` commit `196f442` by reading the goal, the current
+state, the reassessment, the canonical workflow export, the schema, and the
+tests, and by running the unit suite (405 of 405 passing).
+
+- All four live proof chapters still hold word for word.
+- Every caption fact was checked against the workflow export: the `AI Agent`
+  node has no tool connections anywhere in the workflow; every path from the model
+  to a node that changes a booking passes through the validation gate; the booking
+  hold is written before any calendar write, and a request that loses the race only
+  reaches the calendar after Google confirms the blocking event is gone; adopted
+  meetings are stored with `source = 'adopted'`; Notify sends by Slack and Gmail,
+  returns a result, and contains the crash lane named by the main workflow's
+  `settings.errorWorkflow`.
+- The calendar-read-failed alert goes to both the operator and the rep. The
+  booking repository's portfolio index said operator only, and was corrected in
+  `7316b97`.
+- Promoted to verified since 2026-09-15, and used here: a crash no failure path
+  handles alerts the operator, and the rep when the guest gave an address; a
+  failing branch cannot silently skip the booking notice beside it, for the class
+  of defect the project found; an invalid Config setting is reported to the
+  operator once while guests keep chatting.
+- Built but held back from public copy, because neither has the live evidence the
+  proof chapters require: replies grounded in a read of the guest's bookings, and
+  confirmation questions asked by code.
+- The workflow now has 173 nodes, of which 27 are sticky notes. The counts in the
+  evidence matrix above are from 2026-09-15.
+
+### Copy for Leo's review
+
+Labels: `Implemented in n8n` for canvas and map figures, and
+`What the team received` for alert screenshots.
+
+The captions, alt text, map caption, and the fifth story live in
+`src/content/portfolio-v2/booking-agent.ts` as `BOOKING_AGENT_EVIDENCE` and in the
+`architecture.map` and `evolution` entries. They follow Mode 4: one idea per
+sentence, the canvas's own node names where a reader should find them in the
+image, and each caption ends on where its proof stops.
+
+The fifth story, as built:
+
+> **One failure could hide a successful booking.** In n8n, an unhandled failure
+> in one branch stops the branches that run after it. A check found that a failed
+> confirmation email could have stopped the rep from hearing about a booking that
+> had gone through. Those branches are now isolated, and the check fails the build
+> when a new one is added without that protection.
+
+### Display rules
+
+- Figures align with the chapter text column, 10 of 12 grid columns on desktop.
+  At 1440 px the canvas screenshots render at 60 to 88 percent of their captured
+  size, so node labels drop to about 8 to 11 px. Each caption carries an
+  `Open full size` link to the original image, which needs no script and works at
+  any zoom.
+- On phones the screenshots render at 19 to 28 percent and show the stage's shape
+  only; the full-size link carries the evidence there. The map drawing is replaced
+  by its numbered stage list below 768 px, which is also the accessible text
+  equivalent at every width.
+- Screenshots keep their dark n8n and Slack themes in both site themes. They are
+  framed with the line color and not dimmed, since dimming would make real
+  evidence look edited.
+- Every image is lazy-loaded with intrinsic dimensions. The seven images total
+  228 KB and all sit below the first viewport.
+
+### Review items for Leo at the preview
+
+1. Whether the dark screenshots sit well on the light, daytime-first page, or
+   should be recaptured with n8n and Slack in their light themes.
+2. The fifth architecture story, which extends the approved four-story section.
+3. Every caption and the map caption.
+4. The redrawn map and its stage titles, a new brand application.
+5. Whether phone visitors are served well enough by the full-size links, or
+   whether narrow screens need purpose-made crops.
+
+### Files
+
+- `src/assets/portfolio-v2/booking-agent/`: seven WebP images and the map SVG
+- `src/assets/portfolio-v2/ASSET-SOURCES.md`: provenance, hashes, and the
+  recapture rule
+- `src/content/portfolio-v2/types.ts`: `CaseEvidenceMedia`
+- `src/content/portfolio-v2/booking-agent.ts`: evidence records, map data, and
+  the fifth story
+- `src/components/portfolio-v2/CaseEvidenceFigureV2.tsx`: the figure
+- `src/components/portfolio-v2/BookingWorkflowMapV2.tsx`: the inline map and its
+  stage list
+- `src/components/portfolio-v2/BookingAgentCaseStudyV2.tsx` and
+  `BookingAgentArchitectureV2.tsx`: placement
+- `src/styles/portfolio-v2.css`: one self-contained block
+
+No dependency, route, metadata, homepage, social image, or third-party request
+changed.

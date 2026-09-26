@@ -3189,6 +3189,173 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   grid-column: 8 / 13;
 }
 
+/* Booking case-study evidence: real screenshots placed under the claim each one proves. They align with
+   the chapter text column rather than the frame edge, and the caption's full-size link covers the
+   labels that shrink at this width. Kept as one block, with its own breakpoints, so it merges cleanly. */
+.pv2-case-evidence {
+  grid-column: 3 / 13;
+  margin-top: var(--pv2-space-12);
+}
+
+.pv2-case-evidence__label {
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.pv2-case-evidence__frame {
+  margin-top: var(--pv2-space-4);
+  overflow: hidden;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-case-evidence__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pv2-case-evidence figcaption,
+.pv2-workflow-map figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--pv2-space-3) var(--pv2-space-8);
+  margin-top: var(--pv2-space-4);
+}
+
+.pv2-case-evidence figcaption p,
+.pv2-workflow-map figcaption p {
+  max-width: 68ch;
+  color: var(--pv2-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pv2-case-evidence figcaption a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  white-space: nowrap;
+}
+
+.pv2-workflow-map {
+  margin-top: var(--pv2-space-16);
+}
+
+.pv2-workflow-map__drawing {
+  margin-top: var(--pv2-space-4);
+  padding: var(--pv2-space-6);
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-workflow-map__drawing svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The source SVG carries the brand's light-theme values. Each is mapped to the theme token of the same
+   role, so the dark theme recolors it without editing the file. #8D80AA, the mark connector token,
+   holds contrast on both canvases and stays as drawn. */
+.pv2-workflow-map__drawing [fill="#F7F3F8"] {
+  fill: var(--pv2-surface-raised);
+}
+
+.pv2-workflow-map__drawing svg > rect[fill="#F7F3F8"] {
+  fill: transparent;
+}
+
+.pv2-workflow-map__drawing [fill="#211B29"] {
+  fill: var(--pv2-text-primary);
+}
+
+.pv2-workflow-map__drawing [fill="#4F6B85"] {
+  fill: var(--pv2-mist);
+}
+
+.pv2-workflow-map__drawing [stroke="#4F6B85"] {
+  stroke: var(--pv2-mist);
+}
+
+.pv2-workflow-map__drawing [fill="#6E6575"] {
+  fill: var(--pv2-text-muted);
+}
+
+.pv2-workflow-map__drawing [fill="#CBB7F5"] {
+  fill: var(--pv2-lavender);
+}
+
+.pv2-workflow-map__drawing [stroke="#D9D0DF"] {
+  stroke: var(--pv2-line);
+}
+
+.pv2-workflow-map__drawing [stroke="#B9ACC3"] {
+  stroke: var(--pv2-line-strong);
+}
+
+.pv2-workflow-map__stages {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1023px) {
+  .pv2-case-evidence {
+    grid-column: 2 / 9;
+  }
+}
+
+@media (max-width: 767px) {
+  .pv2-case-evidence {
+    margin-top: var(--pv2-space-8);
+  }
+
+  .pv2-workflow-map__drawing {
+    display: none;
+  }
+
+  .pv2-workflow-map__stages {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: var(--pv2-space-4) 0 0;
+    padding: var(--pv2-space-4) var(--pv2-space-4) var(--pv2-space-4) var(--pv2-space-8);
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    color: var(--pv2-text-primary);
+    background: var(--pv2-surface);
+    border: 1px solid var(--pv2-line-strong);
+    border-radius: var(--pv2-radius-content);
+    list-style: decimal;
+  }
+
+  .pv2-workflow-map__stages li + li {
+    margin-top: var(--pv2-space-2);
+  }
+}
+
 .pv2-case-adaptability__list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
