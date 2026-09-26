@@ -3288,10 +3288,6 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   fill: var(--pv2-mist);
 }
 
-.pv2-workflow-map__drawing [stroke="#4F6B85"] {
-  stroke: var(--pv2-mist);
-}
-
 .pv2-workflow-map__drawing [fill="#6E6575"] {
   fill: var(--pv2-text-muted);
 }
