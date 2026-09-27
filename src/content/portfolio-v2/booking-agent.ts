@@ -1,4 +1,87 @@
-import type { BookingReliabilityProofExperience, ProjectViewModel } from "./types";
+import alertCalendarReadFailed from "@/assets/portfolio-v2/booking-agent/alert-calendar-read-failed.webp";
+import alertConfigProblem from "@/assets/portfolio-v2/booking-agent/alert-config-problem.webp";
+import alertConfirmationEmailFailed from "@/assets/portfolio-v2/booking-agent/alert-confirmation-email-failed.webp";
+import workflowAiReplyCheck from "@/assets/portfolio-v2/booking-agent/workflow-ai-reply-check.webp";
+import workflowCheckAndHold from "@/assets/portfolio-v2/booking-agent/workflow-check-and-hold.webp";
+import workflowNotify from "@/assets/portfolio-v2/booking-agent/workflow-notify.webp";
+import workflowOutsideBookings from "@/assets/portfolio-v2/booking-agent/workflow-outside-bookings.webp";
+
+import type {
+  BookingReliabilityProofExperience,
+  CaseEvidenceMedia,
+  ProjectViewModel,
+} from "./types";
+
+const TEAM_RECEIVED = "What the team received";
+
+// Captured from the booking agent's own instance, 2026-09-27, at n8n-booking-agent commit 196f442.
+// The Slack alerts are trimmed of empty space on the right. Provenance, crop geometry, and hashes:
+// src/assets/portfolio-v2/ASSET-SOURCES.md.
+export const BOOKING_AGENT_EVIDENCE = {
+  aiReplyCheck: {
+    src: workflowAiReplyCheck,
+    width: 1817,
+    height: 528,
+    label: "Stage 2 · Validation gate",
+    alt: "n8n canvas: the AI Agent node with its chat model and memory, and the validation gate its reply passes through.",
+    caption:
+      "The AI Agent has no action tools. Its reply reaches Parse & Validation Gate before any booking branch can run. The gate's rules are covered by the automated tests.",
+  },
+  checkAndHold: {
+    src: workflowCheckAndHold,
+    width: 1363,
+    height: 381,
+    label: "Stage 5 · Calendar check and slot hold",
+    alt: "n8n canvas: the booking stage that checks the calendar, then writes the booking to the database before the meeting is created.",
+    caption:
+      "The calendar check runs before Insert Booking attempts the database hold. The database accepts one booking per time, and a request that loses the race stops at If slot was locked before any calendar write.",
+  },
+  outsideBookings: {
+    src: workflowOutsideBookings,
+    width: 1363,
+    height: 968,
+    label: "Stage 3 · Outside-booking adoption",
+    alt: "n8n canvas: the stage that reads the guest's calendar events and records meetings booked outside the chat.",
+    caption:
+      "List Guest Events, Match Guest Events, and Adopt Bookings record meetings created outside the chat as adopted. The repair branch preserves their origin and decides when a person needs to be told.",
+  },
+  calendarReadFailed: {
+    src: alertCalendarReadFailed,
+    width: 1262,
+    height: 201,
+    label: TEAM_RECEIVED,
+    alt: "Slack alert from the booking agent saying it could not read the calendar, with what the guest asked, what they were told, and what to do next.",
+    caption:
+      "A controlled test used a calendar the workflow could not read. The alert asks the rep to contact the guest and tells the operator where the failure occurred. Leo holds both roles in this demo, and the guest's address is blurred.",
+  },
+  notify: {
+    src: workflowNotify,
+    width: 1235,
+    height: 400,
+    label: "Notify sub-workflow",
+    alt: "n8n canvas: the Notify workflow that sends every alert by Slack and email, with a separate lane for runs that crash.",
+    caption:
+      "Every planned failure calls this shared workflow, which attempts Slack and email and returns a delivery result. The lower lane handles crashes outside the planned failure paths and looks up the affected guest.",
+  },
+  configProblem: {
+    src: alertConfigProblem,
+    width: 787,
+    height: 160,
+    label: TEAM_RECEIVED,
+    alt: "Slack alert saying the booking agent's Config has a problem, naming the invalid setting and where to fix it.",
+    caption:
+      "An unsupported meeting platform triggered this operator notice once while guests could keep chatting. The notice names the setting and where to fix it.",
+  },
+  confirmationEmailFailed: {
+    src: alertConfirmationEmailFailed,
+    width: 1241,
+    height: 387,
+    label: TEAM_RECEIVED,
+    alt: "Slack messages after a failed confirmation email: an alert about the email, then the rep's booking notice asking them to send the meeting link.",
+    caption:
+      "The confirmation email was forced to fail after the booking succeeded. The rep's booking notice still arrived and asked them to send the meeting link manually. Guest details are blurred.",
+  },
+} as const satisfies Record<string, CaseEvidenceMedia>;
 
 export const BOOKING_AGENT_STACK = [
   "n8n",
@@ -136,6 +219,27 @@ export const BOOKING_AGENT_CASE_STUDY = {
         tone: "safe",
       },
     ],
+    // Mirrors the stage titles drawn in workflow-overview-map.svg. Re-copying the SVG means
+    // re-checking this list.
+    map: {
+      label: "Workflow map",
+      caption:
+        "The booking agent's workflow, grouped into 12 stages. Every conversation ends at stage 11, which replies to the guest and tells the team. The stages behind each safeguard appear below.",
+      stages: [
+        "Check settings and look up the guest",
+        "AI reply, checked by code",
+        "Catch meetings booked outside the chat",
+        "Route the request",
+        "Check the time is free and hold it",
+        "Handle a time that is already taken",
+        "Create the meeting",
+        "Reschedule: check the request",
+        "Reschedule: move the meeting",
+        "Cancel",
+        "Reply to the guest and tell the team",
+        "Nightly cleanup",
+      ],
+    },
   },
   protection: {
     heading: "What happens when...",
@@ -147,18 +251,21 @@ export const BOOKING_AGENT_CASE_STUDY = {
         body: "Tested rules check the request before a booking action can proceed.",
         checked:
           "Automated tests cover the booking rules and confirm the tested code is included in the workflow.",
+        evidence: BOOKING_AGENT_EVIDENCE.aiReplyCheck,
       },
       {
         situation: "Two people request the same time",
         outcome: "Only one request can continue.",
         body: "The time is reserved before the calendar is changed.",
         checked: "A live test sent competing requests for the same time. Only one could continue.",
+        evidence: BOOKING_AGENT_EVIDENCE.checkAndHold,
       },
       {
         situation: "A guest asks about a meeting booked elsewhere",
         outcome: "The agent can recognize the meeting without claiming it created it.",
         body: "It checks for a matching meeting and preserves where that booking came from.",
         checked: "Tests cover matching outside meetings and keeping their origin intact.",
+        evidence: BOOKING_AGENT_EVIDENCE.outsideBookings,
       },
       {
         situation: "The booking calendar cannot be read",
@@ -166,6 +273,7 @@ export const BOOKING_AGENT_CASE_STUDY = {
         body: "On the tested failure paths, it tells the guest what happened and attempts to alert the people responsible.",
         checked:
           "Live failure tests check that an unreadable calendar never appears available. Separate tests check alert delivery.",
+        evidence: BOOKING_AGENT_EVIDENCE.calendarReadFailed,
       },
     ],
   },
@@ -179,14 +287,21 @@ export const BOOKING_AGENT_CASE_STUDY = {
       {
         title: "Notifications became shared infrastructure",
         body: "Notifications started as part of the main workflow. They moved into a separate workflow when several parts of the system needed the same behavior and needed to know whether delivery succeeded.",
+        evidence: BOOKING_AGENT_EVIDENCE.notify,
       },
       {
         title: "Business settings were centralized",
         body: "Hours, meeting rules, and business-specific settings live in one place so the workflow can be adapted without changing logic throughout the canvas.",
+        evidence: BOOKING_AGENT_EVIDENCE.configProblem,
       },
       {
         title: "The agent was not the only way a meeting could be booked",
         body: "Most businesses already have a booking calendar where someone can choose a time directly. The workflow was designed to recognize those meetings without treating them as agent-created bookings.",
+      },
+      {
+        title: "One failure could hide a successful booking",
+        body: "In n8n, an unhandled failure in one branch stops the branches that run after it. A check found that a failed confirmation email could have stopped the rep from hearing about a booking that had gone through. Those branches are now isolated, and the check fails the build when a new one is added without that protection.",
+        evidence: BOOKING_AGENT_EVIDENCE.confirmationEmailFailed,
       },
     ],
   },

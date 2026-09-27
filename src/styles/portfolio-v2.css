@@ -3189,6 +3189,296 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   grid-column: 8 / 13;
 }
 
+/* Booking case-study evidence: real screenshots placed under the claim each one proves. They align with
+   the chapter text column rather than the frame edge, and the in-page viewer covers the labels that
+   shrink at this width. Kept as one block, with its own breakpoints, so it merges cleanly. */
+.pv2-case-evidence {
+  grid-column: 3 / 13;
+  margin-top: var(--pv2-space-12);
+}
+
+.pv2-case-evidence__label {
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* The frame hugs its capture: a wide canvas scales down to the column, and a narrow Slack alert keeps
+   its natural size instead of being stretched soft. */
+.pv2-case-evidence__frame {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: var(--pv2-space-4);
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  cursor: zoom-in;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-case-evidence__frame:hover {
+  border-color: var(--pv2-mist);
+}
+
+.pv2-case-evidence__frame img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.pv2-case-evidence figcaption,
+.pv2-workflow-map figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--pv2-space-3) var(--pv2-space-8);
+  margin-top: var(--pv2-space-4);
+}
+
+.pv2-case-evidence figcaption p,
+.pv2-workflow-map figcaption p {
+  max-width: 68ch;
+  color: var(--pv2-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pv2-case-evidence__open {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  white-space: nowrap;
+}
+
+/* The evidence viewer portals into the page's .portfolio-v2 root, so the theme tokens reach it. The bar
+   and caption keep their height and the image area takes the rest, so a magnified image scrolls
+   inside it. At high zoom the dialog itself scrolls, which keeps Close reachable. No motion is used. */
+.pv2-evidence-viewer__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgb(15 14 20 / 0.84);
+}
+
+.pv2-evidence-viewer {
+  position: fixed;
+  inset: var(--pv2-space-4);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv2-space-4);
+  padding: var(--pv2-space-4);
+  overflow: auto;
+  color: var(--pv2-text-body);
+  background: var(--pv2-canvas);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-evidence-viewer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv2-space-3) var(--pv2-space-6);
+}
+
+.pv2-evidence-viewer__title {
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.pv2-evidence-viewer__close {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--pv2-space-4);
+  color: var(--pv2-text-primary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  cursor: pointer;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-control);
+}
+
+/* A zero flex basis sizes the area from the space left over, never from the image inside it, so the
+   measured size the zoom depends on cannot feed back on itself. */
+/* Positioned so it contains the zoom button's visually hidden label, which would otherwise escape the
+   scroll area's clipping and widen the dialog. */
+.pv2-evidence-viewer__image {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  min-height: 12rem;
+  padding: var(--pv2-space-2);
+  overflow: auto;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line);
+  border-radius: var(--pv2-radius-content);
+}
+
+/* Auto margins center a small image and fall back to the start edge when it overflows, so every part
+   of a magnified image stays reachable by scrolling. */
+.pv2-evidence-viewer__zoom {
+  flex: none;
+  margin: auto;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
+}
+
+.pv2-evidence-viewer__zoom[data-zoom="in"] {
+  cursor: zoom-out;
+}
+
+.pv2-evidence-viewer__zoom[data-zoom="out"] {
+  cursor: zoom-in;
+}
+
+.pv2-evidence-viewer__zoom img {
+  display: block;
+  max-width: none;
+  height: auto;
+}
+
+.pv2-evidence-viewer__caption {
+  max-width: 68ch;
+  color: var(--pv2-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.pv2-workflow-map {
+  margin-top: var(--pv2-space-16);
+}
+
+.pv2-workflow-map__drawing {
+  margin-top: var(--pv2-space-4);
+  padding: var(--pv2-space-6);
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-workflow-map__drawing svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The source SVG carries the brand's light-theme values. Each is mapped to the theme token of the same
+   role, so the dark theme recolors it without editing the file. #8D80AA, the mark connector token,
+   holds contrast on both canvases and stays as drawn. */
+.pv2-workflow-map__drawing [fill="#F7F3F8"] {
+  fill: var(--pv2-surface-raised);
+}
+
+.pv2-workflow-map__drawing svg > rect[fill="#F7F3F8"] {
+  fill: transparent;
+}
+
+.pv2-workflow-map__drawing [fill="#211B29"] {
+  fill: var(--pv2-text-primary);
+}
+
+.pv2-workflow-map__drawing [fill="#4F6B85"] {
+  fill: var(--pv2-mist);
+}
+
+.pv2-workflow-map__drawing [fill="#6E6575"] {
+  fill: var(--pv2-text-muted);
+}
+
+.pv2-workflow-map__drawing [fill="#CBB7F5"] {
+  fill: var(--pv2-lavender);
+}
+
+.pv2-workflow-map__drawing [stroke="#D9D0DF"] {
+  stroke: var(--pv2-line);
+}
+
+.pv2-workflow-map__drawing [stroke="#B9ACC3"] {
+  stroke: var(--pv2-line-strong);
+}
+
+.pv2-workflow-map__stages {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1023px) {
+  .pv2-case-evidence {
+    grid-column: 2 / 9;
+  }
+}
+
+@media (max-width: 767px) {
+  .pv2-case-evidence {
+    margin-top: var(--pv2-space-8);
+  }
+
+  .pv2-evidence-viewer {
+    inset: var(--pv2-space-2);
+    padding: var(--pv2-space-3);
+  }
+
+  .pv2-workflow-map__drawing {
+    display: none;
+  }
+
+  .pv2-workflow-map__stages {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: var(--pv2-space-4) 0 0;
+    padding: var(--pv2-space-4) var(--pv2-space-4) var(--pv2-space-4) var(--pv2-space-8);
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    color: var(--pv2-text-primary);
+    background: var(--pv2-surface);
+    border: 1px solid var(--pv2-line-strong);
+    border-radius: var(--pv2-radius-content);
+    list-style: decimal;
+  }
+
+  .pv2-workflow-map__stages li + li {
+    margin-top: var(--pv2-space-2);
+  }
+}
+
 .pv2-case-adaptability__list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

@@ -62,3 +62,42 @@ manifest and Git history.
 - License: original portfolio composition and owned portrait supplied by Leo
   Sanga
 - Produced: 2026-09-11
+
+## Booking agent case-study evidence
+
+- Purpose: real-system evidence placed under the claims it proves on
+  `/projects/n8n-booking-agent`
+- Source repository: `n8n-booking-agent`, folder `docs/portfolio/`, captured
+  2026-09-27 from Leo's own n8n instance for the demo business "Leo Demo Co".
+  Screenshots at commit `196f442`, overview map at commit `61c146c`.
+- Source privacy: every email address and the meeting link were blurred in the
+  page before capture. Guest names are test guests.
+- Production tool: ImageMagick 7.1.2-30 Q16-HDRI x64
+- Transformation: lossless WebP (`webp:lossless=true`, method 6) with metadata
+  stripped. Each output decodes pixel-identical to its source (ImageMagick
+  compare, absolute error 0) or to the kept rectangle of it. No resize or
+  retouching. The canvas captures are uncropped. The three Slack alerts are
+  cropped on the right only, to 24 px past their longest line, because the
+  empty width shrank their text on the page: calendar `1262x201+0+0`, config
+  `787x160+0+0`, confirmation email `1241x387+0+0`.
+- The overview map is the source SVG copied byte for byte and inlined; the page
+  recolors it for each theme through CSS, so its hash matches the source, and
+  the source repository's `tests/portfolio-map.test.js` still vouches for its
+  connections. The stage list in `booking-agent.ts` mirrors its titles.
+- License: owned screenshots and diagram supplied by Leo Sanga
+- Produced: 2026-09-27
+
+| Output in `booking-agent/`             | Source in `docs/portfolio/`      | Size                     | Source SHA-256                                                     | Output SHA-256                                                     |
+| -------------------------------------- | -------------------------------- | ------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `workflow-ai-reply-check.webp`         | `canvas/02-ai-reply.png`         | 1817 x 528, 52,354 bytes | `dfe8f4d906c4b34b14560abe09b599a67b08347453aa78b08f22abb6b9184b0d` | `a17faac444910bcb3b79104970e448b84477ae524f912837517d26cd78cf4057` |
+| `workflow-check-and-hold.webp`         | `canvas/05-check-and-hold.png`   | 1363 x 381, 33,820 bytes | `4e59586e50d638f548b3f572381889efb75724f7d95f9479def58bd21e81d807` | `388e5c3d4bfe2d663e3b1023c19e89b7553d2c0c5d1119645cc1b9868dfeb204` |
+| `workflow-outside-bookings.webp`       | `canvas/03-outside-bookings.png` | 1363 x 968, 57,166 bytes | `212fe7192f91e6109bbeceafe8a15266b49badbeb43fc6c02711eed66d842da1` | `616261381d21f8560a9a6b3f8b63c5359cbcfee604674b888afddae9fc2afa55` |
+| `workflow-notify.webp`                 | `canvas/13-notify.png`           | 1235 x 400, 23,368 bytes | `3bbc72938d563ca85b814d23cae94279c51258ba36f040cf31fa84b5ec5d1d94` | `e483d0f3453bf0925469c7d3ff62ffbc649b5e6ab3b42dc7f682395b7e77d486` |
+| `alert-calendar-read-failed.webp`      | `alerts/calendar-slack.png`      | 1262 x 201, 15,732 bytes | `620b4fa3e94fa8e4d29de0aa9814f08a59f79aa3e63fc45013728f77be6eb1c1` | `5c9b549c0d8a309e1d40121e927fac99a937f020bd6eeb0e342bbeeb5c3386a3` |
+| `alert-confirmation-email-failed.webp` | `alerts/email-failed-slack.png`  | 1241 x 387, 35,302 bytes | `d6c660628766702da0b42d863ed94d874c40049791b1f196b2acc631035e3723` | `ad03e58fa1fa10ba9e71bfb6bc40a1be96bda287c0b69ca11c4227d47ab48b55` |
+| `alert-config-problem.webp`            | `alerts/config-slack.png`        | 787 x 160, 10,050 bytes  | `738895d012b9828ee8c67dde2ca4d18cd133f0f792a5b0c16c9a9ef2ae35069d` | `aa8e55dcee9d6e0853591968ef36d374cdd8fa4fcf2c96c7fdf690df0baa36f1` |
+| `workflow-overview-map.svg`            | `overview-map.svg`               | 1220 x 566 view box      | `029ce4eb90afee74555c36f1627c2664d51ccd6b6825453399ee9d53601880aa` | identical to source                                                |
+
+If the booking workflow's canvas changes, these images describe the build at
+the commits above. Recapture, re-encode, and update this table before the page
+claims anything about the newer build.
