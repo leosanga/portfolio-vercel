@@ -1,12 +1,9 @@
 import alertCalendarReadFailed from "@/assets/portfolio-v2/booking-agent/alert-calendar-read-failed.webp";
 import alertConfigProblem from "@/assets/portfolio-v2/booking-agent/alert-config-problem.webp";
 import alertConfirmationEmailFailed from "@/assets/portfolio-v2/booking-agent/alert-confirmation-email-failed.webp";
-import workflowAiReplyCheckPreview from "@/assets/portfolio-v2/booking-agent/workflow-ai-reply-check-preview.webp";
 import workflowAiReplyCheck from "@/assets/portfolio-v2/booking-agent/workflow-ai-reply-check.webp";
-import workflowCheckAndHoldPreview from "@/assets/portfolio-v2/booking-agent/workflow-check-and-hold-preview.webp";
 import workflowCheckAndHold from "@/assets/portfolio-v2/booking-agent/workflow-check-and-hold.webp";
 import workflowNotify from "@/assets/portfolio-v2/booking-agent/workflow-notify.webp";
-import workflowOutsideBookingsPreview from "@/assets/portfolio-v2/booking-agent/workflow-outside-bookings-preview.webp";
 import workflowOutsideBookings from "@/assets/portfolio-v2/booking-agent/workflow-outside-bookings.webp";
 
 import type {
@@ -18,16 +15,13 @@ import type {
 const TEAM_RECEIVED = "What the team received";
 
 // Captured from the booking agent's own instance, 2026-09-27, at n8n-booking-agent commit 196f442.
-// The three dense canvases carry a lossless crop for the page; the viewer always shows the full
-// master. Provenance, crop geometry, and hashes: src/assets/portfolio-v2/ASSET-SOURCES.md.
+// The Slack alerts are trimmed of empty space on the right. Provenance, crop geometry, and hashes:
+// src/assets/portfolio-v2/ASSET-SOURCES.md.
 export const BOOKING_AGENT_EVIDENCE = {
   aiReplyCheck: {
     src: workflowAiReplyCheck,
     width: 1817,
     height: 528,
-    previewSrc: workflowAiReplyCheckPreview,
-    previewWidth: 860,
-    previewHeight: 384,
     label: "Stage 2 · Validation gate",
     alt: "n8n canvas: the AI Agent node with its chat model and memory, and the validation gate its reply passes through.",
     caption:
@@ -37,9 +31,6 @@ export const BOOKING_AGENT_EVIDENCE = {
     src: workflowCheckAndHold,
     width: 1363,
     height: 381,
-    previewSrc: workflowCheckAndHoldPreview,
-    previewWidth: 1125,
-    previewHeight: 381,
     label: "Stage 5 · Calendar check and slot hold",
     alt: "n8n canvas: the booking stage that checks the calendar, then writes the booking to the database before the meeting is created.",
     caption:
@@ -49,9 +40,6 @@ export const BOOKING_AGENT_EVIDENCE = {
     src: workflowOutsideBookings,
     width: 1363,
     height: 968,
-    previewSrc: workflowOutsideBookingsPreview,
-    previewWidth: 965,
-    previewHeight: 456,
     label: "Stage 3 · Outside-booking adoption",
     alt: "n8n canvas: the stage that reads the guest's calendar events and records meetings booked outside the chat.",
     caption:
@@ -59,7 +47,7 @@ export const BOOKING_AGENT_EVIDENCE = {
   },
   calendarReadFailed: {
     src: alertCalendarReadFailed,
-    width: 1568,
+    width: 1262,
     height: 201,
     label: TEAM_RECEIVED,
     alt: "Slack alert from the booking agent saying it could not read the calendar, with what the guest asked, what they were told, and what to do next.",
@@ -77,7 +65,7 @@ export const BOOKING_AGENT_EVIDENCE = {
   },
   configProblem: {
     src: alertConfigProblem,
-    width: 1568,
+    width: 787,
     height: 160,
     label: TEAM_RECEIVED,
     alt: "Slack alert saying the booking agent's Config has a problem, naming the invalid setting and where to fix it.",
@@ -86,7 +74,7 @@ export const BOOKING_AGENT_EVIDENCE = {
   },
   confirmationEmailFailed: {
     src: alertConfirmationEmailFailed,
-    width: 1262,
+    width: 1241,
     height: 387,
     label: TEAM_RECEIVED,
     alt: "Slack messages after a failed confirmation email: an alert about the email, then the rep's booking notice asking them to send the meeting link.",

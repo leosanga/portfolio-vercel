@@ -3206,9 +3206,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   text-transform: uppercase;
 }
 
+/* The frame hugs its capture: a wide canvas scales down to the column, and a narrow Slack alert keeps
+   its natural size instead of being stretched soft. */
 .pv2-case-evidence__frame {
   display: block;
-  width: 100%;
+  width: fit-content;
+  max-width: 100%;
   margin-top: var(--pv2-space-4);
   padding: 0;
   overflow: hidden;
@@ -3225,7 +3228,8 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
 .pv2-case-evidence__frame img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
 }
 
@@ -3265,8 +3269,8 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 /* The evidence viewer portals into the page's .portfolio-v2 root, so the theme tokens reach it. The bar
-   and caption keep their height and the image area takes the rest, so at actual size only the image
-   scrolls. At high zoom the dialog itself scrolls, which keeps Close reachable. No motion is used. */
+   and caption keep their height and the image area takes the rest, so a magnified image scrolls
+   inside it. At high zoom the dialog itself scrolls, which keeps Close reachable. No motion is used. */
 .pv2-evidence-viewer__overlay {
   position: fixed;
   inset: 0;
@@ -3307,13 +3311,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   text-transform: uppercase;
 }
 
-.pv2-evidence-viewer__controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--pv2-space-2);
-}
-
-.pv2-evidence-viewer__controls :where(a, button) {
+.pv2-evidence-viewer__close {
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
@@ -3321,46 +3319,51 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   color: var(--pv2-text-primary);
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.875rem;
-  text-decoration: none;
   cursor: pointer;
   background: var(--pv2-surface);
   border: 1px solid var(--pv2-line-strong);
   border-radius: var(--pv2-radius-control);
 }
 
-.pv2-evidence-viewer__controls [aria-pressed="true"] {
-  color: var(--pv2-button-ink);
-  background: var(--pv2-lavender);
-  border-color: var(--pv2-lavender);
-}
-
+/* A zero flex basis sizes the area from the space left over, never from the image inside it, so the
+   measured size the zoom depends on cannot feed back on itself. */
+/* Positioned so it contains the zoom button's visually hidden label, which would otherwise escape the
+   scroll area's clipping and widen the dialog. */
 .pv2-evidence-viewer__image {
-  flex: 1 1 auto;
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
   min-height: 12rem;
+  padding: var(--pv2-space-2);
   overflow: auto;
   background: var(--pv2-surface);
   border: 1px solid var(--pv2-line);
   border-radius: var(--pv2-radius-content);
 }
 
-/* Fit shrinks a capture to the viewer but never enlarges it, so screenshot text stays sharp. */
-.pv2-evidence-viewer[data-size="fit"] .pv2-evidence-viewer__image {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--pv2-space-2);
+/* Auto margins center a small image and fall back to the start edge when it overflows, so every part
+   of a magnified image stays reachable by scrolling. */
+.pv2-evidence-viewer__zoom {
+  flex: none;
+  margin: auto;
+  padding: 0;
+  color: inherit;
+  background: none;
+  border: 0;
 }
 
-.pv2-evidence-viewer[data-size="fit"] .pv2-evidence-viewer__image img {
-  width: auto;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+.pv2-evidence-viewer__zoom[data-zoom="in"] {
+  cursor: zoom-out;
 }
 
-.pv2-evidence-viewer[data-size="actual"] .pv2-evidence-viewer__image img {
+.pv2-evidence-viewer__zoom[data-zoom="out"] {
+  cursor: zoom-in;
+}
+
+.pv2-evidence-viewer__zoom img {
   display: block;
   max-width: none;
+  height: auto;
 }
 
 .pv2-evidence-viewer__caption {
@@ -3368,12 +3371,6 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   color: var(--pv2-text-muted);
   font-size: 1rem;
   line-height: 1.6;
-}
-
-@media (forced-colors: active) {
-  .pv2-evidence-viewer__controls [aria-pressed="true"] {
-    outline: 2px solid Highlight;
-  }
 }
 
 .pv2-workflow-map {

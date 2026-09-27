@@ -163,7 +163,6 @@ const openViewer = (index, opener) => `(async () => {
   if (!dialog) return { opened: false };
   const img = dialog.querySelector('img');
   if (!img.complete) await new Promise((r) => { img.onload = img.onerror = r; });
-  const link = [...dialog.querySelectorAll('a')].find((a) => a.textContent.startsWith('Open original image'));
   return {
     opened: true,
     label: figure.querySelector('.pv2-case-evidence__label').textContent,
@@ -174,12 +173,9 @@ const openViewer = (index, opener) => `(async () => {
     inlineSrc: figure.querySelector('img').getAttribute('src'),
     viewerSrc: img.getAttribute('src'),
     viewerLoaded: img.naturalWidth > 0,
-    viewerNaturalWidth: img.naturalWidth,
-    viewerWidthAttr: Number(img.getAttribute('width')),
-    linkHref: link?.getAttribute('href'),
-    linkTarget: link?.target,
-    size: dialog.dataset.size,
-    controls: [...dialog.querySelectorAll('button, a')].map((c) => c.textContent),
+    zoom: dialog.querySelector('.pv2-evidence-viewer__zoom').dataset.zoom,
+    barControls: [...dialog.querySelectorAll('.pv2-evidence-viewer__bar :is(a, button)')].map((c) => c.textContent),
+    links: dialog.querySelectorAll('a').length,
   };
 })()`;
 
@@ -189,14 +185,14 @@ const FOCUS_STATE = `(() => ({
   activeFigure: [...document.querySelectorAll('.pv2-case-evidence')].indexOf(document.activeElement?.closest('.pv2-case-evidence')),
 }))()`;
 
-const clickControl = (text) => `(async () => {
-  const control = [...document.querySelectorAll('[role="dialog"] button')].find((b) => b.textContent === '${text}');
-  control.click();
+// Clicking the image in the viewer is the zoom toggle.
+const CLICK_IMAGE = `(async () => {
+  document.querySelector('.pv2-evidence-viewer__zoom').click();
   await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
   return true;
 })()`;
 
-// Viewer geometry: where the image sits relative to its scroll area, and whether the page moved.
+// Viewer geometry: the image's scale, whether it fits its scroll area, and whether the page moved.
 const VIEWER_GEOMETRY = `(() => {
   const dialog = document.querySelector('[role="dialog"]');
   const area = dialog.querySelector('.pv2-evidence-viewer__image');
@@ -204,21 +200,21 @@ const VIEWER_GEOMETRY = `(() => {
   const a = area.getBoundingClientRect();
   const i = img.getBoundingClientRect();
   return {
-    size: dialog.dataset.size,
+    zoom: dialog.querySelector('.pv2-evidence-viewer__zoom').dataset.zoom,
+    cursor: getComputedStyle(dialog.querySelector('.pv2-evidence-viewer__zoom')).cursor,
+    scale: i.width / img.naturalWidth,
     imgWidth: Math.round(i.width),
-    naturalWidth: img.naturalWidth,
-    areaWidth: Math.round(a.width),
     areaScrolls: area.scrollWidth > area.clientWidth + 1 || area.scrollHeight > area.clientHeight + 1,
     fitsArea: i.width <= a.width + 1 && i.height <= a.height + 1,
     pageOverflow: document.documentElement.scrollWidth > innerWidth,
-    dialogInViewport: dialog.getBoundingClientRect().right <= innerWidth + 1,
+    dialogOverflow: dialog.scrollWidth > dialog.clientWidth + 1,
   };
 })()`;
 
 // Every control must be reachable: already on screen, or brought on screen by scrolling the dialog.
 const CONTROLS_REACHABLE = `(() => {
   const dialog = document.querySelector('[role="dialog"]');
-  return [dialog.querySelector('h2'), ...dialog.querySelectorAll('.pv2-evidence-viewer__controls > *')].map((el) => {
+  return [dialog.querySelector('h2'), ...dialog.querySelectorAll('.pv2-evidence-viewer__bar button')].map((el) => {
     el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     const r = el.getBoundingClientRect();
     const reachable = r.width > 0 && r.left >= -1 && r.right <= innerWidth + 1 && r.top >= -1 && r.bottom <= innerHeight + 1;
@@ -287,16 +283,12 @@ for (const theme of ["light", "dark"]) {
           `${where}: viewer caption differs from the figure's`,
         );
         check(viewer.focusInside, `${where}: focus did not move into the viewer`);
-        check(viewer.size === "fit", `${where}: viewer opened in ${viewer.size} mode`);
-        check(viewer.viewerLoaded, `${where}: original image did not load`);
+        check(viewer.zoom !== "out", `${where}: viewer opened zoomed out`);
+        check(viewer.viewerLoaded, `${where}: image did not load in the viewer`);
+        check(viewer.viewerSrc === viewer.inlineSrc, `${where}: viewer shows a different image`);
         check(
-          viewer.linkHref === viewer.viewerSrc,
-          `${where}: original link does not point at the master`,
-        );
-        check(viewer.linkTarget === "_blank", `${where}: original link does not open a new tab`);
-        check(
-          !/-preview/.test(viewer.viewerSrc),
-          `${where}: viewer shows the preview, not the master`,
+          viewer.barControls.join() === "Close" && viewer.links === 0,
+          `${where}: viewer controls are ${viewer.barControls.join(", ")} plus ${viewer.links} links`,
         );
         const closed = await closeWithEscape();
         check(!closed.dialogOpen, `${where}: Escape did not close the viewer`);
@@ -308,35 +300,54 @@ for (const theme of ["light", "dark"]) {
       }
     }
 
-    // Fit and actual size, on the widest capture.
+    // Zoom, on the widest capture: it opens magnified and scrolling, and clicking it toggles a
+    // fitted overview and back. On a screen wide enough to show it whole at natural size there is
+    // nothing to zoom, so it must sit at 1:1 and fit.
     await evaluate(openViewer(0, ".pv2-case-evidence__frame"));
-    const fit = await evaluate(VIEWER_GEOMETRY);
-    check(fit.fitsArea && !fit.pageOverflow, `${run}: Fit does not fit the image in the viewer`);
-    await evaluate(clickControl("Actual size"));
-    const actual = await evaluate(VIEWER_GEOMETRY);
+    const opened = await evaluate(VIEWER_GEOMETRY);
     check(
-      actual.size === "actual" && actual.imgWidth === actual.naturalWidth,
-      `${run}: Actual size is not 1:1`,
+      !opened.pageOverflow && !opened.dialogOverflow,
+      `${run}: the viewer image made the page or the dialog scroll sideways`,
     );
-    check(!actual.pageOverflow, `${run}: Actual size made the page scroll`);
-    if (actual.naturalWidth > actual.areaWidth) {
-      check(actual.areaScrolls, `${run}: Actual size does not scroll inside the viewer`);
+    if (opened.zoom === "fixed") {
+      check(
+        Math.abs(opened.scale - 1) < 0.01 && opened.fitsArea,
+        `${run}: an image with nothing to zoom is not shown whole at natural size`,
+      );
+    } else {
+      check(
+        opened.zoom === "in" && opened.scale >= 0.74 && opened.scale <= 1.01,
+        `${run}: viewer opened at ${opened.zoom}, scale ${opened.scale.toFixed(2)}`,
+      );
+      check(
+        opened.areaScrolls && opened.cursor === "zoom-out",
+        `${run}: magnified image not scrollable`,
+      );
+      await evaluate(CLICK_IMAGE);
+      const zoomedOut = await evaluate(VIEWER_GEOMETRY);
+      check(
+        zoomedOut.zoom === "out" && zoomedOut.fitsArea && zoomedOut.cursor === "zoom-in",
+        `${run}: clicking the image did not fit it to the viewer`,
+      );
+      await evaluate(CLICK_IMAGE);
+      const zoomedIn = await evaluate(VIEWER_GEOMETRY);
+      check(
+        zoomedIn.zoom === "in" && zoomedIn.imgWidth === opened.imgWidth,
+        `${run}: clicking again did not restore the magnified image`,
+      );
     }
-    await evaluate(clickControl("Fit"));
-    const refit = await evaluate(VIEWER_GEOMETRY);
-    check(refit.size === "fit" && refit.fitsArea, `${run}: Fit did not restore the fitted image`);
     const reachable = await evaluate(CONTROLS_REACHABLE);
     for (const control of reachable) {
       check(control.reachable, `${run}: "${control.text}" is not reachable`);
       check(!control.smallTarget, `${run}: "${control.text}" is smaller than 24 by 24`);
     }
     await closeWithEscape();
-    // Reopening starts in Fit even after Actual size was used.
+    // Reopening starts magnified even after the reader zoomed out.
     await evaluate(openViewer(0, ".pv2-case-evidence__frame"));
-    await evaluate(clickControl("Actual size"));
+    await evaluate(CLICK_IMAGE);
     await closeWithEscape();
     const reopened = await evaluate(openViewer(0, ".pv2-case-evidence__frame"));
-    check(reopened.size === "fit", `${run}: viewer did not reset to Fit on reopening`);
+    check(reopened.zoom !== "out", `${run}: viewer did not reset to magnified on reopening`);
     await closeWithEscape();
 
     const size = `${width}x${height}`;
@@ -344,9 +355,12 @@ for (const theme of ["light", "dark"]) {
       const prefix = `${theme}-${size}`;
       await screenshot(`${prefix}-01-page-ai-figure`, ".pv2-case-evidence");
       await evaluate(openViewer(0, ".pv2-case-evidence__frame"));
-      await screenshot(`${prefix}-03-viewer-ai-fit`);
-      await evaluate(clickControl("Actual size"));
-      await screenshot(`${prefix}-04-viewer-ai-actual`);
+      await screenshot(`${prefix}-02-viewer-ai-open`);
+      await evaluate(CLICK_IMAGE);
+      await screenshot(`${prefix}-03-viewer-ai-zoomed-out`);
+      await closeWithEscape();
+      await evaluate(openViewer(2, ".pv2-case-evidence__frame"));
+      await screenshot(`${prefix}-04-viewer-outside-booking-open`);
       await closeWithEscape();
       await evaluate(openViewer(6, ".pv2-case-evidence__frame"));
       await screenshot(`${prefix}-05-viewer-confirmation-email`);
@@ -355,20 +369,27 @@ for (const theme of ["light", "dark"]) {
   }
 }
 
-// The outside-booking figure in the page, captured on its own at each screenshot size.
+// Figures in the page, captured on their own at each screenshot size: the tall outside-booking canvas
+// and the two trimmed Slack alerts.
+const PAGE_FIGURES = [
+  [2, "06-page-outside-booking"],
+  [3, "07-page-calendar-alert"],
+  [5, "08-page-config-alert"],
+];
 for (const size of SHOT_VIEWPORTS) {
   const [width, height] = size.split("x").map(Number);
   await load(width, height, "light");
-  const box = await evaluate(clipBox(`document.querySelectorAll('.pv2-case-evidence')[2]`));
-  const shot = await send("Page.captureScreenshot", {
-    format: "png",
-    captureBeyondViewport: true,
-    clip: { ...box, scale: 1 },
-  });
-  writeFileSync(
-    `${outputDirectory}/light-${size}-06-page-outside-booking.png`,
-    Buffer.from(shot.data, "base64"),
-  );
+  for (const [index, name] of PAGE_FIGURES) {
+    const box = await evaluate(
+      clipBox(`document.querySelectorAll('.pv2-case-evidence')[${index}]`),
+    );
+    const shot = await send("Page.captureScreenshot", {
+      format: "png",
+      captureBeyondViewport: true,
+      clip: { ...box, scale: 1 },
+    });
+    writeFileSync(`${outputDirectory}/light-${size}-${name}.png`, Buffer.from(shot.data, "base64"));
+  }
 }
 
 // Keyboard: Tab and Shift+Tab never leave the open viewer.
@@ -442,14 +463,14 @@ await send("Emulation.setEmulatedMedia", {
 });
 await load(1440, 900, "dark");
 await evaluate(openViewer(0, ".pv2-case-evidence__frame"));
-const BOUNDARY_STATE = `[...document.querySelectorAll('.pv2-evidence-viewer__controls > *')].map((el) => {
+const BOUNDARY_STATE = `[...document.querySelectorAll('.pv2-evidence-viewer__bar button')].map((el) => {
   const s = getComputedStyle(el);
   return s.borderTopStyle !== 'none' && parseFloat(s.borderTopWidth) > 0;
 })`;
 const boundaries = await evaluate(BOUNDARY_STATE);
 check(
-  boundaries.length === 4 && boundaries.every(Boolean),
-  "forced colors: a viewer control lost its boundary",
+  boundaries.length === 1 && boundaries.every(Boolean),
+  "forced colors: the Close control lost its boundary",
 );
 await screenshot("forced-colors-viewer");
 await closeWithEscape();

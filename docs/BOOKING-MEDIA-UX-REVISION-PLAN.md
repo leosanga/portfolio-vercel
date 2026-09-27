@@ -1,7 +1,8 @@
 # Booking Case-Study Media UX Revision Plan
 
-Status: approved and built 2026-09-27. Awaiting Leo's local visual review
-before the release gates.
+Status: approved and built 2026-09-27, then revised after Leo's review of the
+build (see `Leo's review of the build` at the end). Awaiting his local visual
+review of the revision before the release gates.
 
 Date: 2026-09-27
 
@@ -468,3 +469,20 @@ Stop and ask Leo instead of inventing a decision when:
 - the Vercel preview differs materially from the local build;
 - deployment would require a new dependency, service, permission, or hosting
   decision.
+
+## Leo's review of the build
+
+Leo reviewed the first build on 2026-09-27 and replaced two decisions. This
+section overrides decisions 3 and 4 above wherever they conflict.
+
+- Decision 4 is withdrawn. The page shows every canvas capture uncropped; the
+  three preview files are deleted.
+- Decision 3 is simplified. The viewer has no `Fit`, `Actual size`, or
+  `Open original image` control. `Close` is the only control. The viewer opens
+  magnified, filling its height at no more than natural size and no less than
+  75 percent, below which node labels stop being readable, so a wide capture
+  scrolls sideways. Clicking the image shows a fit-to-screen overview with a
+  zoom-out cursor, and clicking again returns with a zoom-in cursor. When the
+  whole capture already fits at natural size, there is nothing to toggle.
+- The Slack alerts are cropped on the right to remove empty width that shrank
+  their text, and each inline frame hugs its capture instead of stretching it.

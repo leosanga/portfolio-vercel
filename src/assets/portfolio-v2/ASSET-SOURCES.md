@@ -75,7 +75,11 @@ manifest and Git history.
 - Production tool: ImageMagick 7.1.2-30 Q16-HDRI x64
 - Transformation: lossless WebP (`webp:lossless=true`, method 6) with metadata
   stripped. Each output decodes pixel-identical to its source (ImageMagick
-  compare, absolute error 0). No crop, resize, or retouching.
+  compare, absolute error 0) or to the kept rectangle of it. No resize or
+  retouching. The canvas captures are uncropped. The three Slack alerts are
+  cropped on the right only, to 24 px past their longest line, because the
+  empty width shrank their text on the page: calendar `1262x201+0+0`, config
+  `787x160+0+0`, confirmation email `1241x387+0+0`.
 - The overview map is the source SVG copied byte for byte and inlined; the page
   recolors it for each theme through CSS, so its hash matches the source, and
   the source repository's `tests/portfolio-map.test.js` still vouches for its
@@ -89,41 +93,11 @@ manifest and Git history.
 | `workflow-check-and-hold.webp`         | `canvas/05-check-and-hold.png`   | 1363 x 381, 33,820 bytes | `4e59586e50d638f548b3f572381889efb75724f7d95f9479def58bd21e81d807` | `388e5c3d4bfe2d663e3b1023c19e89b7553d2c0c5d1119645cc1b9868dfeb204` |
 | `workflow-outside-bookings.webp`       | `canvas/03-outside-bookings.png` | 1363 x 968, 57,166 bytes | `212fe7192f91e6109bbeceafe8a15266b49badbeb43fc6c02711eed66d842da1` | `616261381d21f8560a9a6b3f8b63c5359cbcfee604674b888afddae9fc2afa55` |
 | `workflow-notify.webp`                 | `canvas/13-notify.png`           | 1235 x 400, 23,368 bytes | `3bbc72938d563ca85b814d23cae94279c51258ba36f040cf31fa84b5ec5d1d94` | `e483d0f3453bf0925469c7d3ff62ffbc649b5e6ab3b42dc7f682395b7e77d486` |
-| `alert-calendar-read-failed.webp`      | `alerts/calendar-slack.png`      | 1568 x 201, 16,120 bytes | `620b4fa3e94fa8e4d29de0aa9814f08a59f79aa3e63fc45013728f77be6eb1c1` | `b2553d02617b408336e793f801fb65ae8a1a7b1cb0355589816ba05564fa7d9c` |
-| `alert-confirmation-email-failed.webp` | `alerts/email-failed-slack.png`  | 1262 x 387, 35,438 bytes | `d6c660628766702da0b42d863ed94d874c40049791b1f196b2acc631035e3723` | `22646da960145654a10c0b45a1c735ffe3e3aa9b08d54376d83e83927cd8261d` |
-| `alert-config-problem.webp`            | `alerts/config-slack.png`        | 1568 x 160, 10,380 bytes | `738895d012b9828ee8c67dde2ca4d18cd133f0f792a5b0c16c9a9ef2ae35069d` | `0c29db2c933e66eac9d863c277c45fce6e3db66d902d3f501c33d8328632a120` |
+| `alert-calendar-read-failed.webp`      | `alerts/calendar-slack.png`      | 1262 x 201, 15,732 bytes | `620b4fa3e94fa8e4d29de0aa9814f08a59f79aa3e63fc45013728f77be6eb1c1` | `5c9b549c0d8a309e1d40121e927fac99a937f020bd6eeb0e342bbeeb5c3386a3` |
+| `alert-confirmation-email-failed.webp` | `alerts/email-failed-slack.png`  | 1241 x 387, 35,302 bytes | `d6c660628766702da0b42d863ed94d874c40049791b1f196b2acc631035e3723` | `ad03e58fa1fa10ba9e71bfb6bc40a1be96bda287c0b69ca11c4227d47ab48b55` |
+| `alert-config-problem.webp`            | `alerts/config-slack.png`        | 787 x 160, 10,050 bytes  | `738895d012b9828ee8c67dde2ca4d18cd133f0f792a5b0c16c9a9ef2ae35069d` | `aa8e55dcee9d6e0853591968ef36d374cdd8fa4fcf2c96c7fdf690df0baa36f1` |
 | `workflow-overview-map.svg`            | `overview-map.svg`               | 1220 x 566 view box      | `029ce4eb90afee74555c36f1627c2664d51ccd6b6825453399ee9d53601880aa` | identical to source                                                |
 
 If the booking workflow's canvas changes, these images describe the build at
 the commits above. Recapture, re-encode, and update this table before the page
 claims anything about the newer build.
-
-### Inline previews of the three dense canvases
-
-The page shows a cropped preview of three canvas captures so their node labels
-stay readable at column width. The viewer and its `Open original image` link
-always use the full capture above, which remains the evidence master. Each
-preview was cut from the committed master in `booking-agent/`, not
-rescreenshotted, on 2026-09-27 with ImageMagick 7.1.2-30 Q16-HDRI x64:
-
-```sh
-magick <master>.webp -crop <geometry> +repage -define webp:lossless=true -define webp:method=6 -strip <master>-preview.webp
-```
-
-Each preview decodes pixel-identical to the same rectangle of the source PNG in
-`docs/portfolio/canvas/` (ImageMagick compare, absolute error 0).
-
-| Output in `booking-agent/`               | Master                           | Crop geometry   | Size, format                            | Output SHA-256                                                     |
-| ---------------------------------------- | -------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------------ |
-| `workflow-ai-reply-check-preview.webp`   | `workflow-ai-reply-check.webp`   | `860x384+0+0`   | 860 x 384, lossless WebP, 26,548 bytes  | `8190cf24353ab4295d7b255e4fc3ae2597b813f89b84f4cbdf3fa7b2b6ccab66` |
-| `workflow-check-and-hold-preview.webp`   | `workflow-check-and-hold.webp`   | `1125x381+0+0`  | 1125 x 381, lossless WebP, 29,244 bytes | `50bb673583f1b280e5dabf18b58cbbb32d03421faa530ddf64e865c3045ba9a8` |
-| `workflow-outside-bookings-preview.webp` | `workflow-outside-bookings.webp` | `965x456+0+512` | 965 x 456, lossless WebP, 27,020 bytes  | `e82db9a3ef4e5a0384141e962ac1795024b569ad738a9868e861e94e8eda0bc2` |
-
-What each crop keeps: the AI reply preview holds the AI Agent with its model and
-memory, Parse & Validation Gate, If agent is still probing, and If booking is
-valid, and drops the empty-reply lane to the right. The calendar preview runs
-from Get Availability to If slot was locked, with the failed-calendar notice,
-and drops Offer Alternatives. The outside-booking preview holds List Guest
-Events through Classify Adoption Repairs and the two decisions after it, and
-drops the stage title and the empty area above them. The master SHA-256 values
-are in the table above.

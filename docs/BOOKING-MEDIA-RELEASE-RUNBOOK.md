@@ -206,9 +206,9 @@ Never force-push or reset `main`.
 - The live page returns 200 and shows every figure and the map.
 - `https://leosanga.vercel.app/` is unchanged.
 - The page requests no host other than `leosanga.vercel.app`.
-- On a phone, the map is still a numbered list. Each evidence preview opens the
-  in-page viewer, Fit and Actual size work, Escape and Close return focus to the
-  opener, and the original-image link remains available inside the viewer.
+- On a phone, the map is still a numbered list. Each screenshot opens the
+  in-page viewer magnified and scrollable sideways, tapping the image toggles
+  the fitted overview, and Escape and Close return focus to the opener.
 - Push the local tag so the rollback anchor survives a fresh clone:
   `git push origin pre-booking-media-2026-09-27`.
 - Remove the worktree when the branch is merged:
@@ -236,8 +236,11 @@ Never force-push or reset `main`.
   because `.vercel/output` is not in the ESLint ignore list; it was stopped.
 - Prettier: every changed file passes.
 - `node scripts/booking-case-study-media-qa.mjs` (Headless Chrome 153): 0
-  failures. It opened the viewer from both openers of all seven figures in all
-  22 theme and viewport runs, and covered Fit, Actual size, focus return,
-  focus containment, 200 and 400 percent text and page zoom, reduced motion,
-  forced colors, the no-JavaScript page, console errors, and outside requests.
-- The three previews decode pixel-identical to their source rectangles.
+  failures after Leo's review changes. It opened the viewer from both openers
+  of all seven figures in all 22 theme and viewport runs, and covered the
+  magnified opening, the click-to-zoom toggle, Close as the only control, no
+  sideways scroll on the page or the dialog, focus return, focus containment,
+  200 and 400 percent text and page zoom, reduced motion, forced colors, the
+  no-JavaScript page, console errors, and outside requests.
+- The three trimmed Slack alerts decode pixel-identical to their source
+  rectangles.

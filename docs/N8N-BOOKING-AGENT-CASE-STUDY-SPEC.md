@@ -1488,11 +1488,15 @@ visual review:
   `Workflow map`, and no `Implemented in n8n` label remains.
 - `CaseEvidenceDialogV2` is the in-page viewer on the existing Radix Dialog. It
   portals into the page's `.portfolio-v2` root so the theme tokens reach it,
-  returns focus to whichever of the two openers was used, resets to `Fit` on
-  every open, and uses no motion. `Fit` shrinks a capture but never enlarges it,
-  so screenshot text stays sharp.
-- Three lossless preview crops, provenance in `ASSET-SOURCES.md`. Each caption
-  fact was re-checked against the capture it describes.
+  returns focus to whichever of the two openers was used, and uses no motion.
+- Leo's review of the first build (2026-09-27) replaced the plan's viewer
+  controls and inline crops. The page shows every canvas uncropped. The viewer
+  opens magnified, filling its height at no more than natural size and no less
+  than 75 percent, so a wide canvas scrolls sideways. Clicking the image toggles
+  a fit-to-screen overview and back, with a zoom cursor. `Close` is the only
+  control. The three Slack alerts are trimmed of empty width on the right, and
+  every inline frame hugs its capture instead of stretching a narrow alert.
+- Each caption fact was re-checked against the capture it describes.
 - `scripts/booking-case-study-media-qa.mjs` covers every check the plan lists.
   At 400 percent text size the live page grid is already wider than the
   viewport, headings included, so that one case checks that no figure reaches
