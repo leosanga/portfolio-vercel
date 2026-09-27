@@ -1467,3 +1467,33 @@ The fifth story, as built:
 
 No dependency, route, metadata, homepage, social image, or third-party request
 changed.
+
+### Post-review UX revision
+
+The first visual review found that the evidence set should remain, but its
+presentation needs revision before release. The authoritative implementation
+plan is
+[`BOOKING-MEDIA-UX-REVISION-PLAN.md`](./BOOKING-MEDIA-UX-REVISION-PLAN.md).
+
+That plan supersedes this section's `Open full size` primary interaction,
+repeated `Implemented in n8n` labels, full-stage inline display rule, and current
+caption set. The underlying claims, original evidence masters, map, selected
+seven images, fifth architecture story, provenance requirements, and release
+boundaries remain in force.
+
+Built 2026-09-27 on `feature/booking-case-study-media`, awaiting Leo's local
+visual review:
+
+- Labels and captions are the plan's exact set. The map label is
+  `Workflow map`, and no `Implemented in n8n` label remains.
+- `CaseEvidenceDialogV2` is the in-page viewer on the existing Radix Dialog. It
+  portals into the page's `.portfolio-v2` root so the theme tokens reach it,
+  returns focus to whichever of the two openers was used, resets to `Fit` on
+  every open, and uses no motion. `Fit` shrinks a capture but never enlarges it,
+  so screenshot text stays sharp.
+- Three lossless preview crops, provenance in `ASSET-SOURCES.md`. Each caption
+  fact was re-checked against the capture it describes.
+- `scripts/booking-case-study-media-qa.mjs` covers every check the plan lists.
+  At 400 percent text size the live page grid is already wider than the
+  viewport, headings included, so that one case checks that no figure reaches
+  past the page's own headings instead of checking the whole page.

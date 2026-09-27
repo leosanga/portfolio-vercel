@@ -3190,8 +3190,8 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 /* Booking case-study evidence: real screenshots placed under the claim each one proves. They align with
-   the chapter text column rather than the frame edge, and the caption's full-size link covers the
-   labels that shrink at this width. Kept as one block, with its own breakpoints, so it merges cleanly. */
+   the chapter text column rather than the frame edge, and the in-page viewer covers the labels that
+   shrink at this width. Kept as one block, with its own breakpoints, so it merges cleanly. */
 .pv2-case-evidence {
   grid-column: 3 / 13;
   margin-top: var(--pv2-space-12);
@@ -3207,11 +3207,20 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 .pv2-case-evidence__frame {
+  display: block;
+  width: 100%;
   margin-top: var(--pv2-space-4);
+  padding: 0;
   overflow: hidden;
+  color: inherit;
+  cursor: zoom-in;
   background: var(--pv2-surface);
   border: 1px solid var(--pv2-line-strong);
   border-radius: var(--pv2-radius-content);
+}
+
+.pv2-case-evidence__frame:hover {
+  border-color: var(--pv2-mist);
 }
 
 .pv2-case-evidence__frame img {
@@ -3238,10 +3247,14 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   line-height: 1.6;
 }
 
-.pv2-case-evidence figcaption a {
+.pv2-case-evidence__open {
   display: inline-flex;
   align-items: center;
   min-height: 1.5rem;
+  padding: 0;
+  cursor: pointer;
+  background: none;
+  border: 0;
   color: var(--pv2-mist);
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: 0.875rem;
@@ -3249,6 +3262,118 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   text-decoration: underline;
   text-underline-offset: 0.25em;
   white-space: nowrap;
+}
+
+/* The evidence viewer portals into the page's .portfolio-v2 root, so the theme tokens reach it. The bar
+   and caption keep their height and the image area takes the rest, so at actual size only the image
+   scrolls. At high zoom the dialog itself scrolls, which keeps Close reachable. No motion is used. */
+.pv2-evidence-viewer__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgb(15 14 20 / 0.84);
+}
+
+.pv2-evidence-viewer {
+  position: fixed;
+  inset: var(--pv2-space-4);
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  gap: var(--pv2-space-4);
+  padding: var(--pv2-space-4);
+  overflow: auto;
+  color: var(--pv2-text-body);
+  background: var(--pv2-canvas);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-evidence-viewer__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv2-space-3) var(--pv2-space-6);
+}
+
+.pv2-evidence-viewer__title {
+  color: var(--pv2-mist);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.pv2-evidence-viewer__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--pv2-space-2);
+}
+
+.pv2-evidence-viewer__controls :where(a, button) {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--pv2-space-4);
+  color: var(--pv2-text-primary);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.875rem;
+  text-decoration: none;
+  cursor: pointer;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-control);
+}
+
+.pv2-evidence-viewer__controls [aria-pressed="true"] {
+  color: var(--pv2-button-ink);
+  background: var(--pv2-lavender);
+  border-color: var(--pv2-lavender);
+}
+
+.pv2-evidence-viewer__image {
+  flex: 1 1 auto;
+  min-height: 12rem;
+  overflow: auto;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line);
+  border-radius: var(--pv2-radius-content);
+}
+
+/* Fit shrinks a capture to the viewer but never enlarges it, so screenshot text stays sharp. */
+.pv2-evidence-viewer[data-size="fit"] .pv2-evidence-viewer__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--pv2-space-2);
+}
+
+.pv2-evidence-viewer[data-size="fit"] .pv2-evidence-viewer__image img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.pv2-evidence-viewer[data-size="actual"] .pv2-evidence-viewer__image img {
+  display: block;
+  max-width: none;
+}
+
+.pv2-evidence-viewer__caption {
+  max-width: 68ch;
+  color: var(--pv2-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+@media (forced-colors: active) {
+  .pv2-evidence-viewer__controls [aria-pressed="true"] {
+    outline: 2px solid Highlight;
+  }
 }
 
 .pv2-workflow-map {
@@ -3325,6 +3450,11 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 @media (max-width: 767px) {
   .pv2-case-evidence {
     margin-top: var(--pv2-space-8);
+  }
+
+  .pv2-evidence-viewer {
+    inset: var(--pv2-space-2);
+    padding: var(--pv2-space-3);
   }
 
   .pv2-workflow-map__drawing {

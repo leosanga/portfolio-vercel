@@ -97,3 +97,33 @@ manifest and Git history.
 If the booking workflow's canvas changes, these images describe the build at
 the commits above. Recapture, re-encode, and update this table before the page
 claims anything about the newer build.
+
+### Inline previews of the three dense canvases
+
+The page shows a cropped preview of three canvas captures so their node labels
+stay readable at column width. The viewer and its `Open original image` link
+always use the full capture above, which remains the evidence master. Each
+preview was cut from the committed master in `booking-agent/`, not
+rescreenshotted, on 2026-09-27 with ImageMagick 7.1.2-30 Q16-HDRI x64:
+
+```sh
+magick <master>.webp -crop <geometry> +repage -define webp:lossless=true -define webp:method=6 -strip <master>-preview.webp
+```
+
+Each preview decodes pixel-identical to the same rectangle of the source PNG in
+`docs/portfolio/canvas/` (ImageMagick compare, absolute error 0).
+
+| Output in `booking-agent/`               | Master                           | Crop geometry   | Size, format                            | Output SHA-256                                                     |
+| ---------------------------------------- | -------------------------------- | --------------- | --------------------------------------- | ------------------------------------------------------------------ |
+| `workflow-ai-reply-check-preview.webp`   | `workflow-ai-reply-check.webp`   | `860x384+0+0`   | 860 x 384, lossless WebP, 26,548 bytes  | `8190cf24353ab4295d7b255e4fc3ae2597b813f89b84f4cbdf3fa7b2b6ccab66` |
+| `workflow-check-and-hold-preview.webp`   | `workflow-check-and-hold.webp`   | `1125x381+0+0`  | 1125 x 381, lossless WebP, 29,244 bytes | `50bb673583f1b280e5dabf18b58cbbb32d03421faa530ddf64e865c3045ba9a8` |
+| `workflow-outside-bookings-preview.webp` | `workflow-outside-bookings.webp` | `965x456+0+512` | 965 x 456, lossless WebP, 27,020 bytes  | `e82db9a3ef4e5a0384141e962ac1795024b569ad738a9868e861e94e8eda0bc2` |
+
+What each crop keeps: the AI reply preview holds the AI Agent with its model and
+memory, Parse & Validation Gate, If agent is still probing, and If booking is
+valid, and drops the empty-reply lane to the right. The calendar preview runs
+from Get Availability to If slot was locked, with the failed-calendar notice,
+and drops Offer Alternatives. The outside-booking preview holds List Guest
+Events through Classify Adoption Repairs and the two decisions after it, and
+drops the stage title and the empty area above them. The master SHA-256 values
+are in the table above.

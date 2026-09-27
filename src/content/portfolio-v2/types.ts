@@ -66,6 +66,8 @@ export type MetadataContent = {
 
 // A real screenshot placed under the claim it proves. The caption is live text and states what the
 // image shows and where its proof stops, per the case-study evidence rule.
+// `src` is the evidence master the viewer shows. A dense canvas adds a cropped preview for the page,
+// and the preview's size must come with it, so the type accepts all three preview fields or none.
 export type CaseEvidenceMedia = {
   src: string;
   width: number;
@@ -73,4 +75,7 @@ export type CaseEvidenceMedia = {
   alt: string;
   label: string;
   caption: string;
-};
+} & (
+  | { previewSrc?: undefined; previewWidth?: undefined; previewHeight?: undefined }
+  | { previewSrc: string; previewWidth: number; previewHeight: number }
+);

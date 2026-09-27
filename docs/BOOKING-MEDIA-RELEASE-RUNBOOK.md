@@ -1,6 +1,7 @@
 # Booking Case-Study Media: Release and Rollback Runbook
 
-Status: built and verified locally, awaiting Leo's visual review. Nothing is pushed or deployed.
+Status: UX revision built and verified locally, awaiting Leo's local visual
+review. Nothing is pushed or deployed.
 
 Date: 2026-09-27
 
@@ -12,6 +13,12 @@ commit into `main`, rollback by revert, and `main` history never rewritten.
 The design, claims, and captions are recorded in
 [`N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md`](./N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md),
 section `Media release, 2026-09-27`.
+
+The implementation-ready response to the visual review is
+[`BOOKING-MEDIA-UX-REVISION-PLAN.md`](./BOOKING-MEDIA-UX-REVISION-PLAN.md).
+It replaces the first pass's repeated labels, raw-image primary interaction,
+desktop-wide inline captures, and long captions. Read it before changing or
+releasing the media work.
 
 ## Where everything is
 
@@ -33,12 +40,16 @@ work and was not touched. See `Merge order` below.
 Each gate needs Leo's explicit approval. Approval of one does not approve the
 next.
 
-1. **Visual review of the local preview.** Current gate.
+1. **Build and visually review the UX revision locally.** Current gate.
 2. **Push the branch and open a pull request.** Vercel builds a preview
    deployment for the pull request. The live site does not change.
 3. **Review the Vercel preview** on a phone and a desktop.
 4. **Merge into `main` with a merge commit.** Vercel deploys production.
 5. **Verify production** with the checks in `After release`.
+
+This runbook does not treat the existence of the revision plan as release
+authorization. Leo's later instruction must explicitly authorize the remote and
+deployment actions Claude should perform.
 
 The two booking-repository commits are pushed separately and are not needed by
 the site, which carries its own copies of the assets.
@@ -72,8 +83,9 @@ restart.
 
 - Step 2 ends with lines containing `built in` and `You can preview this build`.
 - Step 3 prints a local URL on port 8090 and keeps running. Leave the window open.
-- The page shows `IMPLEMENTED IN N8N` above a map under section 02, and a
-  screenshot under each of the four situations in section 03.
+- After the UX revision, the map says `WORKFLOW MAP`, the canvas figures use
+  stage-specific labels, every figure opens the in-page viewer, and a screenshot
+  remains under each of the four situations in section 03.
 - If step 3 says the port is in use, a preview is already running. Open the URL
   instead.
 - If step 2 fails with a native module error, run it from a normal PowerShell
@@ -194,8 +206,9 @@ Never force-push or reset `main`.
 - The live page returns 200 and shows every figure and the map.
 - `https://leosanga.vercel.app/` is unchanged.
 - The page requests no host other than `leosanga.vercel.app`.
-- On a phone, the map shows as a numbered list and each `Open full size` link
-  opens its image.
+- On a phone, the map is still a numbered list. Each evidence preview opens the
+  in-page viewer, Fit and Actual size work, Escape and Close return focus to the
+  opener, and the original-image link remains available inside the viewer.
 - Push the local tag so the rollback anchor survives a fresh clone:
   `git push origin pre-booking-media-2026-09-27`.
 - Remove the worktree when the branch is merged:
@@ -214,3 +227,17 @@ Never force-push or reset `main`.
 - Below 768 px the map drawing is replaced by its numbered stage list.
 - `n8n-booking-agent` unit suite: 405 of 405 pass, including the map's
   connection test.
+
+## Checks run on the UX revision, 2026-09-27
+
+- TypeScript and the production build: passed.
+- ESLint on every changed file: no problem other than the known CRLF baseline.
+  The full `bun run lint` did not finish in 10 minutes on this machine, likely
+  because `.vercel/output` is not in the ESLint ignore list; it was stopped.
+- Prettier: every changed file passes.
+- `node scripts/booking-case-study-media-qa.mjs` (Headless Chrome 153): 0
+  failures. It opened the viewer from both openers of all seven figures in all
+  22 theme and viewport runs, and covered Fit, Actual size, focus return,
+  focus containment, 200 and 400 percent text and page zoom, reduced motion,
+  forced colors, the no-JavaScript page, console errors, and outside requests.
+- The three previews decode pixel-identical to their source rectangles.
