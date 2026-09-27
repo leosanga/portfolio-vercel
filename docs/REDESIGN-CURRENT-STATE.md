@@ -8,6 +8,10 @@ Gate 4 is complete. Pull request 1 was merged through merge commit `b0bbd04`,
 and Vercel successfully deployed that commit to production. The canonical site
 at `https://leosanga.vercel.app/` now serves portfolio version 2.
 
+The HubSpot CRM case-study release is also complete. Commit `debe80d` is on
+`main`, Vercel marked its production deployment successful, and the canonical
+site now serves the project from `/projects/hubspot-lead-routing`.
+
 ## Repository state
 
 - Original worktree: `C:\Users\Leo\Downloads\projects\portfolio-vercel`
@@ -35,6 +39,9 @@ at `https://leosanga.vercel.app/` now serves portfolio version 2.
 - Application cutover Vercel deployment: `6385275062`
 - Deployment URL: `https://leosanga-po6wvj3jq-leo-c2f6.vercel.app`
 - Canonical production URL: `https://leosanga.vercel.app/`
+- HubSpot CRM case-study release commit: `debe80d94bbf203efac725d2ee973f155d05e8ae`
+- HubSpot production route:
+  `https://leosanga.vercel.app/projects/hubspot-lead-routing`
 
 ## Local review surfaces
 
@@ -65,6 +72,10 @@ After reviewing the Gate 4 instructions, Leo approved the production cutover on
 2026-09-11. Pull request 1 was merged with a merge commit as required by the
 rollback plan, and the resulting Vercel production deployment completed
 successfully.
+
+On 2026-09-27, Leo approved the final HubSpot case-study recommendations, the
+shared case-study hero scale, and deployment. Commit `debe80d` was pushed to
+`main`, and Vercel completed the production deployment successfully.
 
 ## Current implementation state
 
@@ -310,8 +321,8 @@ Escape, and returned focus to the exact image or text opener. Desktop and mobile
 HubSpot checks had no horizontal overflow. Browser logs contained only the
 existing site-wide theme hydration warning.
 
-Commit, push, preview, deployment, and publication remain outside this local
-implementation state.
+Commit, push, deployment, and canonical production verification are complete
+for this release.
 
 ## Checks last run
 
@@ -375,16 +386,22 @@ implementation state.
 - A sandboxed build attempt could not spawn Vite's Windows native dependency.
   The same final build passed outside the restricted sandbox with the normal
   project command. This was tooling isolation, not an application failure.
+- Release commit `debe80d` passed TypeScript, targeted ESLint, relevant Prettier,
+  the production build, staged-diff validation, and the private-identifier scan.
+- The production homepage links to the HubSpot project. The HubSpot and Booking
+  Agent routes use the same 102.4-pixel desktop hero-title scale and the same
+  54.64-pixel scale at 390 pixels wide, with no horizontal overflow.
+- The canonical HubSpot route renders all five evidence figures. Its image and
+  text openers launch the accessible evidence viewer, and the Close control
+  returns to the case study.
 
 ## Exact next action
 
-The local `main` baseline is aligned with the five Booking Agent commits already
-deployed on `origin/main`, and the uncommitted HubSpot work remains intact. The
-next gated step is to stage only the reviewed case-study files, exclude unrelated
-local context files, inspect the staged diff, and create the local release
-commit. Commit, push, preview, deployment, and publication remain separate
-approval gates. Keep the baseline tag and `redesign/v2` branch intact, and never
-rewrite `main` history.
+The HubSpot CRM case study is live on the canonical production site. Keep the
+baseline tag and `redesign/v2` branch intact, never rewrite `main` history, and
+continue to exclude the unrelated local context files from future commits. The
+next action is the next user-directed portfolio improvement or a production
+defect found through monitoring.
 
 ## Required read order
 
