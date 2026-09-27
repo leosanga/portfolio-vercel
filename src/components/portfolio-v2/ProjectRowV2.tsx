@@ -1,5 +1,6 @@
 import type { ProjectViewModel } from "@/content/portfolio-v2/types";
 
+import { ProjectVisualDisclosureV2 } from "./ProjectVisualDisclosureV2";
 import { WorkflowDisclosureV2 } from "./WorkflowDisclosureV2";
 
 type ProjectRowV2Props = {
@@ -36,7 +37,11 @@ export function ProjectRowV2({ project, index }: ProjectRowV2Props) {
             <span key={item}>{item}</span>
           ))}
         </div>
-        {project.flow ? <WorkflowDisclosureV2 flow={project.flow} /> : null}
+        {project.visualExperience ? (
+          <ProjectVisualDisclosureV2 experience={project.visualExperience} />
+        ) : project.flow ? (
+          <WorkflowDisclosureV2 flow={project.flow} />
+        ) : null}
       </div>
       <span className="pv2-project-row__cue" aria-hidden="true" />
     </article>

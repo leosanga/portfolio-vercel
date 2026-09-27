@@ -875,6 +875,10 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   padding: 0 var(--pv2-space-12) var(--pv2-space-12);
 }
 
+.pv2-workflow-disclosure:not([open]) > .pv2-workflow-disclosure__content {
+  display: none;
+}
+
 .pv2-workflow {
   padding-top: var(--pv2-space-8);
 }
@@ -979,6 +983,219 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   fill: var(--pv2-mist);
   opacity: 0;
   transform: translate(var(--pv2-start-x), var(--pv2-start-y));
+}
+
+.pv2-lead-qualification-loop {
+  padding-top: var(--pv2-space-8);
+}
+
+.pv2-lead-qualification-loop__scope {
+  max-width: 66ch;
+  color: var(--pv2-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.pv2-lead-qualification-loop__canvas {
+  position: relative;
+  max-width: 64rem;
+  margin-top: var(--pv2-space-8);
+  margin-inline: auto;
+}
+
+.pv2-lead-qualification-loop__sequence {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem clamp(1.5rem, 4vw, 4rem);
+  list-style: none;
+}
+
+.pv2-lead-qualification-loop__step,
+.pv2-lead-qualification-loop__outputs,
+.pv2-lead-qualification-loop__outputs > ul,
+.pv2-lead-qualification-loop__branch {
+  list-style: none;
+}
+
+.pv2-lead-qualification-loop__step {
+  display: flex;
+  justify-content: center;
+}
+
+.pv2-lead-qualification-loop__step--alert {
+  grid-column: 1;
+}
+
+.pv2-lead-qualification-loop__step--trigger,
+.pv2-lead-qualification-loop__step--contact,
+.pv2-lead-qualification-loop__step--research {
+  grid-column: 2;
+}
+
+.pv2-lead-qualification-loop__outputs {
+  grid-column: 1 / -1;
+}
+
+.pv2-lead-qualification-loop__outputs > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(2rem, 0.35fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.pv2-lead-qualification-loop__branch {
+  display: grid;
+  gap: 3rem;
+}
+
+.pv2-lead-qualification-loop__branch--hubspot {
+  grid-column: 3;
+}
+
+.pv2-lead-qualification-loop__branch--slack {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.pv2-qualification-node {
+  width: 100%;
+  max-width: 19rem;
+  min-height: 6.1rem;
+  padding: 1rem 1.125rem;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line);
+  border-left-width: 3px;
+  border-radius: var(--pv2-radius-content);
+  opacity: 1;
+  transform: translateY(0.2rem);
+  transition:
+    opacity 260ms ease,
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease;
+}
+
+.pv2-qualification-node--slack {
+  border-left-color: var(--pv2-mist);
+}
+
+.pv2-qualification-node--n8n {
+  border-left-color: var(--pv2-lavender);
+}
+
+.pv2-qualification-node--hubspot {
+  border-left-color: var(--pv2-sage);
+}
+
+.pv2-qualification-node--team {
+  border-left-color: var(--pv2-mist);
+  border-left-style: dashed;
+}
+
+.pv2-qualification-node[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 82%, var(--pv2-lavender));
+  border-color: var(--pv2-line-strong);
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pv2-qualification-node[data-state="complete"] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pv2-qualification-node__tag {
+  margin-bottom: 0.5rem;
+  color: var(--pv2-text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pv2-qualification-node__label {
+  color: var(--pv2-text-primary);
+  font-size: 0.9375rem;
+  font-weight: 570;
+  line-height: 1.45;
+}
+
+.pv2-lead-qualification-loop__connectors {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.pv2-lead-qualification-loop__connectors path {
+  fill: none;
+  stroke: var(--pv2-line);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition:
+    stroke 260ms ease,
+    opacity 260ms ease;
+}
+
+.pv2-lead-qualification-loop__connectors g[data-state="pending"] path {
+  opacity: 0.55;
+}
+
+.pv2-lead-qualification-loop__connectors g[data-state="active"] path,
+.pv2-lead-qualification-loop__connectors g[data-state="complete"] path {
+  stroke: var(--pv2-line-strong);
+  opacity: 1;
+}
+
+.pv2-lead-qualification-loop__connectors circle {
+  fill: var(--pv2-mist);
+  opacity: 0;
+  transform: translate(var(--pv2-start-x), var(--pv2-start-y));
+}
+
+@media (max-width: 767px) {
+  .pv2-lead-qualification-loop__sequence {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.75rem;
+  }
+
+  .pv2-lead-qualification-loop__step--alert,
+  .pv2-lead-qualification-loop__step--trigger,
+  .pv2-lead-qualification-loop__step--contact,
+  .pv2-lead-qualification-loop__step--research,
+  .pv2-lead-qualification-loop__outputs {
+    grid-column: 1;
+  }
+
+  .pv2-lead-qualification-loop__outputs > ul {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.75rem;
+  }
+
+  .pv2-lead-qualification-loop__branch--hubspot,
+  .pv2-lead-qualification-loop__branch--slack {
+    grid-row: auto;
+    grid-column: 1;
+  }
+
+  .pv2-lead-qualification-loop__branch--hubspot {
+    order: 1;
+  }
+
+  .pv2-lead-qualification-loop__branch--slack {
+    order: 2;
+  }
+
+  .pv2-qualification-node {
+    max-width: 26rem;
+    min-height: 0;
+  }
 }
 
 .pv2-project-list {
@@ -1670,6 +1887,10 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     animation: pv2-workflow-travel 900ms linear var(--pv2-path-delay) 1 both;
   }
 
+  .pv2-lead-qualification-loop__connectors g[data-state="active"] circle {
+    animation: pv2-workflow-travel 620ms linear 1 both;
+  }
+
   .pv2-booking-record__row:not([data-state="pending"]):not([data-state="reset"]) strong {
     animation: pv2-booking-record-resolve 360ms var(--ease-out) 1 both;
   }
@@ -2283,6 +2504,8 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-portrait-frame,
   .pv2-workflow-disclosure > summary,
   .pv2-workflow-disclosure__control,
+  .pv2-qualification-node,
+  .pv2-lead-qualification-loop__connectors path,
   .pv2-project-row__cue,
   .pv2-approach-step__node,
   .pv2-approach-step__line,
@@ -2314,6 +2537,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-portrait-enter,
   .pv2-hero-signal__dot,
   .pv2-workflow__signals circle,
+  .pv2-lead-qualification-loop__connectors circle,
   .pv2-booking-record__row strong,
   .pv2-architecture-node,
   .pv2-architecture-node--ai strong span,
@@ -2325,6 +2549,10 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-hero-signal__dot,
   .pv2-workflow__signals circle {
+    display: none;
+  }
+
+  .pv2-lead-qualification-loop__connectors circle {
     display: none;
   }
 
@@ -2372,6 +2600,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-capabilities,
   .pv2-conversation__panel,
   .pv2-workflow-node,
+  .pv2-qualification-node,
   .pv2-booking-record__frame,
   .pv2-booking-record__row,
   .pv2-booking-proof__outcome,
@@ -2403,6 +2632,16 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-hero-signal__path,
   .pv2-workflow__static-paths path {
     stroke: CanvasText;
+  }
+
+  .pv2-lead-qualification-loop__connectors path {
+    stroke: CanvasText;
+  }
+
+  .pv2-qualification-node {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 
   .pv2-signal-mark__start,

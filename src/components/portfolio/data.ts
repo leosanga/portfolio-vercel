@@ -306,7 +306,7 @@ export const PROJECTS: Project[] = [
       "An n8n workflow runs the qualification research automatically and writes the result back into HubSpot for its native workflow to act on, so a lead's priority no longer depends on who opens it or when.",
     hardPart:
       "The workflow required n8n to integrate with HubSpot without disrupting its native execution, using webhooks and the HubSpot API to write custom properties the existing workflow could recognize and use to proceed. This qualification step is one portion of a much larger workflow.",
-    stack: ["HubSpot API", "Webhooks", "n8n", "LLM", "Custom Properties"],
+    stack: ["HubSpot API", "Slack", "Webhooks", "n8n", "LLM", "Custom Properties"],
   },
   {
     title: "AI-Assisted Outbound Prospecting Workflow (n8n)",

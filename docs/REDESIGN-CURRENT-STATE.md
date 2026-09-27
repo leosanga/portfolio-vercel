@@ -1,6 +1,6 @@
 # Portfolio Redesign Current State
 
-Last updated: 2026-09-27
+Last updated: 2026-09-28
 
 ## Current phase
 
@@ -324,6 +324,44 @@ existing site-wide theme hydration warning.
 Commit, push, deployment, and canonical production verification are complete
 for this release.
 
+## Project 4 qualification-loop visual, local working state
+
+Leo approved and Codex completed the local homepage visual for
+`AI-Assisted Lead Qualification (HubSpot + n8n)` on 2026-09-28. The published
+project copy is unchanged. `Slack` was added to the visible technology list
+because it is both the workflow trigger and the team-facing outcome surface.
+
+The native disclosure is labeled `Qualification loop` and opens a reusable
+project-visual shell. Its project-specific canvas shows the existing HubSpot
+workflow posting a missing-information alert to Slack, the Slack webhook
+starting n8n with the contact email, HubSpot contact retrieval, n8n and LLM
+research, the qualification write-back to HubSpot, the existing HubSpot
+workflows continuing from that update, and the outcome returning to the
+original Slack thread for team coordination. The qualification criteria and
+downstream routing paths remain intentionally out of scope.
+
+The eight-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on the complete
+state. The server-rendered and no-JavaScript state is also complete and readable.
+Desktop uses a compact branching loop, while narrow viewports use one semantic
+system-of-record-first sequence without horizontal overflow. The visual uses
+semantic nested lists and keeps the SVG connector layer decorative.
+
+TypeScript, targeted ESLint for the changed version 2 modules, relevant
+Prettier checks, `git diff --check`, the production build, and server-rendered
+content checks pass. Chrome browser review covered the expanded and collapsed
+states, Enter and Space operation, the live loop, desktop composition, a 390 by
+844 narrow viewport, zero horizontal overflow, and unchanged Projects
+scrollspy state. A cold implementation review also found and resolved bounded
+timer cleanup, a ResizeObserver fallback, explicit list semantics, inactive
+step readability, and a native-details closed-state paint issue. The full lint
+baseline remains unchanged in `src/components/portfolio/data.ts`.
+
+The approved design and copy are recorded in
+[`PROJECT-04-LEAD-QUALIFICATION-VISUAL-SPEC.md`](./PROJECT-04-LEAD-QUALIFICATION-VISUAL-SPEC.md).
+Leo approved the final hook and production release on 2026-09-28. The visual is
+included in the current production release for the canonical portfolio.
+
 ## Checks last run
 
 - TypeScript: passed.
@@ -397,11 +435,11 @@ for this release.
 
 ## Exact next action
 
-The HubSpot CRM case study is live on the canonical production site. Keep the
-baseline tag and `redesign/v2` branch intact, never rewrite `main` history, and
-continue to exclude the unrelated local context files from future commits. The
-next action is the next user-directed portfolio improvement or a production
-defect found through monitoring.
+Begin the approved project-by-project design process for Project 5,
+`AI-Assisted Outbound Prospecting Workflow (n8n)`. Review its current evidence
+and define a distinct visual concept before implementation. Keep the baseline
+tag and `redesign/v2` branch intact, never rewrite `main` history, and continue
+to exclude unrelated local context files from future commits.
 
 ## Required read order
 

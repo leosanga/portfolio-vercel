@@ -14,6 +14,7 @@ import type {
 } from "./types";
 import { BOOKING_AGENT_PROJECT } from "./booking-agent";
 import { HUBSPOT_LEAD_ROUTING_PROJECT } from "./hubspot-lead-routing";
+import { PROJECT_VISUALS } from "./project-visuals";
 
 export const NAVIGATION = [
   { id: "projects", label: "Projects" },
@@ -110,6 +111,7 @@ const LEGACY_PROJECT_VIEW_MODELS: readonly ProjectViewModel[] = LEGACY_PROJECTS.
       homepageRole: "standard",
       ...(project.hardPart ? { hardPart: project.hardPart } : {}),
       ...(project.flow ? { flow: project.flow } : {}),
+      ...(PROJECT_VISUALS[slug] ? { visualExperience: PROJECT_VISUALS[slug] } : {}),
     };
   },
 );

@@ -61,6 +61,25 @@ export type HubSpotCoverageReconciliationProofExperience = {
 export type ProjectProofExperience =
   BookingReliabilityProofExperience | HubSpotCoverageReconciliationProofExperience;
 
+export type LeadQualificationLoopExperience = {
+  kind: "lead-qualification-loop";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  nodes: {
+    alert: { tag: string; label: string };
+    trigger: { tag: string; label: string };
+    contact: { tag: string; label: string };
+    research: { tag: string; label: string };
+    hubspotUpdate: { tag: string; label: string };
+    hubspotOutcome: { tag: string; label: string };
+    slackReply: { tag: string; label: string };
+    slackOutcome: { tag: string; label: string };
+  };
+};
+
+export type ProjectVisualExperience = LeadQualificationLoopExperience;
+
 export type ProjectViewModel = {
   slug: string;
   title: string;
@@ -71,6 +90,7 @@ export type ProjectViewModel = {
   caseStudyPath?: string;
   caseStudyLabel?: string;
   proofExperience?: ProjectProofExperience;
+  visualExperience?: ProjectVisualExperience;
   hardPart?: string;
   flow?: Flow;
 };
