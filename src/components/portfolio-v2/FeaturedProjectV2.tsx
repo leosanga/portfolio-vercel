@@ -7,7 +7,7 @@ export function FeaturedProjectV2({ project }: { project: ProjectViewModel }) {
   return (
     <article className="pv2-featured-project">
       <div className="pv2-featured-project__header">
-        <p className="pv2-project-index">01 / Featured system</p>
+        <p className="pv2-project-index">01 / Featured case study</p>
         <h3>{project.title}</h3>
       </div>
       <div
