@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectsHubspotLeadRoutingRouteImport } from './routes/projects/hubspot-lead-routing'
 import { Route as ProjectsN8nBookingAgentRouteImport } from './routes/projects/n8n-booking-agent'
 
 const IndexRoute = IndexRouteImport.update({
@@ -17,6 +18,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsHubspotLeadRoutingRoute =
+  ProjectsHubspotLeadRoutingRouteImport.update({
+    id: '/projects/hubspot-lead-routing',
+    path: '/projects/hubspot-lead-routing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProjectsN8nBookingAgentRoute = ProjectsN8nBookingAgentRouteImport.update({
   id: '/projects/n8n-booking-agent',
   path: '/projects/n8n-booking-agent',
@@ -25,27 +32,36 @@ const ProjectsN8nBookingAgentRoute = ProjectsN8nBookingAgentRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
   '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
   '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
   '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/projects/n8n-booking-agent'
+  fullPaths:
+    '/' | '/projects/hubspot-lead-routing' | '/projects/n8n-booking-agent'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/n8n-booking-agent'
-  id: '__root__' | '/' | '/projects/n8n-booking-agent'
+  to: '/' | '/projects/hubspot-lead-routing' | '/projects/n8n-booking-agent'
+  id:
+    | '__root__'
+    | '/'
+    | '/projects/hubspot-lead-routing'
+    | '/projects/n8n-booking-agent'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectsHubspotLeadRoutingRoute: typeof ProjectsHubspotLeadRoutingRoute
   ProjectsN8nBookingAgentRoute: typeof ProjectsN8nBookingAgentRoute
 }
 
@@ -56,6 +72,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/hubspot-lead-routing': {
+      id: '/projects/hubspot-lead-routing'
+      path: '/projects/hubspot-lead-routing'
+      fullPath: '/projects/hubspot-lead-routing'
+      preLoaderRoute: typeof ProjectsHubspotLeadRoutingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/n8n-booking-agent': {
@@ -70,6 +93,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectsHubspotLeadRoutingRoute: ProjectsHubspotLeadRoutingRoute,
   ProjectsN8nBookingAgentRoute: ProjectsN8nBookingAgentRoute,
 }
 export const routeTree = rootRouteImport

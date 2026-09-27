@@ -49,6 +49,63 @@ manifest and Git history.
 - License: original portfolio asset owned by Leo Sanga
 - Produced: 2026-09-10
 
+## HubSpot case-study evidence
+
+- Purpose: owned native-system evidence for the HubSpot lead-routing case study
+- Source captures: `Routing Workflow.png`, `SLA Watch.png`, and
+  `RevOps Pipeline Health.png`
+- Source captured: 2026-09-22 from Leo Sanga's HubSpot developer sandbox
+  account using test data rather than customer data
+- Source SHA-256:
+  - `Routing Workflow.png`:
+    `BF18D8ABDC36551577E0455013B69D8D5D2539E4AD0112135874016BF06E5ADD`
+  - `SLA Watch.png`:
+    `A94E6682A5ED9DAC093E2A3B259B4059676E46406CEF5C69ED2EF7F4E0613948`
+  - `RevOps Pipeline Health.png`:
+    `633DE13093DC86D920B4C693792B79625BC2E25F3380EE4EBB7138400E437352`
+- Production tool: ImageMagick 7.1.2-30 Q16-HDRI x64
+- Transformations: deterministic crop, removal of unrelated edge controls,
+  metadata removal, and WebP encoding at quality 88
+- Public outputs: five WebP files under `hubspot/`
+- Output SHA-256:
+  - `routing-workflow.webp`:
+    `0609CA09602E08CEDCC8144181FD0627040040D15A31FC4D3A3B0F20743CD601`
+  - `response-time-workflow.webp`:
+    `BF2369D8D76D7837FFB2D0A4710091F2F1F90782F098589F92A06CCA7AE758F0`
+  - `response-time-report.webp`:
+    `AC5E2A3C054EC8C4C163B35B4AF208F8FF2613DD23B64627BD8209257DFE1B22`
+  - `closed-deals-score-report.webp`:
+    `D3F17947F6274FCAFD9A6B891E8FF9EA09EAA3FF2EC971D4FCB97D78C0EFDF5E`
+  - `routing-path-report.webp`:
+    `E21D98DFD596A5F7159BE61965E6DC6B6D373333A095C1DC17288CFE3FDEEF9A`
+- Focused derivatives produced from the reviewed public workflow captures:
+  - `routing-decision-detail.webp`, 870 by 470 pixels:
+    `magick routing-workflow.webp -crop 870x470+430+300 +repage -strip -quality 88 routing-decision-detail.webp`
+  - `small-company-route-detail.webp`, 780 by 850 pixels:
+    `magick routing-workflow.webp -crop 780x850+70+300 +repage -strip -quality 88 small-company-route-detail.webp`
+  - `response-time-enrollment-detail.webp`, 590 by 500 pixels:
+    `magick response-time-workflow.webp -crop 590x500+420+105 +repage -strip -quality 88 response-time-enrollment-detail.webp`
+  - `response-time-outcome-detail.webp`, 640 by 575 pixels:
+    `magick response-time-workflow.webp -crop 640x575+390+640 +repage -strip -quality 88 response-time-outcome-detail.webp`
+- Focused derivative SHA-256:
+  - `routing-decision-detail.webp`:
+    `0AAB62C6AB228FD517130D447AF86690BAB60095DAC61C42551C85F288F6A5CA`
+  - `small-company-route-detail.webp`:
+    `D722FFEE749E5A3BDF7195464515EE25622510C697792F3BDC204404C98D39D8`
+  - `response-time-enrollment-detail.webp`:
+    `47C984DBFFA6C838DACCC559E0DE4E7A70CE60D1EFCED3E3A571EF3AAC2DAA20`
+  - `response-time-outcome-detail.webp`:
+    `A01369499012DFEB62F2457EFAEA48C24F9E847CE91DC56F16E59013F6C49A8F`
+- Current display decision, 2026-09-24: these four focused workflow
+  derivatives are retained for provenance but are not imported by the case
+  study. The route displays the complete `routing-workflow.webp` and
+  `response-time-workflow.webp` images directly, with no separate full-workflow
+  disclosure.
+- Privacy review: no portal ID, email address, customer data, browser address
+  bar, or generated HubSpot report summary appears in the public outputs
+- License: owned screenshots supplied by Leo Sanga
+- Produced: 2026-09-22
+
 ## Social-sharing image
 
 - Purpose: Open Graph and Twitter large-image preview

@@ -2,6 +2,8 @@ import type { Flow } from "@/components/portfolio/data";
 
 export type SectionId = "projects" | "capabilities" | "approach";
 
+export type HomepageProjectRole = "lead" | "case-study" | "standard";
+
 export type NavigationItem = {
   id: SectionId;
   label: string;
@@ -29,7 +31,35 @@ export type BookingReliabilityProofExperience = {
   outcomeBody: string;
 };
 
-export type ProjectProofExperience = BookingReliabilityProofExperience;
+export type HubSpotCoverageReconciliationProofExperience = {
+  kind: "hubspot-coverage-reconciliation";
+  eyebrow: string;
+  heading: string;
+  totalAssigned: 14;
+  earlierMeasured: 8;
+  missingFromReport: 6;
+  currentMeasured: 14;
+  routes: readonly {
+    label: string;
+    count: number;
+  }[];
+  labels: {
+    assigned: string;
+    assignedUnit: string;
+    earlierReport: string;
+    measuredUnit: string;
+    missingUnit: string;
+    correction: string;
+    currentCoverage: string;
+    currentSupport: string;
+  };
+  correction: string;
+  outcomeHeading: string;
+  outcomeBody: string;
+};
+
+export type ProjectProofExperience =
+  BookingReliabilityProofExperience | HubSpotCoverageReconciliationProofExperience;
 
 export type ProjectViewModel = {
   slug: string;
@@ -37,7 +67,7 @@ export type ProjectViewModel = {
   problem: string;
   solution: string;
   stack: readonly string[];
-  featured: boolean;
+  homepageRole: HomepageProjectRole;
   caseStudyPath?: string;
   caseStudyLabel?: string;
   proofExperience?: ProjectProofExperience;

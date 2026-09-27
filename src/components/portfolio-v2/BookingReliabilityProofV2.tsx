@@ -4,16 +4,25 @@ import type { BookingReliabilityProofExperience } from "@/content/portfolio-v2/t
 
 type BookingReliabilityProofV2Props = {
   experience: BookingReliabilityProofExperience;
+  playback?: "once" | "repeat";
+  headingLevel?: "h2" | "h4";
+  headingId?: string;
 };
 
 const BOOKING_PROOF_FINAL_PHASE = 4;
 const BOOKING_PROOF_PHASE_DELAYS_MS = [180, 900, 1600, 2300, 3000] as const;
 const BOOKING_PROOF_REPEAT_DELAY_MS = 6500;
 
-export function BookingReliabilityProofV2({ experience }: BookingReliabilityProofV2Props) {
+export function BookingReliabilityProofV2({
+  experience,
+  playback = "repeat",
+  headingLevel = "h4",
+  headingId,
+}: BookingReliabilityProofV2Props) {
   const recordRef = useRef<HTMLDivElement>(null);
   const [phase, setPhase] = useState<number>(BOOKING_PROOF_FINAL_PHASE);
   const [paused, setPaused] = useState(true);
+  const Heading = headingLevel;
 
   useEffect(() => {
     const record = recordRef.current;
@@ -30,13 +39,15 @@ export function BookingReliabilityProofV2({ experience }: BookingReliabilityProo
 
     const startPlayback = () => {
       clearPlayback();
-      setPhase(-1);
+      setPhase(playback === "once" ? 0 : -1);
 
       BOOKING_PROOF_PHASE_DELAYS_MS.forEach((delay, nextPhase) => {
         playbackTimers.push(window.setTimeout(() => setPhase(nextPhase), delay));
       });
 
-      playbackTimers.push(window.setTimeout(startPlayback, BOOKING_PROOF_REPEAT_DELAY_MS));
+      if (playback === "repeat") {
+        playbackTimers.push(window.setTimeout(startPlayback, BOOKING_PROOF_REPEAT_DELAY_MS));
+      }
     };
 
     const updatePlayback = () => {
@@ -78,14 +89,14 @@ export function BookingReliabilityProofV2({ experience }: BookingReliabilityProo
       document.removeEventListener("visibilitychange", updatePlayback);
       reducedMotion.removeEventListener("change", updatePlayback);
     };
-  }, []);
+  }, [playback]);
 
   return (
     <figure className="pv2-booking-proof">
       <div className="pv2-booking-proof__header">
         <div>
           <p className="pv2-booking-proof__eyebrow">{experience.eyebrow}</p>
-          <h4>{experience.heading}</h4>
+          <Heading id={headingId}>{experience.heading}</Heading>
         </div>
       </div>
 

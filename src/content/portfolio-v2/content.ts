@@ -13,6 +13,7 @@ import type {
   ProjectViewModel,
 } from "./types";
 import { BOOKING_AGENT_PROJECT } from "./booking-agent";
+import { HUBSPOT_LEAD_ROUTING_PROJECT } from "./hubspot-lead-routing";
 
 export const NAVIGATION = [
   { id: "projects", label: "Projects" },
@@ -106,7 +107,7 @@ const LEGACY_PROJECT_VIEW_MODELS: readonly ProjectViewModel[] = LEGACY_PROJECTS.
       problem: project.problem,
       solution: project.solution,
       stack: project.stack,
-      featured: false,
+      homepageRole: "standard",
       ...(project.hardPart ? { hardPart: project.hardPart } : {}),
       ...(project.flow ? { flow: project.flow } : {}),
     };
@@ -115,17 +116,22 @@ const LEGACY_PROJECT_VIEW_MODELS: readonly ProjectViewModel[] = LEGACY_PROJECTS.
 
 export const PROJECTS: readonly ProjectViewModel[] = [
   BOOKING_AGENT_PROJECT,
+  HUBSPOT_LEAD_ROUTING_PROJECT,
   ...LEGACY_PROJECT_VIEW_MODELS,
 ];
 
-if (PROJECTS.length !== 6) {
+if (PROJECTS.length !== 7) {
   throw new Error(
-    `Portfolio version 2 expects exactly 6 current projects, received ${PROJECTS.length}.`,
+    `Portfolio version 2 expects exactly 7 current projects, received ${PROJECTS.length}.`,
   );
 }
 
-if (PROJECTS.filter((project) => project.featured).length !== 1) {
-  throw new Error("Portfolio version 2 expects exactly one featured project.");
+if (PROJECTS.filter((project) => project.homepageRole === "lead").length !== 1) {
+  throw new Error("Portfolio version 2 expects exactly one lead project.");
+}
+
+if (PROJECTS.filter((project) => project.homepageRole === "case-study").length !== 1) {
+  throw new Error("Portfolio version 2 expects exactly one secondary case study.");
 }
 
 export const APPROACH = LEGACY_APPROACH;

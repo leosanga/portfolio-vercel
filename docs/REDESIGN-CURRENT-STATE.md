@@ -1,6 +1,6 @@
 # Portfolio Redesign Current State
 
-Last updated: 2026-09-11
+Last updated: 2026-09-27
 
 ## Current phase
 
@@ -151,12 +151,15 @@ gates, approved copy, homepage role, dedicated-route structure, media strategy,
 and brand requirements are recorded in
 [`N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md`](./N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md).
 
-The homepage now has six projects with `AI Booking Agent (n8n)` as the only
-featured project. `/projects/n8n-booking-agent` contains the approved text-led
-case study, scroll-led architecture handoff, four proof chapters, architecture
-evolution, adaptability section, and final scheduling action. It intentionally
-has no Loom, screenshot placeholder, public agent, or new dependency. The
-previous featured project remains second and keeps its workflow disclosure.
+The Booking Agent launched as the lead project in a six-project collection. The
+current local collection has seven projects after the HubSpot case study was
+added, and `AI Booking Agent (n8n)` remains the only featured project.
+`/projects/n8n-booking-agent` contains the approved text-led case study,
+failure-safe outcome record, scroll-led architecture handoff, four proof
+chapters, architecture evolution, adaptability section, and final scheduling
+action. It intentionally has no Loom, screenshot placeholder, public agent, or
+new dependency. The previous featured project remains a standard project and
+keeps its workflow disclosure.
 
 The featured booking-agent card now includes a focused failure-safe outcome
 record. It shows a valid request, a passed rule check, a failed booking-calendar
@@ -166,6 +169,11 @@ stops before it sends a false confirmation.` The record repeats on a calm
 6.5-second cadence while visible and pauses when it is offscreen, the tab is
 hidden, or reduced motion is requested. It does not call the live workflow or
 depend on a third-party asset.
+
+The same outcome record now appears directly after the case-study hero and
+before Section 01. On the dedicated route it plays once and settles on the safe
+final state. This carries the homepage promise into the case study instead of
+asking the reader to remember a visual they saw earlier.
 
 The case-study architecture section now answers `Who controls the booking` with
 one persistent system. Its four scroll chapters show direct AI control, the AI
@@ -197,8 +205,113 @@ Local build, TypeScript, targeted lint, formatting, desktop Chrome, dark-theme,
 without JavaScript or motion, pauses offscreen, and keeps Project 2's disclosure
 unchanged. There is no horizontal overflow and no new browser-console issue. The
 existing theme-bootstrap hydration warning remains a known baseline. Publication
-was approved on 2026-09-16 for the canonical production site. Later media
-additions are not yet approved.
+was approved on 2026-09-16 for the canonical production site. The later
+real-system evidence release was merged to `origin/main` in merge commit
+`48cdd15` and is now the production baseline. The route includes seven evidence
+figures, an in-page evidence viewer, and the twelve-stage workflow map.
+
+## HubSpot secondary case study, local working state
+
+The approved HubSpot visual-impact refinement is complete in the local working
+tree.
+`Lead Routing & Pipeline Health System (HubSpot)` remains the first secondary
+case study after the featured Booking Agent. Existing project copy and order are
+unchanged after the insertion.
+
+The homepage card answers `The problem`, `What I built`, and `The hard part`,
+then uses a focused report-coverage check as its signature visual. A 5.6-second
+cycle shows 14 assigned test leads, the 8-and-6 route split, the earlier report
+measuring only eight leads, the response-time check moving outside routing, and
+the final 14-of-14 coverage. The visual holds the complete state between passes
+and pauses offscreen or when the document is hidden.
+
+The route at `/projects/hubspot-lead-routing` now starts with the unnumbered hero
+and the same report-coverage proof used on the homepage. Section 01 restores the
+compact Overview. Section 02 uses a fixed-height CRM decision trail to show a
+transferable system-design principle: current fields can change while the
+decision history remains available to operations and reporting. HubSpot is the
+implementation evidence rather than the limit of the idea.
+
+The 2026-09-24 case-study review made further refinements. The hero now uses
+the same support-copy role and scale as the Booking Agent and describes the
+project instead of defining CRM design through four questions. A later rhythm
+review placed the support copy and technology list in one right-hand column, so
+the tall title no longer creates a large gap between them. The former Sections
+02 and 03 were first combined, then replaced after another business-owner and
+systems-architecture review. The final Section 02 separates the portable CRM
+principle from the named platform used to prove it. The animation runs inside a
+compact canvas instead of extending the page through scroll-led scenes.
+
+The complete Routing Workflow and SLA Watch screenshots now appear side by side
+on desktop and stack only on mobile. Cropped workflow details and the separate
+`View full workflow` disclosures are no longer rendered. Each report discovery
+uses its clean dashboard card without repeating the workflow canvases. The four
+earlier focused derivatives remain in the local asset record for provenance but
+are not imported by the current route.
+
+The supporting score report is now visible inside Section 04 rather than hidden
+behind `View supporting report evidence`. Numeric indices are reserved for
+top-level sections. The Booking Agent and HubSpot homepage signature visuals now
+appear immediately after their case-study heroes and before Section 01.
+
+TypeScript, targeted ESLint, Prettier, the production build, and server-rendered
+content checks pass. Desktop Chrome visual review and a 390 by 844 responsive
+check found no document-level horizontal overflow across the homepage and both
+case studies. The server-rendered routes contain their final proof states before
+JavaScript runs. Clean browser loads show only the existing root-theme hydration
+warning, a known site-wide baseline; no HubSpot-specific or Booking-proof
+runtime error was introduced.
+
+The later case-study hierarchy refinement passed TypeScript, targeted ESLint,
+Prettier, the production build, desktop Chrome review, and a 500-pixel headless
+Chrome rendering. The revised hero, combined lead section, and workflow
+evidence have no horizontal clipping. The production bundle includes the two
+complete workflow images and excludes all four focused workflow derivatives.
+
+The final decision-trail implementation was verified again on 2026-09-27.
+TypeScript, targeted ESLint, Prettier, and the production build pass. Desktop
+Chrome at a 1468-pixel content width and mobile Chrome at a 390 by 844 viewport
+show no document-level horizontal overflow. The decision trail is 536 pixels
+tall on desktop and uses a normal stacked mobile layout rather than scroll-led
+motion. Inactive animation states retain readable contrast. Server HTML contains
+the complete decision-trail state, both full workflow images, all three report
+images, and the corrected proof-before-Overview order on both case-study routes.
+The only browser console error remains the documented site-wide theme hydration
+warning.
+
+The final compactness and integration review on 2026-09-27 reconciled the five
+Booking Agent evidence commits already deployed on `origin/main` with the local
+HubSpot and shared-layout work. The combined candidate keeps all seven Booking
+Agent evidence figures and its in-page viewer. Desktop review found the HubSpot
+hero and opening proof compact enough to expose Section 01 in the same viewport,
+and the Booking Agent hero now reveals its failure-safe proof without a long
+empty handoff. At 390 by 844, the HubSpot proof is 603 pixels tall and the
+Booking Agent proof is 736 pixels tall. Neither route has document-level
+horizontal overflow. Section 05 uses one responsibility boundary, and Section
+06 uses one rollout rail with distinct current and future markers.
+
+The final opening and evidence refinement uses the HubSpot hero's efficient
+desktop composition on the Booking Agent route: the project title and the
+supporting copy and technology list now share the opening row instead of leaving
+an empty grid row between them. All five HubSpot screenshots remain visible
+inline and now also open in the established Booking Agent evidence viewer from
+either the image or a visible `View larger` action. The shared case-study guide
+now records this hero rule, the viewer behavior, and the project-agnostic lessons
+consolidated from the HubSpot case study.
+
+Final browser review measured the Booking Agent hero at 448 pixels on a 1483 by
+1214 desktop viewport. Its full failure-safe proof ended at 1089 pixels, so the
+opening behavior remained visible in the same viewport. At 390 by 844, the hero
+was 573 pixels tall and the route had no horizontal overflow. The HubSpot route
+rendered five complete inline screenshots and five visible `View larger`
+actions. On mobile, a workflow screenshot opened at 1024 pixels wide for close
+inspection, switched to a 330 by 320 fit view when activated, closed with
+Escape, and returned focus to the exact image or text opener. Desktop and mobile
+HubSpot checks had no horizontal overflow. Browser logs contained only the
+existing site-wide theme hydration warning.
+
+Commit, push, preview, deployment, and publication remain outside this local
+implementation state.
 
 ## Checks last run
 
@@ -206,6 +319,11 @@ additions are not yet approved.
 - Targeted version 2 ESLint: passed.
 - Version 2 Prettier check: passed.
 - Production build: passed.
+- The Booking Agent evidence harness completed 22 light- and dark-theme runs
+  across its 11-viewport matrix. Image loading, evidence-viewer interaction,
+  focus behavior, zoom, reduced motion, forced colors, horizontal overflow, and
+  outside-request checks produced no new failure. The harness still exits with
+  the existing root-theme hydration warning recorded below.
 - Server-rendered content presence: passed for the approved H1, role line, four
   capability headings, all five `The hard part` labels, both locked figures,
   final CTA, calendar destination, theme bootstrap, canonical, and social
@@ -260,21 +378,24 @@ additions are not yet approved.
 
 ## Exact next action
 
-Verify the canonical production homepage and booking-agent case study after the
-approved deployment. Later, create a reusable case-study design reference that
-captures structure, audience, value, visualizations, motion, experience, and the
-decision process behind this release. Keep the baseline tag and `redesign/v2`
-branch intact, and never rewrite `main` history.
+The local `main` baseline is aligned with the five Booking Agent commits already
+deployed on `origin/main`, and the uncommitted HubSpot work remains intact. The
+next gated step is to stage only the reviewed case-study files, exclude unrelated
+local context files, inspect the staged diff, and create the local release
+commit. Commit, push, preview, deployment, and publication remain separate
+approval gates. Keep the baseline tag and `redesign/v2` branch intact, and never
+rewrite `main` history.
 
 ## Required read order
 
 1. Repository `AGENTS.md` when present, otherwise repository `CLAUDE.md`
 2. [`PROJECT-GOAL.md`](./PROJECT-GOAL.md)
-3. Approved content, visual, asset, motion, and responsive specifications
-4. [`PORTFOLIO-FRONTEND-ARCHITECTURE-IMPLEMENTATION-PLAN.md`](./PORTFOLIO-FRONTEND-ARCHITECTURE-IMPLEMENTATION-PLAN.md)
-5. [`PORTFOLIO-QA-VISUAL-ACCEPTANCE-PLAN.md`](./PORTFOLIO-QA-VISUAL-ACCEPTANCE-PLAN.md)
-6. [`REDESIGN-WORKFLOW-ROLLBACK-PLAN.md`](./REDESIGN-WORKFLOW-ROLLBACK-PLAN.md)
-7. This file
-8. [`qa/portfolio-v2-gate3-release-review-2026-09-11.md`](./qa/portfolio-v2-gate3-release-review-2026-09-11.md)
-9. `ANIMATION_PLAN_PROMPT.md` before motion or measured-section work
-10. Relevant source files
+3. [`CASE-STUDY-DESIGN-GUIDELINES.md`](./CASE-STUDY-DESIGN-GUIDELINES.md)
+4. Approved content, visual, asset, motion, and responsive specifications
+5. [`PORTFOLIO-FRONTEND-ARCHITECTURE-IMPLEMENTATION-PLAN.md`](./PORTFOLIO-FRONTEND-ARCHITECTURE-IMPLEMENTATION-PLAN.md)
+6. [`PORTFOLIO-QA-VISUAL-ACCEPTANCE-PLAN.md`](./PORTFOLIO-QA-VISUAL-ACCEPTANCE-PLAN.md)
+7. [`REDESIGN-WORKFLOW-ROLLBACK-PLAN.md`](./REDESIGN-WORKFLOW-ROLLBACK-PLAN.md)
+8. This file
+9. [`qa/portfolio-v2-gate3-release-review-2026-09-11.md`](./qa/portfolio-v2-gate3-release-review-2026-09-11.md)
+10. `ANIMATION_PLAN_PROMPT.md` before motion or measured-section work
+11. Relevant source files

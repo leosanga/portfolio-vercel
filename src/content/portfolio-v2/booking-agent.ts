@@ -163,7 +163,7 @@ export const BOOKING_AGENT_PROJECT = {
   solution: BOOKING_AGENT_OVERVIEW.solution,
   hardPart: BOOKING_AGENT_OVERVIEW.hardPart,
   stack: BOOKING_AGENT_STACK,
-  featured: true,
+  homepageRole: "lead",
   caseStudyPath: "/projects/n8n-booking-agent",
   caseStudyLabel: "See how the safeguards work",
   proofExperience: BOOKING_AGENT_PROOF,

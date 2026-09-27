@@ -1,11 +1,13 @@
 import { PROJECTS } from "@/content/portfolio-v2/content";
 
+import { CaseStudyProjectV2 } from "./CaseStudyProjectV2";
 import { FeaturedProjectV2 } from "./FeaturedProjectV2";
 import { ProjectRowV2 } from "./ProjectRowV2";
 
 export function ProjectsV2() {
-  const featured = PROJECTS.find((project) => project.featured);
-  const remaining = PROJECTS.filter((project) => !project.featured);
+  const featured = PROJECTS.find((project) => project.homepageRole === "lead");
+  const caseStudies = PROJECTS.filter((project) => project.homepageRole === "case-study");
+  const remaining = PROJECTS.filter((project) => project.homepageRole === "standard");
 
   if (!featured) return null;
 
@@ -21,9 +23,16 @@ export function ProjectsV2() {
           <h2 id="pv2-projects-title">Projects</h2>
         </div>
         <FeaturedProjectV2 project={featured} />
+        {caseStudies.map((project, index) => (
+          <CaseStudyProjectV2 project={project} index={index + 2} key={project.slug} />
+        ))}
         <div className="pv2-project-list">
           {remaining.map((project, index) => (
-            <ProjectRowV2 project={project} index={index + 2} key={project.slug} />
+            <ProjectRowV2
+              project={project}
+              index={index + caseStudies.length + 2}
+              key={project.slug}
+            />
           ))}
         </div>
       </div>

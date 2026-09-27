@@ -149,6 +149,10 @@ Publishing the completed branch to GitHub and merging it into production are
 separate approval gates. Preserve the current implementation through an
 immutable baseline tag, retained history, and a reversible cutover commit.
 
+Case-study composition, writing, evidence, numbering, and motion also follow
+[`CASE-STUDY-DESIGN-GUIDELINES.md`](./CASE-STUDY-DESIGN-GUIDELINES.md). A more
+specific approved case-study specification still takes precedence.
+
 ## Seniority and role standard
 
 Every substantive task must be approached with the relevant senior professional

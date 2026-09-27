@@ -1,9 +1,11 @@
 import {
   BOOKING_AGENT_CASE_STUDY,
+  BOOKING_AGENT_PROOF,
   BOOKING_AGENT_STACK,
 } from "@/content/portfolio-v2/booking-agent";
 
 import { BookingAgentArchitectureV2 } from "./BookingAgentArchitectureV2";
+import { BookingReliabilityProofV2 } from "./BookingReliabilityProofV2";
 import { CaseEvidenceFigureV2 } from "./CaseEvidenceFigureV2";
 import { FooterV2 } from "./FooterV2";
 import { PortfolioUtilityDockV2 } from "./PortfolioUtilityDockV2";
@@ -33,18 +35,37 @@ export function BookingAgentCaseStudyV2() {
       </header>
 
       <main id="case-study-content" className="pv2-case-main">
-        <section className="pv2-case-hero" aria-labelledby="case-study-title">
+        <section className="pv2-case-hero pv2-booking-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid">
-            <h1 id="case-study-title">{hero.title}</h1>
-            <p className="pv2-case-hero__support">{hero.support}</p>
-            <div className="pv2-case-hero__stack" aria-label="Tech stack">
-              <p>TECH STACK</p>
-              <div className="pv2-project-stack">
-                {BOOKING_AGENT_STACK.map((item) => (
-                  <span key={item}>{item}</span>
-                ))}
+            <div className="pv2-booking-hero__title">
+              <h1 id="case-study-title">{hero.title}</h1>
+            </div>
+
+            <div className="pv2-booking-hero__details">
+              <p className="pv2-case-hero__support">{hero.support}</p>
+              <div className="pv2-case-hero__stack" aria-label="Tech stack">
+                <p>TECH STACK</p>
+                <div className="pv2-project-stack">
+                  {BOOKING_AGENT_STACK.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section
+          className="pv2-case-signature-proof pv2-case-booking-proof"
+          aria-labelledby="booking-failure-title"
+        >
+          <div className="pv2-frame">
+            <BookingReliabilityProofV2
+              experience={BOOKING_AGENT_PROOF}
+              playback="once"
+              headingLevel="h2"
+              headingId="booking-failure-title"
+            />
           </div>
         </section>
 
