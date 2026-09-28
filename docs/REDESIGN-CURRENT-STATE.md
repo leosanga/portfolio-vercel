@@ -401,8 +401,47 @@ The approved design and copy are recorded in
 The Project 5 visual is included in the current production release for the
 canonical portfolio.
 
+## Homepage project context and credibility, local review
+
+Leo approved a compact context layer between the `Projects` heading and the
+featured case study. It explains that the visible projects are selected from
+broader systems work and establishes the scale and background behind them.
+
+Approved introduction:
+
+`These are some of the systems I’ve built. Each one started with a different
+business problem and shows how I solved it.`
+
+Approved credibility route:
+
+- `5+ years` / `Business operations`
+- `3+ years` / `Systems engineering`
+- `Nearly 200` / `B2B clients supported through technical delivery`
+- `Hundreds` / `Production solutions owned through deployment`
+
+The rejected equal-cell statistics strip has been replaced by an asymmetric
+credibility route. The section title and project-selection rationale now share
+one compact header. The route gives the client and production scale signals
+greater visual weight, and the first featured case study begins within the
+initial desktop viewport. On narrow screens, the route becomes a compact
+vertical progression rather than a card grid.
+
+A signal travels through the route, rests, and repeats while its stable inner
+wrapper is active. The four nodes respond in sequence while the evidence stays
+settled and readable. Reduced-motion visitors receive the complete static
+state. The ID-bearing `#projects` section remains untransformed for scrollspy.
+The refined loop uses a 6.2-second cycle with roughly 1.2 seconds of travel and
+a longer quiet interval. The traveling signal is smaller than the route nodes,
+the evidence labels use 14-pixel body-text contrast, and the mobile section
+starts 16 pixels earlier. The local light-theme desktop, dark-theme desktop,
+390 px, and 320 px visual checks pass. Leo approved this revision for the
+canonical Vercel production release.
+
 ## Checks last run
 
+- The homepage credibility-route revision passes TypeScript, targeted ESLint,
+  relevant Prettier, `git diff --check`, and the Vercel production build.
+  Desktop and narrow local Chrome visual checks pass.
 - TypeScript: passed.
 - Targeted version 2 ESLint: passed.
 - Version 2 Prettier check: passed.
@@ -474,7 +513,8 @@ canonical portfolio.
 
 ## Exact next action
 
-Begin the project-by-project design process for Project 6. Keep the baseline
+After confirming the canonical homepage serves the approved credibility route,
+resume the project-by-project design process for Project 6. Keep the baseline
 tag and `redesign/v2` branch intact, never rewrite `main` history, and continue
 to exclude unrelated local context files from future commits.
 

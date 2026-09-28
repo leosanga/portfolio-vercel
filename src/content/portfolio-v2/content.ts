@@ -30,6 +30,29 @@ export const HERO: HeroContent = {
   callLabel: "Schedule a Call",
 };
 
+export const PROJECTS_CONTEXT = {
+  introduction:
+    "These are some of the systems I’ve built. Each one started with a different business problem and shows how I solved it.",
+  credibility: [
+    {
+      value: "5+ years",
+      label: "Business operations",
+    },
+    {
+      value: "3+ years",
+      label: "Systems engineering",
+    },
+    {
+      value: "Nearly 200",
+      label: "B2B clients supported through technical delivery",
+    },
+    {
+      value: "Hundreds",
+      label: "Production solutions owned through deployment",
+    },
+  ],
+} as const;
+
 export const CAPABILITIES = [
   {
     title: "Systems Integration + Automation",

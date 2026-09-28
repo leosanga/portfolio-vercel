@@ -266,9 +266,34 @@ Status: `approved`
 
 Status: `approved`
 
-No introductory paragraph or separate `More builds` section is required. The
-featured project's problem statement should begin the evidence quickly, and the
-remaining project entries should continue within the same section.
+The section opens with this approved introduction:
+
+`These are some of the systems I’ve built. Each one started with a different
+business problem and shows how I solved it.`
+
+Status: `approved`
+
+It is followed by a compact credibility route:
+
+| Value        | Label                                              |
+| ------------ | -------------------------------------------------- |
+| `5+ years`   | `Business operations`                              |
+| `3+ years`   | `Systems engineering`                              |
+| `Nearly 200` | `B2B clients supported through technical delivery` |
+| `Hundreds`   | `Production solutions owned through deployment`    |
+
+Status: `approved`
+
+The introduction explains why the visible projects were selected from Leo's
+broader work. The route connects operational grounding, technical tenure,
+client scope, and production delivery in that order. The two scale signals use
+greater visual weight than the two tenure signals. A smaller signal travels
+through the larger route nodes during a 6.2-second cycle, rests for most of that
+cycle, and repeats while the route is active. The evidence itself stays settled
+and readable. Use body-text contrast and a 14-pixel minimum for the evidence
+labels. Reduced-motion visitors receive the complete static route. Keep the
+header and route compact so the first featured project begins in the initial
+desktop viewport. Do not add a separate `More builds` section.
 
 ### Featured project
 
