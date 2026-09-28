@@ -1468,6 +1468,29 @@ The fifth story, as built:
 No dependency, route, metadata, homepage, social image, or third-party request
 changed.
 
+## Layout and map revision, 2026-09-28
+
+Approved by Leo after local review. It supersedes the phone map rule above.
+
+- The workflow map now opens in the same in-page evidence viewer as the
+  screenshots, from the drawing itself and from a `View larger` action. The
+  drawing shows at every width, and on phones the viewer opens it at a readable
+  scale that scrolls sideways. The numbered stage list stays as the map's text
+  equivalent for assistive technology but is no longer shown on screen. The
+  viewer inlines the SVG, so the theme recolors it there as well.
+- The failure-safe proof under the hero now gives the text the wider column
+  (7 to 5). The heading drops from five lines to three and both columns end
+  together, where the record card used to leave an empty band beneath it.
+- The homepage featured card uses a denser outcome record and tighter padding,
+  so its height falls from about 1,020 px to about 820 px at 1284 px wide.
+- `--pv2-space-5` was referenced but never defined, which invalidated every
+  declaration using it. It is now `1.25rem`. This restores the gap between the
+  title and the card in both opening proofs, and the intended spacing in the
+  HubSpot case study's discovery rows, supporting report, and rollout stages.
+- `scripts/booking-case-study-media-qa.mjs` now expects the drawing at every
+  width and opens the map viewer from both openers. Against the production
+  build it passed 22 of 22 theme and viewport runs.
+
 ### Post-review UX revision
 
 The first visual review found that the evidence set should remain, but its

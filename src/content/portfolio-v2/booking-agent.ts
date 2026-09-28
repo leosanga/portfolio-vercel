@@ -223,6 +223,10 @@ export const BOOKING_AGENT_CASE_STUDY = {
     // re-checking this list.
     map: {
       label: "Workflow map",
+      // The drawing's viewBox, which the viewer scales from.
+      width: 1220,
+      height: 566,
+      alt: "Diagram of the booking agent's workflow in 12 stages. The same stages are listed as text on this page.",
       caption:
         "The booking agent's workflow, grouped into 12 stages. Every conversation ends at stage 11, which replies to the guest and tells the team. The stages behind each safeguard appear below.",
       stages: [
