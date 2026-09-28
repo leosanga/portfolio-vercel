@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import type { ProjectVisualExperience } from "@/content/portfolio-v2/types";
 
+import { ExecutiveReportingArchitectureV2 } from "./ExecutiveReportingArchitectureV2";
 import { LeadQualificationLoopV2 } from "./LeadQualificationLoopV2";
 import { OutboundDraftAssemblyV2 } from "./OutboundDraftAssemblyV2";
 import { SupportTicketLifecycleV2 } from "./SupportTicketLifecycleV2";
@@ -75,6 +76,8 @@ export function ProjectVisualDisclosureV2({ experience }: { experience: ProjectV
           <OutboundDraftAssemblyV2 experience={experience} shouldAnimate={shouldAnimate} />
         ) : experience.kind === "support-ticket-lifecycle" ? (
           <SupportTicketLifecycleV2 experience={experience} shouldAnimate={shouldAnimate} />
+        ) : experience.kind === "executive-reporting-architecture" ? (
+          <ExecutiveReportingArchitectureV2 experience={experience} shouldAnimate={shouldAnimate} />
         ) : null}
       </div>
     </details>

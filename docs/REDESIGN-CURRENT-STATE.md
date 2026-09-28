@@ -436,6 +436,51 @@ The support-ticket project is now Project 6, immediately before Executive
 Reporting, which is now Project 7. Leo approved this ordering and the Project 6
 visual for the canonical Vercel production release on 2026-09-28.
 
+## Project 7 metric-architecture visual, local review
+
+Leo approved and Codex completed the local homepage visual for
+`Executive Reporting & Dashboard Automation (Fully custom)` on 2026-09-29.
+The disclosure is labeled `Metric architecture` with the hook
+`See how it works`.
+
+The visual is a reporting architecture workspace rather than a workflow strip
+or a simulated dashboard. Three representative reporting paths show that a
+metric may be supported through native reporting, external modeling, or a
+connector or custom API. The active path updates a central architecture
+blueprint before the completed metric becomes available in a shared reporting
+surface. The visual does not assign the listed technologies to specific roles
+because that implementation detail has not been confirmed.
+
+The approved outcome-first refinement now opens on the completed reporting
+state before it explains the architecture. The lead statement connects the
+system directly to the business result: reporting that once required manual
+analysis remains available on demand. A separate evidence note preserves the
+public boundary without competing with that message. Dashboard rows then move
+from `Manual analysis required` to `Available on demand`, and the dashboard
+itself is explicitly labeled as the outcome.
+
+The 10.6-second sequence opens with a 1.5-second completed-state hold, then
+loops while the disclosure is open, visible, the document is active, and
+motion is allowed. Otherwise it settles on a complete, readable state. Desktop
+uses three related regions with the blueprint as the focal point. Narrow
+viewports preserve the same semantic order in one column. No client data, real
+metric names or values, formulas, endpoints, refresh schedules, screenshots,
+or employer details are shown.
+
+TypeScript, targeted ESLint, relevant Prettier formatting, `git diff --check`,
+and the production build pass. Local Chrome review covered live animation
+states, the completed hold state, light and dark desktop composition, keyboard
+disclosure behavior, and a 390 by 844 narrow viewport. The server-rendered
+homepage includes the complete static state. The narrow layout has no document
+level horizontal overflow, and every Project 7 region remains within its
+container. Browser logs show only the existing site-wide theme hydration
+warning.
+
+The approved design, published copy, and evidence boundary are recorded in
+[`PROJECT-07-EXECUTIVE-REPORTING-VISUAL-SPEC.md`](./PROJECT-07-EXECUTIVE-REPORTING-VISUAL-SPEC.md).
+Leo approved the outcome-first revision on 2026-09-29. The Project 7 visual is
+complete locally and has not been deployed.
+
 ## Homepage project context and credibility, local review
 
 Leo approved a compact context layer between the `Projects` heading and the
@@ -472,8 +517,19 @@ starts 16 pixels earlier. The local light-theme desktop, dark-theme desktop,
 390 px, and 320 px visual checks pass. Leo approved this revision for the
 canonical Vercel production release.
 
+The mobile credibility grid was corrected on 2026-09-29 so the longer
+`Nearly 200` value no longer runs into its label. Narrow viewports now reserve a
+slightly wider value column and a consistent 16-pixel value-to-label gap. The
+390 px and 320 px checks pass after the correction.
+
 ## Checks last run
 
+- The final Project 7 outcome-first revision passes TypeScript, targeted
+  ESLint, relevant Prettier, `git diff --check`, and the Vercel production
+  build. Local Chrome review confirms the completed opening frame, live row
+  transitions, light and dark themes, keyboard disclosure behavior, and the
+  final 390-pixel copy hierarchy without horizontal overflow. The same narrow
+  check confirms the corrected gap after `Nearly 200`.
 - The homepage credibility-route revision passes TypeScript, targeted ESLint,
   relevant Prettier, `git diff --check`, and the Vercel production build.
   Desktop and narrow local Chrome visual checks pass.
@@ -548,11 +604,10 @@ canonical Vercel production release.
 
 ## Exact next action
 
-Confirm the canonical homepage serves the approved Project 6 ticket-lifecycle
-visual and shows Executive Reporting as Project 7. Then plan the Executive
-Reporting visual as the last remaining homepage project visual. Keep the
-baseline tag and `redesign/v2` branch intact, never rewrite `main` history, and
-continue to exclude unrelated local context files from future commits.
+When Leo explicitly asks to deploy, prepare and publish only the approved
+Project 7 and mobile credibility-fix change set. Keep the baseline tag and
+`redesign/v2` branch intact, never rewrite `main` history, and continue to
+exclude unrelated local context files from future commits.
 
 ## Required read order
 

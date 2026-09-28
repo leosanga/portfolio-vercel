@@ -134,4 +134,36 @@ export const PROJECT_VISUALS: Readonly<Record<string, ProjectVisualExperience>> 
       },
     },
   },
+  "executive-reporting-dashboard-automation": {
+    kind: "executive-reporting-architecture",
+    eyebrow: "Metric architecture",
+    disclosureLabel: "See how it works",
+    scope:
+      "Reporting that once required manual analysis stays available on demand because each complex metric gets the architecture it needs.",
+    evidenceNote:
+      "Representative pattern. Client data, metric definitions, and implementation details are not shown.",
+    finalStatus: "Available on demand",
+    paths: [
+      {
+        key: "native",
+        tag: "Native path",
+        label: "Platform reporting supports the metric",
+        blueprint: "Native reporting",
+      },
+      {
+        key: "modeled",
+        tag: "Modeled path",
+        label: "External modeling completes the metric",
+        blueprint: "External model",
+      },
+      {
+        key: "integrated",
+        tag: "Integrated path",
+        label: "A connector or custom API supplies the data",
+        blueprint: "Connector or API",
+      },
+    ],
+    architectureLabel: "The reporting path changes with the metric",
+    dashboardLabel: "The completed metric stays available on demand",
+  },
 };

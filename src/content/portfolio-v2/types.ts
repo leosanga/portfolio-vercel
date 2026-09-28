@@ -115,10 +115,42 @@ export type SupportTicketLifecycleExperience = {
   };
 };
 
+export type ExecutiveReportingArchitectureExperience = {
+  kind: "executive-reporting-architecture";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  evidenceNote: string;
+  finalStatus: string;
+  paths: readonly [
+    {
+      key: "native";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+    {
+      key: "modeled";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+    {
+      key: "integrated";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+  ];
+  architectureLabel: string;
+  dashboardLabel: string;
+};
+
 export type ProjectVisualExperience =
   | LeadQualificationLoopExperience
   | OutboundDraftAssemblyExperience
-  | SupportTicketLifecycleExperience;
+  | SupportTicketLifecycleExperience
+  | ExecutiveReportingArchitectureExperience;
 
 export type ProjectViewModel = {
   slug: string;
