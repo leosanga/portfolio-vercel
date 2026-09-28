@@ -3,8 +3,13 @@ import { useCallback, useState } from "react";
 
 import type { CaseEvidenceMedia } from "@/content/portfolio-v2/types";
 
+// A drawing passes its SVG markup instead of an image src, so the viewer inlines it and the theme can
+// still recolor it.
+export type ViewerMedia = Omit<CaseEvidenceMedia, "src"> &
+  ({ src: string; svgMarkup?: never } | { svgMarkup: string; src?: never });
+
 type CaseEvidenceDialogV2Props = {
-  evidence: CaseEvidenceMedia;
+  evidence: ViewerMedia;
   isOpen: boolean;
   opener: HTMLElement | null;
   onClose: () => void;
@@ -19,7 +24,7 @@ type AreaSize = { width: number; height: number };
 // Opens magnified: the image fills the viewer's height, never above its natural size and never below
 // the readable floor, so a wide capture scrolls sideways. Clicking the image toggles to a fit-to-screen
 // overview and back. Returns the open and fitted scales for the measured viewer area.
-function viewerScales(evidence: CaseEvidenceMedia, area: AreaSize) {
+function viewerScales(evidence: ViewerMedia, area: AreaSize) {
   const fit = Math.min(1, area.width / evidence.width, area.height / evidence.height);
   const open = Math.min(1, Math.max(area.height / evidence.height, MIN_READABLE_SCALE));
   return { open, fit };
@@ -84,13 +89,23 @@ export function CaseEvidenceDialogV2({
                   {isZoomedOut ? "Zoom in: " : "Zoom out: "}
                 </span>
               )}
-              <img
-                src={evidence.src}
-                alt={evidence.alt}
-                width={evidence.width}
-                height={evidence.height}
-                style={{ width: Math.round(evidence.width * scale) }}
-              />
+              {evidence.svgMarkup ? (
+                <span
+                  className="pv2-evidence-viewer__drawing pv2-workflow-map__svg"
+                  role="img"
+                  aria-label={evidence.alt}
+                  style={{ width: Math.round(evidence.width * scale) }}
+                  dangerouslySetInnerHTML={{ __html: evidence.svgMarkup }}
+                />
+              ) : (
+                <img
+                  src={evidence.src}
+                  alt={evidence.alt}
+                  width={evidence.width}
+                  height={evidence.height}
+                  style={{ width: Math.round(evidence.width * scale) }}
+                />
+              )}
             </button>
           </div>
           <Dialog.Description className="pv2-evidence-viewer__caption">
