@@ -12,6 +12,13 @@ The HubSpot CRM case-study release is also complete. Commit `debe80d` is on
 `main`, Vercel marked its production deployment successful, and the canonical
 site now serves the project from `/projects/hubspot-lead-routing`.
 
+The booking case-study layout and map revision is complete. Leo approved the
+Vercel preview of pull request 5 on 2026-09-28, it was merged through merge
+commit `227c7a3`, and Vercel marked the production deployment successful. The
+media QA script passed 22 of 22 runs against production. The details are in
+`N8N-BOOKING-AGENT-CASE-STUDY-SPEC.md`, section `Layout and map revision,
+2026-09-28`.
+
 ## Repository state
 
 - Original worktree: `C:\Users\Leo\Downloads\projects\portfolio-vercel`
@@ -42,6 +49,13 @@ site now serves the project from `/projects/hubspot-lead-routing`.
 - HubSpot CRM case-study release commit: `debe80d94bbf203efac725d2ee973f155d05e8ae`
 - HubSpot production route:
   `https://leosanga.vercel.app/projects/hubspot-lead-routing`
+- Booking layout and map revision pull request:
+  `https://github.com/leosanga/portfolio-vercel/pull/5`, merged
+- Booking layout and map revision merge commit:
+  `227c7a349f6cf97d8be286505f2c6ec124efd540`
+- Booking layout rollback tag, pushed: `pre-booking-layout-2026-09-28` on
+  `d4c375a`. Roll back with `git revert -m 1 227c7a3`, or Vercel Instant
+  Rollback in an emergency, per `BOOKING-MEDIA-RELEASE-RUNBOOK.md`.
 
 ## Local review surfaces
 
