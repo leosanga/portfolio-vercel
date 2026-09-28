@@ -78,7 +78,28 @@ export type LeadQualificationLoopExperience = {
   };
 };
 
-export type ProjectVisualExperience = LeadQualificationLoopExperience;
+export type OutboundDraftAssemblyExperience = {
+  kind: "outbound-draft-assembly";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  nodes: {
+    notification: { tag: string; label: string };
+    workflowStart: { tag: string; label: string };
+    crmCheck: { tag: string; label: string };
+    companyContext: { tag: string; label: string };
+    leadershipActivity: { tag: string; label: string };
+    painPointFit: { tag: string; label: string };
+    relevantProof: { tag: string; label: string };
+    pageIntent: { tag: string; label: string };
+    qualification: { tag: string; label: string };
+    draft: { tag: string; label: string };
+    review: { tag: string; label: string; status: string };
+  };
+};
+
+export type ProjectVisualExperience =
+  LeadQualificationLoopExperience | OutboundDraftAssemblyExperience;
 
 export type ProjectViewModel = {
   slug: string;

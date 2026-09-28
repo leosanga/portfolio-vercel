@@ -42,4 +42,58 @@ export const PROJECT_VISUALS: Readonly<Record<string, ProjectVisualExperience>> 
       },
     },
   },
+  "ai-assisted-outbound-prospecting": {
+    kind: "outbound-draft-assembly",
+    eyebrow: "Context to draft",
+    disclosureLabel: "See how it works",
+    scope:
+      "This view shows how a limited visitor signal becomes a researched draft for review. The full research and qualification logic stays out of scope.",
+    nodes: {
+      notification: {
+        tag: "Visitor signal",
+        label: "Limited lead details and the page viewed arrive in Slack",
+      },
+      workflowStart: {
+        tag: "Workflow start",
+        label: "The Slack notification starts the n8n workflow",
+      },
+      crmCheck: {
+        tag: "CRM context",
+        label: "Existing HubSpot context is used when available",
+      },
+      companyContext: {
+        tag: "Company context",
+        label: "Public company sources build the research brief",
+      },
+      leadershipActivity: {
+        tag: "Leadership and activity",
+        label: "Current company signals add context",
+      },
+      painPointFit: {
+        tag: "Pain-point fit",
+        label: "Research identifies where the company may need support",
+      },
+      relevantProof: {
+        tag: "Relevant proof",
+        label: "Matching case studies support the angle",
+      },
+      pageIntent: {
+        tag: "Page intent",
+        label: "The visited page guides the angle",
+      },
+      qualification: {
+        tag: "Research qualification",
+        label: "The completed research determines whether the opportunity fits",
+      },
+      draft: {
+        tag: "Grounded draft",
+        label: "The evidence and relevant case studies shape the conversation starter",
+      },
+      review: {
+        tag: "Slack thread",
+        label: "The draft returns to the original notification for review",
+        status: "Ready for review",
+      },
+    },
+  },
 };

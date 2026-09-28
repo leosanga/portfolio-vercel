@@ -362,6 +362,45 @@ The approved design and copy are recorded in
 Leo approved the final hook and production release on 2026-09-28. The visual is
 included in the current production release for the canonical portfolio.
 
+## Project 5 context-to-draft visual, production release
+
+Leo approved the homepage visual for
+`AI-Assisted Outbound Prospecting Workflow (n8n)` on 2026-09-28. The project
+copy now describes the actual workflow: a limited visitor signal starts n8n,
+HubSpot supplies existing context when available, and the automated research
+determines whether the opportunity fits. The LLM uses that evidence with
+relevant case studies to create a conversation starter for rep review in Slack.
+No vendor name, record creation, or automatic-send behavior is shown. Contact
+creation occurs downstream only if a draft is sent.
+
+The native disclosure is labeled `Context to draft` with the hook
+`See how it works`. Its project-specific experience uses a compact input rail
+above a two-column research workspace instead of another node diagram. The
+limited visitor signal, workflow start, and optional CRM context lead into a
+research brief covering company context, current activity, pain-point fit, and
+relevant proof. The page viewed guides the message angle, then the completed
+research determines fit before the content-sized draft returns to Slack as
+`Ready for review`.
+
+The 11.9-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on the complete
+state. Most of the loop is spent building the research brief. The
+server-rendered and no-JavaScript state is complete and readable. Desktop and
+intermediate widths use the input rail above the research and draft columns.
+Narrow viewports use one semantic sequence without horizontal overflow.
+
+TypeScript, targeted ESLint, relevant Prettier checks, `git diff --check`, the
+production build, and server-rendered content checks pass. Chrome browser review
+covered the expanded and collapsed states, the live research stages, desktop
+composition, and a 390 by 844 narrow viewport. The narrow layout uses one column
+and has no document-level horizontal overflow. Browser logs show only the
+existing site-wide theme hydration warning.
+
+The approved design and copy are recorded in
+[`PROJECT-05-OUTBOUND-PROSPECTING-VISUAL-SPEC.md`](./PROJECT-05-OUTBOUND-PROSPECTING-VISUAL-SPEC.md).
+The Project 5 visual is included in the current production release for the
+canonical portfolio.
+
 ## Checks last run
 
 - TypeScript: passed.
@@ -435,9 +474,7 @@ included in the current production release for the canonical portfolio.
 
 ## Exact next action
 
-Begin the approved project-by-project design process for Project 5,
-`AI-Assisted Outbound Prospecting Workflow (n8n)`. Review its current evidence
-and define a distinct visual concept before implementation. Keep the baseline
+Begin the project-by-project design process for Project 6. Keep the baseline
 tag and `redesign/v2` branch intact, never rewrite `main` history, and continue
 to exclude unrelated local context files from future commits.
 

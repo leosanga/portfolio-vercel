@@ -1198,6 +1198,345 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   }
 }
 
+.pv2-outbound-draft {
+  padding-top: var(--pv2-space-8);
+}
+
+.pv2-outbound-draft__scope {
+  max-width: 66ch;
+  color: var(--pv2-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.pv2-outbound-draft__workspace,
+.pv2-outbound-draft__research-grid,
+.pv2-outbound-draft__draft-sections {
+  list-style: none;
+}
+
+.pv2-outbound-draft__workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.9fr);
+  gap: clamp(1rem, 2.4vw, 2rem);
+  align-items: start;
+  max-width: 74rem;
+  margin-top: var(--pv2-space-8);
+  margin-inline: auto;
+}
+
+.pv2-outbound-draft__source,
+.pv2-outbound-draft__research,
+.pv2-outbound-draft__message {
+  min-width: 0;
+  list-style: none;
+}
+
+.pv2-outbound-draft__source {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  align-content: start;
+}
+
+.pv2-outbound-draft__region-label,
+.pv2-outbound-draft__research-header,
+.pv2-outbound-draft__sheet-header p,
+.pv2-outbound-draft__tag {
+  color: var(--pv2-text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pv2-outbound-draft__region-label {
+  grid-column: 1 / -1;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px solid var(--pv2-line);
+}
+
+.pv2-outbound-draft__step {
+  position: relative;
+  height: 100%;
+  min-height: 5.8rem;
+  padding: 0.9rem 1rem;
+  background: var(--pv2-surface);
+  border: 1px solid var(--pv2-line);
+  border-radius: var(--pv2-radius-content);
+  transform: translateY(0.15rem);
+  transition:
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease,
+    box-shadow 320ms var(--ease-out);
+}
+
+.pv2-outbound-draft__step::before {
+  position: absolute;
+  top: 1rem;
+  left: -0.25rem;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--pv2-line-strong);
+  border: 2px solid var(--pv2-background);
+  border-radius: 999px;
+  content: "";
+}
+
+.pv2-outbound-draft__step[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 84%, var(--pv2-lavender));
+  border-color: var(--pv2-line-strong);
+  box-shadow: 0 0.75rem 2rem rgba(39, 31, 52, 0.08);
+  transform: translateY(0);
+}
+
+.pv2-outbound-draft__step[data-state="complete"] {
+  transform: translateY(0);
+}
+
+.pv2-outbound-draft__tag {
+  margin-bottom: 0.45rem;
+}
+
+.pv2-outbound-draft__label {
+  color: var(--pv2-text-primary);
+  font-size: 0.875rem;
+  font-weight: 570;
+  line-height: 1.45;
+}
+
+.pv2-outbound-draft__research {
+  padding: 1rem;
+  background: color-mix(in srgb, var(--pv2-surface) 86%, transparent);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-outbound-draft__research-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.1rem 0.15rem 0.8rem;
+}
+
+.pv2-outbound-draft__research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
+}
+
+.pv2-outbound-draft__research-grid li {
+  min-width: 0;
+}
+
+.pv2-outbound-draft__research-grid .pv2-outbound-draft__step {
+  min-height: 6.25rem;
+}
+
+.pv2-outbound-draft__page-intent,
+.pv2-outbound-draft__qualification {
+  transform: translateY(0.15rem);
+  transition:
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease,
+    box-shadow 320ms var(--ease-out);
+}
+
+.pv2-outbound-draft__page-intent {
+  display: grid;
+  grid-template-columns: minmax(6.5rem, 0.45fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  margin-top: 0.85rem;
+  padding: 0.85rem 1rem;
+  background: color-mix(in srgb, var(--pv2-surface) 72%, transparent);
+  border-block: 1px solid var(--pv2-line);
+}
+
+.pv2-outbound-draft__page-intent .pv2-outbound-draft__tag,
+.pv2-outbound-draft__qualification .pv2-outbound-draft__tag {
+  margin-bottom: 0;
+}
+
+.pv2-outbound-draft__qualification {
+  margin-top: 0.85rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--pv2-surface) 82%, transparent);
+  border: 1px dashed var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+}
+
+.pv2-outbound-draft__qualification .pv2-outbound-draft__label {
+  margin-top: 0.4rem;
+}
+
+.pv2-outbound-draft__page-intent[data-state="active"],
+.pv2-outbound-draft__qualification[data-state="active"],
+.pv2-outbound-draft__page-intent[data-state="complete"],
+.pv2-outbound-draft__qualification[data-state="complete"] {
+  transform: translateY(0);
+}
+
+.pv2-outbound-draft__page-intent[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 88%, var(--pv2-lavender));
+  border-color: var(--pv2-line-strong);
+}
+
+.pv2-outbound-draft__qualification[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 84%, var(--pv2-sage));
+  border-style: solid;
+  box-shadow: 0 0.75rem 2rem rgba(39, 31, 52, 0.08);
+}
+
+.pv2-outbound-draft__message {
+  position: relative;
+  align-self: start;
+}
+
+.pv2-outbound-draft__sheet {
+  display: grid;
+  min-height: 0;
+  grid-template-rows: auto auto auto;
+  padding: 1.1rem;
+  background: var(--pv2-surface-raised);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+  box-shadow: 0 1.2rem 3rem rgba(39, 31, 52, 0.08);
+}
+
+.pv2-outbound-draft__sheet::before {
+  position: absolute;
+  inset: 0.6rem -0.45rem -0.45rem 0.6rem;
+  z-index: -1;
+  border: 1px solid var(--pv2-line);
+  border-radius: var(--pv2-radius-content);
+  content: "";
+}
+
+.pv2-outbound-draft__sheet-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--pv2-line);
+}
+
+.pv2-outbound-draft__sheet-header h4 {
+  margin-top: 0.3rem;
+  color: var(--pv2-text-primary);
+  font-size: 1.125rem;
+  font-weight: 580;
+  line-height: 1.25;
+}
+
+.pv2-outbound-draft__sheet-header > span,
+.pv2-outbound-draft__review > span {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.55rem;
+  color: var(--pv2-text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--pv2-line);
+  border-radius: 999px;
+}
+
+.pv2-outbound-draft__draft-sections {
+  display: grid;
+  gap: 0.85rem;
+  padding-block: 1rem;
+}
+
+.pv2-outbound-draft__draft-sections .pv2-outbound-draft__step {
+  min-height: 6rem;
+  background: color-mix(in srgb, var(--pv2-surface) 75%, transparent);
+}
+
+.pv2-outbound-draft__review {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  background: color-mix(in srgb, var(--pv2-surface) 88%, transparent);
+  border: 1px dashed var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+  transform: translateY(0.15rem);
+  transition:
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease;
+}
+
+.pv2-outbound-draft__review[data-state="active"],
+.pv2-outbound-draft__review[data-state="complete"] {
+  transform: translateY(0);
+}
+
+.pv2-outbound-draft__review[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 84%, var(--pv2-sage));
+  border-style: solid;
+}
+
+.pv2-outbound-draft__review[data-state="active"] > span,
+.pv2-outbound-draft__review[data-state="complete"] > span {
+  color: var(--pv2-text-primary);
+  border-color: var(--pv2-line-strong);
+}
+
+@media (max-width: 1023px) {
+  .pv2-outbound-draft__workspace {
+    grid-template-columns: minmax(0, 1.35fr) minmax(16rem, 0.9fr);
+  }
+
+  .pv2-outbound-draft__source {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .pv2-outbound-draft__workspace {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pv2-outbound-draft__source {
+    grid-column: 1;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pv2-outbound-draft__research,
+  .pv2-outbound-draft__message {
+    grid-column: 1;
+  }
+
+  .pv2-outbound-draft__research-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pv2-outbound-draft__step {
+    min-height: 0;
+  }
+
+  .pv2-outbound-draft__page-intent {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.35rem;
+  }
+
+  .pv2-outbound-draft__review {
+    display: grid;
+  }
+
+  .pv2-outbound-draft__review > span {
+    justify-self: start;
+  }
+}
+
 .pv2-project-list {
   margin-top: var(--pv2-space-16);
   border-top: 1px solid var(--pv2-line);
@@ -1820,6 +2159,17 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   }
 }
 
+@keyframes pv2-outbound-step-active {
+  from {
+    box-shadow: 0 0 0 rgba(39, 31, 52, 0);
+    transform: translateY(0.25rem);
+  }
+  to {
+    box-shadow: 0 0.75rem 2rem rgba(39, 31, 52, 0.08);
+    transform: translateY(0);
+  }
+}
+
 @keyframes pv2-hero-enter {
   from {
     opacity: 0;
@@ -1889,6 +2239,13 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-lead-qualification-loop__connectors g[data-state="active"] circle {
     animation: pv2-workflow-travel 620ms linear 1 both;
+  }
+
+  .pv2-outbound-draft__step[data-state="active"],
+  .pv2-outbound-draft__page-intent[data-state="active"],
+  .pv2-outbound-draft__qualification[data-state="active"],
+  .pv2-outbound-draft__review[data-state="active"] {
+    animation: pv2-outbound-step-active 420ms var(--ease-out) 1 both;
   }
 
   .pv2-booking-record__row:not([data-state="pending"]):not([data-state="reset"]) strong {
@@ -2506,6 +2863,10 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-workflow-disclosure__control,
   .pv2-qualification-node,
   .pv2-lead-qualification-loop__connectors path,
+  .pv2-outbound-draft__step,
+  .pv2-outbound-draft__page-intent,
+  .pv2-outbound-draft__qualification,
+  .pv2-outbound-draft__review,
   .pv2-project-row__cue,
   .pv2-approach-step__node,
   .pv2-approach-step__line,
@@ -2601,6 +2962,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-conversation__panel,
   .pv2-workflow-node,
   .pv2-qualification-node,
+  .pv2-outbound-draft__step,
+  .pv2-outbound-draft__research,
+  .pv2-outbound-draft__page-intent,
+  .pv2-outbound-draft__qualification,
+  .pv2-outbound-draft__sheet,
+  .pv2-outbound-draft__review,
   .pv2-booking-record__frame,
   .pv2-booking-record__row,
   .pv2-booking-proof__outcome,
@@ -2640,6 +3007,14 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-qualification-node {
     opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .pv2-outbound-draft__step,
+  .pv2-outbound-draft__page-intent,
+  .pv2-outbound-draft__qualification,
+  .pv2-outbound-draft__review {
     transform: none;
     transition: none;
   }

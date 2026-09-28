@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import type { ProjectVisualExperience } from "@/content/portfolio-v2/types";
 
 import { LeadQualificationLoopV2 } from "./LeadQualificationLoopV2";
+import { OutboundDraftAssemblyV2 } from "./OutboundDraftAssemblyV2";
 
 export function ProjectVisualDisclosureV2({ experience }: { experience: ProjectVisualExperience }) {
   const detailsRef = useRef<HTMLDetailsElement>(null);
@@ -69,6 +70,8 @@ export function ProjectVisualDisclosureV2({ experience }: { experience: ProjectV
             open={open}
             shouldAnimate={shouldAnimate}
           />
+        ) : experience.kind === "outbound-draft-assembly" ? (
+          <OutboundDraftAssemblyV2 experience={experience} shouldAnimate={shouldAnimate} />
         ) : null}
       </div>
     </details>

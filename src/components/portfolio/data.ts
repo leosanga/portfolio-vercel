@@ -313,10 +313,10 @@ export const PROJECTS: Project[] = [
     problem:
       "Reps research each prospect by hand before writing to them, so outreach goes out long after the visit that prompted it.",
     solution:
-      "An n8n workflow researches each prospect automatically, and an LLM turns that research into a personalized draft delivered to the rep in Slack, so outreach goes out while the visit is still recent.",
+      "An n8n workflow turns a limited visitor signal into a researched company brief and determines whether the opportunity fits. The LLM uses that evidence and relevant case studies to return a personalized draft to Slack for rep review.",
     hardPart:
       "The LLM needed enough business context to connect each prospect's researched data to relevant capabilities and proof points, then turn that context into a personalized draft that demonstrated value.",
-    stack: ["n8n", "JavaScript", "LLM", "Slack API", "HubSpot API"],
+    stack: ["n8n", "JavaScript", "HubSpot API", "Slack API", "Webhooks", "LLM"],
   },
   {
     title: "Executive Reporting & Dashboard Automation (Fully custom)",
