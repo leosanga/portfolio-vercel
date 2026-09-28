@@ -401,6 +401,41 @@ The approved design and copy are recorded in
 The Project 5 visual is included in the current production release for the
 canonical portfolio.
 
+## Project 6 ticket-lifecycle visual, production release
+
+Leo approved and Codex completed the local homepage visual for
+`Support Ticket Pipeline Automation (HubSpot)` on 2026-09-28. The supplied
+internal flowchart remains private and is used only as implementation evidence.
+The public visual removes organization names, exact internal statuses, timing
+rules, channel details, and feedback routing.
+
+The native disclosure is labeled `Ticket lifecycle` with the hook
+`See how it works`. Two compact entry conditions feed one central ticket record:
+a new request creates a ticket, while an existing reply returns work to the same
+ticket. The public lifecycle is condensed to `Intake`, `Active`, `Waiting`,
+`Resolved`, and `Closed`. Four supporting rules show that ownership stays
+visible, state determines the next action, waiting work retains follow-up, and
+resolved work moves toward closure. The less important direct-close branch is
+intentionally omitted.
+
+The 9.8-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on a complete,
+readable state. Desktop uses a compact horizontal lifecycle rail. Narrow
+viewports stack the entry conditions and rules around a vertical lifecycle rail
+without horizontal overflow.
+
+TypeScript, targeted ESLint, relevant Prettier formatting, `git diff --check`,
+and the production build pass. Local Chrome review covered the expanded state,
+live animation states, desktop composition, and a 390 by 844 narrow viewport.
+All measured Project 6 regions remain within their containers. Browser logs
+show only the existing site-wide theme hydration warning.
+
+The approved design and evidence boundary are recorded in
+[`PROJECT-06-SUPPORT-TICKET-VISUAL-SPEC.md`](./PROJECT-06-SUPPORT-TICKET-VISUAL-SPEC.md).
+The support-ticket project is now Project 6, immediately before Executive
+Reporting, which is now Project 7. Leo approved this ordering and the Project 6
+visual for the canonical Vercel production release on 2026-09-28.
+
 ## Homepage project context and credibility, local review
 
 Leo approved a compact context layer between the `Projects` heading and the
@@ -513,10 +548,11 @@ canonical Vercel production release.
 
 ## Exact next action
 
-After confirming the canonical homepage serves the approved credibility route,
-resume the project-by-project design process for Project 6. Keep the baseline
-tag and `redesign/v2` branch intact, never rewrite `main` history, and continue
-to exclude unrelated local context files from future commits.
+Confirm the canonical homepage serves the approved Project 6 ticket-lifecycle
+visual and shows Executive Reporting as Project 7. Then plan the Executive
+Reporting visual as the last remaining homepage project visual. Keep the
+baseline tag and `redesign/v2` branch intact, never rewrite `main` history, and
+continue to exclude unrelated local context files from future commits.
 
 ## Required read order
 

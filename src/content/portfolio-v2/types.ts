@@ -98,8 +98,27 @@ export type OutboundDraftAssemblyExperience = {
   };
 };
 
+export type SupportTicketLifecycleExperience = {
+  kind: "support-ticket-lifecycle";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  finalStatus: string;
+  nodes: {
+    newRequest: { tag: string; label: string };
+    existingReply: { tag: string; label: string };
+    ownership: { tag: string; label: string };
+    nextAction: { tag: string; label: string };
+    followUp: { tag: string; label: string };
+    replyLoop: { tag: string; label: string };
+    resolution: { tag: string; label: string };
+  };
+};
+
 export type ProjectVisualExperience =
-  LeadQualificationLoopExperience | OutboundDraftAssemblyExperience;
+  | LeadQualificationLoopExperience
+  | OutboundDraftAssemblyExperience
+  | SupportTicketLifecycleExperience;
 
 export type ProjectViewModel = {
   slug: string;

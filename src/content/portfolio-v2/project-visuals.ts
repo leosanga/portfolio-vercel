@@ -96,4 +96,42 @@ export const PROJECT_VISUALS: Readonly<Record<string, ProjectVisualExperience>> 
       },
     },
   },
+  "support-ticket-pipeline-automation": {
+    kind: "support-ticket-lifecycle",
+    eyebrow: "Ticket lifecycle",
+    disclosureLabel: "See how it works",
+    scope:
+      "This view shows how a support request stays connected to the right ticket and next action through resolution. Internal routing rules and timing details are not shown.",
+    finalStatus: "Lifecycle complete",
+    nodes: {
+      newRequest: {
+        tag: "New request",
+        label: "A new request creates a ticket",
+      },
+      existingReply: {
+        tag: "Existing reply",
+        label: "A reply returns work to the existing ticket",
+      },
+      ownership: {
+        tag: "Ownership",
+        label: "The team is notified and ownership becomes visible",
+      },
+      nextAction: {
+        tag: "State-driven action",
+        label: "The ticket state determines the next action",
+      },
+      followUp: {
+        tag: "Follow-up",
+        label: "Waiting work keeps its follow-up",
+      },
+      replyLoop: {
+        tag: "Reply received",
+        label: "A reply returns the ticket to active work",
+      },
+      resolution: {
+        tag: "Resolution",
+        label: "Resolved work moves toward closure",
+      },
+    },
+  },
 };

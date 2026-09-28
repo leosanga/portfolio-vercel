@@ -1733,6 +1733,294 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   }
 }
 
+.pv2-ticket-lifecycle {
+  padding-top: var(--pv2-space-8);
+}
+
+.pv2-ticket-lifecycle__scope {
+  max-width: 66ch;
+  color: var(--pv2-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.pv2-ticket-lifecycle__workspace {
+  display: grid;
+  gap: 1rem;
+  max-width: 68rem;
+  margin-top: var(--pv2-space-8);
+  margin-inline: auto;
+}
+
+.pv2-ticket-lifecycle__entries,
+.pv2-ticket-lifecycle__rail,
+.pv2-ticket-lifecycle__rules {
+  list-style: none;
+}
+
+.pv2-ticket-lifecycle__entries {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pv2-ticket-lifecycle__entries li,
+.pv2-ticket-lifecycle__rules li {
+  min-width: 0;
+}
+
+.pv2-ticket-lifecycle__step {
+  height: 100%;
+  min-height: 5.5rem;
+  padding: 0.9rem 1rem;
+  background: color-mix(in srgb, var(--pv2-surface) 84%, transparent);
+  border: 1px solid var(--pv2-line);
+  border-radius: var(--pv2-radius-content);
+  transform: translateY(0.15rem);
+  transition:
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease,
+    box-shadow 320ms var(--ease-out);
+}
+
+.pv2-ticket-lifecycle__step[data-state="active"] {
+  background: color-mix(in srgb, var(--pv2-surface-raised) 84%, var(--pv2-lavender));
+  border-color: var(--pv2-line-strong);
+  box-shadow: 0 0.75rem 2rem rgba(39, 31, 52, 0.08);
+  transform: translateY(0);
+}
+
+.pv2-ticket-lifecycle__step[data-state="complete"] {
+  transform: translateY(0);
+}
+
+.pv2-ticket-lifecycle__tag,
+.pv2-ticket-lifecycle__record-header p,
+.pv2-ticket-lifecycle__fields dt,
+.pv2-ticket-lifecycle__rail strong {
+  color: var(--pv2-text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pv2-ticket-lifecycle__tag {
+  margin-bottom: 0.45rem;
+}
+
+.pv2-ticket-lifecycle__label {
+  color: var(--pv2-text-primary);
+  font-size: 0.875rem;
+  font-weight: 570;
+  line-height: 1.45;
+}
+
+.pv2-ticket-lifecycle__record {
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  background: var(--pv2-surface-raised);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+  box-shadow: 0 1.2rem 3rem rgba(39, 31, 52, 0.08);
+}
+
+.pv2-ticket-lifecycle__record-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--pv2-line);
+}
+
+.pv2-ticket-lifecycle__record-header h4 {
+  margin-top: 0.3rem;
+  color: var(--pv2-text-primary);
+  font-size: 1.25rem;
+  font-weight: 580;
+  line-height: 1.25;
+}
+
+.pv2-ticket-lifecycle__record-header > span {
+  flex: 0 0 auto;
+  padding: 0.35rem 0.55rem;
+  color: var(--pv2-text-muted);
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: 0.625rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--pv2-line);
+  border-radius: 999px;
+}
+
+.pv2-ticket-lifecycle__fields {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1rem;
+  border-block: 1px solid var(--pv2-line);
+}
+
+.pv2-ticket-lifecycle__fields > div {
+  min-width: 0;
+  padding: 0.9rem;
+}
+
+.pv2-ticket-lifecycle__fields > div + div {
+  border-left: 1px solid var(--pv2-line);
+}
+
+.pv2-ticket-lifecycle__fields dd {
+  margin-top: 0.45rem;
+  color: var(--pv2-text-primary);
+  font-size: 0.875rem;
+  font-weight: 570;
+  line-height: 1.4;
+}
+
+.pv2-ticket-lifecycle__rail {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 1.35rem;
+}
+
+.pv2-ticket-lifecycle__rail::before {
+  position: absolute;
+  top: 0.42rem;
+  right: 10%;
+  left: 10%;
+  height: 1px;
+  background: var(--pv2-line-strong);
+  content: "";
+}
+
+.pv2-ticket-lifecycle__rail li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: center;
+  min-width: 0;
+  text-align: center;
+}
+
+.pv2-ticket-lifecycle__rail li > span {
+  width: 0.85rem;
+  height: 0.85rem;
+  background: var(--pv2-surface-raised);
+  border: 2px solid var(--pv2-line-strong);
+  border-radius: 999px;
+  transition:
+    background-color 260ms ease,
+    border-color 260ms ease,
+    transform 320ms var(--ease-out);
+}
+
+.pv2-ticket-lifecycle__rail li[data-state="active"] > span {
+  background: var(--pv2-lavender);
+  border-color: var(--pv2-lavender);
+  transform: scale(1.25);
+}
+
+.pv2-ticket-lifecycle__rail li[data-state="complete"] > span {
+  background: var(--pv2-sage);
+  border-color: var(--pv2-sage);
+}
+
+.pv2-ticket-lifecycle__rail li[data-state="active"] strong,
+.pv2-ticket-lifecycle__rail li[data-state="complete"] strong {
+  color: var(--pv2-text-primary);
+}
+
+.pv2-ticket-lifecycle__return {
+  margin-top: 1.25rem;
+  padding: 0.8rem 1rem;
+  color: var(--pv2-text-muted);
+  font-size: 0.8125rem;
+  font-weight: 540;
+  line-height: 1.45;
+  text-align: center;
+  background: color-mix(in srgb, var(--pv2-surface) 70%, transparent);
+  border: 1px dashed var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-content);
+  transform: translateY(0.15rem);
+  transition:
+    color 260ms ease,
+    transform 320ms var(--ease-out),
+    border-color 260ms ease,
+    background-color 260ms ease;
+}
+
+.pv2-ticket-lifecycle__return[data-state="active"] {
+  color: var(--pv2-text-primary);
+  background: color-mix(in srgb, var(--pv2-surface-raised) 84%, var(--pv2-mist));
+  border-style: solid;
+  transform: translateY(0);
+}
+
+.pv2-ticket-lifecycle__return[data-state="complete"] {
+  transform: translateY(0);
+}
+
+.pv2-ticket-lifecycle__rules {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.pv2-ticket-lifecycle__rules .pv2-ticket-lifecycle__step {
+  min-height: 5rem;
+}
+
+@media (max-width: 767px) {
+  .pv2-ticket-lifecycle__entries,
+  .pv2-ticket-lifecycle__rules {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pv2-ticket-lifecycle__step {
+    min-height: 0;
+  }
+
+  .pv2-ticket-lifecycle__fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pv2-ticket-lifecycle__fields > div + div {
+    border-left: 0;
+  }
+
+  .pv2-ticket-lifecycle__fields > div:nth-child(even) {
+    border-left: 1px solid var(--pv2-line);
+  }
+
+  .pv2-ticket-lifecycle__fields > div:nth-child(n + 3) {
+    border-top: 1px solid var(--pv2-line);
+  }
+
+  .pv2-ticket-lifecycle__rail {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+  }
+
+  .pv2-ticket-lifecycle__rail::before {
+    top: 0.4rem;
+    right: auto;
+    bottom: 0.4rem;
+    left: 0.4rem;
+    width: 1px;
+    height: auto;
+  }
+
+  .pv2-ticket-lifecycle__rail li {
+    grid-template-columns: auto minmax(0, 1fr);
+    justify-items: start;
+    text-align: left;
+  }
+}
+
 .pv2-project-list {
   margin-top: var(--pv2-space-16);
   border-top: 1px solid var(--pv2-line);
@@ -2441,6 +2729,11 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-outbound-draft__page-intent[data-state="active"],
   .pv2-outbound-draft__qualification[data-state="active"],
   .pv2-outbound-draft__review[data-state="active"] {
+    animation: pv2-outbound-step-active 420ms var(--ease-out) 1 both;
+  }
+
+  .pv2-ticket-lifecycle__step[data-state="active"],
+  .pv2-ticket-lifecycle__return[data-state="active"] {
     animation: pv2-outbound-step-active 420ms var(--ease-out) 1 both;
   }
 
@@ -3166,6 +3459,9 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-outbound-draft__page-intent,
   .pv2-outbound-draft__qualification,
   .pv2-outbound-draft__review,
+  .pv2-ticket-lifecycle__step,
+  .pv2-ticket-lifecycle__return,
+  .pv2-ticket-lifecycle__rail li > span,
   .pv2-project-row__cue,
   .pv2-projects-credibility::before,
   .pv2-projects-credibility::after,
@@ -3286,6 +3582,9 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-outbound-draft__qualification,
   .pv2-outbound-draft__sheet,
   .pv2-outbound-draft__review,
+  .pv2-ticket-lifecycle__step,
+  .pv2-ticket-lifecycle__record,
+  .pv2-ticket-lifecycle__return,
   .pv2-booking-record__frame,
   .pv2-booking-record__row,
   .pv2-booking-proof__outcome,
@@ -3333,6 +3632,13 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-outbound-draft__page-intent,
   .pv2-outbound-draft__qualification,
   .pv2-outbound-draft__review {
+    transform: none;
+    transition: none;
+  }
+
+  .pv2-ticket-lifecycle__step,
+  .pv2-ticket-lifecycle__return,
+  .pv2-ticket-lifecycle__rail li > span {
     transform: none;
     transition: none;
   }
