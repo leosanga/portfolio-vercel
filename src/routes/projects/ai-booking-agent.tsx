@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { HubSpotLeadRoutingCaseStudyV2 } from "@/components/portfolio-v2/HubSpotLeadRoutingCaseStudyV2";
-import { HUBSPOT_LEAD_ROUTING_CASE_STUDY } from "@/content/portfolio-v2/hubspot-lead-routing";
+import { BookingAgentCaseStudyV2 } from "@/components/portfolio-v2/BookingAgentCaseStudyV2";
+import { BOOKING_AGENT_CASE_STUDY } from "@/content/portfolio-v2/booking-agent";
 
-const { metadata } = HUBSPOT_LEAD_ROUTING_CASE_STUDY;
+const { metadata } = BOOKING_AGENT_CASE_STUDY;
 
-export const Route = createFileRoute("/projects/hubspot-lead-routing")({
+export const Route = createFileRoute("/projects/ai-booking-agent")({
   head: () => ({
     meta: [
       { title: metadata.title },
@@ -20,5 +20,5 @@ export const Route = createFileRoute("/projects/hubspot-lead-routing")({
     ],
     links: [{ rel: "canonical", href: metadata.canonicalUrl }],
   }),
-  component: HubSpotLeadRoutingCaseStudyV2,
+  component: BookingAgentCaseStudyV2,
 });

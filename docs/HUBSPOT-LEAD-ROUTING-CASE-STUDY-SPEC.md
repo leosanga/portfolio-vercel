@@ -28,7 +28,7 @@ competing summaries or claims.
 - The Booking Agent remains the only lead project.
 - The HubSpot project is the first secondary case study.
 - Five existing projects remain standard project rows in their existing order.
-- The dedicated route is `/projects/hubspot-lead-routing`.
+- The dedicated route is `/projects/lead-routing-pipeline-health-system`.
 
 ## Public-language rule
 

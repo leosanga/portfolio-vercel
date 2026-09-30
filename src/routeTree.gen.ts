@@ -10,59 +10,78 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProjectsHubspotLeadRoutingRouteImport } from './routes/projects/hubspot-lead-routing'
-import { Route as ProjectsN8nBookingAgentRouteImport } from './routes/projects/n8n-booking-agent'
+import { Route as ProjectsAiBookingAgentRouteImport } from './routes/projects/ai-booking-agent'
+import { Route as ProjectsLeadRoutingPipelineHealthSystemRouteImport } from './routes/projects/lead-routing-pipeline-health-system'
+import { Route as ProjectsTrialDemoRoutingByCustomerRelationshipRouteImport } from './routes/projects/trial-demo-routing-by-customer-relationship'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsHubspotLeadRoutingRoute =
-  ProjectsHubspotLeadRoutingRouteImport.update({
-    id: '/projects/hubspot-lead-routing',
-    path: '/projects/hubspot-lead-routing',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const ProjectsN8nBookingAgentRoute = ProjectsN8nBookingAgentRouteImport.update({
-  id: '/projects/n8n-booking-agent',
-  path: '/projects/n8n-booking-agent',
+const ProjectsAiBookingAgentRoute = ProjectsAiBookingAgentRouteImport.update({
+  id: '/projects/ai-booking-agent',
+  path: '/projects/ai-booking-agent',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsLeadRoutingPipelineHealthSystemRoute =
+  ProjectsLeadRoutingPipelineHealthSystemRouteImport.update({
+    id: '/projects/lead-routing-pipeline-health-system',
+    path: '/projects/lead-routing-pipeline-health-system',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProjectsTrialDemoRoutingByCustomerRelationshipRoute =
+  ProjectsTrialDemoRoutingByCustomerRelationshipRouteImport.update({
+    id: '/projects/trial-demo-routing-by-customer-relationship',
+    path: '/projects/trial-demo-routing-by-customer-relationship',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
-  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
+  '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
+  '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
-  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
+  '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
+  '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/projects/hubspot-lead-routing': typeof ProjectsHubspotLeadRoutingRoute
-  '/projects/n8n-booking-agent': typeof ProjectsN8nBookingAgentRoute
+  '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
+  '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/projects/hubspot-lead-routing' | '/projects/n8n-booking-agent'
+    | '/'
+    | '/projects/ai-booking-agent'
+    | '/projects/lead-routing-pipeline-health-system'
+    | '/projects/trial-demo-routing-by-customer-relationship'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/projects/hubspot-lead-routing' | '/projects/n8n-booking-agent'
+  to:
+    | '/'
+    | '/projects/ai-booking-agent'
+    | '/projects/lead-routing-pipeline-health-system'
+    | '/projects/trial-demo-routing-by-customer-relationship'
   id:
     | '__root__'
     | '/'
-    | '/projects/hubspot-lead-routing'
-    | '/projects/n8n-booking-agent'
+    | '/projects/ai-booking-agent'
+    | '/projects/lead-routing-pipeline-health-system'
+    | '/projects/trial-demo-routing-by-customer-relationship'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ProjectsHubspotLeadRoutingRoute: typeof ProjectsHubspotLeadRoutingRoute
-  ProjectsN8nBookingAgentRoute: typeof ProjectsN8nBookingAgentRoute
+  ProjectsAiBookingAgentRoute: typeof ProjectsAiBookingAgentRoute
+  ProjectsLeadRoutingPipelineHealthSystemRoute: typeof ProjectsLeadRoutingPipelineHealthSystemRoute
+  ProjectsTrialDemoRoutingByCustomerRelationshipRoute: typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -74,18 +93,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/hubspot-lead-routing': {
-      id: '/projects/hubspot-lead-routing'
-      path: '/projects/hubspot-lead-routing'
-      fullPath: '/projects/hubspot-lead-routing'
-      preLoaderRoute: typeof ProjectsHubspotLeadRoutingRouteImport
+    '/projects/ai-booking-agent': {
+      id: '/projects/ai-booking-agent'
+      path: '/projects/ai-booking-agent'
+      fullPath: '/projects/ai-booking-agent'
+      preLoaderRoute: typeof ProjectsAiBookingAgentRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/n8n-booking-agent': {
-      id: '/projects/n8n-booking-agent'
-      path: '/projects/n8n-booking-agent'
-      fullPath: '/projects/n8n-booking-agent'
-      preLoaderRoute: typeof ProjectsN8nBookingAgentRouteImport
+    '/projects/lead-routing-pipeline-health-system': {
+      id: '/projects/lead-routing-pipeline-health-system'
+      path: '/projects/lead-routing-pipeline-health-system'
+      fullPath: '/projects/lead-routing-pipeline-health-system'
+      preLoaderRoute: typeof ProjectsLeadRoutingPipelineHealthSystemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/trial-demo-routing-by-customer-relationship': {
+      id: '/projects/trial-demo-routing-by-customer-relationship'
+      path: '/projects/trial-demo-routing-by-customer-relationship'
+      fullPath: '/projects/trial-demo-routing-by-customer-relationship'
+      preLoaderRoute: typeof ProjectsTrialDemoRoutingByCustomerRelationshipRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -93,8 +119,11 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ProjectsHubspotLeadRoutingRoute: ProjectsHubspotLeadRoutingRoute,
-  ProjectsN8nBookingAgentRoute: ProjectsN8nBookingAgentRoute,
+  ProjectsAiBookingAgentRoute: ProjectsAiBookingAgentRoute,
+  ProjectsLeadRoutingPipelineHealthSystemRoute:
+    ProjectsLeadRoutingPipelineHealthSystemRoute,
+  ProjectsTrialDemoRoutingByCustomerRelationshipRoute:
+    ProjectsTrialDemoRoutingByCustomerRelationshipRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

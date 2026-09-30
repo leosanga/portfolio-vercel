@@ -58,8 +58,24 @@ export type HubSpotCoverageReconciliationProofExperience = {
   outcomeBody: string;
 };
 
+export type SalesforceRoutingProofExperience = {
+  kind: "salesforce-routing";
+  eyebrow: string;
+  heading: string;
+  request: string;
+  columns: readonly [context: string, destination: string, followUp: string];
+  outcomes: readonly {
+    context: string;
+    destination: string;
+    followUp: string;
+    isReview?: boolean;
+  }[];
+};
+
 export type ProjectProofExperience =
-  BookingReliabilityProofExperience | HubSpotCoverageReconciliationProofExperience;
+  | BookingReliabilityProofExperience
+  | HubSpotCoverageReconciliationProofExperience
+  | SalesforceRoutingProofExperience;
 
 export type LeadQualificationLoopExperience = {
   kind: "lead-qualification-loop";

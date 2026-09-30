@@ -10,7 +10,7 @@ at `https://leosanga.vercel.app/` now serves portfolio version 2.
 
 The HubSpot CRM case-study release is also complete. Commit `debe80d` is on
 `main`, Vercel marked its production deployment successful, and the canonical
-site now serves the project from `/projects/hubspot-lead-routing`.
+site now serves the project from `/projects/lead-routing-pipeline-health-system`.
 
 ## Repository state
 
@@ -41,7 +41,7 @@ site now serves the project from `/projects/hubspot-lead-routing`.
 - Canonical production URL: `https://leosanga.vercel.app/`
 - HubSpot CRM case-study release commit: `debe80d94bbf203efac725d2ee973f155d05e8ae`
 - HubSpot production route:
-  `https://leosanga.vercel.app/projects/hubspot-lead-routing`
+  `https://leosanga.vercel.app/projects/lead-routing-pipeline-health-system`
 
 ## Local review surfaces
 
@@ -165,7 +165,7 @@ and brand requirements are recorded in
 The Booking Agent launched as the lead project in a six-project collection. The
 current local collection has seven projects after the HubSpot case study was
 added, and `AI Booking Agent (n8n)` remains the only featured project.
-`/projects/n8n-booking-agent` contains the approved text-led case study,
+`/projects/ai-booking-agent` contains the approved text-led case study,
 failure-safe outcome record, scroll-led architecture handoff, four proof
 chapters, architecture evolution, adaptability section, and final scheduling
 action. It intentionally has no Loom, screenshot placeholder, public agent, or
@@ -236,7 +236,7 @@ measuring only eight leads, the response-time check moving outside routing, and
 the final 14-of-14 coverage. The visual holds the complete state between passes
 and pauses offscreen or when the document is hidden.
 
-The route at `/projects/hubspot-lead-routing` now starts with the unnumbered hero
+The route at `/projects/lead-routing-pipeline-health-system` now starts with the unnumbered hero
 and the same report-coverage proof used on the homepage. Section 01 restores the
 compact Overview. Section 02 uses a fixed-height CRM decision trail to show a
 transferable system-design principle: current fields can change while the
