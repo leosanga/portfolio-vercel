@@ -9,7 +9,7 @@ export function Process() {
           From Problem to Solution
         </h2>
 
-        <ol className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <ol className="mt-12 grid gap-8 sm:grid-cols-2 xl:grid-cols-5">
           {PROCESS_STEPS.map((step) => (
             <li key={step.number} className="reveal">
               <div className="flex items-center gap-4">

@@ -79,22 +79,27 @@ export const PROCESS_STEPS = [
   {
     number: "01",
     title: "Understand",
-    body: "I look at how the process runs today: is there an SOP, what tools touch it, who's involved, and what files and approvals it needs.",
+    body: "I identify: how the process runs today, what's already built, what's documented, who's involved, and what we are trying to achieve.",
   },
   {
     number: "02",
     title: "Plan",
-    body: "I write it down: how the systems connect and how the automation works, detailed enough that someone else could rebuild it without me.",
+    body: "I design: how it works, flows, and connects, which tools, AI-assisted or not, and what happens when something fails, detailed enough that someone else could rebuild it without me.",
   },
   {
     number: "03",
     title: "Build",
-    body: "I build it: fully custom, AI-assisted, or whatever tool fits, whichever's simplest and cheapest.",
+    body: "I execute: integrate apps, connect tools, utilize AI-assisted executions, and turn the design into a working system.",
   },
   {
     number: "04",
     title: "Validate",
-    body: "I review and improve: test it against real scenarios, watch how it performs, fix any issues, and identify improvements.",
+    body: "I test then deploy: check it against real scenarios, watch how it performs, fix any issues, identify improvements, then deploy and test all over again.",
+  },
+  {
+    number: "05",
+    title: "Monitor",
+    body: "I define and track: quantifiable metrics for success and failure, so we can see the performance over time, and continuously improve as we adopt to changes.",
   },
 ];
 

@@ -526,6 +526,99 @@ retained`. They should not be shortened inside implementation without a separate
 copy review because their practical detail distinguishes the section from a
 generic agency process.
 
+### Build copy amendment, 2026-10-01
+
+Leo approved this replacement for the Build description after reviewing the AI
+engineering content proposal:
+
+`I choose tools that fit the process and use AI to help with the build. I decide whether the automation needs AI and choose the simpler, cheaper approach.`
+
+The paragraph communicates tool-selection judgment, including whether an
+automation needs AI. AI action governance remains a separate case-study topic.
+The wording states the decision directly without explaining that experience
+helps Leo make it. Plan and Validate retain their existing copy. Understand is
+superseded by the subsequent amendment below.
+The shared `PROCESS_STEPS` source supplies both portfolio versions.
+
+### Understand copy amendment, 2026-10-01
+
+Leo explicitly locked this exact wording:
+
+`I identify: how the process runs today, what's already built, what's documented, who's involved, and what we are trying to achieve.`
+
+Apply it to the shared `PROCESS_STEPS` source. Preserve its wording exactly.
+Leo also reopened Plan for copy review; the selected wording is recorded below.
+
+### Plan copy amendment, 2026-10-01
+
+Leo explicitly locked option 1:
+
+`I design: how it works, where tools connect, how everything flows, and what happens when something fails, detailed enough that someone else could rebuild it without me.`
+
+Apply it to the shared `PROCESS_STEPS` source and preserve its wording exactly.
+It includes failure behavior as part of the design.
+
+### Step 4 copy amendment, 2026-10-01
+
+Leo explicitly locked this exact wording:
+
+`I test then deploy: check it against real scenarios, watch how it performs, fix any issues, identify improvements, then deploy and test all over again.`
+
+Apply it to the shared `PROCESS_STEPS` source and preserve its wording exactly.
+The existing `Validate` title remains until Leo approves a title change. Do not
+append a separate sentence about post-deployment testing.
+
+### Five-step Approach, approved paragraph and local visual review
+
+On 2026-10-01, Leo locked the fifth paragraph:
+
+`I define and track: quantifiable metrics for success and failure, so we can see
+the performance over time, and continuously improve as we adopt to changes.`
+
+Preserve this exact wording, including `adopt to changes`. Leo locked the
+reviewed section, including the `Monitor` title, on 2026-10-01. The paragraph's
+opening differs from the title. This direction
+supersedes the original four-step constraint.
+
+The local preview reads from the shared `PROCESS_STEPS` source through version 2
+`APPROACH` and `ApproachV2`. It uses five columns at 1280 CSS pixels and above and
+the existing vertical sequence below 1280 pixels, keeping the connector path
+continuous rather than wrapping it into multiple rows. The retained legacy
+`Process` uses five columns from its `xl` breakpoint. Existing palette, type,
+motion, section IDs, and navigation remain unchanged. No new section, metric
+dashboard, or dependency is required. Leo requested visual review before release;
+this amendment authorizes the local preview, not deployment.
+
+During local review, Leo reopened the Build paragraph to match the other steps'
+`I ...:` pattern. Its existing approved wording remains in the preview until a
+replacement is locked.
+
+Leo then reopened Plan as well and clarified the allocation of responsibilities:
+Plan owns choosing the right tools, deciding whether the automation needs AI,
+and selecting the simpler, cheaper approach. Build owns implementing the design,
+with AI helping with the build. The prior Build drafts that retain those planning
+decisions in Build are superseded. Leo locked the Build opening as `I execute:`.
+
+Leo subsequently supplied the complete replacements, which supersede the earlier
+Plan and Build amendments and drafts:
+
+Plan: `I design: how it works, flows, and connects, which tools, AI-assisted or
+not, and what happens when something fails, detailed enough that someone else
+could rebuild it without me.`
+
+Build: `I execute: integrate apps, connect tools, utilize AI-assisted executions,
+and turn the design into a working system.`
+
+Apply both exactly to the shared source and the local preview. Preserve
+`AI-assisted or not` and `utilize AI-assisted executions` as supplied. Do not
+restore the earlier simpler/cheaper clause by inference. Understand, Validate,
+and the fifth paragraph remain locked. Deployment still awaits visual review
+and separate release authorization.
+
+Leo subsequently locked the complete reviewed five-step section. Further work
+is limited to the requested Projects connector alignment and Approach sequence,
+recorded in `PROJECTS-APPROACH-CONNECTOR-PLAN.md` and the visual specification.
+
 ### Purpose of the section
 
 This is evidence of working judgment. It is not a sales process and should not
