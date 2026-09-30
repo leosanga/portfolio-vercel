@@ -15,7 +15,7 @@ project as the featured owned case study. A dedicated route carries the working
 demonstration, architecture, production-safety argument, verification, and stated
 limits.
 
-Approved route direction: `/projects/n8n-booking-agent`.
+Approved route direction: `/projects/ai-booking-agent`.
 
 Approved public project title: `AI Booking Agent (n8n)`.
 
@@ -768,7 +768,7 @@ deployment, or publication is authorized by this section.
 ### Implementation outcome
 
 Add the booking agent as the homepage's featured project and create the approved
-`/projects/n8n-booking-agent` case-study route. The first release is a complete
+`/projects/ai-booking-agent` case-study route. The first release is a complete
 text-and-evidence case study with no Loom, screenshot placeholder, public agent,
 new dependency, or deployment change.
 
@@ -890,7 +890,7 @@ legacy content. Legacy `featured` values are normalized to false in the version
 
 - Page title: `AI Booking Agent Case Study | Leo Sanga`
 - Meta description: the selected Option A copy in this document
-- Canonical URL: `https://leosanga.vercel.app/projects/n8n-booking-agent`
+- Canonical URL: `https://leosanga.vercel.app/projects/ai-booking-agent`
 - Open Graph type: `article`
 - Open Graph and X title and description match the route metadata
 - Do not create or replace a social image. No project-specific image was
@@ -934,7 +934,7 @@ Expected source changes:
   - New semantic, scroll-led architecture handoff.
 - `src/components/portfolio-v2/BookingAgentCaseStudyV2.tsx`
   - New dedicated narrative page and compact route header.
-- `src/routes/projects/n8n-booking-agent.tsx`
+- `src/routes/projects/ai-booking-agent.tsx`
   - New route and approved metadata.
 - `src/styles/portfolio-v2.css`
   - Extend the existing token-driven system for the homepage link, moved workflow
@@ -1490,6 +1490,27 @@ Approved by Leo after local review. It supersedes the phone map rule above.
 - `scripts/booking-case-study-media-qa.mjs` now expects the drawing at every
   width and opens the map viewer from both openers. Against the production
   build it passed 22 of 22 theme and viewport runs.
+
+## Hero rhythm revision, 2026-09-30
+
+- At desktop and tablet widths, `AI Booking Agent` stays on one line and `(n8n)`
+  remains the separate shared platform-label line. The title keeps the shared
+  case-study type scale; the Booking hero receives a wider title column instead
+  of a smaller font.
+- The support column starts closer to the top of the hero and uses a tighter
+  line rhythm so the shorter title produces a shorter opening instead of an
+  empty lower band.
+- At desktop and tablet widths, the content sits slightly lower while bottom
+  padding is reduced by more than the top offset increases. This removes the
+  empty band below the technology list and shortens the hero overall.
+- Phone widths may wrap the title when needed to preserve readable type and
+  prevent horizontal overflow.
+- In the production preview at the 1400 px content width, the shared title is
+  99.05 px with a 91.126 px line height. The hero is about 461 px tall, down
+  from about 475 px, and the technology list ends about 43 px above the section
+  boundary instead of leaving the previous roughly 70 px band. At the 390 px
+  viewport, the title uses the shared 54.6 px responsive size, the hero remains
+  about 577 px tall, and the page has no horizontal overflow.
 
 ### Post-review UX revision
 

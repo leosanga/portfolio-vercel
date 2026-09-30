@@ -38,7 +38,10 @@ export function BookingAgentCaseStudyV2() {
         <section className="pv2-case-hero pv2-booking-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid">
             <div className="pv2-booking-hero__title">
-              <h1 id="case-study-title">{hero.title}</h1>
+              <h1 id="case-study-title">
+                {hero.title.replace(/ \(n8n\)$/, "")}
+                <span className="pv2-case-hero__platform"> (n8n)</span>
+              </h1>
             </div>
 
             <div className="pv2-booking-hero__details">

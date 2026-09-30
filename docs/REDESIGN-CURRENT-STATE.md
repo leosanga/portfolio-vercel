@@ -10,7 +10,7 @@ at `https://leosanga.vercel.app/` now serves portfolio version 2.
 
 The HubSpot CRM case-study release is also complete. Commit `debe80d` is on
 `main`, Vercel marked its production deployment successful, and the canonical
-site now serves the project from `/projects/hubspot-lead-routing`.
+site now serves the project from `/projects/lead-routing-pipeline-health-system`.
 
 ## Repository state
 
@@ -41,7 +41,7 @@ site now serves the project from `/projects/hubspot-lead-routing`.
 - Canonical production URL: `https://leosanga.vercel.app/`
 - HubSpot CRM case-study release commit: `debe80d94bbf203efac725d2ee973f155d05e8ae`
 - HubSpot production route:
-  `https://leosanga.vercel.app/projects/hubspot-lead-routing`
+  `https://leosanga.vercel.app/projects/lead-routing-pipeline-health-system`
 
 ## Local review surfaces
 
@@ -165,7 +165,7 @@ and brand requirements are recorded in
 The Booking Agent launched as the lead project in a six-project collection. The
 current local collection has seven projects after the HubSpot case study was
 added, and `AI Booking Agent (n8n)` remains the only featured project.
-`/projects/n8n-booking-agent` contains the approved text-led case study,
+`/projects/ai-booking-agent` contains the approved text-led case study,
 failure-safe outcome record, scroll-led architecture handoff, four proof
 chapters, architecture evolution, adaptability section, and final scheduling
 action. It intentionally has no Loom, screenshot placeholder, public agent, or
@@ -236,7 +236,7 @@ measuring only eight leads, the response-time check moving outside routing, and
 the final 14-of-14 coverage. The visual holds the complete state between passes
 and pauses offscreen or when the document is hidden.
 
-The route at `/projects/hubspot-lead-routing` now starts with the unnumbered hero
+The route at `/projects/lead-routing-pipeline-health-system` now starts with the unnumbered hero
 and the same report-coverage proof used on the homepage. Section 01 restores the
 compact Overview. Section 02 uses a fixed-height CRM decision trail to show a
 transferable system-design principle: current fields can change while the
@@ -778,12 +778,40 @@ Decisions this turn:
 
 ## Exact next action
 
-Leo reviews the port 8091 viewer. Once he accepts the visual revision and
-explicitly asks to deploy, integrate only the approved branch change set with
-the original worktree's approved content and Project 7 work. Preserve unrelated
-user changes. Keep the baseline tag and `redesign/v2` branch intact, never
-rewrite `main` history, and exclude local preview helpers and unrelated context
-files from release. Do not publish before that authorization.
+Leo authorized looping and deployment on 2026-10-01: "loop it, then deploy".
+This supersedes the one-pass decision and the pending release gate above.
+The Approach loop uses a shared 4800ms cycle, preserving 620ms arrival spacing
+and a 2020ms pause after the fifth pulse settles. Copy remains exactly locked.
+
+The latest production branch, 8948e29, was merged into the isolated release
+branch before verification. Its Salesforce case study, renamed project routes,
+assets, and mobile utility layout remain intact. Its late duplicate Projects
+CSS receives the same axis fixes so the cascade preserves alignment.
+
+TypeScript, the integrated production build, targeted ESLint, and Git whitespace
+checks pass. Prettier's remaining warnings in the merged CSS and guidelines are
+solely the repository's existing CRLF issue; normalized text matches formatting.
+Browser sampling showed repeated signal order 1, 2, 3, 4 across two cycles,
+with all five node durations 4.8s and infinite iteration counts. Mobile 390px
+Approach axis and endpoint offsets are zero; Projects rail and all dot centers
+share x=6px. No horizontal overflow occurs at 390px or 320px. Keyboard menu and
+Approach navigation work at 320px; ID-bearing sections remain untransformed.
+Responsive viewport override was reset. Reduced motion was source-reviewed;
+browser preference emulation remains unperformed. Both specialist reviews were
+collected and reconciled. No new source or motion blocker remains.
+
+The restarted viewer uses port 8091, command session 47918. The local preview
+helper stays excluded. Relative to latest production, the release contains only
+the nine approved content, connector, and documentation files. Preserve original
+unrelated changes, baseline tags, and retained branches. Next action: commit the
+integration, publish the branch, merge its pull request, then verify Vercel and
+the canonical site. Do not rewrite history.
+
+Decisions this turn:
+
+- Repeat Approach from 1 through 5 with a brief resting interval.
+- Keep reduced-motion visitors on the static route.
+- Deploy the reviewed update while preserving the newer production release.
 
 ## Required read order
 

@@ -123,7 +123,7 @@ manifest and Git history.
 ## Booking agent case-study evidence
 
 - Purpose: real-system evidence placed under the claims it proves on
-  `/projects/n8n-booking-agent`
+  `/projects/ai-booking-agent`
 - Source repository: `n8n-booking-agent`, folder `docs/portfolio/`, captured
   2026-09-27 from Leo's own n8n instance for the demo business "Leo Demo Co".
   Screenshots at commit `196f442`, overview map at commit `61c146c`.
@@ -158,3 +158,34 @@ manifest and Git history.
 If the booking workflow's canvas changes, these images describe the build at
 the commits above. Recapture, re-encode, and update this table before the page
 claims anything about the newer build.
+
+## Salesforce case-study evidence
+
+- Purpose: native Salesforce evidence for the Trial & Demo Matching & Routing
+  System case study
+- Source repository: `salesforce-revenue-system`, folder `docs/evidence/`
+- Source captured: 2026-09-28, recaptured from Leo Sanga's Salesforce Developer
+  Edition org after the fixture and story runs, using controlled records. Each
+  capture is a full browser-viewport screenshot at native resolution, sized to fit
+  its evidence, taken from a freshly loaded page with no pointer input, and without
+  the browser address bar. These replace the 2026-09-27 captures, which were
+  downscaled from a wider viewport and showed a mouse pointer.
+- Production tool: ImageMagick 7.1.2-30 Q16-HDRI x64
+- Transformation: lossless WebP (`webp:lossless=true`, method 6) with metadata
+  stripped. No resize or retouching. `resolved-event.webp` removes 27 pixels of
+  empty page canvas below the record panel (source 767 by 1275, output 767 by
+  1248); every other output keeps its source dimensions.
+- Privacy review: no org URL, client identifier, secret, access token, or real
+  customer record appears. The `.example` email addresses and company records
+  are controlled test records. The dashboard carries the public account label
+  `Leo Social`.
+- License: owned screenshots supplied by Leo Sanga
+- Produced: 2026-09-28
+
+| Output in `salesforce/` | Output size  | Source in `docs/evidence/` | Source SHA-256                                                     | Output SHA-256                                                     |
+| ----------------------- | ------------ | -------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `inbound-events.webp`   | 1165 by 1030 | `1-inbound-events.jpg`     | `a496ac25049d9933198dc1189a3c9496d00a6e3e18e7d53cffae3230b82f9650` | `8c81b0f90e94f71716f0f3de2cd2adc50f121d9d524177a1fcb8ab130a86c0e8` |
+| `resolved-event.webp`   | 767 by 1248  | `2-resolved-event.jpg`     | `35e3d1dba0d295fe5c3e5e0320d19ae6b36941ae5d0e8b6546eadea21ba4b95a` | `1ab088df5f6d888a5941e89cdb45a8894051b1d3e0777c85f63c2ea1ae1502e8` |
+| `needs-review.webp`     | 1440 by 560  | `3-needs-review.jpg`       | `f69a5d1a189daa99cfbddaf0a8458a7d9e3556baa2c98c363f74d64b18504b78` | `fb96f8412258567dd50468653c6a90b037b0b3756b0268203e0165cb48e45f90` |
+| `deal-task.webp`        | 1200 by 1000 | `4-deal-task.jpg`          | `d154d42dd7afa80acb19bb9a1458432bf5f8e902f296f2fef2d2476b43121d50` | `06c5fc6263c8c40e02d247786ba4b750f34e24d99701b452ac1f9fdef66d2b69` |
+| `dashboard.webp`        | 1200 by 680  | `5-dashboard.jpg`          | `42af5377acfe21f202dee0c33ede18e31eb0cd442834ac34f644deda99c0d7f4` | `6fae940c855414224c78814a81b9b2b9f8a92b5d35b3bcac2d6b049e67c6c68f` |

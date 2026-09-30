@@ -1,7 +1,7 @@
 # Projects and Approach connector polish
 
-Status: Local implementation of Leo's 2026-10-01 request. Visual review and
-release authorization remain separate.
+Status: Leo authorized looping and deployment on 2026-10-01. Release verification
+is in progress.
 
 ## Goal and scope
 
@@ -23,12 +23,16 @@ authority; no portable brand tokens change.
 - Approach: connect the five nodes using four decorative segments. Extend each
   segment through the existing inter-step gap so its endpoints meet the nodes.
   Reuse the inline step index to schedule each node and outgoing segment.
-- One pass begins when the existing inner wrapper becomes visible. Each node
+- The loop begins when the existing inner wrapper becomes visible. Each node
   pulses on arrival and its outgoing signal travels to the next node. Movement
   runs left to right at 1280px and above and top to bottom below that width.
 - Timing: 400ms initial pause, 300ms node pulse, 620ms between arrivals. Segment
   movement starts at the node pulse's 150ms peak. The fifth arrival ends the
-  sequence. The resting rail stays visible; there is no repeating Approach loop.
+  pass. All nodes and the resting rail stay visible. A shared 4800ms cycle keeps
+  the five staggered pulses and four signals synchronized across repetitions.
+  The next pass starts 2020ms after the fifth pulse settles. Node keyframes peak
+  at 3.125% and settle at 6.25%; signals finish traveling at 12.916667% of the
+  common cycle. Changing that cycle requires updating these keyframe stops.
 - Reduced motion: all nodes and connectors remain static and visible immediately.
   Animation selectors stay inside the no-preference query. Copy is never hidden.
 - No new dependencies, timers, state, schema, navigation, or public wording.
@@ -55,8 +59,8 @@ directory used by the node_modules junction. It is excluded from release scope.
 ## Verification and limits
 
 Check Projects dot/rail centers and Approach node/segment centers at wide and
-narrow widths, including 1280/1279. Inspect signal timings and one-pass behavior
-from browser animation objects without modifying the page. Review keyboard
+narrow widths, including 1280/1279. Inspect signal timings and repeated cycles
+from browser computed styles without modifying the page. Review keyboard
 navigation, disclosure behavior, scrollspy, static source fallbacks, and reduced
 motion. Run TypeScript, targeted formatting/lint, production build, and whitespace
 checks. Compare the changed geometry with the observed pre-fix offsets.
@@ -67,10 +71,23 @@ Arrival is the pulse peak: 550ms + index * 620ms, with the fifth peak at 3030ms
 and its pulse ending at 3180ms. Later mobile steps may finish offscreen because
 the existing wrapper observer starts the entire pass. That is a visual-review
 limit, not a content gate. Component paths are under src/components/portfolio-v2/.
-No Claude hook or
-lesson tool is claimed to run. No private methodology stores are accessed.
+No manual Claude goal challenger or lesson tool is claimed to run. No private
+methodology stores are accessed.
+
+## Production integration
+
+The remote production branch advanced to 8948e29 with the Salesforce case study.
+Merge it into this isolated branch before release. Preserve all of that release's
+routes, assets, mobile utility layout, and evidence. Its duplicate late Projects
+CSS also receives the approved axis correction so the cascade cannot undo it.
+The only merge conflict is the guidelines date; retain 2026-10-01. Release through
+a pull request and merge commit, retaining rollback history. Exclude the local
+preview config, dependency junction, generated cosmetic changes, and original
+unrelated user files.
 
 Focused implementation reviews confirmed interpolation, endpoints, finite
-timings, and breakpoint continuity. Accessibility review caught the old observed
+timings, and breakpoint continuity. The loop amendment also requires checking
+at least two cycles, shared duration, and constant 620ms arrival spacing.
+Accessibility review caught the old observed
 node-scale selector overriding reduced-motion defaults; its base scale was
 removed and reduced-motion node transitions are disabled.

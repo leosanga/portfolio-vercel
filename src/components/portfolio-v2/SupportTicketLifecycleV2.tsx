@@ -6,16 +6,16 @@ type TicketStageState = "pending" | "active" | "complete";
 type LifecycleState = "intake" | "active" | "waiting" | "resolved" | "closed";
 
 const FINAL_STAGE = 8;
-const LOOP_DURATION_MS = 9800;
+const LOOP_DURATION_MS = 22000;
 const STAGE_TIMING = [
-  { at: 700, stage: 1 },
-  { at: 1650, stage: 2 },
-  { at: 2750, stage: 3 },
-  { at: 4100, stage: 4 },
-  { at: 5250, stage: 5 },
-  { at: 6400, stage: 6 },
-  { at: 7450, stage: 7 },
-  { at: 8200, stage: FINAL_STAGE },
+  { at: 1500, stage: 1 },
+  { at: 3200, stage: 2 },
+  { at: 5200, stage: 3 },
+  { at: 7600, stage: 4 },
+  { at: 9800, stage: 5 },
+  { at: 12200, stage: 6 },
+  { at: 14500, stage: 7 },
+  { at: 16000, stage: FINAL_STAGE },
 ] as const;
 
 const LIFECYCLE_STATES: readonly { key: LifecycleState; label: string }[] = [

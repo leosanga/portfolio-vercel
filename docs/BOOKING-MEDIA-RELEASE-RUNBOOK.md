@@ -28,8 +28,8 @@ releasing the media work.
 | Rollback anchor tag, local only                     | `pre-booking-media-2026-09-27` on `887e845`                      |
 | Worktree                                            | `C:\Users\Leo\Downloads\projects\portfolio-vercel-booking-media` |
 | Branch                                              | `feature/booking-case-study-media`, local only                   |
-| Local preview                                       | `http://127.0.0.1:8090/projects/n8n-booking-agent`               |
-| Live page to compare against                        | `https://leosanga.vercel.app/projects/n8n-booking-agent`         |
+| Local preview                                       | `http://127.0.0.1:8090/projects/ai-booking-agent`                |
+| Live page to compare against                        | `https://leosanga.vercel.app/projects/ai-booking-agent`          |
 | Source assets                                       | `n8n-booking-agent` commits `7316b97` and `61c146c`, local only  |
 
 The original `portfolio-vercel` worktree holds another session's uncommitted
@@ -77,7 +77,7 @@ restart.
    bunx vite preview --port 8090 --strictPort --host 127.0.0.1
    ```
 
-4. Open `http://127.0.0.1:8090/projects/n8n-booking-agent` in the browser.
+4. Open `http://127.0.0.1:8090/projects/ai-booking-agent` in the browser.
 
 ### Test
 
@@ -142,7 +142,7 @@ Never force-push or reset `main`.
 
 ### Test
 
-- `https://leosanga.vercel.app/projects/n8n-booking-agent` shows no
+- `https://leosanga.vercel.app/projects/ai-booking-agent` shows no
   `IMPLEMENTED IN N8N` label within a minute. Use a private window to avoid the
   browser cache.
 - If `Instant Rollback` is not offered, that deployment is not eligible. Use

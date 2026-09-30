@@ -203,3 +203,177 @@ project-specific facts in the relevant case-study specification.
 - Review the finished composition at real desktop and mobile sizes. Check hero
   height, proof visibility, image readability, keyboard behavior, reduced
   motion, and horizontal overflow.
+
+## Lessons consolidated from the Salesforce case study
+
+These rules prevent a technically complete project from turning into a long build
+report that asks the audience to find its value.
+
+### Decide whether the project deserves a case study
+
+- A case study earns a homepage slot when it adds a capability the current set does
+  not already prove and when the implementation has evidence strong enough to carry
+  the page.
+- Approval to add or promote a case study does not authorize removing, archiving, or
+  relocating existing projects. Treat homepage composition, project ordering, and a
+  separate project index as independent information-architecture decisions that each
+  require explicit approval.
+- State the audience value before designing the route. For a recruiter or business
+  owner, identify the operational problem, the judgment demonstrated, and the proof
+  that the system exists.
+- Independent work, sandbox work, and confidential client work are different evidence
+  classes. Name the real class accurately. Do not use NDA language to make an
+  independent project sound commissioned or deployed for a client.
+
+### Make the first impression answer what the system is for
+
+- The project title and first supporting sentence must name the operational job in
+  language a reader can understand without knowing the platform.
+- Put the platform in the title when it is a useful hiring signal, but do not let the
+  platform replace the purpose.
+- Lead with the consequence the system prevents or produces.
+- Keep the public hero anatomy consistent across case studies: title, one support
+  paragraph, and the technology list. Do not add project-specific test counts, status
+  lines, or implementation qualifiers merely to fill the supporting column. Place
+  verification and operating boundaries in the evidence section that substantiates
+  them.
+- Keep the shared hero-title scale. When a shorter title should remain on one line,
+  change its grid allocation before changing its font size. Project names may wrap to
+  different line counts without losing typographic consistency.
+- Derive the public route from the approved public case-study title, not from an
+  internal repository or project slug. Update the route file, internal link, canonical
+  URL, and generated route tree as one change, then verify the former route is absent
+  when no redirect was approved.
+- Do not lead with `fictional`, `test data`, `sandbox`, or a defense of the project.
+  Place one accurate evidence-context statement at the first evidence boundary. When
+  a section header has an available supporting column, use that column instead of
+  creating a partial-width standalone row. Do not repeat the statement in every
+  caption.
+
+### Build one narrative instead of repeating a system summary
+
+- Give the opening proof one memorable sentence and one story. A relationship change,
+  failure boundary, or before-and-after state is easier to remember than a complete
+  outcome matrix.
+- Treat a stop or review condition as a different state from an ordinary route. Do
+  not style it as one more successful outcome.
+- A standalone Overview is optional. Remove it when the hero and opening proof already
+  establish the problem, build, and hard part. Section order is a reading aid, not a
+  requirement to repeat material.
+- Each chapter must add a new answer. A useful default is: how the decision is made,
+  when the system acts or stops, how it remains safe and traceable, and what is working
+  now.
+- Each screenshot gets one job. Do not repeat its fields in a second transcript unless
+  the image text cannot carry an essential claim at page size.
+
+### Budget the page and evidence before polishing it
+
+- Measure the full page, opening, and major section heights at a real desktop width
+  and a real phone width. Do not accept length by feel.
+- When a hero feels underused, compare the title and supporting columns before
+  changing its overall scale. Preserve the shared hero rhythm and improve the column
+  composition. Do not shrink one project's hero to compensate for an underfilled
+  support column.
+- Measure where both hero columns begin and end, plus the gap from the lowest content
+  to the section boundary. Total hero height alone cannot show whether the support
+  column is wasting space or whether one column is setting the height for both.
+- Solve a short-title hero in this order: rebalance the grid, tighten the support
+  column's internal rhythm, then adjust vertical padding. Asymmetric padding is valid
+  when the content needs to sit slightly lower while the section becomes shorter, but
+  verify the resulting top and bottom gaps in the browser.
+- Compare computed title size and line height at the same viewport across case studies.
+  A title that looks smaller because it fits on one line must not receive a private
+  scale unless a documented legibility problem requires it.
+- Capture those measurements before the first layout edit. If a baseline was not
+  recorded, report that limitation instead of reconstructing or inventing a
+  before-and-after comparison.
+- Review whether the primary evidence appears soon enough. If the reader must pass
+  several summaries before reaching proof, remove a layer.
+- Choose screenshot framing and section layout together. A portrait capture needs a
+  portrait-aware placement. A wide list or dashboard should not inherit a narrow
+  text column.
+- Never place a tall screenshot beside a short caption or short paragraph. That empty
+  column is a structural defect, not spacing to decorate.
+- Do not solve an empty side column by expanding an image before checking its intrinsic
+  aspect ratio and the resulting section height. A centered, capped evidence frame can
+  make the space deliberate while keeping the page shorter and the screenshot legible.
+- Fix wasteful source framing before compensating with CSS. Do not crop away the
+  context required to understand the interface.
+- Count visual boundaries. A section rule, card border, row rule, and screenshot frame
+  should not all describe the same grouping.
+
+### Keep proof motion proportional to the information
+
+- A complete final state does not automatically make motion unnecessary. Use a short
+  sequence when the state change itself is the memorable system behavior, such as the
+  same request reaching a different owner as its relationship changes.
+- Keep the resolved state complete and understandable without motion. The sequence
+  should add causality and timing, not withhold a route or force the reader to wait for
+  the answer.
+- Do not add autoplay, Pause, or Play controls merely to create activity. A compact
+  self-running explanation can play once on the case-study route and repeat on a longer
+  cadence in a homepage card when both behaviors are specified explicitly.
+- At phone width, the complete signature proof should fit within roughly one viewport
+  when the information allows it. Convert desktop cards into compact rows before
+  removing content.
+- A decorative control is a product claim. If its purpose is not obvious and useful,
+  remove it.
+
+### Gate the signature experience before rebuilding the page
+
+- Define the opening question, states, geometry, motion, responsive behavior, and
+  accessibility fallback in the approved specification before delegating implementation.
+  Do not delegate an open-ended request for a `wow factor`.
+- Build and render the hero plus signature proof as the first gate. Review it on the
+  homepage and dedicated route before changing the remaining chapters.
+- Keep visual judgment and acceptance separate from mechanical implementation. A
+  technically correct CSS change can still increase page length or create a new empty
+  region, so every material geometry change needs a rendered check.
+- For repeating motion, observe at least one complete reset and second pass at every
+  placement. Record the dwell time of each readable state and the resolved hold. Source
+  props and timer constants do not prove that the rendered sequence loops or remains
+  readable while intersection and document-visibility rules are active.
+- Use one persistent implementation agent for bounded revisions, then use a fresh
+  read-only audit after the rendered result is accepted. This limits repeated context
+  loading without giving away claim, hierarchy, or release judgment.
+- Keep a production-equivalent local viewer running through acceptance. Rebuild and
+  restart it after output changes so the browser never combines stale HTML with new CSS.
+- Treat preservation as dependency closure, not markup recovery. When an existing
+  homepage surface must remain unchanged, verify its data, components, selector
+  families, responsive rules, reduced-motion and forced-color fallbacks, timer logic,
+  and route links together. Restored JSX with missing CSS or behavior is still a
+  regression.
+- After rebuilding a same-origin local preview, load a fresh document or use a
+  cache-busting query before visual acceptance. Confirm that the page references the
+  new build output so a cached bundle cannot make corrected source look broken, or
+  broken source look corrected.
+
+### Separate implementation proof from operational readiness
+
+- Test counts, coverage, fresh-environment rebuilds, and credentialed runs prove the
+  implementation. They are not business-impact metrics.
+- Prefer two status groups: `Working now` and `Environment-specific before operational
+use`. This distinguishes observed behavior from rollout decisions without turning
+  the close into a hypothetical deployment checklist.
+- Scope replay claims precisely. Describe which terminal states prevent repeated
+  business actions and which error states remain retryable.
+- Scope transferability precisely. A decision pattern can transfer while the objects,
+  automation, permissions, and operating controls remain platform-specific.
+
+### Close as a case study, not as an agency landing page
+
+- End with the operational result established by the evidence.
+- A related project link can explain how the next case study extends the story.
+- Do not add service-package language, a generic sales hook, or a second large call to
+  action when the global navigation already supplies one.
+
+### Final responsive and accessibility gate
+
+- Verify the homepage proof and the full route separately at desktop and phone widths.
+- Check that fixed utilities do not cover proof, captions, project links, or the final
+  action. At phone width, place a shared utility rail after the footer when the fixed
+  version obscures content.
+- Open evidence from the image and from the visible action. Verify Escape closes the
+  viewer and focus returns to the exact opener.
+- Verify heading order, complete static meaning, no horizontal overflow, and a useful
+  reduced-motion state before considering the case study complete.
