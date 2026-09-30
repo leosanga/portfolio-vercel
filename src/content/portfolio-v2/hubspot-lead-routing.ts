@@ -52,7 +52,7 @@ export const HUBSPOT_LEAD_ROUTING_PROJECT = {
   hardPart: HUBSPOT_LEAD_ROUTING_OVERVIEW.hardPart,
   stack: HUBSPOT_LEAD_ROUTING_STACK,
   homepageRole: "case-study",
-  caseStudyPath: "/projects/hubspot-lead-routing",
+  caseStudyPath: "/projects/lead-routing-pipeline-health-system",
   caseStudyLabel: "Follow a lead through the system",
   proofExperience: HUBSPOT_COVERAGE_RECONCILIATION_PROOF,
 } as const satisfies ProjectViewModel;
@@ -339,6 +339,6 @@ export const HUBSPOT_LEAD_ROUTING_CASE_STUDY = {
     title: "HubSpot Lead Routing and CRM Accountability | Leo Sanga",
     description:
       "See how Leo Sanga built and tested a HubSpot lead-routing system, then used its reports to uncover gaps before deployment.",
-    canonicalUrl: "https://leosanga.vercel.app/projects/hubspot-lead-routing",
+    canonicalUrl: "https://leosanga.vercel.app/projects/lead-routing-pipeline-health-system",
   },
 } as const;

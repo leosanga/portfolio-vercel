@@ -14,6 +14,8 @@ import type {
 } from "./types";
 import { BOOKING_AGENT_PROJECT } from "./booking-agent";
 import { HUBSPOT_LEAD_ROUTING_PROJECT } from "./hubspot-lead-routing";
+import { PROJECT_VISUALS } from "./project-visuals";
+import { SALESFORCE_ROUTING_PROJECT } from "./salesforce-trial-demo-routing";
 
 export const NAVIGATION = [
   { id: "projects", label: "Projects" },
@@ -28,6 +30,29 @@ export const HERO: HeroContent = {
     "I design and build the systems a business relies on. My background across operations and technical delivery helps me see how the work gets done before I decide how the system should support it.",
   callLabel: "Schedule a Call",
 };
+
+export const PROJECTS_CONTEXT = {
+  introduction:
+    "These are some of the systems I’ve built. Each one started with a different business problem and shows how I solved it.",
+  credibility: [
+    {
+      value: "5+ years",
+      label: "Business operations",
+    },
+    {
+      value: "3+ years",
+      label: "Systems engineering",
+    },
+    {
+      value: "Nearly 200",
+      label: "B2B clients supported through technical delivery",
+    },
+    {
+      value: "Hundreds",
+      label: "Production solutions owned through deployment",
+    },
+  ],
+} as const;
 
 export const CAPABILITIES = [
   {
@@ -110,19 +135,37 @@ const LEGACY_PROJECT_VIEW_MODELS: readonly ProjectViewModel[] = LEGACY_PROJECTS.
       homepageRole: "standard",
       ...(project.hardPart ? { hardPart: project.hardPart } : {}),
       ...(project.flow ? { flow: project.flow } : {}),
+      ...(PROJECT_VISUALS[slug] ? { visualExperience: PROJECT_VISUALS[slug] } : {}),
     };
   },
 );
 
+const STANDARD_PROJECT_ORDER = [
+  "automated-client-implementation-delivery",
+  "ai-assisted-lead-qualification",
+  "ai-assisted-outbound-prospecting",
+  "support-ticket-pipeline-automation",
+  "executive-reporting-dashboard-automation",
+] as const;
+
+const STANDARD_PROJECTS = STANDARD_PROJECT_ORDER.map((slug) => {
+  const project = LEGACY_PROJECT_VIEW_MODELS.find((candidate) => candidate.slug === slug);
+  if (!project) {
+    throw new Error(`Missing live homepage project: ${slug}`);
+  }
+  return project;
+});
+
 export const PROJECTS: readonly ProjectViewModel[] = [
   BOOKING_AGENT_PROJECT,
+  SALESFORCE_ROUTING_PROJECT,
   HUBSPOT_LEAD_ROUTING_PROJECT,
-  ...LEGACY_PROJECT_VIEW_MODELS,
+  ...STANDARD_PROJECTS,
 ];
 
-if (PROJECTS.length !== 7) {
+if (PROJECTS.length !== 8) {
   throw new Error(
-    `Portfolio version 2 expects exactly 7 current projects, received ${PROJECTS.length}.`,
+    `Portfolio version 2 expects exactly 8 current projects, received ${PROJECTS.length}.`,
   );
 }
 
@@ -130,8 +173,8 @@ if (PROJECTS.filter((project) => project.homepageRole === "lead").length !== 1) 
   throw new Error("Portfolio version 2 expects exactly one lead project.");
 }
 
-if (PROJECTS.filter((project) => project.homepageRole === "case-study").length !== 1) {
-  throw new Error("Portfolio version 2 expects exactly one secondary case study.");
+if (PROJECTS.filter((project) => project.homepageRole === "case-study").length !== 2) {
+  throw new Error("Portfolio version 2 expects exactly two secondary case studies.");
 }
 
 export const APPROACH = LEGACY_APPROACH;

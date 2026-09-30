@@ -164,7 +164,7 @@ export const BOOKING_AGENT_PROJECT = {
   hardPart: BOOKING_AGENT_OVERVIEW.hardPart,
   stack: BOOKING_AGENT_STACK,
   homepageRole: "lead",
-  caseStudyPath: "/projects/n8n-booking-agent",
+  caseStudyPath: "/projects/ai-booking-agent",
   caseStudyLabel: "See how the safeguards work",
   proofExperience: BOOKING_AGENT_PROOF,
 } as const satisfies ProjectViewModel;
@@ -223,6 +223,10 @@ export const BOOKING_AGENT_CASE_STUDY = {
     // re-checking this list.
     map: {
       label: "Workflow map",
+      // The drawing's viewBox, which the viewer scales from.
+      width: 1220,
+      height: 566,
+      alt: "Diagram of the booking agent's workflow in 12 stages. The same stages are listed as text on this page.",
       caption:
         "The booking agent's workflow, grouped into 12 stages. Every conversation ends at stage 11, which replies to the guest and tells the team. The stages behind each safeguard appear below.",
       stages: [
@@ -336,6 +340,6 @@ export const BOOKING_AGENT_CASE_STUDY = {
     title: "AI Booking Agent Case Study | Leo Sanga",
     description:
       "An n8n booking agent case study showing how tested code controls booking decisions and keeps connected-system failures from becoming false success.",
-    canonicalUrl: "https://leosanga.vercel.app/projects/n8n-booking-agent",
+    canonicalUrl: "https://leosanga.vercel.app/projects/ai-booking-agent",
   },
 } as const;

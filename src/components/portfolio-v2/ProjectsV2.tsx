@@ -1,4 +1,4 @@
-import { PROJECTS } from "@/content/portfolio-v2/content";
+import { PROJECTS, PROJECTS_CONTEXT } from "@/content/portfolio-v2/content";
 
 import { CaseStudyProjectV2 } from "./CaseStudyProjectV2";
 import { FeaturedProjectV2 } from "./FeaturedProjectV2";
@@ -18,9 +18,20 @@ export function ProjectsV2() {
       aria-labelledby="pv2-projects-title"
     >
       <div className="pv2-frame">
-        <div className="pv2-section-heading">
+        <div className="pv2-section-heading pv2-projects-heading">
           <p className="pv2-section-heading__index">01</p>
           <h2 id="pv2-projects-title">Projects</h2>
+          <p className="pv2-projects-heading__introduction">{PROJECTS_CONTEXT.introduction}</p>
+        </div>
+        <div className="pv2-projects-context" data-pv2-observe>
+          <dl className="pv2-projects-credibility" aria-label="Experience and delivery scale">
+            {PROJECTS_CONTEXT.credibility.map((item) => (
+              <div className="pv2-projects-credibility__item" key={item.label}>
+                <dt>{item.value}</dt>
+                <dd>{item.label}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
         <FeaturedProjectV2 project={featured} />
         {caseStudies.map((project, index) => (

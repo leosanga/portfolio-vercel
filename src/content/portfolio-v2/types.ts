@@ -58,8 +58,115 @@ export type HubSpotCoverageReconciliationProofExperience = {
   outcomeBody: string;
 };
 
+export type LeadQualificationLoopExperience = {
+  kind: "lead-qualification-loop";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  nodes: {
+    alert: { tag: string; label: string };
+    trigger: { tag: string; label: string };
+    contact: { tag: string; label: string };
+    research: { tag: string; label: string };
+    hubspotUpdate: { tag: string; label: string };
+    hubspotOutcome: { tag: string; label: string };
+    slackReply: { tag: string; label: string };
+    slackOutcome: { tag: string; label: string };
+  };
+};
+
+export type OutboundDraftAssemblyExperience = {
+  kind: "outbound-draft-assembly";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  nodes: {
+    notification: { tag: string; label: string };
+    workflowStart: { tag: string; label: string };
+    crmCheck: { tag: string; label: string };
+    companyContext: { tag: string; label: string };
+    leadershipActivity: { tag: string; label: string };
+    painPointFit: { tag: string; label: string };
+    relevantProof: { tag: string; label: string };
+    pageIntent: { tag: string; label: string };
+    qualification: { tag: string; label: string };
+    draft: { tag: string; label: string };
+    review: { tag: string; label: string; status: string };
+  };
+};
+
+export type SupportTicketLifecycleExperience = {
+  kind: "support-ticket-lifecycle";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  finalStatus: string;
+  nodes: {
+    newRequest: { tag: string; label: string };
+    existingReply: { tag: string; label: string };
+    ownership: { tag: string; label: string };
+    nextAction: { tag: string; label: string };
+    followUp: { tag: string; label: string };
+    replyLoop: { tag: string; label: string };
+    resolution: { tag: string; label: string };
+  };
+};
+
+export type ExecutiveReportingArchitectureExperience = {
+  kind: "executive-reporting-architecture";
+  eyebrow: string;
+  disclosureLabel: string;
+  scope: string;
+  evidenceNote: string;
+  finalStatus: string;
+  paths: readonly [
+    {
+      key: "native";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+    {
+      key: "modeled";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+    {
+      key: "integrated";
+      tag: string;
+      label: string;
+      blueprint: string;
+    },
+  ];
+  architectureLabel: string;
+  dashboardLabel: string;
+};
+
+export type ProjectVisualExperience =
+  | LeadQualificationLoopExperience
+  | OutboundDraftAssemblyExperience
+  | SupportTicketLifecycleExperience
+  | ExecutiveReportingArchitectureExperience;
+
+export type SalesforceRoutingProofExperience = {
+  kind: "salesforce-routing";
+  eyebrow: string;
+  heading: string;
+  request: string;
+  columns: readonly [context: string, destination: string, followUp: string];
+  outcomes: readonly {
+    context: string;
+    destination: string;
+    followUp: string;
+    isReview?: boolean;
+  }[];
+};
+
 export type ProjectProofExperience =
-  BookingReliabilityProofExperience | HubSpotCoverageReconciliationProofExperience;
+  | BookingReliabilityProofExperience
+  | HubSpotCoverageReconciliationProofExperience
+  | SalesforceRoutingProofExperience;
 
 export type ProjectViewModel = {
   slug: string;
@@ -71,6 +178,7 @@ export type ProjectViewModel = {
   caseStudyPath?: string;
   caseStudyLabel?: string;
   proofExperience?: ProjectProofExperience;
+  visualExperience?: ProjectVisualExperience;
   hardPart?: string;
   flow?: Flow;
 };

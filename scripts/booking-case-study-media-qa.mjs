@@ -29,7 +29,7 @@ const VIEWPORTS = [
   [320, 568],
 ];
 const SHOT_VIEWPORTS = ["1440x900", "390x844", "320x568"];
-const MAP_LIST_BELOW = 768;
+const MOBILE_BELOW = 768;
 const THEME_KEY = "leo-portfolio-theme";
 const LOCAL_HOST = new URL(url).host;
 
@@ -116,7 +116,7 @@ async function load(width, height, theme, { scale = 1 } = {}) {
     width,
     height,
     deviceScaleFactor: scale,
-    mobile: width < MAP_LIST_BELOW,
+    mobile: width < MOBILE_BELOW,
   });
   await send("Page.navigate", { url });
   await wait(1200);
@@ -176,6 +176,23 @@ const openViewer = (index, opener) => `(async () => {
     zoom: dialog.querySelector('.pv2-evidence-viewer__zoom').dataset.zoom,
     barControls: [...dialog.querySelectorAll('.pv2-evidence-viewer__bar :is(a, button)')].map((c) => c.textContent),
     links: dialog.querySelectorAll('a').length,
+  };
+})()`;
+
+// Opens the workflow map's viewer through one of its two openers and leaves it open.
+const OPEN_MAP = (opener) => `(async () => {
+  const button = document.querySelector('${opener}');
+  button.scrollIntoView({ block: 'center' });
+  button.focus();
+  button.click();
+  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  const dialog = document.querySelector('[role="dialog"]');
+  if (!dialog) return { opened: false };
+  return {
+    opened: true,
+    hasDrawing: Boolean(dialog.querySelector('.pv2-evidence-viewer__drawing svg')),
+    title: dialog.querySelector('h2').textContent,
+    focusInside: dialog.contains(document.activeElement),
   };
 })()`;
 
@@ -265,10 +282,23 @@ for (const theme of ["light", "dark"]) {
       !state.labels.some((l) => /implemented in n8n/i.test(l)),
       `${run}: an "Implemented in n8n" label remains`,
     );
-    if (width < MAP_LIST_BELOW) {
-      check(!state.mapDrawingShown && state.mapListShown, `${run}: map is not a numbered list`);
-    } else {
-      check(state.mapDrawingShown, `${run}: map drawing hidden`);
+    // The drawing shows at every width and opens the viewer; the list is its screen-reader text only.
+    check(state.mapDrawingShown && !state.mapListShown, `${run}: map is not the drawing`);
+    for (const opener of [
+      ".pv2-workflow-map__drawing",
+      ".pv2-workflow-map .pv2-case-evidence__open",
+    ]) {
+      const where = `${run} map via ${opener.includes("drawing") ? "drawing" : "View larger"}`;
+      const viewer = await evaluate(OPEN_MAP(opener));
+      check(viewer.opened && viewer.hasDrawing, `${where}: viewer did not show the drawing`);
+      check(viewer.title === "Workflow map", `${where}: title "${viewer.title}"`);
+      check(viewer.focusInside, `${where}: focus is not in the viewer`);
+      const closed = await closeWithEscape();
+      check(!closed.dialogOpen, `${where}: Escape did not close the viewer`);
+      const returned = await evaluate(
+        `document.activeElement === document.querySelector('${opener}')`,
+      );
+      check(returned, `${where}: focus did not return to the opener`);
     }
 
     for (let index = 0; index < state.figureCount; index += 1) {

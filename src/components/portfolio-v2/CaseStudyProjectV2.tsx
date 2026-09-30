@@ -10,7 +10,7 @@ export function CaseStudyProjectV2({
   index: number;
 }) {
   return (
-    <article className="pv2-case-study-project">
+    <article className="pv2-case-study-project" data-project={project.slug}>
       <div className="pv2-case-study-project__header">
         <p className="pv2-project-index">{String(index).padStart(2, "0")} / Case study</p>
         <h3>{project.title}</h3>
