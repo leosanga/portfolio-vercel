@@ -1,6 +1,6 @@
 # Portfolio Redesign Current State
 
-Last updated: 2026-09-27
+Last updated: 2026-09-28
 
 ## Current phase
 
@@ -324,8 +324,215 @@ existing site-wide theme hydration warning.
 Commit, push, deployment, and canonical production verification are complete
 for this release.
 
+## Project 4 qualification-loop visual, local working state
+
+Leo approved and Codex completed the local homepage visual for
+`AI-Assisted Lead Qualification (HubSpot + n8n)` on 2026-09-28. The published
+project copy is unchanged. `Slack` was added to the visible technology list
+because it is both the workflow trigger and the team-facing outcome surface.
+
+The native disclosure is labeled `Qualification loop` and opens a reusable
+project-visual shell. Its project-specific canvas shows the existing HubSpot
+workflow posting a missing-information alert to Slack, the Slack webhook
+starting n8n with the contact email, HubSpot contact retrieval, n8n and LLM
+research, the qualification write-back to HubSpot, the existing HubSpot
+workflows continuing from that update, and the outcome returning to the
+original Slack thread for team coordination. The qualification criteria and
+downstream routing paths remain intentionally out of scope.
+
+The eight-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on the complete
+state. The server-rendered and no-JavaScript state is also complete and readable.
+Desktop uses a compact branching loop, while narrow viewports use one semantic
+system-of-record-first sequence without horizontal overflow. The visual uses
+semantic nested lists and keeps the SVG connector layer decorative.
+
+TypeScript, targeted ESLint for the changed version 2 modules, relevant
+Prettier checks, `git diff --check`, the production build, and server-rendered
+content checks pass. Chrome browser review covered the expanded and collapsed
+states, Enter and Space operation, the live loop, desktop composition, a 390 by
+844 narrow viewport, zero horizontal overflow, and unchanged Projects
+scrollspy state. A cold implementation review also found and resolved bounded
+timer cleanup, a ResizeObserver fallback, explicit list semantics, inactive
+step readability, and a native-details closed-state paint issue. The full lint
+baseline remains unchanged in `src/components/portfolio/data.ts`.
+
+The approved design and copy are recorded in
+[`PROJECT-04-LEAD-QUALIFICATION-VISUAL-SPEC.md`](./PROJECT-04-LEAD-QUALIFICATION-VISUAL-SPEC.md).
+Leo approved the final hook and production release on 2026-09-28. The visual is
+included in the current production release for the canonical portfolio.
+
+## Project 5 context-to-draft visual, production release
+
+Leo approved the homepage visual for
+`AI-Assisted Outbound Prospecting Workflow (n8n)` on 2026-09-28. The project
+copy now describes the actual workflow: a limited visitor signal starts n8n,
+HubSpot supplies existing context when available, and the automated research
+determines whether the opportunity fits. The LLM uses that evidence with
+relevant case studies to create a conversation starter for rep review in Slack.
+No vendor name, record creation, or automatic-send behavior is shown. Contact
+creation occurs downstream only if a draft is sent.
+
+The native disclosure is labeled `Context to draft` with the hook
+`See how it works`. Its project-specific experience uses a compact input rail
+above a two-column research workspace instead of another node diagram. The
+limited visitor signal, workflow start, and optional CRM context lead into a
+research brief covering company context, current activity, pain-point fit, and
+relevant proof. The page viewed guides the message angle, then the completed
+research determines fit before the content-sized draft returns to Slack as
+`Ready for review`.
+
+The 11.9-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on the complete
+state. Most of the loop is spent building the research brief. The
+server-rendered and no-JavaScript state is complete and readable. Desktop and
+intermediate widths use the input rail above the research and draft columns.
+Narrow viewports use one semantic sequence without horizontal overflow.
+
+TypeScript, targeted ESLint, relevant Prettier checks, `git diff --check`, the
+production build, and server-rendered content checks pass. Chrome browser review
+covered the expanded and collapsed states, the live research stages, desktop
+composition, and a 390 by 844 narrow viewport. The narrow layout uses one column
+and has no document-level horizontal overflow. Browser logs show only the
+existing site-wide theme hydration warning.
+
+The approved design and copy are recorded in
+[`PROJECT-05-OUTBOUND-PROSPECTING-VISUAL-SPEC.md`](./PROJECT-05-OUTBOUND-PROSPECTING-VISUAL-SPEC.md).
+The Project 5 visual is included in the current production release for the
+canonical portfolio.
+
+## Project 6 ticket-lifecycle visual, production release
+
+Leo approved and Codex completed the local homepage visual for
+`Support Ticket Pipeline Automation (HubSpot)` on 2026-09-28. The supplied
+internal flowchart remains private and is used only as implementation evidence.
+The public visual removes organization names, exact internal statuses, timing
+rules, channel details, and feedback routing.
+
+The native disclosure is labeled `Ticket lifecycle` with the hook
+`See how it works`. Two compact entry conditions feed one central ticket record:
+a new request creates a ticket, while an existing reply returns work to the same
+ticket. The public lifecycle is condensed to `Intake`, `Active`, `Waiting`,
+`Resolved`, and `Closed`. Four supporting rules show that ownership stays
+visible, state determines the next action, waiting work retains follow-up, and
+resolved work moves toward closure. The less important direct-close branch is
+intentionally omitted.
+
+The 9.8-second sequence loops while the disclosure is open, visible, the
+document is active, and motion is allowed. Otherwise it settles on a complete,
+readable state. Desktop uses a compact horizontal lifecycle rail. Narrow
+viewports stack the entry conditions and rules around a vertical lifecycle rail
+without horizontal overflow.
+
+TypeScript, targeted ESLint, relevant Prettier formatting, `git diff --check`,
+and the production build pass. Local Chrome review covered the expanded state,
+live animation states, desktop composition, and a 390 by 844 narrow viewport.
+All measured Project 6 regions remain within their containers. Browser logs
+show only the existing site-wide theme hydration warning.
+
+The approved design and evidence boundary are recorded in
+[`PROJECT-06-SUPPORT-TICKET-VISUAL-SPEC.md`](./PROJECT-06-SUPPORT-TICKET-VISUAL-SPEC.md).
+The support-ticket project is now Project 6, immediately before Executive
+Reporting, which is now Project 7. Leo approved this ordering and the Project 6
+visual for the canonical Vercel production release on 2026-09-28.
+
+## Project 7 metric-architecture visual, local review
+
+Leo approved and Codex completed the local homepage visual for
+`Executive Reporting & Dashboard Automation (Fully custom)` on 2026-09-29.
+The disclosure is labeled `Metric architecture` with the hook
+`See how it works`.
+
+The visual is a reporting architecture workspace rather than a workflow strip
+or a simulated dashboard. Three representative reporting paths show that a
+metric may be supported through native reporting, external modeling, or a
+connector or custom API. The active path updates a central architecture
+blueprint before the completed metric becomes available in a shared reporting
+surface. The visual does not assign the listed technologies to specific roles
+because that implementation detail has not been confirmed.
+
+The approved outcome-first refinement now opens on the completed reporting
+state before it explains the architecture. The lead statement connects the
+system directly to the business result: reporting that once required manual
+analysis remains available on demand. A separate evidence note preserves the
+public boundary without competing with that message. Dashboard rows then move
+from `Manual analysis required` to `Available on demand`, and the dashboard
+itself is explicitly labeled as the outcome.
+
+The 10.6-second sequence opens with a 1.5-second completed-state hold, then
+loops while the disclosure is open, visible, the document is active, and
+motion is allowed. Otherwise it settles on a complete, readable state. Desktop
+uses three related regions with the blueprint as the focal point. Narrow
+viewports preserve the same semantic order in one column. No client data, real
+metric names or values, formulas, endpoints, refresh schedules, screenshots,
+or employer details are shown.
+
+TypeScript, targeted ESLint, relevant Prettier formatting, `git diff --check`,
+and the production build pass. Local Chrome review covered live animation
+states, the completed hold state, light and dark desktop composition, keyboard
+disclosure behavior, and a 390 by 844 narrow viewport. The server-rendered
+homepage includes the complete static state. The narrow layout has no document
+level horizontal overflow, and every Project 7 region remains within its
+container. Browser logs show only the existing site-wide theme hydration
+warning.
+
+The approved design, published copy, and evidence boundary are recorded in
+[`PROJECT-07-EXECUTIVE-REPORTING-VISUAL-SPEC.md`](./PROJECT-07-EXECUTIVE-REPORTING-VISUAL-SPEC.md).
+Leo approved the outcome-first revision on 2026-09-29. The Project 7 visual is
+complete locally and has not been deployed.
+
+## Homepage project context and credibility, local review
+
+Leo approved a compact context layer between the `Projects` heading and the
+featured case study. It explains that the visible projects are selected from
+broader systems work and establishes the scale and background behind them.
+
+Approved introduction:
+
+`These are some of the systems I’ve built. Each one started with a different
+business problem and shows how I solved it.`
+
+Approved credibility route:
+
+- `5+ years` / `Business operations`
+- `3+ years` / `Systems engineering`
+- `Nearly 200` / `B2B clients supported through technical delivery`
+- `Hundreds` / `Production solutions owned through deployment`
+
+The rejected equal-cell statistics strip has been replaced by an asymmetric
+credibility route. The section title and project-selection rationale now share
+one compact header. The route gives the client and production scale signals
+greater visual weight, and the first featured case study begins within the
+initial desktop viewport. On narrow screens, the route becomes a compact
+vertical progression rather than a card grid.
+
+A signal travels through the route, rests, and repeats while its stable inner
+wrapper is active. The four nodes respond in sequence while the evidence stays
+settled and readable. Reduced-motion visitors receive the complete static
+state. The ID-bearing `#projects` section remains untransformed for scrollspy.
+The refined loop uses a 6.2-second cycle with roughly 1.2 seconds of travel and
+a longer quiet interval. The traveling signal is smaller than the route nodes,
+the evidence labels use 14-pixel body-text contrast, and the mobile section
+starts 16 pixels earlier. The local light-theme desktop, dark-theme desktop,
+390 px, and 320 px visual checks pass. Leo approved this revision for the
+canonical Vercel production release.
+
+The mobile credibility grid was corrected on 2026-09-29 so the longer
+`Nearly 200` value no longer runs into its label. Narrow viewports now reserve a
+slightly wider value column and a consistent 16-pixel value-to-label gap. The
+390 px and 320 px checks pass after the correction.
+
 ## Checks last run
 
+- The final Project 7 outcome-first revision passes TypeScript, targeted
+  ESLint, relevant Prettier, `git diff --check`, and the Vercel production
+  build. Local Chrome review confirms the completed opening frame, live row
+  transitions, light and dark themes, keyboard disclosure behavior, and the
+  final 390-pixel copy hierarchy without horizontal overflow. The same narrow
+  check confirms the corrected gap after `Nearly 200`.
+- The homepage credibility-route revision passes TypeScript, targeted ESLint,
+  relevant Prettier, `git diff --check`, and the Vercel production build.
+  Desktop and narrow local Chrome visual checks pass.
 - TypeScript: passed.
 - Targeted version 2 ESLint: passed.
 - Version 2 Prettier check: passed.
@@ -397,11 +604,10 @@ for this release.
 
 ## Exact next action
 
-The HubSpot CRM case study is live on the canonical production site. Keep the
-baseline tag and `redesign/v2` branch intact, never rewrite `main` history, and
-continue to exclude the unrelated local context files from future commits. The
-next action is the next user-directed portfolio improvement or a production
-defect found through monitoring.
+When Leo explicitly asks to deploy, prepare and publish only the approved
+Project 7 and mobile credibility-fix change set. Keep the baseline tag and
+`redesign/v2` branch intact, never rewrite `main` history, and continue to
+exclude unrelated local context files from future commits.
 
 ## Required read order
 

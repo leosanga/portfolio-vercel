@@ -5,9 +5,6 @@ export const NAV_LINKS = [
   { id: "contact", label: "Contact" },
 ];
 
-
-
-
 /**
  * `tools` is ordered by weight, heaviest first: named platforms and languages
  * ahead of the descriptive phrases. The rendered separator is a CSS-generated
@@ -32,8 +29,7 @@ export const COMPETENCIES = [
   },
   {
     title: "Business Systems & Process Architecture",
-    claim:
-      "Translating how a team actually works into the way its systems are structured.",
+    claim: "Translating how a team actually works into the way its systems are structured.",
     tools: [
       "CRM architecture",
       "routing logic",
@@ -197,13 +193,7 @@ export const PROJECTS: Project[] = [
       "Every new client requires a set of customized implementation deliverables, creating more than 8 hours of repetitive manual work each week and delaying the start of onboarding.",
     solution:
       "An n8n workflow builds each client's deliverables from the onboarding intake sheet, creating real copies in whichever workspace the client uses and replacing their specific details inside each file, so onboarding can start right away instead of waiting on manual setup.",
-    stack: [
-      "n8n",
-      "JavaScript",
-      "Google Drive API",
-      "Microsoft SharePoint API",
-      "Google Sheets",
-    ],
+    stack: ["n8n", "JavaScript", "Google Drive API", "Microsoft SharePoint API", "Google Sheets"],
     hardPart:
       "Each file is unique and needs specific changes in specific areas inside it, so a shared loop could not do the work. Each one gets its own chain and custom code that finds the exact place to change and edits it there.",
     flow: {
@@ -264,8 +254,7 @@ export const PROJECTS: Project[] = [
             kind: "service",
             tag: "custom code",
             label: "Real copies, renamed for the client",
-            detail:
-              "Each file is copied properly, then renamed for the client.",
+            detail: "Each file is copied properly, then renamed for the client.",
           },
         ],
         [
@@ -306,17 +295,27 @@ export const PROJECTS: Project[] = [
       "An n8n workflow runs the qualification research automatically and writes the result back into HubSpot for its native workflow to act on, so a lead's priority no longer depends on who opens it or when.",
     hardPart:
       "The workflow required n8n to integrate with HubSpot without disrupting its native execution, using webhooks and the HubSpot API to write custom properties the existing workflow could recognize and use to proceed. This qualification step is one portion of a much larger workflow.",
-    stack: ["HubSpot API", "Webhooks", "n8n", "LLM", "Custom Properties"],
+    stack: ["HubSpot API", "Slack", "Webhooks", "n8n", "LLM", "Custom Properties"],
   },
   {
     title: "AI-Assisted Outbound Prospecting Workflow (n8n)",
     problem:
       "Reps research each prospect by hand before writing to them, so outreach goes out long after the visit that prompted it.",
     solution:
-      "An n8n workflow researches each prospect automatically, and an LLM turns that research into a personalized draft delivered to the rep in Slack, so outreach goes out while the visit is still recent.",
+      "An n8n workflow turns a limited visitor signal into a researched company brief and determines whether the opportunity fits. The LLM uses that evidence and relevant case studies to return a personalized draft to Slack for rep review.",
     hardPart:
       "The LLM needed enough business context to connect each prospect's researched data to relevant capabilities and proof points, then turn that context into a personalized draft that demonstrated value.",
-    stack: ["n8n", "JavaScript", "LLM", "Slack API", "HubSpot API"],
+    stack: ["n8n", "JavaScript", "HubSpot API", "Slack API", "Webhooks", "LLM"],
+  },
+  {
+    title: "Support Ticket Pipeline Automation (HubSpot)",
+    problem:
+      "The team needs a standardized way to manage support tickets from intake through resolution, but HubSpot's native ticket functionality cannot support the required lifecycle and routing logic directly.",
+    solution:
+      "Custom properties and HubSpot workflows model the ticket lifecycle and routing that native tickets could not, so every ticket follows the same path from intake to resolution no matter who picks it up.",
+    hardPart:
+      "The required lifecycle and routing had to be modeled around HubSpot's confirmed platform limitations, combining custom properties and workflows to reproduce the desired behavior without native support.",
+    stack: ["HubSpot", "Slack", "Workflow Automation", "Custom Properties", "Process Mapping"],
   },
   {
     title: "Executive Reporting & Dashboard Automation (Fully custom)",
@@ -327,16 +326,6 @@ export const PROJECTS: Project[] = [
     hardPart:
       "Each metric required a different architecture: combining native functionality, data connectors, external modeling, or custom APIs to produce reporting the platform could not provide directly.",
     stack: ["Google Sheets/Excel", "Power BI", "Jira", "Tableau", "API data pull"],
-  },
-  {
-    title: "Support Ticket Pipeline Automation (HubSpot)",
-    problem:
-      "The team needs a standardized way to manage support tickets from intake through resolution, but HubSpot's native ticket functionality cannot support the required lifecycle and routing logic directly.",
-    solution:
-      "Custom properties and HubSpot workflows model the ticket lifecycle and routing that native tickets could not, so every ticket follows the same path from intake to resolution no matter who picks it up.",
-    hardPart:
-      "The required lifecycle and routing had to be modeled around HubSpot's confirmed platform limitations, combining custom properties and workflows to reproduce the desired behavior without native support.",
-    stack: ["HubSpot", "Workflow Automation", "Custom Properties", "Process Mapping"],
   },
 ];
 
