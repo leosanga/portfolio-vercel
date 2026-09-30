@@ -720,6 +720,7 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 }
 
 .pv2-projects-credibility {
+  --pv2-credibility-axis: 0.1875rem;
   position: relative;
   display: grid;
   grid-template-columns: 2fr 2fr 4fr 4fr;
@@ -729,7 +730,7 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 
 .pv2-projects-credibility::before {
   position: absolute;
-  top: 0.375rem;
+  top: calc(var(--pv2-credibility-axis) - 0.5px);
   right: 0.375rem;
   left: 0.375rem;
   height: 1px;
@@ -742,7 +743,7 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 
 .pv2-projects-credibility::after {
   position: absolute;
-  top: 0.125rem;
+  top: calc(var(--pv2-credibility-axis) - 0.25rem);
   left: 0.125rem;
   width: 0.5rem;
   height: 0.5rem;
@@ -2531,8 +2532,12 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 }
 
 .pv2-approach__steps {
+  --pv2-approach-start: 400ms;
+  --pv2-approach-travel: 620ms;
+  --pv2-approach-pulse: 300ms;
+  --pv2-approach-pulse-peak: 150ms;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0;
   margin-top: var(--pv2-space-16);
   list-style: none;
@@ -2546,6 +2551,7 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 .pv2-approach-step__route {
   display: flex;
   align-items: center;
+  width: calc(100% + var(--pv2-space-8));
   height: 1rem;
   margin-bottom: var(--pv2-space-8);
 }
@@ -2566,14 +2572,29 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 }
 
 .pv2-approach-step__line {
+  --pv2-signal-start-x: -0.625rem;
+  --pv2-signal-end-x: calc(100% + 0.125rem);
+  --pv2-signal-start-y: calc(50% - 0.25rem);
+  --pv2-signal-end-y: calc(50% - 0.25rem);
+  position: relative;
+  flex: none;
   width: calc(100% - 0.75rem);
   height: 1px;
+  background: color-mix(in srgb, var(--pv2-mist) 35%, transparent);
+}
+
+.pv2-approach-step__line::after {
+  position: absolute;
+  top: var(--pv2-signal-start-y);
+  left: var(--pv2-signal-start-x);
+  width: 0.5rem;
+  height: 0.5rem;
   background: var(--pv2-mist);
-  opacity: 0.35;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration-section) var(--ease-in-out);
-  transition-delay: calc(var(--pv2-step) * 100ms + 120ms);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--pv2-mist) 14%, transparent);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
 }
 
 .pv2-approach-step:last-child .pv2-approach-step__line {
@@ -2604,15 +2625,52 @@ html:not([data-pv2-theme]) .portfolio-v2 {
 [data-pv2-visible="true"] .pv2-approach-step__node {
   background: var(--pv2-mist);
   border-color: var(--pv2-mist);
-  transform: scale(1.12);
-}
-
-[data-pv2-visible="true"] .pv2-approach-step__line {
-  transform: scaleX(1);
 }
 
 [data-pv2-visible="true"] .pv2-approach-step__number {
   color: var(--pv2-mist);
+}
+
+@keyframes pv2-approach-node-arrival {
+  0% {
+    background: var(--pv2-canvas);
+    border-color: var(--pv2-line-strong);
+    box-shadow: none;
+    transform: scale(1);
+  }
+
+  50% {
+    background: var(--pv2-mist);
+    border-color: var(--pv2-mist);
+    box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--pv2-mist) 14%, transparent);
+    transform: scale(1.34);
+  }
+
+  100% {
+    background: var(--pv2-mist);
+    border-color: var(--pv2-mist);
+    box-shadow: none;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes pv2-approach-signal {
+  0% {
+    top: var(--pv2-signal-start-y);
+    left: var(--pv2-signal-start-x);
+    opacity: 0;
+  }
+
+  8%,
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    top: var(--pv2-signal-end-y);
+    left: var(--pv2-signal-end-x);
+    opacity: 0;
+  }
 }
 
 .pv2-conversation {
@@ -3037,6 +3095,20 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  [data-pv2-visible="true"] .pv2-approach-step__node {
+    animation: pv2-approach-node-arrival var(--pv2-approach-pulse) var(--ease-in-out)
+      calc(var(--pv2-approach-start) + var(--pv2-step) * var(--pv2-approach-travel)) 1 both;
+  }
+
+  [data-pv2-visible="true"] .pv2-approach-step:not(:last-child) .pv2-approach-step__line::after {
+    animation: pv2-approach-signal var(--pv2-approach-travel) linear
+      calc(
+        var(--pv2-approach-start) + var(--pv2-approach-pulse-peak) + var(--pv2-step) *
+          var(--pv2-approach-travel)
+      )
+      1 both;
+  }
+
   .pv2-hero-enter {
     animation: pv2-hero-enter var(--duration-hero) var(--ease-out) both;
   }
@@ -3130,6 +3202,45 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-capability:nth-child(even) {
     border-right: 1px solid var(--pv2-line);
+  }
+
+  .pv2-approach__steps {
+    grid-template-columns: 1fr;
+    gap: var(--pv2-space-8);
+  }
+
+  .pv2-approach-step {
+    display: grid;
+    grid-template-columns: 2rem minmax(0, 1fr);
+    padding-right: 0;
+  }
+
+  .pv2-approach-step__route {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 0;
+  }
+
+  .pv2-approach-step__line {
+    --pv2-signal-start-x: calc(50% - 0.25rem);
+    --pv2-signal-end-x: calc(50% - 0.25rem);
+    --pv2-signal-start-y: -0.625rem;
+    --pv2-signal-end-y: calc(100% + 0.125rem);
+    width: 1px;
+    height: calc(100% - 0.75rem + var(--pv2-space-8));
+  }
+
+  .pv2-approach-step__number,
+  .pv2-approach-step h3,
+  .pv2-approach-step > p:last-child {
+    grid-column: 2;
+  }
+
+  .pv2-approach-step h3 {
+    margin-top: 0.5rem;
   }
 }
 
@@ -3341,46 +3452,6 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     grid-column: 2 / 9;
   }
 
-  .pv2-approach__steps {
-    grid-template-columns: 1fr;
-    gap: var(--pv2-space-8);
-  }
-
-  .pv2-approach-step {
-    display: grid;
-    grid-template-columns: 2rem minmax(0, 1fr);
-    padding-right: 0;
-  }
-
-  .pv2-approach-step__route {
-    grid-column: 1;
-    grid-row: 1 / 4;
-    flex-direction: column;
-    height: 100%;
-    margin-bottom: 0;
-  }
-
-  .pv2-approach-step__line {
-    width: 1px;
-    height: calc(100% - 0.75rem);
-    transform: scaleY(0);
-    transform-origin: top;
-  }
-
-  [data-pv2-visible="true"] .pv2-approach-step__line {
-    transform: scaleY(1);
-  }
-
-  .pv2-approach-step__number,
-  .pv2-approach-step h3,
-  .pv2-approach-step > p:last-child {
-    grid-column: 2;
-  }
-
-  .pv2-approach-step h3 {
-    margin-top: 0.5rem;
-  }
-
   .pv2-conversation__signal {
     grid-column: 1 / 2;
   }
@@ -3552,6 +3623,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   }
 
   .pv2-projects-credibility {
+    --pv2-credibility-axis: 0.375rem;
     grid-template-columns: minmax(0, 1fr);
     gap: var(--pv2-space-5);
     padding-top: 0;
@@ -3562,7 +3634,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     top: 0.375rem;
     right: auto;
     bottom: 0.375rem;
-    left: 0.375rem;
+    left: calc(var(--pv2-credibility-axis) - 0.5px);
     width: 1px;
     height: auto;
     transform: scaleY(0.08);
@@ -3802,6 +3874,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .pv2-approach-step__node {
+    background: var(--pv2-mist);
+    border-color: var(--pv2-mist);
+    transition: none;
+  }
+
   .portfolio-v2 {
     scroll-behavior: auto;
   }

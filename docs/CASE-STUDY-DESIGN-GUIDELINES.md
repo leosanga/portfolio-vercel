@@ -7,7 +7,7 @@ Authority: the approved portfolio goal remains the highest project authority. An
 approved case-study specification may override these general guidelines only
 when the result still satisfies that goal and its invariants.
 
-Last updated: 2026-09-27
+Last updated: 2026-10-01
 
 ## Purpose
 
@@ -122,6 +122,35 @@ reporting, and integration details change.
   not prove.
 - Keep test data, sandbox behavior, live behavior, and separately tested code
   distinct.
+
+## AI project authoring
+
+For each future owned AI project, collect the following information in its
+existing case-study specification. Reuse its evidence ledger where an answer is
+already recorded. These are internal authoring questions, not required public
+sections or an application schema.
+
+| Authoring field     | Information to collect                                                                                   |
+| ------------------- | -------------------------------------------------------------------------------------------------------- |
+| AI contribution     | What the model interprets or produces and how choosing AI compared with other ways to meet the same need |
+| Action authority    | Which code, platform rule, or person authorizes an external change                                       |
+| Exception handling  | What happens when the request is uncertain or a dependency fails                                         |
+| Verification        | Which behavior was checked, how, when, and against which version                                         |
+| Operating ownership | Who maintains the system, where access is controlled, and what a handoff actually includes               |
+| Outcome measurement | Baseline and observed result with comparable units, timeframe, and review or maintenance effort          |
+| Scope limits        | What remains unsupported or untested, and which claims are approved for publication                      |
+
+A missing answer remains unknown and does not become a public claim. Metrics are
+optional when no valid baseline exists; technical correctness evidence remains
+valuable. Select only the answers that explain a distinctive decision for
+publication. Preserve the approved publication boundaries for prior-employer
+work. Do not require a new dashboard, media asset, or ROI calculator to satisfy
+these questions.
+
+Approved by Leo on 2026-10-01 as part of the AI engineering content proposal.
+His Build-step clarification treats AI selection and simpler, cheaper tool
+choices as working judgment. AI action controls remain a separate case-study
+topic.
 
 ## Hierarchy and numbering
 

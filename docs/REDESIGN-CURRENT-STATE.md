@@ -1,6 +1,6 @@
 # Portfolio Redesign Current State
 
-Last updated: 2026-09-28
+Last updated: 2026-10-01
 
 ## Current phase
 
@@ -602,12 +602,188 @@ slightly wider value column and a consistent 16-pixel value-to-label gap. The
   text openers launch the accessible evidence viewer, and the Close control
   returns to the case study.
 
+## AI engineering content revision, approved locally
+
+On 2026-10-01, Leo requested concrete recommendations and a senior review of
+lessons from Ingenium Vector's AI content. The draft design and reconciled
+strategy/content and technical reviews are recorded in
+[`AI-ENGINEERING-CONTENT-PLAN.md`](./AI-ENGINEERING-CONTENT-PLAN.md).
+
+Leo confirmed that AI selection, important-action controls, measurement, and
+maintenance/handoff documentation are established practices. The recommended
+revision is one reviewed Build paragraph plus internal AI case-study authoring
+questions. Leo approved the proposal except the Build wording. The approved
+internal guidance is now applied in `CASE-STUDY-DESIGN-GUIDELINES.md`.
+
+Leo liked the opening about process-fit tools and AI-assisted building, and
+clarified that the rest should explain experience-based decisions about whether
+an automation needs AI and which approach is simpler and cheaper. Governance is
+a separate topic. He subsequently approved the direct second sentence and the
+full paragraph: `I choose tools that fit the process and use AI to help with the
+build. I decide whether the automation needs AI and choose the simpler, cheaper
+approach.`
+
+The paragraph is now applied to the shared `PROCESS_STEPS` source in
+`src/components/portfolio/data.ts`, and the exact wording is recorded in the
+content specification. The extra capability proof link remains deferred.
+Local TypeScript, targeted ESLint, Prettier, production build, and Git whitespace
+checks passed. The approved paragraph is present in server HTML. Chrome review
+at 1415 by 1270 and 390 by 844 confirmed readable wrapping and no horizontal
+overflow; the desktop Approach navigation retained its active state. No CSS,
+interaction, or motion code changed. Enlarged text, keyboard interactions, and
+reduced-motion preferences were not separately rerun for this paragraph-only
+revision. The preview emitted the already documented theme hydration warning.
+The initial sandbox build failed to spawn Vite's child processes; the approved
+retry outside the sandbox passed. No push or deployment is authorized.
+
+Leo subsequently locked the Understand sentence: `I identify: how the process
+runs today, what's already built, what's documented, who's involved, and what we
+are trying to achieve.` It is applied to the same shared source and recorded in
+the content specification. He reopened Plan for wording review; its source
+remains unchanged until that wording is approved. The earlier build and browser
+results above cover the Build revision, not this subsequent Understand edit.
+TypeScript, targeted ESLint, Prettier, and whitespace checks passed after the
+Understand edit. The build and browser matrix were not repeated for that
+paragraph-only change.
+
+Leo subsequently locked Plan option 1, now applied to the shared source and
+recorded in the approved content specification. Step 4 is now open for review
+with the opening `I test then deploy:` and a final test after deployment. Leo
+requested a fifth step named `Measure` and will supply further wording input.
+TypeScript, targeted ESLint, Prettier, and whitespace checks passed after the
+Plan paragraph edit. The build and browser matrix were not rerun for that edit.
+Leo subsequently locked the step 4 paragraph: `I test then deploy: check it
+against real scenarios, watch how it performs, fix any issues, identify
+improvements, then deploy and test all over again.` It is now applied locally;
+the existing Validate title is unchanged. No separate post-deployment sentence
+is added. TypeScript, targeted ESLint, Prettier, and whitespace checks passed
+after this paragraph edit; build and browser checks were not repeated.
+
+Leo subsequently locked the fifth paragraph: `I define and track: quantifiable
+metrics for success and failure, so we can see the performance over time, and
+continuously improve as we adopt to changes.` It is applied exactly, including
+`adopt to changes`. `Monitor` is a working title for the local preview, pending
+Leo's title review. This supersedes the earlier four-step rendering.
+
+Leo requested a local viewer before deployment. The shared data now contains
+five steps. Version 2 uses five columns at 1280 CSS pixels and above, then the
+existing vertical sequence below that width. The legacy consumer's desktop grid
+also accommodates five steps. Typography, palette, motion logic, section IDs,
+and navigation are unchanged.
+
+The requested viewer is running at `http://127.0.0.1:8090/#approach` in command
+session `56399`, bound to loopback only. Chrome tab `1408657062` is left open as
+the visual-review deliverable. TypeScript and the production build passed.
+Targeted ESLint and Prettier pass after normalizing line endings in the touched
+legacy component and formatting the proposal's Markdown tables. Git whitespace
+checks passed. Server HTML returns 200 and contains the exact fifth paragraph.
+
+Browser review covered 1415, 1280, 1279, 390, and 320 CSS-pixel widths. All five
+steps render in order without horizontal overflow. The 1280/1279 boundary
+switches between five columns and the vertical sequence. Desktop Approach
+scrollspy remains active, and the section transform remains `none`. Keyboard
+menu activation, Approach navigation, and project disclosure open/close passed
+at 320 pixels. The viewport override was reset. Reduced-motion behavior was
+checked in source: the existing rule covers every step and restores the
+connector without transform animation. Browser preference emulation, enlarged
+text, and a separate legacy-route visual review were not performed.
+
+During preview verification, Leo reopened Build because its two-sentence
+paragraph differs from the other steps' `I ...:` pattern. Keep its previously
+approved source wording until the replacement is reviewed.
+
+Leo subsequently reopened Plan and clarified that tool selection, deciding
+whether the automation needs AI, and choosing the simpler, cheaper approach
+belong in Plan. Build should describe implementation, including AI-assisted
+building. This supersedes the earlier Build-only wording proposals. Revised Plan
+must still cover design, connections and flow, failure behavior, and enough
+documentation for another person to rebuild it. Leo locked the Build opening as
+`I execute:` and subsequently supplied complete Plan and Build replacements.
+Both are now applied exactly to `src/components/portfolio/data.ts`. The exact
+copy is recorded in the content specification and supersedes the prior drafts.
+Plan retains `AI-assisted or not`; Build retains `utilize AI-assisted executions`.
+The earlier simpler/cheaper clause is not reinserted. Other paragraphs, titles,
+and layout are unchanged. TypeScript, targeted ESLint, Prettier, the production
+build, and whitespace checks passed after these replacements. Server HTML and
+the Chrome preview contain both sentences exactly. Browser review at 1415 and
+390 pixels confirmed readable wrapping without horizontal overflow. The desktop
+Approach navigation remains active. The viewport was reset and the preview tab
+was retained for Leo. The prior responsive-boundary and keyboard checks above
+remain applicable; only paragraph text changed in this latest revision.
+
+Leo subsequently locked the complete reviewed five-step section, including the
+Monitor title. The active visual revision is recorded below.
+
+Decisions this turn:
+
+- Preserve the fifth paragraph exactly, including `adopt to changes`.
+- Use `Monitor` provisionally for local title review.
+- Preview five columns from 1280 pixels and a vertical sequence below it.
+- Apply Leo's complete Plan and Build replacements exactly. Plan carries design
+  and selection; Build starts with `I execute:` and describes implementation.
+- Keep the viewer running for Leo's inspection; no push or deployment occurred.
+
+## Projects and Approach connectors, active local revision
+
+On 2026-10-01, Leo requested centering the Projects credibility rail on its dots
+and a similar Approach signal advancing from 1 through 5. The reviewed design
+and reconciled independent motion/frontend and accessibility/QA reviews are in
+`PROJECTS-APPROACH-CONNECTOR-PLAN.md`. No public wording changed.
+
+Active implementation: branch `polish/projects-approach-connectors`, worktree
+`C:/Users/Leo/Downloads/projects/portfolio-vercel/.worktrees/projects-approach-connectors`.
+The original worktree and viewer on port 8090 retain the prior visual state.
+The revised viewer is `http://127.0.0.1:8091/#approach`, command session `44213`,
+Chrome tab `1408657096`. Both tabs are retained for visual comparison.
+
+Projects keeps its dot placement and centers its rail and signal on the dots.
+Approach now has connected segments and one signal pass with arrivals in order
+1 through 5. It uses one animation name for horizontal and vertical layouts.
+The final node peaks at 3030ms and settles at 3180ms. Re-entry does not change the
+observed flag, and the one-iteration animations remain at rest. The sequence
+runs again on a page reload. Static rails render before observation. Reduced
+motion disables the sequence and node transitions; the prior observed-node
+scale override was removed after accessibility review caught it.
+
+Verification: TypeScript and production build passed. Targeted ESLint, Prettier,
+and Git whitespace checks passed after normalizing copied task-file line
+endings. Browser geometry at 1415px and 390px showed zero Projects axis offset
+and zero Approach axis/endpoint offset. At 320px, the largest endpoint residual
+was approximately 0.00002px. No horizontal overflow occurred. The 1280/1279
+boundary changes direction under the same signal animation name. Keyboard menu
+activation, Approach navigation, project disclosure open/close, and desktop
+scrollspy passed. The viewport override was reset. The known theme hydration
+warning remains. Reduced-motion and no-JavaScript fallbacks were verified in
+source and server HTML; browser preference emulation and 200% zoom were not
+performed. In-flight breakpoint timing was not separately captured.
+
+Limit: the existing wrapper observer starts the entire pass, so later mobile
+steps may finish before the visitor scrolls to them. This awaits Leo's visual
+acceptance. No motion library, timers, schema, or dependency was added.
+
+The local-only `vite.preview.config.ts` permits the shared dependency directory
+used by the worktree's node_modules junction. Exclude this helper from commits
+and release. The generated route tree has no substantive diff and is excluded.
+Leo's HANDOFF edit, design assets, portrait, and unrelated draft documents were
+not copied into this branch. Normal Git hooks apply; the goal challenger has no
+matching staged trigger for this scope, so no verdict is claimed.
+
+Decisions this turn:
+
+- Lock all reviewed Approach copy and the Monitor title.
+- Center Projects connectors without moving its dots.
+- Run Approach once in order 1 through 5, then leave the route static.
+- Keep geometry responsive and copy visible with reduced motion or no JavaScript.
+- Keep this revision in its isolated local branch; no push or deployment.
+
 ## Exact next action
 
-When Leo explicitly asks to deploy, prepare and publish only the approved
-Project 7 and mobile credibility-fix change set. Keep the baseline tag and
-`redesign/v2` branch intact, never rewrite `main` history, and continue to
-exclude unrelated local context files from future commits.
+Leo reviews the port 8091 viewer. Once he accepts the visual revision and
+explicitly asks to deploy, integrate only the approved branch change set with
+the original worktree's approved content and Project 7 work. Preserve unrelated
+user changes. Keep the baseline tag and `redesign/v2` branch intact, never
+rewrite `main` history, and exclude local preview helpers and unrelated context
+files from release. Do not publish before that authorization.
 
 ## Required read order
 

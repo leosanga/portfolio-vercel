@@ -657,6 +657,15 @@ the visual relationship the animation must preserve.
 
 ### Approach progression
 
+2026-10-01 local revision, requested by Leo: align the Projects credibility rail
+with its node centers and use the same restrained signal language for the five
+Approach steps. Approach runs one pass in order 1 through 5, horizontally from
+1280px and vertically below that width. Each arrival pulses the next node, then
+the path rests. Connectors remain visible without JavaScript and with reduced
+motion. Existing text, typography, palette, section measurements, and navigation
+are preserved. Implementation and timing are recorded in
+`PROJECTS-APPROACH-CONNECTOR-PLAN.md`; release remains separately authorized.
+
 | Frame            | Visual state                                                            |
 | ---------------- | ----------------------------------------------------------------------- |
 | Before threshold | All text remains readable; future connector segments use lower contrast |
