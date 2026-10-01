@@ -813,6 +813,68 @@ Decisions this turn:
 - Keep reduced-motion visitors on the static route.
 - Deploy the reviewed update while preserving the newer production release.
 
+## Approach release complete, 2026-10-01
+
+Pull request 8 is merged: https://github.com/leosanga/portfolio-vercel/pull/8.
+Source head: df07fe204a759d071fa2032fa67dd1a67d048734.
+Production merge: c6238e221d0c338bf2c4b277e39be94fd49d2c32.
+Vercel's exact-commit status is successful; production deployment ID 6770353792.
+The canonical https://leosanga.vercel.app/#approach serves all five exact approved
+paragraphs and five node animations with 4.8s duration and infinite iteration.
+Browser inspection confirmed no desktop overflow and section transform none.
+The newer Salesforce case study and project routes are present in live HTML.
+
+The initial publish was rejected by automatic approval review on a private-egress
+assumption. Read-only GitHub verification showed this destination is public and
+the payload was the approved nine-file diff; the evidence-backed retry succeeded.
+No approval bypass or alternate publication path was used.
+
+Recovery: revert production merge c6238e2 through a new reviewed release. Do not
+rewrite history or alter preserved baseline tags. The original main worktree
+remains at its prior local commit with unrelated user edits untouched. The
+isolated branch retains df07fe2; its generated route tree has only a cosmetic
+unstaged change and the preview helper remains untracked. This release result
+is recorded locally after deployment; do not push a documentation-only release
+without a reason. The authoritative state stays here, as the root pointer says.
+
+Next action: routine live review or a new scoped request. Deployment is complete.
+No approval is pending.
+
+Decisions this turn:
+
+- Loop and deploy the approved Approach revision.
+- Preserve the current production case studies and unrelated original work.
+- Retain a merge-commit rollback path and local preview.
+
+## Credibility delivery copy follow-up, 2026-10-01
+
+Leo approved option 2 after reopening the delivery-scale wording. Exact value:
+`Hundreds of`. Exact label: `solutions built and deployed`. The change is in
+src/content/portfolio-v2/content.ts, consumed by ProjectsV2's existing definition
+list. No count, animation, project evidence, or other copy is changed. At 430px,
+the new value overlapped the label by about 9px under the fixed 116px value
+column. The last mobile row now uses minmax(7.25rem, max-content) for that column
+so the text fits while preserving the existing gap and rail.
+This maps to the approved credibility route and goal's focused proof invariant.
+Senior roles: content designer, frontend QA engineer, release engineer.
+
+The content source, targeted CSS fix, approved content spec, and this state record are the intended release
+files. Preserve unrelated original changes and the local preview helper. Verify
+desktop/mobile wrapping, TypeScript, and targeted lint before the follow-up
+release. Current production remains the successfully verified c6238e2 release
+until the follow-up is merged. The original repository is not the editing surface.
+
+Verification: TypeScript and production build pass. Targeted ESLint reports only
+the documented CRLF Prettier baseline; it passes with that formatting rule
+excluded. At 430px, the last row now retains a 16px text gap; at 320px it has
+about 26px. No overflow occurs at those widths or 390px. Desktop preview shows
+the exact approved value and label. No other runtime file is changed.
+
+Decisions this turn:
+
+- Apply option 2 exactly, keeping the delivery-scale claim.
+- Publish the small follow-up through the established release process.
+
 ## Required read order
 
 1. Repository `AGENTS.md` when present, otherwise repository `CLAUDE.md`
