@@ -661,7 +661,9 @@ the visual relationship the animation must preserve.
 with its node centers and use the same restrained signal language for the five
 Approach steps. Leo subsequently authorized looping and deployment. Approach runs
 in repeating order 1 through 5, horizontally from
-1280px and vertically below that width. Each arrival pulses the next node, then
+1024px and vertically below that width. The 1280px cutoff was corrected after
+Leo reported the laptop layout problem, restoring the prior desktop horizontal
+orientation while preserving the five-step copy and loop. Each arrival pulses the next node, then
 the path rests briefly before repeating. Connectors remain visible without JavaScript and with reduced
 motion. Existing text, typography, palette, section measurements, and navigation
 are preserved. Implementation and timing are recorded in

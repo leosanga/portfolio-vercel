@@ -3205,7 +3205,9 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-capability:nth-child(even) {
     border-right: 1px solid var(--pv2-line);
   }
+}
 
+@media (max-width: 1023px) {
   .pv2-approach__steps {
     grid-template-columns: 1fr;
     gap: var(--pv2-space-8);

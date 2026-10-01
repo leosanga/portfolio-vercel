@@ -25,7 +25,13 @@ authority; no portable brand tokens change.
   Reuse the inline step index to schedule each node and outgoing segment.
 - The loop begins when the existing inner wrapper becomes visible. Each node
   pulses on arrival and its outgoing signal travels to the next node. Movement
-  runs left to right at 1280px and above and top to bottom below that width.
+  runs left to right at 1024px and above and top to bottom below that width.
+  The initial 1280px cutoff was reopened after Leo reported a problem: it forced
+  normal laptop widths into a narrow vertical column beside excessive empty
+  space. Restore the earlier 1024px boundary and verify all five paragraphs at
+  1024px, 1100px, 1262px, and wide desktop. Capabilities keeps its independent
+  1280px boundary. Copy, timing, section measurements, and mobile geometry stay
+  unchanged. This restores the approved desktop horizontal-route invariant.
 - Timing: 400ms initial pause, 300ms node pulse, 620ms between arrivals. Segment
   movement starts at the node pulse's 150ms peak. The fifth arrival ends the
   pass. All nodes and the resting rail stay visible. A shared 4800ms cycle keeps
@@ -59,7 +65,7 @@ directory used by the node_modules junction. It is excluded from release scope.
 ## Verification and limits
 
 Check Projects dot/rail centers and Approach node/segment centers at wide and
-narrow widths, including 1280/1279. Inspect signal timings and repeated cycles
+narrow widths, including 1024/1023 after the laptop correction. Inspect signal timings and repeated cycles
 from browser computed styles without modifying the page. Review keyboard
 navigation, disclosure behavior, scrollspy, static source fallbacks, and reduced
 motion. Run TypeScript, targeted formatting/lint, production build, and whitespace
