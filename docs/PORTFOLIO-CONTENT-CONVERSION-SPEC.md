@@ -275,18 +275,21 @@ Status: `approved`
 
 It is followed by a compact credibility route:
 
-| Value        | Label                                              |
-| ------------ | -------------------------------------------------- |
-| `5+ years`   | `Business operations`                              |
-| `3+ years`   | `Systems engineering`                              |
-| `Nearly 200` | `B2B clients supported through technical delivery` |
-| `Hundreds`   | `Production solutions owned through deployment`    |
+| Value         | Label                                              |
+| ------------- | -------------------------------------------------- |
+| `5+ years`    | `Business operations`                              |
+| `3+ years`    | `Systems engineering`                              |
+| `Nearly 200`  | `B2B clients supported through technical delivery` |
+| `Hundreds of` | `solutions built and deployed`                     |
 
 Status: `approved`
 
 The introduction explains why the visible projects were selected from Leo's
 broader work. The route connects operational grounding, technical tenure,
-client scope, and production delivery in that order. The two scale signals use
+client scope, and production delivery in that order. On 2026-10-01, Leo approved
+option 2 for the delivery-scale wording: `Hundreds of` / `solutions built and
+deployed`. Preserve both strings exactly. This replaces the prior ownership
+wording without inventing an exact solution count. The two scale signals use
 greater visual weight than the two tenure signals. A smaller signal travels
 through the larger route nodes during a 6.2-second cycle, rests for most of that
 cycle, and repeats while the route is active. The evidence itself stays settled

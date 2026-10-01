@@ -48,8 +48,8 @@ export const PROJECTS_CONTEXT = {
       label: "B2B clients supported through technical delivery",
     },
     {
-      value: "Hundreds",
-      label: "Production solutions owned through deployment",
+      value: "Hundreds of",
+      label: "solutions built and deployed",
     },
   ],
 } as const;

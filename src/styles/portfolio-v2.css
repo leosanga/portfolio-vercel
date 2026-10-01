@@ -3659,6 +3659,10 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     padding: 0;
   }
 
+  .pv2-projects-credibility__item:last-child {
+    grid-template-columns: minmax(7.25rem, max-content) minmax(0, 1fr);
+  }
+
   .pv2-projects-credibility__item::before {
     top: 0.2rem;
     left: calc(var(--pv2-space-8) * -1);
