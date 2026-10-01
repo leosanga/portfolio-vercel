@@ -1,9 +1,39 @@
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { validateReleaseEvidence } from "./portfolio-v2-release-evidence.mjs";
 
-const [endpoint, baseUrl, outputDirectory] = process.argv.slice(2);
+// Verified release gate: CUA-generated evidence, no direct browser connection.
+if (process.argv[2] === "--evidence") {
+  const [, , , evidencePath, expectedUrl, expectedSha] = process.argv;
+  let failures;
+  try {
+    if (!evidencePath || !expectedUrl || !expectedSha) {
+      throw new Error(
+        "Usage: node portfolio-v2-browser-qa.mjs --evidence <json> <site-url> <candidate-sha>",
+      );
+    }
+    failures = validateReleaseEvidence(
+      JSON.parse(readFileSync(evidencePath, "utf8")),
+      expectedUrl,
+      expectedSha,
+    );
+  } catch (error) {
+    failures = [error.message];
+  }
+  console.log(JSON.stringify({ status: failures.length ? "FAIL" : "PASS", failures }, null, 2));
+  process.exit(failures.length ? 1 : 0);
+}
+if (process.argv[2] !== "--legacy-cdp") {
+  throw new Error(
+    "Use --evidence for the release gate. --legacy-cdp is an unverified legacy artifact collector.",
+  );
+}
+
+const [endpoint, baseUrl, outputDirectory] = process.argv.slice(3);
 
 if (!endpoint || !baseUrl || !outputDirectory) {
-  throw new Error("Usage: node portfolio-v2-browser-qa.mjs <endpoint> <url> <output-directory>");
+  throw new Error(
+    "Usage: node portfolio-v2-browser-qa.mjs --legacy-cdp <endpoint> <url> <output-directory>",
+  );
 }
 
 const viewports = [

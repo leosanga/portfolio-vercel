@@ -1,0 +1,3123 @@
+{
+  "schemaVersion": 1,
+  "collector": "cua",
+  "baseUrl": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app",
+  "candidateSha": "3db9a751099a0f6529dbdb4a432ca0cd1b1825bc",
+  "collectedAt": "2026-10-01T08:25:06.707Z",
+  "measurements": [
+    {
+      "approach": {
+        "columns": 5,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 512,
+        "position": "fixed",
+        "right": 735,
+        "top": 822
+      },
+      "footerContentBottom": 9075.71875,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 1262,
+      "requestedWidth": 1262,
+      "requestedHeight": 900,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 9075.71875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1262
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 8488.71875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 587,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1262
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 1680.71875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 7395,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1262
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 803.71875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 8272,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1262
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 5,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 520.5,
+        "position": "fixed",
+        "right": 743.5,
+        "top": 822
+      },
+      "footerContentBottom": 9074.90625,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 1279,
+      "requestedWidth": 1279,
+      "requestedHeight": 900,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 520.5,
+            "position": "fixed",
+            "right": 743.5,
+            "top": 822
+          },
+          "footerContentBottom": 9074.90625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1279
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 520.5,
+            "position": "fixed",
+            "right": 743.5,
+            "top": 822
+          },
+          "footerContentBottom": 8483.90625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 591,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1279
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 520.5,
+            "position": "fixed",
+            "right": 743.5,
+            "top": 822
+          },
+          "footerContentBottom": 1687.90625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 7387,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1279
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 520.5,
+            "position": "fixed",
+            "right": 743.5,
+            "top": 822
+          },
+          "footerContentBottom": 803.90625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 8271,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1279
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 5,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 521,
+        "position": "fixed",
+        "right": 744,
+        "top": 822
+      },
+      "footerContentBottom": 9014.53125,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 1280,
+      "requestedWidth": 1280,
+      "requestedHeight": 900,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 521,
+            "position": "fixed",
+            "right": 744,
+            "top": 822
+          },
+          "footerContentBottom": 9014.53125,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1280
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 521,
+            "position": "fixed",
+            "right": 744,
+            "top": 822
+          },
+          "footerContentBottom": 8422.53125,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 592,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1280
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 521,
+            "position": "fixed",
+            "right": 744,
+            "top": 822
+          },
+          "footerContentBottom": 1687.53125,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 7327,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1280
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 521,
+            "position": "fixed",
+            "right": 744,
+            "top": 822
+          },
+          "footerContentBottom": 803.53125,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 8211,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1280
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 1,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 752,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 392.5,
+        "position": "fixed",
+        "right": 615.5,
+        "top": 690
+      },
+      "footerContentBottom": 12512.96875,
+      "height": 768,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 1023,
+      "requestedWidth": 1023,
+      "requestedHeight": 768,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 392.5,
+            "position": "fixed",
+            "right": 615.5,
+            "top": 690
+          },
+          "footerContentBottom": 12512.96875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1023
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 392.5,
+            "position": "fixed",
+            "right": 615.5,
+            "top": 690
+          },
+          "footerContentBottom": 11134.96875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 1378,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1023
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 392.5,
+            "position": "fixed",
+            "right": 615.5,
+            "top": 690
+          },
+          "footerContentBottom": 2184.96875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 10328,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1023
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 392.5,
+            "position": "fixed",
+            "right": 615.5,
+            "top": 690
+          },
+          "footerContentBottom": 671.96875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 11841,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1023
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 5,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 752,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 393,
+        "position": "fixed",
+        "right": 616,
+        "top": 690
+      },
+      "footerContentBottom": 10936.796875,
+      "height": 768,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 1024,
+      "requestedWidth": 1024,
+      "requestedHeight": 768,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 393,
+            "position": "fixed",
+            "right": 616,
+            "top": 690
+          },
+          "footerContentBottom": 10936.796875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1024
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 393,
+            "position": "fixed",
+            "right": 616,
+            "top": 690
+          },
+          "footerContentBottom": 10393.796875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 543,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1024
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 393,
+            "position": "fixed",
+            "right": 616,
+            "top": 690
+          },
+          "footerContentBottom": 1561.796875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 9375,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1024
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 5,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 752,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 393,
+            "position": "fixed",
+            "right": 616,
+            "top": 690
+          },
+          "footerContentBottom": 671.796875,
+          "height": 768,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 10265,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 1024
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 1,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 828,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 76,
+        "position": "fixed",
+        "right": 299,
+        "top": 766
+      },
+      "footerContentBottom": 15811.34375,
+      "height": 844,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 390,
+      "requestedWidth": 390,
+      "requestedHeight": 844,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 15811.34375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 390
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 15136.34375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 675,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 390
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 2512.34375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 13299,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 390
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 748.34375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 15063,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 390
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 1,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 16346.890625,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 60.5,
+        "position": "static",
+        "right": 283.5,
+        "top": 16284.890625
+      },
+      "footerContentBottom": 16252.890625,
+      "height": 650,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 359,
+      "requestedWidth": 359,
+      "requestedHeight": 650,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 16346.890625,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "static",
+            "right": 283.5,
+            "top": 16284.890625
+          },
+          "footerContentBottom": 16252.890625,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 15585.890625,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "static",
+            "right": 283.5,
+            "top": 15523.890625
+          },
+          "footerContentBottom": 15491.890625,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 761,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 2518.890625,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "static",
+            "right": 283.5,
+            "top": 2456.890625
+          },
+          "footerContentBottom": 2424.890625,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 13828,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 633.890625,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "static",
+            "right": 283.5,
+            "top": 571.890625
+          },
+          "footerContentBottom": 539.890625,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 15713,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 1,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 635,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 60.5,
+        "position": "fixed",
+        "right": 283.5,
+        "top": 573
+      },
+      "footerContentBottom": 16252.890625,
+      "height": 651,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 359,
+      "requestedWidth": 359,
+      "requestedHeight": 651,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 635,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "fixed",
+            "right": 283.5,
+            "top": 573
+          },
+          "footerContentBottom": 16252.890625,
+          "height": 651,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 635,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "fixed",
+            "right": 283.5,
+            "top": 573
+          },
+          "footerContentBottom": 15491.890625,
+          "height": 651,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 761,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 635,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "fixed",
+            "right": 283.5,
+            "top": 573
+          },
+          "footerContentBottom": 2424.890625,
+          "height": 651,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 13828,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 635,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 60.5,
+            "position": "fixed",
+            "right": 283.5,
+            "top": 573
+          },
+          "footerContentBottom": 554.890625,
+          "height": 651,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 15698,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 359
+        }
+      ]
+    },
+    {
+      "approach": {
+        "columns": 1,
+        "count": 5,
+        "transform": "none",
+        "transitionDuration": "0s"
+      },
+      "atBottom": false,
+      "dock": {
+        "bottom": 634,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 61,
+        "position": "fixed",
+        "right": 284,
+        "top": 572
+      },
+      "footerContentBottom": 16553.5,
+      "height": 650,
+      "horizontalOverflow": false,
+      "pathname": "/",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+      "width": 360,
+      "requestedWidth": 360,
+      "requestedHeight": 650,
+      "isHomepage": true,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 634,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 61,
+            "position": "fixed",
+            "right": 284,
+            "top": 572
+          },
+          "footerContentBottom": 16553.5,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 360
+        },
+        {
+          "name": "projects",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 634,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 61,
+            "position": "fixed",
+            "right": 284,
+            "top": 572
+          },
+          "footerContentBottom": 15796.5,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 757,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 360
+        },
+        {
+          "name": "approach",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": false,
+          "dock": {
+            "bottom": 634,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 61,
+            "position": "fixed",
+            "right": 284,
+            "top": 572
+          },
+          "footerContentBottom": 2449.5,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 14104,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 360
+        },
+        {
+          "name": "footer",
+          "approach": {
+            "columns": 1,
+            "count": 5,
+            "transform": "none",
+            "transitionDuration": "0s"
+          },
+          "atBottom": true,
+          "dock": {
+            "bottom": 634,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 61,
+            "position": "fixed",
+            "right": 284,
+            "top": 572
+          },
+          "footerContentBottom": 553.5,
+          "height": 650,
+          "horizontalOverflow": false,
+          "pathname": "/",
+          "scrollY": 16000,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/",
+          "width": 360
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 512,
+        "position": "fixed",
+        "right": 735,
+        "top": 822
+      },
+      "footerContentBottom": 8661.625,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/projects/ai-booking-agent",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+      "width": 1262,
+      "requestedWidth": 1262,
+      "requestedHeight": 900,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 8661.625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 1262
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 8088.625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 573,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 1262
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 803.625,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 7858,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 1262
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 828,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 76,
+        "position": "fixed",
+        "right": 299,
+        "top": 766
+      },
+      "footerContentBottom": 12172.640625,
+      "height": 844,
+      "horizontalOverflow": false,
+      "pathname": "/projects/ai-booking-agent",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+      "width": 390,
+      "requestedWidth": 390,
+      "requestedHeight": 844,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 12172.640625,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 390
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 11152.640625,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 1020,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 390
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 747.640625,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/ai-booking-agent",
+          "scrollY": 11425,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/ai-booking-agent",
+          "width": 390
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 512,
+        "position": "fixed",
+        "right": 735,
+        "top": 822
+      },
+      "footerContentBottom": 8550.96875,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/projects/lead-routing-pipeline-health-system",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+      "width": 1262,
+      "requestedWidth": 1262,
+      "requestedHeight": 900,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 8550.96875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 1262
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 7984.96875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 566,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 1262
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 803.96875,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 7747,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 1262
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 828,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 76,
+        "position": "fixed",
+        "right": 299,
+        "top": 766
+      },
+      "footerContentBottom": 13916.359375,
+      "height": 844,
+      "horizontalOverflow": false,
+      "pathname": "/projects/lead-routing-pipeline-health-system",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+      "width": 390,
+      "requestedWidth": 390,
+      "requestedHeight": 844,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 13916.359375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 390
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 12830.359375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 1086,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 390
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 748.359375,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/lead-routing-pipeline-health-system",
+          "scrollY": 13168,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/lead-routing-pipeline-health-system",
+          "width": 390
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 884,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 512,
+        "position": "fixed",
+        "right": 735,
+        "top": 822
+      },
+      "footerContentBottom": 5587.25,
+      "height": 900,
+      "horizontalOverflow": false,
+      "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+      "width": 1262,
+      "requestedWidth": 1262,
+      "requestedHeight": 900,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 5587.25,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 1262
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 4921.25,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 666,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 1262
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 884,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 512,
+            "position": "fixed",
+            "right": 735,
+            "top": 822
+          },
+          "footerContentBottom": 804.25,
+          "height": 900,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 4783,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 1262
+        }
+      ]
+    },
+    {
+      "approach": null,
+      "atBottom": false,
+      "dock": {
+        "bottom": 828,
+        "controls": [
+          {
+            "height": 44,
+            "label": "Home",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Email",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "LinkedIn",
+            "width": 44
+          },
+          {
+            "height": 44,
+            "label": "Use dark theme",
+            "width": 44
+          }
+        ],
+        "left": 76,
+        "position": "fixed",
+        "right": 299,
+        "top": 766
+      },
+      "footerContentBottom": 9085.671875,
+      "height": 844,
+      "horizontalOverflow": false,
+      "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+      "scrollY": 0,
+      "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+      "width": 390,
+      "requestedWidth": 390,
+      "requestedHeight": 844,
+      "isHomepage": false,
+      "scrollSamples": [
+        {
+          "name": "top",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 9085.671875,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 0,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 390
+        },
+        {
+          "name": "middle",
+          "approach": null,
+          "atBottom": false,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 7967.671875,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 1118,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 390
+        },
+        {
+          "name": "footer",
+          "approach": null,
+          "atBottom": true,
+          "dock": {
+            "bottom": 828,
+            "controls": [
+              {
+                "height": 44,
+                "label": "Home",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Email",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "LinkedIn",
+                "width": 44
+              },
+              {
+                "height": 44,
+                "label": "Use dark theme",
+                "width": 44
+              }
+            ],
+            "left": 76,
+            "position": "fixed",
+            "right": 299,
+            "top": 766
+          },
+          "footerContentBottom": 747.671875,
+          "height": 844,
+          "horizontalOverflow": false,
+          "pathname": "/projects/trial-demo-routing-by-customer-relationship",
+          "scrollY": 8338,
+          "url": "https://leosanga-p5cm167wi-leo-c2f6.vercel.app/projects/trial-demo-routing-by-customer-relationship",
+          "width": 390
+        }
+      ]
+    }
+  ]
+}

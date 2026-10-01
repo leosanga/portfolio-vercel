@@ -57,6 +57,25 @@ bun run format           # prettier --write .
 
 No test suite currently configured.
 
+## Maintenance release checks
+
+Follow `docs/PORTFOLIO-RELEASE-PREVENTION.md` and the scoped maintenance protocol
+in `docs/REDESIGN-WORKFLOW-ROLLBACK-PLAN.md`. Current status belongs in
+`docs/REDESIGN-CURRENT-STATE.md`; dated audit/evidence files are historical records.
+Match the actual production base and exact candidate SHA, review every shared
+surface changed by the diff, and keep build, runtime geometry, visual acceptance
+and release authorization separate. Preserve approved copy, separator/spacing
+decisions, Approach's five steps and 1024px boundary, and the persistent dock.
+
+The verified gate uses CUA-collected JSON with
+`node scripts/portfolio-v2-browser-qa.mjs --evidence <json> <url> <sha>`.
+Run `node scripts/portfolio-v2-release-contract.test.mjs` for validator changes.
+Missing or stale coverage is a failure. Legacy `--legacy-cdp` output is not this
+release gate. Do not claim preference, touch, zoom or visual acceptance from
+fixtures or geometry. Inspect the exact preview before merge and canonical
+production after the matching deployment. Never stage generated files, preview
+helpers or unrelated work with a scoped release.
+
 ## Structure
 
 ```

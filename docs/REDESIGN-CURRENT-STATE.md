@@ -4,6 +4,24 @@ Last updated: 2026-10-01
 
 ## Current phase
 
+The visual maintenance release is complete through PR 12, production source
+3db9a751099a0f6529dbdb4a432ca0cd1b1825bc, deployment 6779115888. The current task
+is the separately authorized prevention documentation/tooling release. Its CUA
+integration passed all 15 required cases, eight regression fixtures pass, and
+removing a required case produces CLI exit 1. No public layout or copy is changed.
+Read [PORTFOLIO-RELEASE-PREVENTION.md](./PORTFOLIO-RELEASE-PREVENTION.md), then
+the dated audit and retained evidence linked there. Exact publication SHAs and
+deployment outcomes are recorded by the prevention PR and GitHub deployments;
+resolve those records before starting another release rather than treating the
+historical application SHA as the latest production base.
+
+Remaining acceptance limits: actual touch, reduced-motion/forced-color preference
+emulation and 200% zoom are NOT TESTED. Legacy CDP is unverified. The new gate is
+operator-run; no unattended CI or global Claude enforcement is claimed.
+
+The sections below retain dated history. Later entries supersede earlier next
+actions and completion assessments.
+
 Gate 4 is complete. Pull request 1 was merged through merge commit `b0bbd04`,
 and Vercel successfully deployed that commit to production. The canonical site
 at `https://leosanga.vercel.app/` now serves portfolio version 2.
@@ -921,6 +939,292 @@ Decisions this turn:
 
 - Restore Approach's prior laptop breakpoint without changing copy or timing.
 - Preserve Capabilities, mobile geometry, and unrelated user work.
+
+Correction prepared and published in https://github.com/leosanga/portfolio-vercel/pull/10.
+Branch fix/approach-laptop-layout, head c60f2d328cef2cf84ddd61453487b8a66ca70bb0.
+The exact five-file PR scope is confirmed; Vercel preview and preview-comment
+checks pass. Production remains at the prior release. Automatic approval review
+rejected merging PR 10 because Leo's regression report did not explicitly
+authorize deploying this corrective release. A concrete approval request was
+sent with the PR and verified fix. No bypass or alternative deployment was
+attempted. Next action: wait for Leo's deployment authorization, then merge
+PR 10 with a merge commit matched to c60f2d3 and verify the canonical live site.
+If Leo identifies a different symptom, investigate it before merging.
+The local viewer remains http://127.0.0.1:8091/#approach. Generated cosmetic
+route-tree changes and the preview helper stay excluded; unrelated original
+user work remains untouched. This approval block is the only release blocker.
+
+## Corrective releases and case-study audit, 2026-10-01
+
+Leo answered "Deploy the fix" for PR 10. It merged as e48a74c1be43d9b1d168d13e23d67d5afcbf9e69;
+production deployment 6777615117 succeeded. Canonical live inspection at 1262px
+confirmed five horizontal Approach steps, exact copy, and no overflow. The prior
+approval block is resolved.
+
+Leo then explicitly instructed fixing and deploying the floating buttons first,
+while keeping Salesforce Operational result and case-study line revisions local
+for inspection. The Salesforce release widened the dock's document-flow exception
+to all phones, contrary to the approved persistent-dock specification. PR 11
+restores only the original max-width 359px/max-height 650px exception. Head
+2b2312cbdb428dec0809d0d6f8b71504d4e089af, merge
+144fee50a0c3672cb01ed4a11a9470f9f5a21f83. Vercel production succeeded at
+https://leosanga-apqrev7l6-leo-c2f6.vercel.app. This release changed one CSS file.
+
+Production build passed after Windows sandbox child-process restrictions were
+lifted for the build. Exact hosted candidate inspection at 390x844 confirmed
+fixed top 766px through scrolling, 44px controls, no overflow, and at least 16px
+footer-content clearance on the homepage and all three case studies. Hosted
+359x650 is static; 359x651 and 360x650 are fixed; 430x932 and 767x844 are fixed.
+Home and theme keyboard activation passed on the hosted homepage. Canonical
+live homepage at measured 390x844 and the Salesforce close retain the fixed
+dock after deployment. Actual touch input and reduced-motion preference
+emulation were not exercised in this browser session; their source guards are
+unchanged. The local viewer was restarted after recovery on port 8091, dev
+session 42444. Do not publish the subsequent audit or case-study work under
+the urgent dock deployment approval.
+
+Active branch: fix/mobile-floating-dock. Current source head: 2b2312c. Audit
+findings and preventive proposals are in
+qa/portfolio-release-regression-audit-2026-10-01.md. Next: finish deployment-chain
+review, trace the Operational result report, and prepare a bounded local visual
+revision for Leo's inspection. Preserve the original worktree and exact locked
+Approach copy. Generated route-tree formatting and vite.preview.config.ts remain
+excluded. No other production change is authorized.
+
+Decisions this turn:
+
+- Deploy only the urgent dock correction under Leo's explicit instruction.
+- Keep case-study visual/content work local until inspection and approval.
+- Treat build status and actual hosted UI verification as separate evidence.
+
+## Narrower local divider correction, 2026-10-01
+
+Leo rejected the overly broad local line removal, clarified that excessive lines
+did not mean removing structural lines, and approved the narrower proposal with
+"proceed". Active branch is review/case-study-layout-audit at 2b2312c, with local
+uncommitted review work. Production remains PR 11 merge 144fee5. No further
+publication is authorized.
+
+The broad border overrides were replaced with three bounded corrections:
+remove the duplicate chapter-header divider while preserving the main chapter
+boundary; keep closing-panel top boundaries and remove their second bottom
+frame; remove HubSpot's outer evidence frame while retaining the screenshot
+button's own border. Narrative rows, safeguard/comparison separators, signature
+proof boundaries, Built with dividers, diagrams, and controls are restored.
+Forced-color boundaries remain intact. Salesforce closing-grid CSS remains a
+separate local proposal and requires its own visual acceptance.
+
+Build passes. Browser measurements at 1262px confirm restored 1px chapter and
+narrative boundaries, removed duplicate header dividers, no overflow, and fixed
+dock. All three routes at 390px retain their chapter boundaries, no overflow,
+and fixed dock. Temporary viewport override was reset. The local viewer stays
+http://127.0.0.1:8091/ and is open on the booking case study for inspection.
+No repeat of unchanged input or motion tests was needed for this narrowed CSS
+revision; prior coverage and explicit preference/integration gaps remain in the
+audit. Next action: Leo inspects the narrower divider treatment and separately
+reviews the Salesforce close before publication preparation.
+
+Decisions this turn:
+
+- Restore structural lines and meaningful row separators.
+- Limit removal to duplicate framing and keep the closing-layout review separate.
+- Keep this revision local for Leo's inspection.
+
+## HubSpot full line-density review, 2026-10-01
+
+Leo asked whether Booking needs the line above its closing headline and requested
+a full HubSpot review. Review findings are in HUBSPOT-LINE-DENSITY-REVIEW.md.
+No product CSS changed during this review. The main noise is 14 responsibility
+bullet-row rules and 15 rollout bullet-row rules; preserve group boundaries,
+diagram rails/markers, safeguard rows, and screenshot frames. Proposed smaller
+reductions address nested mobile verification and finding-detail dividers.
+Booking's closing-frame top line duplicates the previous chapter boundary.
+
+These are concrete recommendations awaiting Leo's approval. Next: apply only
+the approved items locally, inspect them, and keep production unchanged until
+explicit publication authority. The local viewer remains on port 8091, temporary
+viewport override is reset, and the review tab is open at the Booking close.
+
+Decisions this turn:
+
+- Recommend removing the redundant Booking closing line.
+- Target HubSpot's repeated bullet-item rules while retaining meaningful structure.
+- Keep the recommendations separate from implementation and deployment approval.
+
+## Approved line and space refinement, 2026-10-01
+
+Leo approved all recommendations in HUBSPOT-LINE-DENSITY-REVIEW.md and asked
+for space management across the case studies, especially Salesforce's Operational
+result. Implemented locally in src/styles/portfolio-v2.css on
+review/case-study-layout-audit. Source head remains 2b2312c; production remains
+PR 11 merge 144fee5. No publication, push, or merge was performed.
+
+HubSpot now retains four main safeguard row separators, finding boundaries,
+the first divider in each finding's detail list, screenshot frames, responsibility
+grouping, rollout markers/desktop rail, and list-group dividers. Removed four
+phone verification dividers, four internal finding-detail dividers, and the 29
+ordinary responsibility/rollout bullet-row rules. Booking and HubSpot closing
+grids no longer repeat the previous chapter/footer boundaries. All border
+reductions remain inside forced-colors: none.
+
+Removed duplicate header and closing-grid padding. Chapter/closing section
+padding is 56px minimum, 6vw, 96px maximum; Salesforce's already compact status
+section retains its prior padding. HubSpot finding/list spacing is tighter with
+unchanged evidence dimensions. Salesforce's unchanged result statement now has
+ten desktop columns instead of nine, a 40ch maximum, and smaller closing/link
+gaps. It retains the left label, stronger display hierarchy, and stacked phone
+layout. At 1262px the result is 340px high versus the prior local proposal's
+438px, and Booking's close is 340px versus 513px. These are local proposal
+comparisons, not claims about an earlier historical restoration.
+
+Verification: production build passes after the known Windows sandbox spawn
+restriction was lifted. CSS whitespace check passes. All three local routes
+have no horizontal overflow at 1262px and 390px. Salesforce's 1024/1023 stacking
+boundary passes. At 390px all three retain fixed controls at top 766px, four
+44px targets, and footer content ending at approximately 748px. ID-bearing
+sections remain untransformed. HubSpot evidence keyboard open, Escape, and
+focus return pass. Desktop responsibility grouping, mobile rollout spacing,
+Booking close, and Salesforce result were visually inspected. Existing motion
+and preference guards are unchanged; actual touch, preference emulation,
+200% zoom, and browser-collector integration remain NOT TESTED as recorded in
+the release audit. No new copy, evidence, dependencies, or homepage changes.
+
+Next: Leo visually inspects the local candidate at http://127.0.0.1:8091/ before
+any release preparation. Keep audit/QA tooling separate from the visual change
+scope. Generated route-tree formatting and vite.preview.config.ts remain
+excluded; the original worktree's unrelated changes remain untouched.
+
+Decisions this turn:
+
+- Apply the approved line reductions while preserving meaningful group structure.
+- Address wasted space through bounded padding, list-gap, and result-width changes.
+- Keep the candidate local for visual acceptance; production remains unchanged.
+
+## Approved visual release preparation, 2026-10-01
+
+Leo approved the inspected local candidate and explicitly said "let's deploy".
+He also requested lower-model delegation to save usage. One GPT-6 Luna agent
+performed a bounded read-only scope/selector review, TypeScript, and whitespace
+checks; all passed and the results were reconciled. Root retained release and
+hosted-verification responsibility. No exact usage savings are claimed.
+
+Release PR: https://github.com/leosanga/portfolio-vercel/pull/12.
+Candidate SHA: 42bd13c2fa81ad0655316c014074d47e8cef2541.
+Exact scope: src/styles/portfolio-v2.css, 128 added lines, no other files.
+Audit tooling, draft workflow/guideline updates, generated route-tree formatting,
+and preview helpers remain local and excluded. Existing local continuity/design
+records are also uncommitted and preserved.
+
+Base main and actual production SHA both remain
+144fee50a0c3672cb01ed4a11a9470f9f5a21f83 immediately before merge.
+Hosted preview deployment 6779045110 succeeded at the immutable URL
+https://leosanga-es8ew476s-leo-c2f6.vercel.app.
+Actual hosted checks: all three case-study routes pass 1262px/390px overflow
+checks; Booking close is 340px and Salesforce result is 340px at 1262px;
+meaningful chapter borders remain and HubSpot's 29 item rules are removed.
+Salesforce stacks at 1023px and uses twelve columns at 1024px. All routes retain
+the phone dock at top 766px through top/middle/footer samples, four 44px controls,
+and footer-content clearance of approximately 18px. Sections remain untransformed.
+Prior local keyboard coverage and explicit preference/touch/integration gaps
+remain recorded above; hosted geometry does not silently certify those gaps.
+
+Next: merge PR 12 against the verified head under Leo's explicit authorization,
+wait for its matching production deployment, and verify the canonical site.
+
+Decisions this turn:
+
+- Deploy only the visually approved CSS refinement.
+- Use one bounded lower-model review and reconcile its result.
+- Keep deployment-audit tooling outside this production release.
+
+## Case-study visual release complete, 2026-10-01
+
+PR 12 merged under Leo's explicit deployment authorization as
+3db9a751099a0f6529dbdb4a432ca0cd1b1825bc. Vercel production deployment
+6779115888 succeeded at https://leosanga-p5cm167wi-leo-c2f6.vercel.app.
+Canonical site: https://leosanga.vercel.app/. The release changed only
+src/styles/portfolio-v2.css. The lower-model review result was collected and
+reconciled before release; no delegated work remains outstanding.
+
+Canonical production verification passes: all three case-study routes at 1262px
+retain meaningful chapter boundaries, approved separator reductions, and no
+horizontal overflow. Salesforce result matches the hosted/local candidate at
+340px desktop and 454px phone height. At 390px all three routes retain the fixed
+dock at top 766px and footer content ending around 748px. HubSpot evidence opens
+with Enter and closes with Escape. Homepage has five horizontal Approach steps
+at 1262px, five vertical steps at 390px, no overflow, untransformed section, and
+all five node animations are infinite when the Approach is in view. Temporary
+viewport override was reset. Prior explicit touch/preference/zoom/collector
+integration limitations remain open; do not report those as tested.
+
+Rollback: create a scoped recovery branch from the current production base,
+then git revert -m 1 3db9a751099a0f6529dbdb4a432ca0cd1b1825bc and review/deploy
+that new commit through the same release process. The pre-release production
+SHA is 144fee50a0c3672cb01ed4a11a9470f9f5a21f83. Do not rewrite main or operate
+on the original worktree's unrelated changes.
+
+The approved visual release is complete. Audit scripts, guideline/workflow
+proposals, this continuity record, the two local design records and PR body,
+generated route-tree formatting, and preview helper remain local and uncommitted.
+Next action: any deployment-audit tooling release requires its own bounded scope
+and browser integration verification; it was not silently included in PR 12.
+Local viewer remains http://127.0.0.1:8091/; production is the finished output.
+
+Decisions this turn:
+
+- Publish the approved CSS-only candidate after exact hosted-preview checks.
+- Verify canonical production after the matching deployment succeeds.
+- Preserve unrelated local work and keep tooling proposals separate.
+
+## Prevention completion check, 2026-10-01
+
+Leo asked whether learnings, documentation, guidelines and prevention are all
+complete. They are not. The visual production release is complete; the audit,
+documentation amendments and regression tooling remain local and uncommitted.
+Regression fixtures passed, but the browser collector has not been verified end
+to end or established as an automated release gate. Preference/touch/zoom coverage
+gaps remain explicit. The audit's stale visual-release-pending paragraph was
+reconciled with the completed release and now points here for current state.
+
+Next: finish browser-collector integration verification and a separate bounded
+documentation/tooling review and commit before calling prevention complete.
+Do not include generated files, preview helpers, or unrelated original work.
+
+Decisions this turn:
+
+- Distinguish the completed visual release from unfinished prevention work.
+- Reconcile stale audit status without claiming unperformed checks or enforcement.
+
+## Prevention integration and publication authorization, 2026-10-01
+
+Leo authorized completion and publication with "go" and resumed after the usage
+reset. The prevention scope changes repository guidance, release/rollback and QA
+procedures, preserves approved per-route spacing/boundaries, and adds a permitted
+CUA collector plus a failing JSON evidence gate. Application source, generated
+route tree, preview helper and temporary PR bodies are excluded.
+
+Actual integration: 15 required runtime cases at immutable production
+https://leosanga-p5cm167wi-leo-c2f6.vercel.app and application source SHA
+3db9a751099a0f6529dbdb4a432ca0cd1b1825bc. The retained evidence CLI passes with
+exit 0. Removing Salesforce phone coverage fails with exit 1. Eight fixtures,
+targeted lint with the documented line-ending baseline excluded, and diff
+whitespace checks pass. Two bounded lower-model specialist reviews were
+reconciled, including the final source review with no blockers. No delegated work
+remains outstanding. The current main/production base was rechecked before
+publication and has not advanced.
+
+Release scope: a separate prevention PR, exact preview inspection before merge,
+then canonical smoke checks after its matching production deployment. The PR's
+merge/check/deployment records are the durable release outcome authority. Future
+work must resolve the latest production SHA, not reuse this historical evidence.
+No global Claude lessons or enforcement were changed or claimed to run. Actual
+touch, preference emulation and zoom remain NOT TESTED; this is not unattended CI.
+
+Decisions this turn:
+
+- Complete the previously authorized prevention release without further UI changes.
+- Keep operator-run evidence validation separate from visual acceptance.
+- Publish scoped documentation, tooling and actual historical evidence together.
 
 ## Required read order
 
