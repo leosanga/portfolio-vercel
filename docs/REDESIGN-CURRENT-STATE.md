@@ -875,6 +875,53 @@ Decisions this turn:
 - Apply option 2 exactly, keeping the delivery-scale claim.
 - Publish the small follow-up through the established release process.
 
+Release complete: https://github.com/leosanga/portfolio-vercel/pull/9 is merged.
+Source commit e7db344cefda087a8b94d50cf20d16a5565da378; production merge
+37d5b7668c8bb440a457fbf373f6ecf0f205bb50; deployment ID 6777447628. Vercel's
+exact-commit status is successful. The canonical site serves both exact strings
+and the corrected mobile columns, with no horizontal overflow at 430px.
+Responsive QA override was reset. Branch polish/credibility-delivery-copy is
+active in the same isolated worktree. Original user changes remain untouched;
+the generated route tree cosmetic change and preview helper remain excluded.
+This post-release result is recorded locally. Next action: routine live review or
+another scoped request. Revert merge 37d5b76 through a new release to roll back.
+No approval is pending.
+
+## Approach laptop layout diagnosis, 2026-10-01
+
+Leo reported that Approach went wrong after the releases. Browser inspection
+reproduced an abrupt collapse into a narrow vertical copy column at 1262px,
+leaving excessive empty space. It returned to five columns at 1280px. The
+five-step revision moved Approach's prior 1024px boundary to 1280px, causing
+this laptop layout regression. The subsequent credibility copy release changed
+only its own row, not Approach. All five exact paragraphs and loop timings
+remain correct in live DOM and computed styles.
+
+Restore horizontal Approach from 1024px upward; retain vertical tablet/mobile
+below that width. Keep Capabilities' independent 1280px breakpoint. Files:
+src/styles/portfolio-v2.css plus the connector plan, visual spec, and this state.
+No published copy changes. This supports the approved desktop horizontal-route
+and readable responsive-layout invariants. Verify 1024, 1100, 1262, 1280, and
+390 widths, connector endpoints, no overflow, keyboard navigation, and static
+reduced-motion fallback. The user clarification question remains open; adjust
+the diagnosis if Leo identifies a different symptom.
+
+Local checks confirm five columns at 1024, 1100, 1262, 1279, and 1280px, and a
+vertical path at 1023 and 390px. Connector endpoint offsets are zero, section
+transform remains none, and no horizontal overflow occurs. All five paragraphs
+retain their exact approved source. At 1024px, body measures are about 154px,
+with the longest paragraph taking 223px of height; text does not overlap.
+Keyboard menu activation and Approach navigation pass at 390px, with the proper
+aria-current location. All node iteration counts remain infinite. Reduced-motion
+guards are untouched. Responsive QA override was reset. The production build and
+whitespace checks pass; the original repository's unrelated changes remain
+untouched. This is a correction to the existing portfolio release.
+
+Decisions this turn:
+
+- Restore Approach's prior laptop breakpoint without changing copy or timing.
+- Preserve Capabilities, mobile geometry, and unrelated user work.
+
 ## Required read order
 
 1. Repository `AGENTS.md` when present, otherwise repository `CLAUDE.md`

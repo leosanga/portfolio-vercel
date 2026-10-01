@@ -584,8 +584,9 @@ opening differs from the title. This direction
 supersedes the original four-step constraint.
 
 The local preview reads from the shared `PROCESS_STEPS` source through version 2
-`APPROACH` and `ApproachV2`. It uses five columns at 1280 CSS pixels and above and
-the existing vertical sequence below 1280 pixels, keeping the connector path
+`APPROACH` and `ApproachV2`. After the laptop layout correction, it uses five
+columns at 1024 CSS pixels and above and the existing vertical sequence below
+1024 pixels, keeping the connector path
 continuous rather than wrapping it into multiple rows. The retained legacy
 `Process` uses five columns from its `xl` breakpoint. Existing palette, type,
 motion, section IDs, and navigation remain unchanged. No new section, metric
