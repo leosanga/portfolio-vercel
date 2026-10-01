@@ -3867,9 +3867,8 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   }
 }
 
-/* A fixed four-control rail covers project links and evidence at phone widths. Keep the controls,
-   but place them after the footer where they remain reachable without obscuring the page. */
-@media (max-width: 767px) {
+/* Keep the approved document-flow exception limited to very small, short screens. */
+@media (max-width: 359px) and (max-height: 650px) {
   .pv2-footer {
     padding-bottom: var(--pv2-space-8);
   }
