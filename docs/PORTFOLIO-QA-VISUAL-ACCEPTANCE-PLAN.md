@@ -673,6 +673,43 @@ Leo approved this plan and explicitly authorized Gate 1 local implementation on
 approved worktree and localhost boundary. GitHub publication, Vercel actions,
 remote preview creation, merging, and production changes remain unauthorized.
 
+## Maintenance regression gate, 2026-10-01
+
+Scope checks to the actual diff, while always reviewing affected shared surfaces.
+Keep build success, runtime mechanics, visual acceptance, and release authority
+as separate evidence. Link the exact candidate SHA and hosted preview to the
+record. Record PASS/FAIL/NOT TESTED/NOT APPLICABLE explicitly for each required
+check. Source inspection alone is not a runtime preference or touch-input test.
+
+For Approach: five horizontal columns at 1024, 1262, 1279, and 1280px; one vertical
+path at 1023px and phone widths; exact approved copy; untransformed measured
+section; meaningful static fallback. Watch a full loop and reset when changing
+motion. The approved loop is an explicit exception to the original one-time rule.
+
+For the dock: fixed and visible at 360px upward, and at 359x651. The approved
+359x650 and 320x568 exception uses document flow. Check top, middle and footer
+on the homepage and all affected routes, 44px controls, labels, keyboard Home/theme
+actions, and focused links clear of the dock. For shared dock CSS changes, all
+three case studies are affected. A static dock offscreen at scroll zero is FAIL
+on ordinary phones, even if it overlaps no content and creates no overflow.
+
+The existing browser collector previously returned success without assertions.
+The verified replacement path uses scripts/portfolio-v2-cua-collector.mjs with
+documented CUA handles and validates its JSON through the existing command's
+`--evidence` mode. PORTFOLIO-RELEASE-PREVENTION.md documents collection, required
+coverage, candidate identity and freshness. The 2026-10-01 integration evidence
+covers all 15 required cases; the CLI passes complete real evidence and exits 1
+when a required case is removed. The original endpoint mode requires an explicit
+`--legacy-cdp` flag and remains outside the verified gate.
+
+Regression fixtures run with `node scripts/portfolio-v2-release-contract.test.mjs`.
+They reject geometry regressions, malformed/stale evidence and omitted coverage.
+Fixtures and geometry do not approve composition or prove preference/touch/zoom
+coverage. Report those separate checks honestly.
+
+After merge, inspect the canonical site against the actual production SHA. Do
+not close a release because the hosting provider reports successful deployment.
+
 ## Fresh-session continuation
 
 A fresh QA or review session should read:

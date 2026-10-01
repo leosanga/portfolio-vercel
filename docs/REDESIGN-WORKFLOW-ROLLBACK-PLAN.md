@@ -421,6 +421,51 @@ Before production merge, perform a rollback rehearsal locally:
 
 This proves that rollback is operational rather than merely theoretical.
 
+## Scoped releases after cutover
+
+Added locally after the 2026-10-01 regression audit. Applies to maintenance and
+case-study releases; the original cutover gates above remain historical records.
+Leo's explicit session authorization controls the authorized scope. An urgent
+fix approval does not authorize adjacent design or copy changes.
+
+1. Fetch main and identify the actual current production deployment. Record both
+   SHAs and reconcile any difference. List the candidate's exact
+   files and behavior changes against that base, including shared CSS, components,
+   and inherited branch changes. Resolve spec conflicts before implementation.
+2. Identify the current approved specification and relevant amendments. Lock copy
+   and unaffected layouts. Flag new product decisions instead of embedding them
+   inside a fix or a guideline update.
+   For visual edits, record approved spacing/line changes and retained structural
+   boundaries per route. Further removals or reflow require a new design review.
+3. Complete checks appropriate to the scope. Record build, TypeScript/lint,
+   mechanical browser assertions, visual acceptance, input/preference checks,
+   and limitations separately. Use PASS, FAIL, NOT TESTED, or NOT APPLICABLE.
+4. For layout changes, inspect the actual rendered candidate at boundary minus
+   one, boundary, ordinary 1262px laptop, and 390px phone widths. Verify actual
+   viewport dimensions. Inspect fixed controls at top, middle, and footer on
+   every affected route. Confirm footer and focused-control clearance.
+5. Obtain Leo's local visual acceptance where the scope changes design. Publish
+   only within explicit authority, and inspect the exact hosted preview before
+   merge. A green Vercel check is not that inspection. Record candidate SHA and
+   immutable preview URL together. A later relevant change invalidates that QA.
+6. Merge only with explicit production authority covering that concrete result.
+   Recheck the main and production SHAs. If the base advanced, integrate it and
+   repeat affected QA before merging. Match the PR head SHA. Do not deploy
+   unrelated local review work with a fix.
+7. Wait for the matching production deployment, then inspect the canonical site
+   at the relevant laptop and phone widths and interactions. Record the merge
+   SHA, deployment ID, runtime result, and rollback commit. Failures remain open
+   until corrected or explicitly accepted; never turn missing evidence into PASS.
+
+The verified evidence gate is documented in PORTFOLIO-RELEASE-PREVENTION.md.
+Use CUA collection and portfolio-v2-browser-qa.mjs --evidence against the expected
+URL/SHA. Missing, malformed, stale or incomplete evidence fails with exit 1.
+Fixtures supplement fresh browser measurements. The original CDP mode is an
+explicit legacy option and was not verified in this environment. The gate does
+not approve visual quality or certify touch/preferences/zoom. Record its artifact
+and separate manual outcomes with the exact candidate; do not treat historical
+PASS evidence as reusable for a later relevant source change.
+
 ## Final handoff requirements
 
 Before ending implementation, the handoff must state:

@@ -371,9 +371,33 @@ use`. This distinguishes observed behavior from rollout decisions without turnin
 
 - Verify the homepage proof and the full route separately at desktop and phone widths.
 - Check that fixed utilities do not cover proof, captions, project links, or the final
-  action. At phone width, place a shared utility rail after the footer when the fixed
-  version obscures content.
+  action. Preserve the approved persistent utility dock from 360px upward. Document
+  flow remains limited to widths below 360px and heights no greater than 650px.
+  Correct clearance through spacing and focused-element visibility. Moving a shared
+  control into document flow at another breakpoint is a product decision requiring
+  Leo's explicit approval, not an implementation remedy.
 - Open evidence from the image and from the visible action. Verify Escape closes the
   viewer and focus returns to the exact opener.
 - Verify heading order, complete static meaning, no horizontal overflow, and a useful
   reduced-motion state before considering the case study complete.
+
+### Release evidence after the 2026-10-01 regression audit
+
+- Follow the scoped-release protocol in REDESIGN-WORKFLOW-ROLLBACK-PLAN.md. Record
+  the current production SHA, candidate SHA, exact changed files, affected shared
+  surfaces, local acceptance, hosted preview URL, and production smoke results.
+- Review global selectors and inherited changes against approved behavior. A merge
+  conflict being resolved does not prove that merged behavior preserves the spec.
+- A successful build or Vercel check proves build/deploy completion only. It cannot
+  stand in for browser inspection or Leo's visual acceptance.
+- Mechanical layout assertions cannot accept art direction. Review the actual
+  composition, whitespace, line density, and hierarchy at intermediate laptop and
+  phone widths, then obtain Leo's acceptance for a visual change.
+- Record approved spacing and line changes for each affected route, naming which
+  chapter, row, diagram and evidence boundaries remain. Additional removals or
+  reflow are new design decisions, not implied by approval to reduce line noise.
+- Use the verified CUA collection/evidence gate described in
+  PORTFOLIO-RELEASE-PREVENTION.md. Missing route, viewport or scroll coverage fails;
+  legacy CDP output and validator fixtures cannot replace fresh browser evidence.
+- Respect approved amendments: the five-step Approach and its explicit loop approval
+  supersede older four-step and one-time-motion directions for that surface only.
