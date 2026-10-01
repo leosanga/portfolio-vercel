@@ -11011,3 +11011,131 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     stroke: CanvasText;
   }
 }
+
+/* Local case-study review: preserve group boundaries without repeated row framing. */
+.pv2-case-study .pv2-case-section,
+.pv2-case-study .pv2-case-close {
+  padding-block: clamp(3.5rem, 6vw, 6rem);
+}
+
+.pv2-salesforce-case .pv2-salesforce-status {
+  padding-block: clamp(3.5rem, 5vw, 5rem);
+}
+
+.pv2-case-study .pv2-case-section__header {
+  padding-bottom: 0;
+}
+
+.pv2-case-study .pv2-case-close__grid {
+  padding-block: 0;
+}
+
+.pv2-hubspot-case .pv2-hubspot-discoveries__list {
+  margin-top: var(--pv2-space-6);
+}
+
+.pv2-hubspot-case .pv2-hubspot-discovery {
+  padding-block: var(--pv2-space-12);
+}
+
+.pv2-hubspot-case .pv2-hubspot-discovery:first-child {
+  padding-top: var(--pv2-space-8);
+}
+
+.pv2-hubspot-case .pv2-hubspot-supporting-evidence {
+  padding-block: var(--pv2-space-8);
+}
+
+.pv2-hubspot-case .pv2-hubspot-boundary__zones li,
+.pv2-hubspot-case .pv2-hubspot-rollout__stages ul li {
+  padding-block: var(--pv2-space-2);
+}
+
+.pv2-hubspot-case .pv2-hubspot-boundary__zones li::before,
+.pv2-hubspot-case .pv2-hubspot-rollout__stages ul li::before {
+  top: 0.8rem;
+}
+
+@media (forced-colors: none) {
+  .pv2-case-study .pv2-case-section__header {
+    border-bottom: 0;
+  }
+
+  .pv2-case-study .pv2-case-close__grid {
+    border-block: 0;
+  }
+
+  .pv2-case-study .pv2-hubspot-journey__evidence .pv2-hubspot-evidence {
+    border-block: 0;
+  }
+
+  .pv2-hubspot-case .pv2-hubspot-discovery__story dl > div + div {
+    border-top: 0;
+  }
+
+  .pv2-hubspot-case .pv2-hubspot-boundary__zones li,
+  .pv2-hubspot-case .pv2-hubspot-rollout__stages ul li {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width: 767px) and (forced-colors: none) {
+  .pv2-hubspot-case .pv2-hubspot-safeguards__list > li > p {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.pv2-salesforce-result {
+  padding-block: clamp(3rem, 4vw, 4rem);
+}
+
+.pv2-salesforce-result > .pv2-frame {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--pv2-space-5) var(--pv2-space-8);
+  align-items: start;
+}
+
+.pv2-salesforce-result__label {
+  grid-column: 1 / 3;
+  padding-top: 0.65rem;
+}
+
+.pv2-salesforce-result__statement {
+  grid-column: 3 / 13;
+  max-width: 40ch;
+  margin-top: 0;
+  scroll-margin-top: 7rem;
+  font-size: clamp(2rem, 3.2vw, 3rem);
+  line-height: 1.12;
+}
+
+.pv2-salesforce-result__next {
+  grid-column: 3 / 13;
+  display: grid;
+  gap: var(--pv2-space-3);
+  margin-top: 0;
+}
+
+@media (max-width: 1023px) {
+  .pv2-salesforce-result > .pv2-frame {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--pv2-space-5);
+  }
+
+  .pv2-salesforce-result__label,
+  .pv2-salesforce-result__statement,
+  .pv2-salesforce-result__next {
+    grid-column: 1;
+  }
+
+  .pv2-salesforce-result__label {
+    padding-top: 0;
+  }
+
+  .pv2-salesforce-result__statement {
+    font-size: clamp(1.5rem, 4.2vw, 2.25rem);
+    line-height: 1.2;
+  }
+}
