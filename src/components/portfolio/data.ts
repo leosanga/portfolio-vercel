@@ -98,7 +98,7 @@ export const PROCESS_STEPS = [
   },
   {
     number: "05",
-    title: "Monitor",
+    title: "Measure",
     body: "I define and track: quantifiable metrics for success and failure, so we can see the performance over time, and continuously improve as we adopt to changes.",
   },
 ];
