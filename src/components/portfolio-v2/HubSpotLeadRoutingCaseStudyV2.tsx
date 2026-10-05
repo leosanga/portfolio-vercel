@@ -6,17 +6,17 @@ import {
 } from "@/content/portfolio-v2/hubspot-lead-routing";
 
 import { FooterV2 } from "./FooterV2";
+import { CaseStudyContinuationV2 } from "./CaseStudyContinuationV2";
 import { HubSpotCoverageReconciliationV2 } from "./HubSpotCoverageReconciliationV2";
 import { HubSpotEvidenceFigureV2 } from "./HubSpotEvidenceFigureV2";
 import { HubSpotLeadJourneyV2 } from "./HubSpotLeadJourneyV2";
 import { HubSpotSafeguardsV2 } from "./HubSpotSafeguardsV2";
 import { HubSpotSystemBoundaryV2 } from "./HubSpotSystemBoundaryV2";
+import { PortfolioHeaderV2 } from "./PortfolioHeaderV2";
 import { PortfolioUtilityDockV2 } from "./PortfolioUtilityDockV2";
-import { PrimaryCallLinkV2 } from "./PrimaryCallLinkV2";
-import { SignalMarkV2 } from "./SignalMarkV2";
 
 export function HubSpotLeadRoutingCaseStudyV2() {
-  const { hero, discoveries, rollout, close } = HUBSPOT_LEAD_ROUTING_CASE_STUDY;
+  const { hero, discoveries, rollout } = HUBSPOT_LEAD_ROUTING_CASE_STUDY;
 
   return (
     <div className="portfolio-v2 pv2-case-study pv2-hubspot-case" id="top">
@@ -24,18 +24,7 @@ export function HubSpotLeadRoutingCaseStudyV2() {
         Skip to case study
       </a>
 
-      <header className="pv2-case-nav">
-        <div className="pv2-frame pv2-case-nav__inner">
-          <a className="pv2-case-nav__identity" href="/" aria-label="Leo Sanga, home">
-            <SignalMarkV2 />
-            <span>Leo Sanga</span>
-          </a>
-          <div className="pv2-case-nav__actions">
-            <a href="/#projects">Back to projects</a>
-            <PrimaryCallLinkV2 compact />
-          </div>
-        </div>
-      </header>
+      <PortfolioHeaderV2 context="case-study" />
 
       <main id="case-study-content" className="pv2-case-main">
         <section className="pv2-case-hero pv2-hubspot-hero" aria-labelledby="case-study-title">
@@ -170,7 +159,10 @@ export function HubSpotLeadRoutingCaseStudyV2() {
 
         <HubSpotSystemBoundaryV2 />
 
-        <section className="pv2-case-section pv2-hubspot-rollout" aria-labelledby="rollout-title">
+        <section
+          className="pv2-case-section pv2-hubspot-rollout pv2-case-closing"
+          aria-labelledby="rollout-title"
+        >
           <div className="pv2-frame">
             <header className="pv2-case-section__header">
               <p className="pv2-case-section__index" aria-hidden="true">
@@ -201,18 +193,7 @@ export function HubSpotLeadRoutingCaseStudyV2() {
           </div>
         </section>
 
-        <section className="pv2-case-close" aria-labelledby="case-close-title">
-          <div className="pv2-frame pv2-case-close__grid">
-            <div>
-              <h2 id="case-close-title">{close.heading}</h2>
-              <p>{close.support}</p>
-            </div>
-            <div className="pv2-case-close__action">
-              <PrimaryCallLinkV2 />
-              <p>{close.duration}</p>
-            </div>
-          </div>
-        </section>
+        <CaseStudyContinuationV2 currentSlug="hubspot-lead-routing" />
       </main>
 
       <FooterV2 />

@@ -302,9 +302,12 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   text-transform: uppercase;
 }
 
+/* Section numbers are hidden, not removed: the slot keeps every heading where the
+   approved layout placed it, including on phones where the number's width set the offset. */
 .pv2-section-heading__index {
   grid-column: 1 / 2;
   padding-bottom: 0.45rem;
+  visibility: hidden;
 }
 
 .pv2-section-heading h2 {
@@ -2457,6 +2460,75 @@ html:not([data-pv2-theme]) .portfolio-v2 {
   }
 }
 
+/* Arrow links lean toward their destination; reduced motion keeps the color change only. */
+@media (prefers-reduced-motion: no-preference) {
+  .pv2-featured-project__case-link svg {
+    transition: translate var(--duration-fast) var(--ease-out);
+  }
+
+  .pv2-featured-project__case-link:focus-visible svg {
+    translate: 0.25rem 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .pv2-featured-project__case-link:hover svg {
+    translate: 0.25rem 0;
+  }
+}
+
+/* The way into the Project Catalog. A one-line outlined bar from the frame edge, with no
+   number, so it reads as a way forward rather than another project. */
+.pv2-catalog-entry {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pv2-space-8);
+  margin-top: var(--pv2-space-16);
+  padding: var(--pv2-space-6) var(--pv2-space-12);
+  background: var(--pv2-surface-raised);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-feature);
+  transition: border-color var(--duration-fast) ease;
+}
+
+/* Case-study title type, capped at 2.5rem: with the tighter padding above, the bar is never
+   taller than it was with the row-title size and 2rem padding. */
+.pv2-catalog-entry__title {
+  color: var(--pv2-text-primary);
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  font-weight: 590;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.pv2-catalog-entry__description {
+  max-width: 64ch;
+  margin-top: var(--pv2-space-2);
+  color: var(--pv2-text-body);
+  font-size: clamp(0.9375rem, 1.05vw, 1.0625rem);
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.pv2-catalog-entry .pv2-featured-project__case-link {
+  flex: none;
+}
+
+/* Stretches the link over the whole bar, so the link's name stays "See more projects". */
+.pv2-catalog-entry .pv2-featured-project__case-link::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pv2-catalog-entry:hover {
+    border-color: var(--pv2-mist);
+  }
+}
+
 .pv2-capabilities {
   padding-block: clamp(5rem, 8vw, 7rem);
   background: var(--pv2-canvas-soft);
@@ -3763,6 +3835,14 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-project-row__main {
     grid-column: 2;
+  }
+
+  .pv2-catalog-entry {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--pv2-space-4);
+    margin-top: var(--pv2-space-12);
+    padding: var(--pv2-space-6);
   }
 
   .pv2-project-row__copy {
@@ -11137,5 +11217,177 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-salesforce-result__statement {
     font-size: clamp(1.5rem, 4.2vw, 2.25rem);
     line-height: 1.2;
+  }
+}
+
+/* The substantive close precedes a shared, separate browsing destination. */
+.pv2-case-closing {
+  border-bottom: 0;
+}
+
+.pv2-salesforce-closing__grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  align-items: start;
+  gap: var(--pv2-space-12);
+}
+
+.pv2-salesforce-closing h2 {
+  max-width: 18ch;
+  color: var(--pv2-text-primary);
+  font-size: clamp(2.25rem, 4.6vw, 4.25rem);
+  font-weight: 590;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.pv2-salesforce-closing__body {
+  display: grid;
+  gap: var(--pv2-space-5);
+  max-width: 64ch;
+  color: var(--pv2-text-body);
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+.pv2-case-continuation {
+  padding-block: clamp(2.5rem, 4vw, 4rem);
+  border-top: 1px solid var(--pv2-line);
+}
+
+.pv2-case-continuation__choices {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--pv2-space-6);
+}
+
+.pv2-case-continuation__choices > :only-child {
+  grid-column: 1 / -1;
+}
+
+.pv2-continuation-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--pv2-space-2);
+  padding: var(--pv2-space-6);
+  scroll-margin-block: 7rem;
+  background: var(--pv2-surface-raised);
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: var(--pv2-radius-feature);
+  transition: border-color var(--duration-fast) ease;
+}
+
+.pv2-continuation-card__title {
+  color: var(--pv2-text-primary);
+  font-size: clamp(1.5rem, 2vw, 1.75rem);
+  font-weight: 590;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  text-wrap: pretty;
+}
+
+.pv2-continuation-card__description {
+  color: var(--pv2-text-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.pv2-continuation-card__link {
+  min-height: 2.75rem;
+  justify-self: start;
+  margin-top: var(--pv2-space-2);
+  scroll-margin-block: 7rem;
+  font-size: 1rem;
+}
+
+/* One native link covers its own card, preserving the existing catalog behavior. */
+.pv2-continuation-card__link::after {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--pv2-radius-feature);
+  content: "";
+}
+
+@supports selector(:has(*)) {
+  .pv2-continuation-card:has(.pv2-continuation-card__link:focus-visible) {
+    outline: 2px solid var(--pv2-mist);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--pv2-canvas);
+  }
+
+  .pv2-continuation-card__link:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pv2-continuation-card:hover {
+    border-color: var(--pv2-mist);
+  }
+}
+
+@media (max-width: 1023px) {
+  .pv2-salesforce-closing__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--pv2-space-6);
+  }
+}
+
+@media (max-width: 1023px) {
+  .pv2-case-continuation__choices {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--pv2-space-4);
+  }
+
+  .pv2-continuation-card {
+    grid-template-rows: auto auto auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .pv2-continuation-card {
+    padding: var(--pv2-space-5);
+  }
+
+  .pv2-continuation-card__title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .pv2-case-continuation {
+    border-color: CanvasText;
+  }
+
+  .pv2-continuation-card {
+    border-color: CanvasText;
+  }
+
+  .pv2-continuation-card__link {
+    color: LinkText;
+    border-color: LinkText;
+  }
+
+  .pv2-continuation-card__link svg {
+    stroke: LinkText;
+  }
+
+  .pv2-continuation-card:has(.pv2-continuation-card__link:focus-visible) {
+    outline-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pv2-continuation-card,
+  .pv2-continuation-card__link svg {
+    transition: none;
+  }
+
+  .pv2-continuation-card__link svg {
+    transform: none;
   }
 }

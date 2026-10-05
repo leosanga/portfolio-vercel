@@ -1,4 +1,4 @@
-import { Linkedin, Mail, Moon, Sun } from "lucide-react";
+import { ArrowUp, Linkedin, Mail, Moon, Sun } from "lucide-react";
 import { useEffect, useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 
 import { CONTACT } from "@/content/portfolio-v2/content";
@@ -135,8 +135,11 @@ export function PortfolioUtilityDockV2({ homeHref = "#top" }: { homeHref?: strin
         >
           <Linkedin />
         </DockControl>
+        <DockControl href="#top" label="Back to top" surfaceRef={setSurfaceRef(3)}>
+          <ArrowUp />
+        </DockControl>
         <span className="pv2-utility-dock__divider" aria-hidden="true" />
-        <DockControl label={themeLabel} onClick={toggleTheme} surfaceRef={setSurfaceRef(3)}>
+        <DockControl label={themeLabel} onClick={toggleTheme} surfaceRef={setSurfaceRef(4)}>
           <span className="pv2-utility-dock__theme-icons">
             <Sun className="pv2-utility-dock__theme-icon pv2-utility-dock__theme-icon--sun" />
             <Moon className="pv2-utility-dock__theme-icon pv2-utility-dock__theme-icon--moon" />

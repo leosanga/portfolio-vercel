@@ -5,8 +5,9 @@ import type { SalesforceRoutingProofExperience } from "@/content/portfolio-v2/ty
 type SalesforceRoutingProofV2Props = {
   experience: SalesforceRoutingProofExperience;
   playback?: "once" | "repeat";
-  headingLevel?: "h2" | "h4";
+  headingLevel?: "h2" | "h3" | "h4";
   headingId?: string;
+  animationEnabled?: boolean;
 };
 
 const FINAL_PHASE = 8;
@@ -18,8 +19,10 @@ export function SalesforceRoutingProofV2({
   playback = "repeat",
   headingLevel = "h4",
   headingId,
+  animationEnabled,
 }: SalesforceRoutingProofV2Props) {
   const proofRef = useRef<HTMLElement>(null);
+  const catalogOncePlayedRef = useRef(false);
   const [phase, setPhase] = useState(FINAL_PHASE);
   const Heading = headingLevel;
   const [contextLabel, destinationLabel, followUpLabel] = experience.columns;
@@ -31,6 +34,11 @@ export function SalesforceRoutingProofV2({
   const actionReady = phase >= 4;
 
   useEffect(() => {
+    if (animationEnabled === false) {
+      setPhase(FINAL_PHASE);
+      return;
+    }
+
     const proof = proofRef.current;
     if (!proof) return;
 
@@ -46,7 +54,13 @@ export function SalesforceRoutingProofV2({
     };
 
     const play = () => {
+      if (animationEnabled !== undefined && playback === "once" && catalogOncePlayedRef.current) {
+        return;
+      }
       if (played || reducedMotion.matches || document.hidden || !inView) return;
+      if (animationEnabled !== undefined && playback === "once") {
+        catalogOncePlayedRef.current = true;
+      }
       played = true;
       setPhase(0);
       PHASE_DELAYS_MS.slice(1).forEach((delay, index) => {
@@ -97,7 +111,7 @@ export function SalesforceRoutingProofV2({
       document.removeEventListener("visibilitychange", updatePlayback);
       reducedMotion.removeEventListener("change", updatePlayback);
     };
-  }, [playback]);
+  }, [animationEnabled, playback]);
 
   return (
     <figure className="pv2-salesforce-routing" ref={proofRef} aria-labelledby={headingId}>

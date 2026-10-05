@@ -22,9 +22,15 @@ type WorkflowDiagramV2Props = {
   flow: Flow;
   open: boolean;
   playbackKey: number;
+  animationEnabled?: boolean;
 };
 
-export function WorkflowDiagramV2({ flow, open, playbackKey }: WorkflowDiagramV2Props) {
+export function WorkflowDiagramV2({
+  flow,
+  open,
+  playbackKey,
+  animationEnabled = true,
+}: WorkflowDiagramV2Props) {
   const containerRef = useRef<HTMLOListElement>(null);
   const nodeRefs = useRef(new Map<string, HTMLDivElement>());
   const [connections, setConnections] = useState<Connection[]>([]);
@@ -94,25 +100,27 @@ export function WorkflowDiagramV2({ flow, open, playbackKey }: WorkflowDiagramV2
                 <path d={connection.path} key={`static-${index}`} />
               ))}
             </g>
-            <g className="pv2-workflow__signals" key={playbackKey}>
-              {connections.map((connection, index) => (
-                <circle
-                  cx="0"
-                  cy="0"
-                  r="4"
-                  key={`signal-${index}`}
-                  style={
-                    {
-                      "--pv2-path-delay": `${index * 70}ms`,
-                      "--pv2-start-x": `${connection.start.x}px`,
-                      "--pv2-start-y": `${connection.start.y}px`,
-                      "--pv2-end-x": `${connection.end.x}px`,
-                      "--pv2-end-y": `${connection.end.y}px`,
-                    } as CSSProperties
-                  }
-                />
-              ))}
-            </g>
+            {animationEnabled ? (
+              <g className="pv2-workflow__signals" key={playbackKey}>
+                {connections.map((connection, index) => (
+                  <circle
+                    cx="0"
+                    cy="0"
+                    r="4"
+                    key={`signal-${index}`}
+                    style={
+                      {
+                        "--pv2-path-delay": `${index * 70}ms`,
+                        "--pv2-start-x": `${connection.start.x}px`,
+                        "--pv2-start-y": `${connection.start.y}px`,
+                        "--pv2-end-x": `${connection.end.x}px`,
+                        "--pv2-end-y": `${connection.end.y}px`,
+                      } as CSSProperties
+                    }
+                  />
+                ))}
+              </g>
+            ) : null}
           </svg>
         ) : null}
         {flow.rows.map((row, rowIndex) => (

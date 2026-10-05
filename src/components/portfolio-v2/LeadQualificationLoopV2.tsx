@@ -131,10 +131,12 @@ export function LeadQualificationLoopV2({
   experience,
   open,
   shouldAnimate,
+  playback = "loop",
 }: {
   experience: LeadQualificationLoopExperience;
   open: boolean;
   shouldAnimate: boolean;
+  playback?: "loop" | "once";
 }) {
   const scopeId = useId();
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -157,7 +159,7 @@ export function LeadQualificationLoopV2({
       stageTimers = STAGE_TIMING.map(({ at, stage: nextStage }) =>
         window.setTimeout(() => setStage(nextStage), at),
       );
-      cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
+      if (playback === "loop") cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
     };
 
     runCycle();
@@ -165,7 +167,7 @@ export function LeadQualificationLoopV2({
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(cycleTimer);
     };
-  }, [shouldAnimate]);
+  }, [shouldAnimate, playback]);
 
   useEffect(() => {
     const canvas = canvasRef.current;

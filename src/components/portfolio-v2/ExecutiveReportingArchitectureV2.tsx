@@ -40,9 +40,11 @@ function pathState(stage: number, index: number): ReportingPathState {
 export function ExecutiveReportingArchitectureV2({
   experience,
   shouldAnimate,
+  playback = "loop",
 }: {
   experience: ExecutiveReportingArchitectureExperience;
   shouldAnimate: boolean;
+  playback?: "loop" | "once";
 }) {
   const scopeId = useId();
   const [stage, setStage] = useState(FINAL_STAGE);
@@ -62,7 +64,7 @@ export function ExecutiveReportingArchitectureV2({
       stageTimers = STAGE_TIMING.map(({ at, stage: nextStage }) =>
         window.setTimeout(() => setStage(nextStage), at),
       );
-      cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
+      if (playback === "loop") cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
     };
 
     runCycle();
@@ -70,7 +72,7 @@ export function ExecutiveReportingArchitectureV2({
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(cycleTimer);
     };
-  }, [shouldAnimate]);
+  }, [shouldAnimate, playback]);
 
   const pathIndex = activePathIndex(stage);
   const completedCount = completedMetricCount(stage);

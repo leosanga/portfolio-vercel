@@ -5,8 +5,9 @@ import type { HubSpotCoverageReconciliationProofExperience } from "@/content/por
 type HubSpotCoverageReconciliationV2Props = {
   experience: HubSpotCoverageReconciliationProofExperience;
   playback?: "once" | "repeat";
-  headingLevel?: "h2" | "h4";
+  headingLevel?: "h2" | "h3" | "h4";
   headingId?: string;
+  animationEnabled?: boolean;
 };
 
 const FINAL_PHASE = 4;
@@ -18,12 +19,19 @@ export function HubSpotCoverageReconciliationV2({
   playback = "repeat",
   headingLevel = "h4",
   headingId,
+  animationEnabled,
 }: HubSpotCoverageReconciliationV2Props) {
   const proofRef = useRef<HTMLElement>(null);
+  const catalogOncePlayedRef = useRef(false);
   const [phase, setPhase] = useState(FINAL_PHASE);
   const Heading = headingLevel;
 
   useEffect(() => {
+    if (animationEnabled === false) {
+      setPhase(FINAL_PHASE);
+      return;
+    }
+
     const proof = proofRef.current;
     if (!proof) return;
 
@@ -39,7 +47,13 @@ export function HubSpotCoverageReconciliationV2({
     };
 
     const play = () => {
+      if (animationEnabled !== undefined && playback === "once" && catalogOncePlayedRef.current) {
+        return;
+      }
       if (played || reducedMotion.matches || document.hidden) return;
+      if (animationEnabled !== undefined && playback === "once") {
+        catalogOncePlayedRef.current = true;
+      }
       played = true;
       setPhase(0);
       PHASE_DELAYS_MS.slice(1).forEach((delay, index) => {
@@ -99,7 +113,7 @@ export function HubSpotCoverageReconciliationV2({
       document.removeEventListener("visibilitychange", handleVisibility);
       reducedMotion.removeEventListener("change", handleMotionChange);
     };
-  }, [playback]);
+  }, [animationEnabled, playback]);
 
   return (
     <figure className="pv2-hubspot-reconciliation" data-phase={phase} ref={proofRef}>

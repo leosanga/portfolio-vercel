@@ -18,9 +18,10 @@ import { PROJECT_VISUALS } from "./project-visuals";
 import { SALESFORCE_ROUTING_PROJECT } from "./salesforce-trial-demo-routing";
 
 export const NAVIGATION = [
-  { id: "projects", label: "Projects" },
-  { id: "capabilities", label: "Capabilities" },
-  { id: "approach", label: "Approach" },
+  { kind: "section", id: "projects", label: "Projects" },
+  { kind: "page", id: "catalog", label: "Catalog", href: "/project-catalog" },
+  { kind: "section", id: "capabilities", label: "Capabilities" },
+  { kind: "section", id: "approach", label: "Approach" },
 ] as const satisfies readonly NavigationItem[];
 
 export const HERO: HeroContent = {
@@ -52,6 +53,12 @@ export const PROJECTS_CONTEXT = {
       label: "solutions built and deployed",
     },
   ],
+  catalog: {
+    title: "Project Catalog",
+    description: "The catalog shows how I design workflows for everyday business problems.",
+    linkLabel: "See more projects",
+    href: "/project-catalog",
+  },
 } as const;
 
 export const CAPABILITIES = [
@@ -175,6 +182,12 @@ if (PROJECTS.filter((project) => project.homepageRole === "lead").length !== 1) 
 
 if (PROJECTS.filter((project) => project.homepageRole === "case-study").length !== 2) {
   throw new Error("Portfolio version 2 expects exactly two secondary case studies.");
+}
+
+for (const project of PROJECTS) {
+  if (project.caseStudyPath?.startsWith("/projects/") && !project.caseStudySummary?.trim()) {
+    throw new Error(`Missing case study summary for: ${project.slug}`);
+  }
 }
 
 export const APPROACH = LEGACY_APPROACH;

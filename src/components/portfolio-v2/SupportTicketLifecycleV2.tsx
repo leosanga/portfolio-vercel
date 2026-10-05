@@ -109,9 +109,11 @@ function TicketStep({
 export function SupportTicketLifecycleV2({
   experience,
   shouldAnimate,
+  playback = "loop",
 }: {
   experience: SupportTicketLifecycleExperience;
   shouldAnimate: boolean;
+  playback?: "loop" | "once";
 }) {
   const scopeId = useId();
   const [stage, setStage] = useState(FINAL_STAGE);
@@ -131,7 +133,7 @@ export function SupportTicketLifecycleV2({
       stageTimers = STAGE_TIMING.map(({ at, stage: nextStage }) =>
         window.setTimeout(() => setStage(nextStage), at),
       );
-      cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
+      if (playback === "loop") cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
     };
 
     runCycle();
@@ -139,7 +141,7 @@ export function SupportTicketLifecycleV2({
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(cycleTimer);
     };
-  }, [shouldAnimate]);
+  }, [shouldAnimate, playback]);
 
   const lifecycle = currentLifecycle(stage);
   const values = recordValues(stage);

@@ -4,10 +4,9 @@ export type SectionId = "projects" | "capabilities" | "approach";
 
 export type HomepageProjectRole = "lead" | "case-study" | "standard";
 
-export type NavigationItem = {
-  id: SectionId;
-  label: string;
-};
+export type NavigationItem =
+  | { kind: "section"; id: SectionId; label: string }
+  | { kind: "page"; id: "catalog"; label: string; href: "/project-catalog" };
 
 export type Capability = {
   title: string;
@@ -176,6 +175,7 @@ export type ProjectViewModel = {
   stack: readonly string[];
   homepageRole: HomepageProjectRole;
   caseStudyPath?: string;
+  caseStudySummary?: string;
   caseStudyLabel?: string;
   proofExperience?: ProjectProofExperience;
   visualExperience?: ProjectVisualExperience;
