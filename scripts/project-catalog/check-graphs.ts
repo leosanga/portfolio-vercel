@@ -459,7 +459,8 @@ const INVALID: [string, CatalogGraph, string, (readonly string[])?][] = [
     variant({
       nodes: [
         ...BASE.nodes,
-        { id: "S", label: "Slack", type: "n8n-nodes-base.slack", version: 2, x: 0, y: 0 },
+        // A name no design will pin, so pinning a real node later cannot break this case.
+        { id: "S", label: "Not pinned", type: "n8n-nodes-base.notPinned", version: 2, x: 0, y: 0 },
       ],
     } as unknown as Partial<CatalogGraph>),
     "unknown type",
@@ -511,8 +512,8 @@ const INVALID: [string, CatalogGraph, string, (readonly string[])?][] = [
   ["phases differ from the summary", BASE, "do not match", ["P1", "P2"]],
   [
     "alternative that is not a native type",
-    withNode("H", { alternatives: ["n8n-nodes-base.slack"] } as unknown as Partial<GraphNode>),
-    "alternative n8n-nodes-base.slack on H is not a pinned native type",
+    withNode("H", { alternatives: ["n8n-nodes-base.notPinned"] } as unknown as Partial<GraphNode>),
+    "alternative n8n-nodes-base.notPinned on H is not a pinned native type",
   ],
   [
     "alternative with different ports",

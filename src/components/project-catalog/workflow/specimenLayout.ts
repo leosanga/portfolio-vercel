@@ -118,4 +118,54 @@ export const SPECIMEN_LAYOUTS: Record<string, SpecimenLayout> = {
       "Fifteen execution nodes and one static chat-model configuration node, in three rows read left to right. The first row checks and saves the notes, then starts two branches that run at the same time: the deal stage and sales playbook along the first row, and the earlier next steps below. They rejoin in the second row, and the combined account context returns to the third row for the proposal step, its checks and the save for review. Unusable proposals record a manual review; repeat notes keep their existing call record." +
       NAVIGATION,
   },
+  "blog-post-approval-and-scheduling": {
+    openingGroups: [
+      ["M01", "M02", "M03"],
+      ["M04", "M05", "M06", "M07", "M15", "M16"],
+      ["M08", "M09", "M10"],
+      ["M11", "M12", "M13", "M14"],
+    ],
+    bounds: [24, 0, 1488, 848],
+    readable: [28, 4],
+    labels: {
+      M01: ["Check content", "calendar"],
+      M02: ["Get blog posts", "ready for review"],
+      M03: ["Get blog", "post draft"],
+      M04: ["Save blog post", "review request"],
+      M05: ["New blog post", "version to review?"],
+      M06: ["Ask reviewer to", "approve blog post"],
+      M07: ["Reviewer approved", "blog post?"],
+      M08: ["Get blog post", "draft again"],
+      M09: ["Record blog", "post approval"],
+      M10: ["Approved blog post", "still current?"],
+      M11: ["Format blog post", "for website"],
+      M12: ["Schedule", "blog post"],
+      M13: ["Save scheduled", "blog post link"],
+      M14: ["Mark blog post", "scheduled"],
+      M15: ["Record blog post", "not approved"],
+      M16: ["Return blog post", "to writer"],
+    },
+    annotations: {
+      N1: { x: 992, y: 12, width: 244, detail: "No second request is sent" },
+      N2: {
+        x: 1264,
+        y: 616,
+        width: 224,
+        detail: "Scheduled for the planned time",
+        path: "M1408 448 H1456 Q1472 448 1472 464 V616",
+      },
+      N3: { x: 600, y: 580, width: 200, path: "M576 464 H632 V580" },
+      N4: {
+        x: 616,
+        y: 634,
+        width: 240,
+        detail: "Reason shown in the content calendar",
+        path: "M576 656 H616",
+      },
+    },
+    lanes: [],
+    description:
+      "Sixteen execution nodes in three rows read left to right. The first row checks the content calendar, reads the blog post draft, records the review request and waits for the reviewer's decision. The second row reads the draft again, records the approval, checks that the approved blog post is still current, formats it, schedules it on the website, saves its link and marks it scheduled in the content calendar. A blog post that is not approved is recorded on the third row and returned to its writer. A draft that changed after approval ends at Blog post not scheduled, and a repeat check ends without a new review request." +
+      NAVIGATION,
+  },
 };

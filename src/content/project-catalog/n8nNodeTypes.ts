@@ -11,7 +11,8 @@ export interface N8nNodeDefinition {
 }
 
 // Pinned at n8n-io/n8n@cbaea9852139ceabdd629d582291965f924d9de1; see each design's native
-// mapping (Schedule Trigger: quote follow-up reminders B08). Add a type only after verifying its ports.
+// mapping (Schedule Trigger: quote follow-up reminders B08; blog post approval and scheduling B08).
+// Add a type only after verifying its ports.
 export const N8N_NODE_TYPES = {
   "n8n-nodes-base.webhook": { version: 2.1, shape: "trigger", inputs: [], outputs: ["main"] },
   "n8n-nodes-base.scheduleTrigger": {
@@ -67,6 +68,28 @@ export const N8N_NODE_TYPES = {
     inputs: ["main"],
     outputs: ["main"],
   },
+  "n8n-nodes-base.airtable": { version: 2.2, shape: "square", inputs: ["main"], outputs: ["main"] },
+  "n8n-nodes-base.googleSheets": {
+    version: 4.7,
+    shape: "square",
+    inputs: ["main"],
+    outputs: ["main"],
+  },
+  "n8n-nodes-base.googleDocs": {
+    version: 2,
+    shape: "square",
+    inputs: ["main"],
+    outputs: ["main"],
+  },
+  "n8n-nodes-base.slack": { version: 2.7, shape: "square", inputs: ["main"], outputs: ["main"] },
+  "n8n-nodes-base.microsoftTeams": {
+    version: 2,
+    shape: "square",
+    inputs: ["main"],
+    outputs: ["main"],
+  },
+  "n8n-nodes-base.wordpress": { version: 1, shape: "square", inputs: ["main"], outputs: ["main"] },
+  "n8n-nodes-base.ghost": { version: 1, shape: "square", inputs: ["main"], outputs: ["main"] },
   "n8n-nodes-base.extractFromFile": {
     version: 1.1,
     shape: "square",
