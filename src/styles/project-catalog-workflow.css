@@ -569,3 +569,38 @@
     min-height: 180px;
   }
 }
+
+/* Sequence 4: owned canvas-only spatial continuity for explicit enlargement. */
+html[data-pc-canvas-transition] .pc-canvas-frame[data-pc-transition-active="true"] {
+  view-transition-name: pc-workflow-canvas;
+}
+
+html[data-pc-canvas-transition]::view-transition {
+  pointer-events: none;
+}
+
+html[data-pc-canvas-transition]::view-transition-old(root) {
+  display: none;
+}
+
+html[data-pc-canvas-transition]::view-transition-new(root) {
+  animation: none;
+}
+
+html[data-pc-canvas-transition]::view-transition-group(pc-workflow-canvas) {
+  animation-duration: 320ms;
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html[data-pc-canvas-transition]::view-transition-old(pc-workflow-canvas),
+html[data-pc-canvas-transition]::view-transition-new(pc-workflow-canvas) {
+  animation-duration: 220ms;
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html[data-pc-canvas-transition]::view-transition-group(pc-workflow-canvas),
+  html[data-pc-canvas-transition]::view-transition-old(pc-workflow-canvas),
+  html[data-pc-canvas-transition]::view-transition-new(pc-workflow-canvas) {
+    animation: none;
+  }
+}

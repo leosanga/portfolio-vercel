@@ -13,7 +13,10 @@ export function EnterpriseIdentityEntryV2() {
       <div className="pv2-identity-entry__body">
         <div className="pv2-identity-entry__copy">
           <p className="pv2-project-index pv2-identity-label">{discovery.label}</p>
-          <h3 id="identity-entry-title">{discovery.heading}</h3>
+          {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+          <h3 suppressHydrationWarning id="identity-entry-title" data-case-destination={href}>
+            {discovery.heading}
+          </h3>
           <p className="pv2-identity-entry__description">{discovery.body}</p>
         </div>
         <EnterpriseIdentityModelsV2 compact />

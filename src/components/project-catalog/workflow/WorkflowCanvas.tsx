@@ -31,6 +31,7 @@ interface Props {
   onPlayback: () => void;
   onExplore: () => void;
   modal?: boolean;
+  transitionActive?: boolean;
 }
 const MIN_SCALE = 0.15;
 const MAX_SCALE = 2;
@@ -58,6 +59,7 @@ export function WorkflowCanvas({
   onPlayback,
   onExplore,
   modal = false,
+  transitionActive = false,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   const id = useId();
@@ -174,7 +176,7 @@ export function WorkflowCanvas({
     .node;
 
   return (
-    <div className="pc-canvas-frame" style={palette}>
+    <div className="pc-canvas-frame" style={palette} data-pc-transition-active={transitionActive}>
       <div className="pc-canvas-toolbar">
         {!modal && (
           <div className="pc-canvas-name">

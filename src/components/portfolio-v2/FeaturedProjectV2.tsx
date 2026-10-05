@@ -3,12 +3,21 @@ import type { ProjectViewModel } from "@/content/portfolio-v2/types";
 import { ProjectProofExperienceV2 } from "./ProjectProofExperienceV2";
 import { WorkflowDisclosureV2 } from "./WorkflowDisclosureV2";
 
-export function FeaturedProjectV2({ project }: { project: ProjectViewModel }) {
+export function FeaturedProjectV2({
+  project,
+  proofAnimationEnabled,
+}: {
+  project: ProjectViewModel;
+  proofAnimationEnabled?: boolean | undefined;
+}) {
   return (
     <article className="pv2-featured-project">
       <div className="pv2-featured-project__header">
         <p className="pv2-project-index">01 / Featured case study</p>
-        <h3>{project.title}</h3>
+        {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+        <h3 suppressHydrationWarning data-case-destination={project.caseStudyPath}>
+          {project.title}
+        </h3>
       </div>
       <div
         className={`pv2-featured-project__body${project.proofExperience ? " pv2-featured-project__body--with-proof" : ""}`}
@@ -30,7 +39,10 @@ export function FeaturedProjectV2({ project }: { project: ProjectViewModel }) {
           ) : null}
         </div>
         {project.proofExperience ? (
-          <ProjectProofExperienceV2 experience={project.proofExperience} />
+          <ProjectProofExperienceV2
+            experience={project.proofExperience}
+            proofAnimationEnabled={proofAnimationEnabled}
+          />
         ) : null}
       </div>
       <div className="pv2-featured-project__footer">

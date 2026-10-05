@@ -30,7 +30,8 @@ export function HubSpotLeadRoutingCaseStudyV2() {
         <section className="pv2-case-hero pv2-hubspot-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid pv2-hubspot-hero__grid">
             <div className="pv2-hubspot-hero__title">
-              <h1 id="case-study-title">
+              {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+              <h1 id="case-study-title" suppressHydrationWarning>
                 {hero.title.replace(/ \(HubSpot\)$/, "")}
                 <span className="pv2-case-hero__platform"> (HubSpot)</span>
               </h1>

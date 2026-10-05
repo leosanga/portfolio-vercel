@@ -632,3 +632,27 @@
     background: Highlight;
   }
 }
+
+/* Sequence 6: bounded tactile feedback for existing catalog controls. */
+.pc-page :is(.pc-filter-choice-label, .pc-filter-buttons button, .pc-clear-filters, .pc-more-button) {
+  transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .pc-page :is(.pc-filter-choice-label, .pc-filter-buttons button, .pc-clear-filters, .pc-more-button) {
+    transition: background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out), translate 160ms var(--ease-out);
+  }
+  .pc-page .pc-filter-choice:hover .pc-filter-choice-label,
+  .pc-page :is(.pc-filter-buttons button, .pc-clear-filters, .pc-more-button):hover {
+    translate: 0 -1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .pc-page :is(.pc-filter-choice-label, .pc-filter-buttons button, .pc-clear-filters, .pc-more-button),
+  .pc-page .pc-filter-choice:hover .pc-filter-choice-label,
+  .pc-page :is(.pc-filter-buttons button, .pc-clear-filters, .pc-more-button):hover {
+    transition: none;
+    translate: none;
+  }
+}

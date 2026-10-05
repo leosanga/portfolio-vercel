@@ -284,7 +284,7 @@ export const GRAPH: CatalogGraph = {
   ],
   presentation: {
     kind: "flow",
-    openingMs: 900,
+    openingMs: 2800,
     beats: [
       {
         durationMs: 1800,

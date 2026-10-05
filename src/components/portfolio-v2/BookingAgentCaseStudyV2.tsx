@@ -27,7 +27,8 @@ export function BookingAgentCaseStudyV2() {
         <section className="pv2-case-hero pv2-booking-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid">
             <div className="pv2-booking-hero__title">
-              <h1 id="case-study-title">
+              {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+              <h1 id="case-study-title" suppressHydrationWarning>
                 {hero.title.replace(/ \(n8n\)$/, "")}
                 <span className="pv2-case-hero__platform"> (n8n)</span>
               </h1>
@@ -54,7 +55,7 @@ export function BookingAgentCaseStudyV2() {
           <div className="pv2-frame">
             <BookingReliabilityProofV2
               experience={BOOKING_AGENT_PROOF}
-              playback="once"
+              playback="repeat"
               headingLevel="h2"
               headingId="booking-failure-title"
             />

@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { CatalogGraph } from "@/content/project-catalog/types";
-import { derivePresentation, presentationDuration } from "./presentation";
+import { advancePresentation, derivePresentation, presentationDuration } from "./presentation";
 import { SPECIMEN_LAYOUTS } from "./specimenLayout";
 
-type Status = "idle" | "playing" | "paused" | "complete";
+type Status = "idle" | "playing" | "paused";
 
 export function usePresentation(
   graph: CatalogGraph | null,
@@ -37,7 +37,6 @@ export function usePresentation(
     };
     const visibility = () => {
       setHidden(document.hidden);
-      if (document.hidden) pause();
     };
     preference();
     visibility();
@@ -55,10 +54,7 @@ export function usePresentation(
   }, [pause]);
 
   useEffect(() => {
-    if (!eligible) {
-      setStatus((current) => (current === "playing" ? "paused" : current));
-      return;
-    }
+    if (!eligible) return;
     if (requested.current || (autoPending.current && !modal)) {
       requested.current = false;
       autoPending.current = false;
@@ -72,13 +68,9 @@ export function usePresentation(
     let previous: number | null = null;
     let position = elapsed;
     const tick = (time: number) => {
-      if (previous !== null) position = Math.min(duration, position + Math.max(0, time - previous));
+      if (previous !== null) position = advancePresentation(position, time - previous, duration);
       previous = time;
       setElapsed(position);
-      if (position >= duration) {
-        setStatus("complete");
-        return;
-      }
       frame = requestAnimationFrame(tick);
     };
     frame = requestAnimationFrame(tick);
@@ -95,12 +87,12 @@ export function usePresentation(
 
   const toggle = () => {
     autoPending.current = false;
-    if (status === "playing") {
+    if (status === "playing" && eligible) {
       pause();
       return;
     }
     if (reduced || hidden || (!visible && !modal)) return;
-    if (status === "complete" || status === "idle") setElapsed(0);
+    if (status === "idle") setElapsed(0);
     onRequestPlay();
     if (eligible) setStatus("playing");
     else requested.current = true;
@@ -111,6 +103,7 @@ export function usePresentation(
         elapsed,
         reduced || status === "idle",
         SPECIMEN_LAYOUTS[graph.entryId]?.openingGroups,
+        SPECIMEN_LAYOUTS[graph.entryId]?.openingAssembly,
       )
     : null;
   return {
@@ -120,20 +113,12 @@ export function usePresentation(
     story,
     reduced,
     label:
-      status === "playing"
-        ? "Pause"
-        : status === "paused"
-          ? "Resume flow"
-          : status === "complete"
-            ? "Play again"
-            : "Play flow",
+      status === "playing" && eligible ? "Pause" : status !== "idle" ? "Resume flow" : "Play flow",
     feedback:
-      status === "complete"
-        ? "Presentation complete."
-        : status === "paused"
-          ? "Presentation paused."
-          : status === "playing"
-            ? "Presentation playing."
-            : "",
+      status === "paused"
+        ? "Presentation paused."
+        : status === "playing"
+          ? "Presentation playing."
+          : "",
   };
 }

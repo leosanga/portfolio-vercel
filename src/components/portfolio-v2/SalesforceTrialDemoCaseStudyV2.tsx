@@ -28,7 +28,8 @@ export function SalesforceTrialDemoCaseStudyV2() {
         <section className="pv2-case-hero pv2-salesforce-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid pv2-salesforce-hero__grid">
             <div className="pv2-salesforce-hero__title">
-              <h1 id="case-study-title">
+              {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+              <h1 id="case-study-title" suppressHydrationWarning>
                 {hero.title.replace(/ \(Salesforce\)$/, "")}
                 <span className="pv2-case-hero__platform"> (Salesforce)</span>
               </h1>

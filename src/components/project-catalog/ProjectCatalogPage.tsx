@@ -28,10 +28,76 @@ export function ProjectCatalogPage({
   const modalEntryRef = useRef<string | null>(null);
   const backRef = useRef<HTMLAnchorElement>(null);
   const allProjectsRef = useRef<HTMLInputElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const pendingFeedback = useRef<{ selectionKey: string; historyKey: string } | null>(null);
+  const resultAnimation = useRef<Animation | null>(null);
   const entries = matchingEntries(selection);
   const categories = populatedCategories();
   const filtered = selection.view !== "all" || selection.categories.length > 0;
   const shown = entries.slice(0, reading.count);
+  useEffect(() => {
+    const invalidate = () => {
+      pendingFeedback.current = null;
+      resultAnimation.current?.cancel();
+      resultAnimation.current = null;
+    };
+    window.addEventListener("popstate", invalidate);
+    return () => {
+      window.removeEventListener("popstate", invalidate);
+      invalidate();
+    };
+  }, []);
+  useEffect(() => {
+    const pending = pendingFeedback.current;
+    pendingFeedback.current = null;
+    if (!pending || pending.selectionKey !== selectionKey || pending.historyKey === historyKey)
+      return;
+    const list = listRef.current;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const forced = window.matchMedia("(forced-colors: active)");
+    if (
+      !list ||
+      typeof list.animate !== "function" ||
+      document.hidden ||
+      reduced.matches ||
+      forced.matches
+    )
+      return;
+    let animation: Animation;
+    try {
+      animation = list.animate(
+        [
+          { opacity: 0.72, transform: "translateY(6px)" },
+          { opacity: 1, transform: "translateY(0)" },
+        ],
+        { duration: 240, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+      );
+    } catch {
+      return;
+    }
+    resultAnimation.current = animation;
+    const cancelIfIneligible = () => {
+      if (document.hidden || reduced.matches || forced.matches) animation.cancel();
+    };
+    document.addEventListener("visibilitychange", cancelIfIneligible);
+    reduced.addEventListener("change", cancelIfIneligible);
+    forced.addEventListener("change", cancelIfIneligible);
+    void animation.finished.then(
+      () => {
+        if (resultAnimation.current === animation) resultAnimation.current = null;
+      },
+      () => {
+        if (resultAnimation.current === animation) resultAnimation.current = null;
+      },
+    );
+    return () => {
+      animation.cancel();
+      if (resultAnimation.current === animation) resultAnimation.current = null;
+      document.removeEventListener("visibilitychange", cancelIfIneligible);
+      reduced.removeEventListener("change", cancelIfIneligible);
+      forced.removeEventListener("change", cancelIfIneligible);
+    };
+  }, [selectionKey, historyKey]);
   useEffect(() => {
     if (modalOpen || !modalEntryRef.current) return;
     const opener = document
@@ -46,6 +112,12 @@ export function ProjectCatalogPage({
       next.categories.join(",") === selection.categories.join(",")
     )
       return;
+    resultAnimation.current?.cancel();
+    resultAnimation.current = null;
+    pendingFeedback.current = {
+      selectionKey: `${next.view}:${next.categories.join(",")}`,
+      historyKey,
+    };
     reading.save();
     reading.setActive(null);
     reading.setOpen([]);
@@ -158,7 +230,7 @@ export function ProjectCatalogPage({
             {entries.length} {entries.length === 1 ? "project" : "projects"}. Showing {shown.length}
             .
           </p>
-          <div className="pc-project-list">
+          <div className="pc-project-list" ref={listRef}>
             {entries.length === 0 ? (
               <div className="pc-empty">
                 <p>No projects match these filters.</p>

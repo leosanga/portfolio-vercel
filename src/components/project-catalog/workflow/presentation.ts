@@ -1,4 +1,9 @@
 import type { CatalogGraph } from "@/content/project-catalog/types";
+import type { OpeningAssembly } from "./specimenLayout";
+
+export const PRESENTATION_ENDING_HOLD_MS = 4000;
+const DEFAULT_OPENING_STEP_MS = 130;
+const DEFAULT_OPENING_REVEAL_MS = 380;
 
 export interface ItemState {
   reveal: number;
@@ -32,12 +37,48 @@ export function presentationDuration(graph: CatalogGraph) {
   return opening + graph.presentation.beats.reduce((sum, beat) => sum + beat.durationMs, 0);
 }
 
+export function advancePresentation(elapsed: number, delta: number, duration: number) {
+  return (elapsed + Math.max(0, delta)) % (duration + PRESENTATION_ENDING_HOLD_MS);
+}
+
+function phaseMembership(graph: CatalogGraph, nodeId: string) {
+  const direct = graph.phases.filter((phase) => phase.nodes.includes(nodeId));
+  if (direct.length) return direct.map((phase) => phase.id);
+  const target = graph.edges.find((edge) => edge.kind !== "main" && edge.from.node === nodeId);
+  return target
+    ? graph.phases.filter((phase) => phase.nodes.includes(target.to.node)).map((phase) => phase.id)
+    : [];
+}
+
+function emphasizeOpening(
+  result: PresentationState,
+  graph: CatalogGraph,
+  groups: readonly (readonly string[])[],
+  timing: OpeningAssembly,
+  position: number,
+) {
+  groups.forEach((group, index) => {
+    const start = index * timing.stepMs;
+    const end = start + (index === groups.length - 1 ? timing.revealMs : timing.stepMs);
+    const phases = new Set(group.flatMap((nodeId) => phaseMembership(graph, nodeId)));
+    phases.forEach((id) => {
+      const phase = result.phases[id]!;
+      phase.covered ||= position >= end;
+      if (position < start || position >= end) return;
+      phase.active = true;
+      phase.lift = -3 * Math.sin(Math.PI * clamp((position - start) / 420));
+      if (!result.activePhases.includes(id)) result.activePhases.push(id);
+    });
+  });
+}
+
 /** Every visual role is calculated from the same elapsed position, including paused frames. */
 export function derivePresentation(
   graph: CatalogGraph,
   elapsed: number,
   staticView = false,
   openingGroups?: readonly (readonly string[])[],
+  openingAssembly?: OpeningAssembly,
 ): PresentationState {
   const result: PresentationState = {
     nodes: Object.fromEntries(graph.nodes.map((node) => [node.id, initialItem()])),
@@ -71,13 +112,19 @@ export function derivePresentation(
       const authoredGroup = openingGroups?.findIndex((items) => items.includes(node.id));
       const start =
         authoredGroup !== undefined && authoredGroup >= 0
-          ? authoredGroup * 130
+          ? authoredGroup * (openingAssembly?.stepMs ?? DEFAULT_OPENING_STEP_MS)
           : (group / Math.max(1, groups - 1)) * presentation.openingMs * 0.48;
       const reveal = clamp(
-        (position - start) / (openingGroups ? 380 : presentation.openingMs * 0.52),
+        (position - start) /
+          (openingGroups
+            ? (openingAssembly?.revealMs ?? DEFAULT_OPENING_REVEAL_MS)
+            : presentation.openingMs * 0.52),
       );
       result.nodes[node.id]!.reveal = 1 - Math.pow(1 - reveal, 3);
     });
+    if (openingGroups && openingAssembly?.emphasizePhases) {
+      emphasizeOpening(result, graph, openingGroups, openingAssembly, position);
+    }
   }
   if (presentation.kind === "assembly")
     graph.nodes.forEach((node) => {

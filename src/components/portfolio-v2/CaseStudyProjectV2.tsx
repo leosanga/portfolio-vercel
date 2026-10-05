@@ -5,15 +5,20 @@ import { ProjectProofExperienceV2 } from "./ProjectProofExperienceV2";
 export function CaseStudyProjectV2({
   project,
   index,
+  proofAnimationEnabled,
 }: {
   project: ProjectViewModel;
   index: number;
+  proofAnimationEnabled?: boolean | undefined;
 }) {
   return (
     <article className="pv2-case-study-project" data-project={project.slug}>
       <div className="pv2-case-study-project__header">
         <p className="pv2-project-index">{String(index).padStart(2, "0")} / Case study</p>
-        <h3>{project.title}</h3>
+        {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+        <h3 suppressHydrationWarning data-case-destination={project.caseStudyPath}>
+          {project.title}
+        </h3>
       </div>
       <div className="pv2-case-study-project__body">
         <div className="pv2-case-study-project__summary">
@@ -33,7 +38,10 @@ export function CaseStudyProjectV2({
           ) : null}
         </div>
         {project.proofExperience ? (
-          <ProjectProofExperienceV2 experience={project.proofExperience} />
+          <ProjectProofExperienceV2
+            experience={project.proofExperience}
+            proofAnimationEnabled={proofAnimationEnabled}
+          />
         ) : null}
       </div>
       <div className="pv2-case-study-project__footer">

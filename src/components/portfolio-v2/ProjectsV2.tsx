@@ -1,8 +1,7 @@
 import { PROJECTS, PROJECTS_CONTEXT } from "@/content/portfolio-v2/content";
 import { groupHomepageProjects } from "@/content/portfolio-v2/project-navigation";
 
-import { CaseStudyProjectV2 } from "./CaseStudyProjectV2";
-import { FeaturedProjectV2 } from "./FeaturedProjectV2";
+import { CompactCaseStackV2 } from "./CompactCaseStackV2";
 import { ProjectCatalogEntryV2 } from "./ProjectCatalogEntryV2";
 import { EnterpriseIdentityEntryV2 } from "./EnterpriseIdentityEntryV2";
 import { ProjectRowV2 } from "./ProjectRowV2";
@@ -34,10 +33,7 @@ export function ProjectsV2() {
             ))}
           </dl>
         </div>
-        <FeaturedProjectV2 project={featured} />
-        {caseStudies.map((project, index) => (
-          <CaseStudyProjectV2 project={project} index={index + 2} key={project.slug} />
-        ))}
+        <CompactCaseStackV2 featured={featured} caseStudies={caseStudies} />
         <div className="pv2-project-list">
           {remaining.map((project, index) => (
             <ProjectRowV2

@@ -43,7 +43,10 @@ export function EnterpriseIdentityCaseStudyV2() {
         <section className="pv2-case-hero pv2-identity-hero" aria-labelledby="case-study-title">
           <div className="pv2-frame pv2-case-hero__grid">
             <div className="pv2-identity-hero__title">
-              <h1 id="case-study-title">{hero.title}</h1>
+              {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+              <h1 id="case-study-title" suppressHydrationWarning>
+                {hero.title}
+              </h1>
             </div>
             <div className="pv2-identity-hero__details">
               <p className="pv2-case-hero__support">{hero.support}</p>
