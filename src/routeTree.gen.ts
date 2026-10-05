@@ -10,7 +10,10 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProjectCatalogRouteImport } from './routes/project-catalog'
+import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsAiBookingAgentRouteImport } from './routes/projects/ai-booking-agent'
+import { Route as ProjectsEnterpriseIdentitySystemsOperationsRouteImport } from './routes/projects/enterprise-identity-systems-operations'
 import { Route as ProjectsLeadRoutingPipelineHealthSystemRouteImport } from './routes/projects/lead-routing-pipeline-health-system'
 import { Route as ProjectsTrialDemoRoutingByCustomerRelationshipRouteImport } from './routes/projects/trial-demo-routing-by-customer-relationship'
 
@@ -19,11 +22,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectCatalogRoute = ProjectCatalogRouteImport.update({
+  id: '/project-catalog',
+  path: '/project-catalog',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProjectsAiBookingAgentRoute = ProjectsAiBookingAgentRouteImport.update({
   id: '/projects/ai-booking-agent',
   path: '/projects/ai-booking-agent',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProjectsEnterpriseIdentitySystemsOperationsRoute =
+  ProjectsEnterpriseIdentitySystemsOperationsRouteImport.update({
+    id: '/projects/enterprise-identity-systems-operations',
+    path: '/projects/enterprise-identity-systems-operations',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProjectsLeadRoutingPipelineHealthSystemRoute =
   ProjectsLeadRoutingPipelineHealthSystemRouteImport.update({
     id: '/projects/lead-routing-pipeline-health-system',
@@ -39,49 +58,70 @@ const ProjectsTrialDemoRoutingByCustomerRelationshipRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/project-catalog': typeof ProjectCatalogRoute
   '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/enterprise-identity-systems-operations': typeof ProjectsEnterpriseIdentitySystemsOperationsRoute
   '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
   '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/project-catalog': typeof ProjectCatalogRoute
   '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/enterprise-identity-systems-operations': typeof ProjectsEnterpriseIdentitySystemsOperationsRoute
   '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
   '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/project-catalog': typeof ProjectCatalogRoute
   '/projects/ai-booking-agent': typeof ProjectsAiBookingAgentRoute
+  '/projects/enterprise-identity-systems-operations': typeof ProjectsEnterpriseIdentitySystemsOperationsRoute
   '/projects/lead-routing-pipeline-health-system': typeof ProjectsLeadRoutingPipelineHealthSystemRoute
   '/projects/trial-demo-routing-by-customer-relationship': typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/project-catalog'
     | '/projects/ai-booking-agent'
+    | '/projects/enterprise-identity-systems-operations'
     | '/projects/lead-routing-pipeline-health-system'
     | '/projects/trial-demo-routing-by-customer-relationship'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/project-catalog'
     | '/projects/ai-booking-agent'
+    | '/projects/enterprise-identity-systems-operations'
     | '/projects/lead-routing-pipeline-health-system'
     | '/projects/trial-demo-routing-by-customer-relationship'
+    | '/projects'
   id:
     | '__root__'
     | '/'
+    | '/project-catalog'
     | '/projects/ai-booking-agent'
+    | '/projects/enterprise-identity-systems-operations'
     | '/projects/lead-routing-pipeline-health-system'
     | '/projects/trial-demo-routing-by-customer-relationship'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ProjectCatalogRoute: typeof ProjectCatalogRoute
   ProjectsAiBookingAgentRoute: typeof ProjectsAiBookingAgentRoute
+  ProjectsEnterpriseIdentitySystemsOperationsRoute: typeof ProjectsEnterpriseIdentitySystemsOperationsRoute
   ProjectsLeadRoutingPipelineHealthSystemRoute: typeof ProjectsLeadRoutingPipelineHealthSystemRoute
   ProjectsTrialDemoRoutingByCustomerRelationshipRoute: typeof ProjectsTrialDemoRoutingByCustomerRelationshipRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -93,11 +133,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/project-catalog': {
+      id: '/project-catalog'
+      path: '/project-catalog'
+      fullPath: '/project-catalog'
+      preLoaderRoute: typeof ProjectCatalogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/projects/ai-booking-agent': {
       id: '/projects/ai-booking-agent'
       path: '/projects/ai-booking-agent'
       fullPath: '/projects/ai-booking-agent'
       preLoaderRoute: typeof ProjectsAiBookingAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/enterprise-identity-systems-operations': {
+      id: '/projects/enterprise-identity-systems-operations'
+      path: '/projects/enterprise-identity-systems-operations'
+      fullPath: '/projects/enterprise-identity-systems-operations'
+      preLoaderRoute: typeof ProjectsEnterpriseIdentitySystemsOperationsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/lead-routing-pipeline-health-system': {
@@ -119,11 +180,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ProjectCatalogRoute: ProjectCatalogRoute,
   ProjectsAiBookingAgentRoute: ProjectsAiBookingAgentRoute,
+  ProjectsEnterpriseIdentitySystemsOperationsRoute:
+    ProjectsEnterpriseIdentitySystemsOperationsRoute,
   ProjectsLeadRoutingPipelineHealthSystemRoute:
     ProjectsLeadRoutingPipelineHealthSystemRoute,
   ProjectsTrialDemoRoutingByCustomerRelationshipRoute:
     ProjectsTrialDemoRoutingByCustomerRelationshipRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -6,11 +6,18 @@ import workflowCheckAndHold from "@/assets/portfolio-v2/booking-agent/workflow-c
 import workflowNotify from "@/assets/portfolio-v2/booking-agent/workflow-notify.webp";
 import workflowOutsideBookings from "@/assets/portfolio-v2/booking-agent/workflow-outside-bookings.webp";
 
-import type {
-  BookingReliabilityProofExperience,
-  CaseEvidenceMedia,
-  ProjectViewModel,
-} from "./types";
+import type { CaseEvidenceMedia, ProjectViewModel } from "./types";
+import {
+  BOOKING_AGENT_STACK,
+  BOOKING_AGENT_OVERVIEW,
+  BOOKING_AGENT_PROOF,
+} from "./case-study-content";
+export {
+  BOOKING_AGENT_STACK,
+  BOOKING_AGENT_OVERVIEW,
+  BOOKING_AGENT_PROOF,
+} from "./case-study-content";
+import { BOOKING_AGENT_CASE_RECORD } from "./case-study-records";
 
 const TEAM_RECEIVED = "What the team received";
 
@@ -83,88 +90,9 @@ export const BOOKING_AGENT_EVIDENCE = {
   },
 } as const satisfies Record<string, CaseEvidenceMedia>;
 
-export const BOOKING_AGENT_STACK = [
-  "n8n",
-  "JavaScript",
-  "PostgreSQL",
-  "Groq",
-  "Google Calendar API",
-  "Gmail API",
-  "Slack API",
-] as const;
-
-export const BOOKING_AGENT_OVERVIEW = {
-  problem:
-    "A booking workflow becomes unreliable when it assumes every request is clear and every connected system will respond as expected.",
-  solution:
-    "I built an n8n booking agent where the AI handles the conversation and tested code checks every proposed action before the calendar can change.",
-  hardPart:
-    "The hard part was keeping the booking accurate when one system succeeded and another failed. Each failure needed a clear outcome so the next request would not inherit a broken or unfinished booking.",
-} as const;
-
-export const BOOKING_AGENT_PROOF = {
-  kind: "booking-reliability",
-  eyebrow: "Failure-safe booking",
-  heading: "When the booking calendar fails, the agent stops before it sends a false confirmation.",
-  boundary: "AI proposes. Tested code decides.",
-  rows: [
-    {
-      label: "Request",
-      pendingValue: "Received",
-      resolvedValue: "Tuesday, 3:00 PM",
-      resolvedAt: 0,
-      tone: "verified",
-    },
-    {
-      label: "Rule check",
-      pendingValue: "Checking",
-      resolvedValue: "Passed",
-      resolvedAt: 1,
-      tone: "verified",
-    },
-    {
-      label: "Time",
-      pendingValue: "Temporarily held",
-      resolvedValue: "Released",
-      resolvedAt: 3,
-      tone: "recovered",
-    },
-    {
-      label: "Booking calendar",
-      pendingValue: "Connecting",
-      resolvedValue: "Connection failed",
-      resolvedAt: 2,
-      tone: "failed",
-    },
-    {
-      label: "Booking status",
-      pendingValue: "Pending",
-      resolvedValue: "Not confirmed",
-      resolvedAt: 3,
-      tone: "failed",
-    },
-    {
-      label: "Follow-up",
-      pendingValue: "Waiting",
-      resolvedValue: "Team alerted",
-      resolvedAt: 4,
-      tone: "recovered",
-    },
-  ],
-  outcomeHeading: "No false confirmation is sent.",
-  outcomeBody:
-    "The guest gets a clear response. The temporary hold is released and the team is alerted.",
-} as const satisfies BookingReliabilityProofExperience;
-
 export const BOOKING_AGENT_PROJECT = {
-  slug: "n8n-booking-agent",
-  title: "AI Booking Agent (n8n)",
-  problem: BOOKING_AGENT_OVERVIEW.problem,
-  solution: BOOKING_AGENT_OVERVIEW.solution,
-  hardPart: BOOKING_AGENT_OVERVIEW.hardPart,
-  stack: BOOKING_AGENT_STACK,
+  ...BOOKING_AGENT_CASE_RECORD,
   homepageRole: "lead",
-  caseStudyPath: "/projects/ai-booking-agent",
   caseStudyLabel: "See how the safeguards work",
   proofExperience: BOOKING_AGENT_PROOF,
 } as const satisfies ProjectViewModel;

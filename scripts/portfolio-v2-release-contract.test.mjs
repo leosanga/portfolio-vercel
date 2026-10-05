@@ -47,7 +47,9 @@ function measured(width = 390, height = 844) {
     bottom: height - 16,
     left: 80,
     right: 280,
-    controls: Array.from({ length: 4 }, () => ({ width: 44, height: 44, label: "Control" })),
+    controls: ["Home", "Email", "LinkedIn", "Back to top", "Use dark theme"].map(
+      (label) => ({ width: 44, height: 44, label }),
+    ),
   };
   return {
     width,
@@ -88,6 +90,19 @@ test("approved fixed phones, tiny exception and laptop boundaries pass", () => {
   ]) {
     assert.deepEqual(validateReleaseLayout(measured(width, height)), [], `${width}x${height}`);
   }
+});
+
+test("the approved dock includes Back to top and a hydrated theme control", () => {
+  const sample = measured();
+  sample.dock.controls = ["Home", "Email", "LinkedIn", "Back to top", "Use dark theme"].map(
+    (label) => ({ width: 44, height: 44, label }),
+  );
+  sample.scrollSamples.forEach((point) => {
+    point.dock = { ...sample.dock };
+  });
+  assert.deepEqual(validateReleaseLayout(sample), []);
+  sample.dock.controls[3].label = "Another control";
+  assert.ok(validateReleaseLayout(sample).some((failure) => failure.includes("Back to top")));
 });
 
 test("the released all-phone static dock regression fails", () => {
@@ -150,6 +165,36 @@ test("wrong release identity, stale evidence and unvisited footer fail", () => {
     assert.ok(
       failures.some((failure) => failure.includes(message)),
       message,
+    );
+  }
+});
+
+test("catalog requires desktop and phone release evidence", () => {
+  const pathname = "/project-catalog";
+  for (const width of [1262, 390]) {
+    const evidence = completeEvidence();
+    evidence.measurements = evidence.measurements.filter(
+      (sample) => !(sample.pathname === pathname && sample.requestedWidth === width),
+    );
+    assert.ok(
+      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some(
+        (failure) => failure.includes(`Missing required coverage: ${pathname}:${width}x`),
+      ),
+    );
+  }
+});
+
+test("identity case requires desktop and phone release evidence", () => {
+  const pathname = "/projects/enterprise-identity-systems-operations";
+  for (const width of [1262, 390]) {
+    const evidence = completeEvidence();
+    evidence.measurements = evidence.measurements.filter(
+      (sample) => !(sample.pathname === pathname && sample.requestedWidth === width),
+    );
+    assert.ok(
+      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some(
+        (failure) => failure.includes(`Missing required coverage: ${pathname}:${width}x`),
+      ),
     );
   }
 });

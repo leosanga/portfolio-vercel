@@ -1,0 +1,571 @@
+.pc-workflow {
+  color: var(--pv2-text-body);
+}
+.pc-phases {
+  display: grid;
+  grid-template-columns: repeat(var(--phase-count), minmax(0, 1fr));
+  gap: 22px;
+  padding: 0;
+  margin: 0 0 32px;
+  list-style: none;
+}
+.pc-phases-inner {
+  height: 100%;
+  border-top: 2px solid var(--pv2-line-strong);
+  padding: 12px 8px 8px;
+  border-radius: 0 0 5px 5px;
+}
+.pc-phases-number {
+  display: block;
+  margin-bottom: 9px;
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+  color: var(--pv2-text-muted);
+}
+.pc-phases strong {
+  display: block;
+  color: var(--pv2-text-primary);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.pc-phases p {
+  margin: 7px 0 0;
+  color: var(--pv2-text-muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+.pc-phases .is-covered .pc-phases-inner {
+  border-color: var(--pv2-lavender);
+}
+.pc-phases .is-active .pc-phases-inner {
+  border-color: var(--pv2-lavender);
+  background: color-mix(in srgb, var(--pv2-lavender) 15%, transparent);
+}
+.pc-phases .is-active .pc-phases-number {
+  color: var(--pv2-text-primary);
+  font-weight: 600;
+}
+.pc-phases-current-description {
+  display: none;
+}
+.pc-workflow-canvas-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 13px;
+}
+.pc-workflow-canvas-heading p {
+  margin: 0;
+  color: var(--pv2-text-muted);
+  font-size: 13px;
+}
+.pc-workflow-canvas-heading button,
+.pc-workflow-loading button,
+.pc-workflow-modal-header button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: 5px;
+  color: var(--pv2-text-primary);
+  background: var(--pv2-surface);
+  font-size: 13px;
+  cursor: pointer;
+}
+.pc-workflow-canvas-heading button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.pc-workflow-viewport-hint {
+  margin: 10px 0 0;
+  color: var(--pv2-text-muted);
+  font-size: 11px;
+}
+.pc-workflow-loading {
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  min-height: 780px;
+  border: 1px solid var(--pv2-line);
+  border-radius: 10px;
+  font-size: 14px;
+}
+.pc-workflow-feedback {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Static native n8n colors resolve locally, after the viewport's zoom overrides. */
+.pc-canvas-frame {
+  --canvas-bg: light-dark(hsl(0 0% 96%), oklch(20.46% 0 89.88));
+  --canvas-node: light-dark(#fff, hsl(0 0% 17%));
+  --canvas-dot: light-dark(oklch(68.3% 0 89.88), oklch(38.67% 0 89.88));
+  --canvas-ink: light-dark(oklch(26.86% 0 89.88), #fff);
+  --canvas-body: light-dark(oklch(38.67% 0 89.88), oklch(92.19% 0 89.88));
+  --canvas-muted: light-dark(oklch(55.55% 0 89.88), oklch(79.21% 0 89.88));
+  --canvas-label: light-dark(oklch(55.55% 0 89.88), oklch(68.3% 0 89.88));
+  --canvas-toolbar: light-dark(#fff, oklch(26.86% 0 89.88));
+  --canvas-control: light-dark(#fff, oklch(20.46% 0 89.88));
+  --canvas-control-ink: light-dark(oklch(38.67% 0 89.88), oklch(95.51% 0 89.88));
+  --canvas-control-border: light-dark(oklch(88.53% 0 89.88), oklch(31.71% 0 89.88));
+  --canvas-border: light-dark(rgb(0 0 0 / 0.1), rgb(255 255 255 / 0.15));
+  --canvas-code: light-dark(#f92, #ffb966);
+  --canvas-if: light-dark(oklch(51.52% 0.0905 185.73), oklch(72.89% 0.2119 147.82));
+  --canvas-glyph: light-dark(oklch(31.71% 0 89.88), oklch(92.19% 0 89.88));
+  --canvas-edge: light-dark(
+    oklch(var(--zoom-edge-light, 0.84) 0 89.88),
+    oklch(var(--zoom-edge-dark, 0.42) 0 89.88)
+  );
+  --canvas-port: light-dark(
+    oklch(var(--zoom-port-light, 0.68) 0 89.88),
+    oklch(var(--zoom-port-dark, 0.5) 0 89.88)
+  );
+  --canvas-node-border: light-dark(
+    rgb(0 0 0 / var(--zoom-node-alpha-light, 0.1)),
+    rgb(255 255 255 / var(--zoom-node-alpha-dark, 0.2))
+  );
+  --presentation-active: light-dark(color-mix(in srgb, #cbb7f5 45%, #211b29), #cbb7f5);
+  --presentation-covered: light-dark(color-mix(in srgb, #cbb7f5 35%, #51495a), #ad9cc9);
+  border: 1px solid var(--canvas-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--canvas-bg);
+  color: var(--canvas-ink);
+}
+.pc-canvas-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--canvas-toolbar);
+  border-bottom: 1px solid var(--canvas-border);
+}
+.pc-canvas-name {
+  font-size: 13px;
+  font-weight: 550;
+}
+.pc-canvas-phase-caption {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--canvas-body);
+}
+.pc-canvas-phase-caption:empty {
+  display: none;
+}
+.pc-canvas-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+.pc-canvas-controls button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 4px 9px;
+  border: 1px solid var(--canvas-control-border);
+  border-radius: 5px;
+  color: var(--canvas-control-ink);
+  background: var(--canvas-control);
+  font-size: 13px;
+  cursor: pointer;
+}
+.pc-canvas-controls .pc-canvas-play {
+  min-width: 108px;
+  background: var(--pv2-lavender);
+  color: #211b29;
+  border-color: var(--pv2-lavender);
+  font-weight: 600;
+}
+.pc-canvas-zoom {
+  width: 45px;
+  text-align: center;
+  color: var(--canvas-body);
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.pc-canvas-holder {
+  height: 780px;
+  overflow: hidden;
+}
+.pc-canvas-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+  outline-offset: -4px;
+}
+.pc-canvas-svg.is-dragging {
+  cursor: grabbing;
+}
+.pc-canvas-grid-dot {
+  fill: var(--canvas-dot);
+}
+.pc-canvas-edge {
+  fill: none;
+  stroke: var(--canvas-edge);
+  stroke-width: 2.2;
+  vector-effect: non-scaling-stroke;
+}
+.pc-canvas-edge.is-static,
+.pc-canvas-edge.is-dashed {
+  stroke-width: 1.5;
+}
+.pc-canvas-edge.is-dashed {
+  stroke-dasharray: 5 5;
+}
+.pc-canvas-edge.is-covered {
+  stroke: var(--presentation-covered);
+}
+.pc-canvas-edge-sweep {
+  fill: none;
+  stroke: var(--presentation-active);
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+.pc-canvas-native-node {
+  fill: var(--canvas-node);
+  stroke: var(--canvas-node-border);
+  stroke-width: 2;
+}
+.pc-canvas-node.is-active .pc-canvas-native-node {
+  fill: var(--canvas-node);
+  stroke: var(--presentation-active);
+  stroke-width: 3;
+}
+.pc-canvas-node.is-covered .pc-canvas-native-node {
+  stroke: var(--presentation-covered);
+}
+.pc-canvas-node.is-ending .pc-canvas-native-node {
+  stroke: var(--presentation-active);
+  stroke-width: 3;
+}
+.pc-canvas-port {
+  fill: var(--canvas-port);
+  stroke: var(--canvas-bg);
+  stroke-width: 2;
+}
+.pc-canvas-port-label {
+  fill: var(--canvas-label);
+  font:
+    11px Arial,
+    sans-serif;
+}
+.pc-canvas-node-label {
+  fill: var(--canvas-ink);
+  font:
+    600 18px Arial,
+    sans-serif;
+}
+.pc-canvas-node-type {
+  fill: var(--canvas-muted);
+  font:
+    15px Arial,
+    sans-serif;
+}
+.pc-canvas-glyph {
+  fill: none;
+  stroke: var(--canvas-glyph);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.pc-canvas-glyph--webhook {
+  stroke: #df7faf;
+}
+.pc-canvas-glyph--database {
+  stroke: #336791;
+}
+.pc-canvas-glyph--code {
+  stroke: var(--canvas-code);
+}
+.pc-canvas-glyph--if {
+  stroke: var(--canvas-if);
+}
+.pc-canvas-lane-label {
+  fill: var(--canvas-label);
+  font:
+    600 12px Arial,
+    sans-serif;
+  letter-spacing: 0.8px;
+}
+.pc-canvas-annotation {
+  fill: var(--canvas-toolbar);
+  stroke: var(--canvas-edge);
+}
+.pc-canvas-annotation-title {
+  fill: var(--canvas-ink);
+  font:
+    600 14px Arial,
+    sans-serif;
+}
+.pc-canvas-annotation-text {
+  fill: var(--canvas-body);
+  font:
+    12px Arial,
+    sans-serif;
+}
+.pc-canvas-outcome.is-ending .pc-canvas-annotation {
+  stroke: var(--presentation-active);
+  stroke-width: 2;
+}
+.pc-canvas-legend {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 10px 16px;
+  border-top: 1px solid var(--canvas-border);
+  color: var(--canvas-body);
+  font-size: 11px;
+}
+.pc-canvas-legend span::before {
+  content: "";
+  display: inline-block;
+  width: 23px;
+  border-top: 2px solid var(--canvas-edge);
+  margin-right: 7px;
+  vertical-align: middle;
+}
+.pc-canvas-legend .is-dashed::before {
+  border-top-style: dashed;
+}
+
+.pc-workflow-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  background: #0b0915cc;
+  overscroll-behavior: contain;
+}
+.pc-workflow-modal {
+  display: flex;
+  flex-direction: column;
+  width: min(1500px, calc(100vw - 32px));
+  height: min(1100px, calc(100dvh - 32px));
+  max-height: calc(100dvh - 32px);
+  overflow: hidden;
+  border: 1px solid var(--pv2-line-strong);
+  border-radius: 12px;
+  background: var(--pv2-canvas);
+  color: var(--pv2-text-primary);
+  overscroll-behavior: contain;
+}
+.pc-workflow-modal-header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 22px;
+}
+.pc-workflow-modal-header h2 {
+  margin: 0;
+  font-size: 19px;
+}
+.pc-workflow-modal-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0 20px 16px;
+  overscroll-behavior: contain;
+}
+.pc-phases--modal {
+  flex: none;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.pc-phases--modal .pc-phases-inner {
+  padding: 10px 8px 8px;
+}
+.pc-workflow-modal .pc-canvas-frame {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+}
+.pc-workflow-modal .pc-canvas-toolbar,
+.pc-workflow-modal .pc-canvas-legend {
+  flex: none;
+}
+.pc-workflow-modal .pc-canvas-toolbar {
+  justify-content: flex-end;
+}
+.pc-workflow-modal .pc-canvas-holder {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .pc-phases {
+    gap: 15px;
+  }
+}
+@media (max-width: 700px) {
+  .pc-phases {
+    display: block;
+    margin-bottom: 23px;
+  }
+  .pc-phases-inner {
+    display: grid;
+    grid-template-columns: 25px 1fr;
+    gap: 0 10px;
+    padding: 12px 8px;
+  }
+  .pc-phases-number {
+    grid-row: 1 / 3;
+    margin: 1px 0 0;
+  }
+  .pc-phases p {
+    grid-column: 2;
+    margin-top: 4px;
+    font-size: 13px;
+  }
+  .pc-canvas-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
+  }
+  .pc-canvas-phase-caption {
+    max-width: 290px;
+  }
+  .pc-canvas-holder {
+    height: 370px;
+  }
+  .pc-workflow-loading {
+    min-height: 370px;
+  }
+  .pc-canvas-legend {
+    gap: 9px 15px;
+    padding: 10px 12px;
+  }
+  .pc-workflow-modal {
+    width: calc(100vw - 16px);
+    height: calc(100dvh - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+  .pc-workflow-modal-header {
+    padding: 14px;
+  }
+  .pc-workflow-modal-header h2 {
+    font-size: 17px;
+  }
+  .pc-workflow-modal-content {
+    padding: 0 10px 14px;
+  }
+  .pc-phases--modal {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 5px 10px;
+    margin-bottom: 0;
+  }
+  .pc-phases--modal li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+  .pc-phases--modal .pc-phases-inner {
+    grid-template-columns: 18px 1fr;
+    gap: 6px;
+    padding: 8px 6px;
+  }
+  .pc-phases--modal .pc-phases-number {
+    font-size: 10px;
+    margin: 1px 0 0;
+  }
+  .pc-phases--modal strong {
+    font-size: 12px;
+    line-height: 1.45;
+  }
+  .pc-phases--modal p {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .pc-phases-current-description {
+    display: block;
+    flex: none;
+    min-height: 4.8em;
+    margin: 8px 4px 12px;
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--pv2-text-body);
+  }
+  .pc-workflow-modal .pc-canvas-toolbar {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+@media (max-height: 600px) {
+  .pc-workflow-modal {
+    display: block;
+    overflow: auto;
+  }
+  .pc-workflow-modal-content,
+  .pc-workflow-modal .pc-canvas-frame {
+    display: block;
+  }
+  .pc-workflow-modal .pc-canvas-holder {
+    height: 300px;
+    min-height: 180px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pc-phases-inner {
+    transform: none !important;
+  }
+}
+@media (max-width: 700px) and (prefers-reduced-motion: reduce) {
+  .pc-workflow-modal {
+    overflow: auto;
+  }
+  .pc-workflow-modal-content {
+    flex: none;
+  }
+  .pc-phases--modal {
+    grid-template-columns: 1fr;
+  }
+  .pc-phases--modal .pc-phases-inner {
+    grid-template-columns: 25px 1fr;
+    gap: 0 10px;
+  }
+  .pc-phases--modal p {
+    position: static;
+    width: auto;
+    height: auto;
+    margin: 4px 0 0;
+    padding: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  .pc-phases-current-description {
+    display: none;
+  }
+  .pc-workflow-modal .pc-canvas-holder {
+    flex: none;
+    height: 300px;
+    min-height: 180px;
+  }
+}

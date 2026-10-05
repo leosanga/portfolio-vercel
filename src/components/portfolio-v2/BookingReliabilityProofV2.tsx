@@ -5,8 +5,9 @@ import type { BookingReliabilityProofExperience } from "@/content/portfolio-v2/t
 type BookingReliabilityProofV2Props = {
   experience: BookingReliabilityProofExperience;
   playback?: "once" | "repeat";
-  headingLevel?: "h2" | "h4";
+  headingLevel?: "h2" | "h3" | "h4";
   headingId?: string;
+  animationEnabled?: boolean;
 };
 
 const BOOKING_PROOF_FINAL_PHASE = 4;
@@ -18,13 +19,21 @@ export function BookingReliabilityProofV2({
   playback = "repeat",
   headingLevel = "h4",
   headingId,
+  animationEnabled,
 }: BookingReliabilityProofV2Props) {
   const recordRef = useRef<HTMLDivElement>(null);
+  const catalogOncePlayedRef = useRef(false);
   const [phase, setPhase] = useState<number>(BOOKING_PROOF_FINAL_PHASE);
   const [paused, setPaused] = useState(true);
   const Heading = headingLevel;
 
   useEffect(() => {
+    if (animationEnabled === false) {
+      setPhase(BOOKING_PROOF_FINAL_PHASE);
+      setPaused(true);
+      return;
+    }
+
     const record = recordRef.current;
     if (!record) return;
 
@@ -38,6 +47,12 @@ export function BookingReliabilityProofV2({
     };
 
     const startPlayback = () => {
+      if (animationEnabled !== undefined && playback === "once" && catalogOncePlayedRef.current) {
+        return;
+      }
+      if (animationEnabled !== undefined && playback === "once") {
+        catalogOncePlayedRef.current = true;
+      }
       clearPlayback();
       setPhase(playback === "once" ? 0 : -1);
 
@@ -89,7 +104,7 @@ export function BookingReliabilityProofV2({
       document.removeEventListener("visibilitychange", updatePlayback);
       reducedMotion.removeEventListener("change", updatePlayback);
     };
-  }, [playback]);
+  }, [animationEnabled, playback]);
 
   return (
     <figure className="pv2-booking-proof">

@@ -4,55 +4,22 @@ import responseTimeWorkflow from "@/assets/portfolio-v2/hubspot/response-time-wo
 import routingPathReport from "@/assets/portfolio-v2/hubspot/routing-path-report.webp";
 import routingWorkflow from "@/assets/portfolio-v2/hubspot/routing-workflow.webp";
 
-import type { HubSpotCoverageReconciliationProofExperience, ProjectViewModel } from "./types";
-
-export const HUBSPOT_LEAD_ROUTING_STACK = ["HubSpot", "Python", "FastAPI", "pytest"] as const;
-
-export const HUBSPOT_LEAD_ROUTING_OVERVIEW = {
-  problem:
-    "Lead routing becomes hard to trust when the workflow assigns a lead but the report leaves that lead out.",
-  solution:
-    "I built a HubSpot system that keeps lead assignment and response-time reporting connected from first owner through sales handoff. Separate tests cover repeated updates and temporary HubSpot failures.",
-  hardPart:
-    "The hard part was proving that the workflow and the report told the same story. That check found one assignment path missing from response-time coverage and a small-company route blocked by its own scoring rules.",
-} as const;
-
-export const HUBSPOT_COVERAGE_RECONCILIATION_PROOF = {
-  kind: "hubspot-coverage-reconciliation",
-  eyebrow: "Report coverage check",
-  heading: "Six assigned leads were missing from the response-time report.",
-  totalAssigned: 14,
-  earlierMeasured: 8,
-  missingFromReport: 6,
-  currentMeasured: 14,
-  routes: [
-    { label: "Sales development", count: 8 },
-    { label: "Regional sales owners", count: 6 },
-  ],
-  labels: {
-    assigned: "Assigned",
-    assignedUnit: "new test leads",
-    earlierReport: "Earlier report",
-    measuredUnit: "measured",
-    missingUnit: "assigned leads missing",
-    correction: "Correction",
-    currentCoverage: "Current coverage",
-    currentSupport: "Both routes included",
-  },
-  correction: "Response-time check moved outside routing",
-  outcomeHeading: "14 assigned. 14 measured.",
-  outcomeBody: "The report now covers both assignment paths.",
-} as const satisfies HubSpotCoverageReconciliationProofExperience;
+import type { ProjectViewModel } from "./types";
+import {
+  HUBSPOT_LEAD_ROUTING_STACK,
+  HUBSPOT_LEAD_ROUTING_OVERVIEW,
+  HUBSPOT_COVERAGE_RECONCILIATION_PROOF,
+} from "./case-study-content";
+export {
+  HUBSPOT_LEAD_ROUTING_STACK,
+  HUBSPOT_LEAD_ROUTING_OVERVIEW,
+  HUBSPOT_COVERAGE_RECONCILIATION_PROOF,
+} from "./case-study-content";
+import { HUBSPOT_LEAD_ROUTING_CASE_RECORD } from "./case-study-records";
 
 export const HUBSPOT_LEAD_ROUTING_PROJECT = {
-  slug: "hubspot-lead-routing",
-  title: "Lead Routing & Pipeline Health System (HubSpot)",
-  problem: HUBSPOT_LEAD_ROUTING_OVERVIEW.problem,
-  solution: HUBSPOT_LEAD_ROUTING_OVERVIEW.solution,
-  hardPart: HUBSPOT_LEAD_ROUTING_OVERVIEW.hardPart,
-  stack: HUBSPOT_LEAD_ROUTING_STACK,
+  ...HUBSPOT_LEAD_ROUTING_CASE_RECORD,
   homepageRole: "case-study",
-  caseStudyPath: "/projects/lead-routing-pipeline-health-system",
   caseStudyLabel: "Follow a lead through the system",
   proofExperience: HUBSPOT_COVERAGE_RECONCILIATION_PROOF,
 } as const satisfies ProjectViewModel;

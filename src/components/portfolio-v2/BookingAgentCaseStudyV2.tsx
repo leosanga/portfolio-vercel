@@ -7,13 +7,13 @@ import {
 import { BookingAgentArchitectureV2 } from "./BookingAgentArchitectureV2";
 import { BookingReliabilityProofV2 } from "./BookingReliabilityProofV2";
 import { CaseEvidenceFigureV2 } from "./CaseEvidenceFigureV2";
+import { CaseStudyContinuationV2 } from "./CaseStudyContinuationV2";
 import { FooterV2 } from "./FooterV2";
+import { PortfolioHeaderV2 } from "./PortfolioHeaderV2";
 import { PortfolioUtilityDockV2 } from "./PortfolioUtilityDockV2";
-import { PrimaryCallLinkV2 } from "./PrimaryCallLinkV2";
-import { SignalMarkV2 } from "./SignalMarkV2";
 
 export function BookingAgentCaseStudyV2() {
-  const { hero, overview, protection, evolution, adaptability, close } = BOOKING_AGENT_CASE_STUDY;
+  const { hero, overview, protection, evolution, adaptability } = BOOKING_AGENT_CASE_STUDY;
 
   return (
     <div className="portfolio-v2 pv2-case-study" id="top">
@@ -21,18 +21,7 @@ export function BookingAgentCaseStudyV2() {
         Skip to case study
       </a>
 
-      <header className="pv2-case-nav">
-        <div className="pv2-frame pv2-case-nav__inner">
-          <a className="pv2-case-nav__identity" href="/" aria-label="Leo Sanga, home">
-            <SignalMarkV2 />
-            <span>Leo Sanga</span>
-          </a>
-          <div className="pv2-case-nav__actions">
-            <a href="/#projects">Projects</a>
-            <PrimaryCallLinkV2 compact />
-          </div>
-        </div>
-      </header>
+      <PortfolioHeaderV2 context="case-study" />
 
       <main id="case-study-content" className="pv2-case-main">
         <section className="pv2-case-hero pv2-booking-hero" aria-labelledby="case-study-title">
@@ -152,7 +141,7 @@ export function BookingAgentCaseStudyV2() {
         </section>
 
         <section
-          className="pv2-case-section pv2-case-adaptability"
+          className="pv2-case-section pv2-case-adaptability pv2-case-closing"
           aria-labelledby="adaptability-title"
         >
           <div className="pv2-frame">
@@ -173,18 +162,7 @@ export function BookingAgentCaseStudyV2() {
           </div>
         </section>
 
-        <section className="pv2-case-close" aria-labelledby="case-close-title">
-          <div className="pv2-frame pv2-case-close__grid">
-            <div>
-              <h2 id="case-close-title">{close.heading}</h2>
-              <p>{close.support}</p>
-            </div>
-            <div className="pv2-case-close__action">
-              <PrimaryCallLinkV2 />
-              <p>{close.duration}</p>
-            </div>
-          </div>
-        </section>
+        <CaseStudyContinuationV2 currentSlug="n8n-booking-agent" />
       </main>
 
       <FooterV2 />

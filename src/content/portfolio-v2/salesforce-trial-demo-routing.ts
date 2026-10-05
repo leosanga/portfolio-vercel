@@ -4,66 +4,22 @@ import inboundEvents from "@/assets/portfolio-v2/salesforce/inbound-events.webp"
 import needsReview from "@/assets/portfolio-v2/salesforce/needs-review.webp";
 import resolvedEvent from "@/assets/portfolio-v2/salesforce/resolved-event.webp";
 
-import type { ProjectViewModel, SalesforceRoutingProofExperience } from "./types";
-
-export const SALESFORCE_ROUTING_STACK = [
-  "Salesforce",
-  "Apex",
-  "Flow",
-  "Apex REST",
-  "Salesforce DX",
-  "Node.js",
-] as const;
-
-export const SALESFORCE_ROUTING_OVERVIEW = {
-  problem:
-    "Inbound requests can become unnecessary Leads or reach the wrong owner when the intake process ignores the customer and pipeline context already in Salesforce.",
-  solution:
-    "I built a Salesforce-native system that uses existing CRM records to decide where each trial sign-up or demo request belongs. Known relationships reach the responsible owner, unknown companies enter the inbound queue, and uncertain matches wait for review.",
-  hardPart:
-    "The hard part was deciding when the CRM evidence was strong enough to act. Conflicting identity and company signals had to stop the automation and tell a reviewer what needed resolving.",
-} as const;
-
-export const SALESFORCE_ROUTING_PROOF = {
-  kind: "salesforce-routing",
-  eyebrow: "Routing by relationship",
-  heading: "A known customer should not become a new lead.",
-  request: "The same company as its CRM relationship changes",
-  columns: ["Relationship in Salesforce", "Responsible owner", "System action"],
-  outcomes: [
-    {
-      context: "Unknown company",
-      destination: "Inbound queue",
-      followUp: "Create a new lead",
-    },
-    {
-      context: "Open opportunity",
-      destination: "Deal owner",
-      followUp: "Create a task and contact role",
-    },
-    {
-      context: "Customer",
-      destination: "Account owner",
-      followUp: "Create an expansion task",
-    },
-    {
-      context: "Conflicting evidence",
-      destination: "Inbound review",
-      followUp: "Stop before creating a sales record",
-      isReview: true,
-    },
-  ],
-} as const satisfies SalesforceRoutingProofExperience;
+import type { ProjectViewModel } from "./types";
+import {
+  SALESFORCE_ROUTING_STACK,
+  SALESFORCE_ROUTING_OVERVIEW,
+  SALESFORCE_ROUTING_PROOF,
+} from "./case-study-content";
+export {
+  SALESFORCE_ROUTING_STACK,
+  SALESFORCE_ROUTING_OVERVIEW,
+  SALESFORCE_ROUTING_PROOF,
+} from "./case-study-content";
+import { SALESFORCE_ROUTING_CASE_RECORD } from "./case-study-records";
 
 export const SALESFORCE_ROUTING_PROJECT = {
-  slug: "salesforce-trial-demo-routing",
-  title: "Trial & Demo Routing by Customer Relationship (Salesforce)",
-  problem: SALESFORCE_ROUTING_OVERVIEW.problem,
-  solution: SALESFORCE_ROUTING_OVERVIEW.solution,
-  hardPart: SALESFORCE_ROUTING_OVERVIEW.hardPart,
-  stack: SALESFORCE_ROUTING_STACK,
+  ...SALESFORCE_ROUTING_CASE_RECORD,
   homepageRole: "case-study",
-  caseStudyPath: "/projects/trial-demo-routing-by-customer-relationship",
   caseStudyLabel: "See how Salesforce decides where each request belongs",
   proofExperience: SALESFORCE_ROUTING_PROOF,
 } as const satisfies ProjectViewModel;
@@ -205,14 +161,12 @@ export const SALESFORCE_ROUTING_CASE_STUDY = {
       "Add the release, monitoring, and recovery controls required by the operating environment.",
     ],
   },
-  result: {
-    label: "Operational result",
-    statement:
-      "Known relationships stay connected, the responsible owner receives the request, and uncertain evidence stops before Salesforce creates another sales record.",
-    relatedBody:
-      "Salesforce decides where an inbound request belongs. The HubSpot case study follows a lead after it enters the CRM.",
-    relatedLabel: "Next case study: Lead Routing & Pipeline Health System (HubSpot)",
-    relatedHref: "/projects/lead-routing-pipeline-health-system",
+  closing: {
+    heading: "One intake process, from prospect to customer",
+    body: [
+      "The next action follows the relationship already recorded in Salesforce. Requests from new companies enter the inbound queue. Requests tied to open deals go to the deal owner, and requests from existing customers go to the account owner.",
+      "The record keeps the original request details, the decision and its outcome. If the information conflicts, the request stays visible for review with a reason and next step. A reviewer can trace why a request was handled or held.",
+    ],
   },
   metadata: {
     title: "Salesforce Trial and Demo Routing Case Study | Leo Sanga",

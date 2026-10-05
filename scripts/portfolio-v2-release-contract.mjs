@@ -1,4 +1,14 @@
 // Pure checks over rendered measurements. Browser collection and visual acceptance are separate.
+const DOCK_LINK_LABELS = ["Home", "Email", "LinkedIn", "Back to top"];
+const THEME_LABELS = ["Use light theme", "Use dark theme"];
+
+function hasApprovedDockControls(controls) {
+  return Array.isArray(controls) &&
+    controls.length === DOCK_LINK_LABELS.length + 1 &&
+    DOCK_LINK_LABELS.every((label, index) => controls[index]?.label === label) &&
+    THEME_LABELS.includes(controls[DOCK_LINK_LABELS.length]?.label);
+}
+
 export function validateReleaseLayout(sample) {
   const failures = [];
   if (!sample || typeof sample !== "object") return ["Layout sample must be an object"];
@@ -25,8 +35,8 @@ export function validateReleaseLayout(sample) {
   require([dock.top, dock.bottom, dock.left, dock.right].every(
     Number.isFinite,
   ), "Initial dock geometry is missing");
-  require(Array.isArray(dock.controls) &&
-    dock.controls.length === 4, "Dock must contain four controls");
+  require(hasApprovedDockControls(dock.controls),
+    "Dock must contain Home, Email, LinkedIn, Back to top and a hydrated theme control");
   for (const control of Array.isArray(dock.controls) ? dock.controls : []) {
     require(Number.isFinite(control?.width) &&
       control.width >= 44 &&
@@ -46,8 +56,7 @@ export function validateReleaseLayout(sample) {
     require([point.dock.top, point.dock.bottom, point.dock.left, point.dock.right].every(
       Number.isFinite,
     ), `Dock geometry is missing at ${point.name}`);
-    require(Array.isArray(point.dock.controls) &&
-      point.dock.controls.length === 4 &&
+    require(hasApprovedDockControls(point.dock.controls) &&
       point.dock.controls.every(
         (control) =>
           Number.isFinite(control?.width) &&
@@ -56,7 +65,7 @@ export function validateReleaseLayout(sample) {
           control.height >= 44 &&
           typeof control?.label === "string" &&
           control.label.trim().length > 0,
-      ), `Dock controls need labels and 44px targets at ${point.name}`);
+      ), `Dock controls need approved labels and 44px targets at ${point.name}`);
     require(point.dock.position === expectedPosition, `Dock changed positioning at ${point.name}`);
     if (!documentFlow || point.name === "footer") {
       require(point.dock.top >= 0 &&

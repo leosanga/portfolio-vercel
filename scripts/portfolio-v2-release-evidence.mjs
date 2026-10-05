@@ -16,6 +16,8 @@ export const releaseCoverage = [
     "/projects/ai-booking-agent",
     "/projects/lead-routing-pipeline-health-system",
     "/projects/trial-demo-routing-by-customer-relationship",
+    "/projects/enterprise-identity-systems-operations",
+    "/project-catalog",
   ].flatMap((pathname) => [
     { pathname, width: 1262, height: 900 },
     { pathname, width: 390, height: 844 },

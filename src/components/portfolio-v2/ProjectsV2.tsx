@@ -1,13 +1,14 @@
 import { PROJECTS, PROJECTS_CONTEXT } from "@/content/portfolio-v2/content";
+import { groupHomepageProjects } from "@/content/portfolio-v2/project-navigation";
 
 import { CaseStudyProjectV2 } from "./CaseStudyProjectV2";
 import { FeaturedProjectV2 } from "./FeaturedProjectV2";
+import { ProjectCatalogEntryV2 } from "./ProjectCatalogEntryV2";
+import { EnterpriseIdentityEntryV2 } from "./EnterpriseIdentityEntryV2";
 import { ProjectRowV2 } from "./ProjectRowV2";
 
 export function ProjectsV2() {
-  const featured = PROJECTS.find((project) => project.homepageRole === "lead");
-  const caseStudies = PROJECTS.filter((project) => project.homepageRole === "case-study");
-  const remaining = PROJECTS.filter((project) => project.homepageRole === "standard");
+  const { lead: featured, caseStudies, standard: remaining } = groupHomepageProjects(PROJECTS);
 
   if (!featured) return null;
 
@@ -46,6 +47,8 @@ export function ProjectsV2() {
             />
           ))}
         </div>
+        <EnterpriseIdentityEntryV2 />
+        <ProjectCatalogEntryV2 />
       </div>
     </section>
   );

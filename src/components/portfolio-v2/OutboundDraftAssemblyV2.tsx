@@ -51,9 +51,11 @@ function AssemblyStep({
 export function OutboundDraftAssemblyV2({
   experience,
   shouldAnimate,
+  playback = "loop",
 }: {
   experience: OutboundDraftAssemblyExperience;
   shouldAnimate: boolean;
+  playback?: "loop" | "once";
 }) {
   const scopeId = useId();
   const [stage, setStage] = useState(FINAL_STAGE);
@@ -73,7 +75,7 @@ export function OutboundDraftAssemblyV2({
       stageTimers = STAGE_TIMING.map(({ at, stage: nextStage }) =>
         window.setTimeout(() => setStage(nextStage), at),
       );
-      cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
+      if (playback === "loop") cycleTimer = window.setTimeout(runCycle, LOOP_DURATION_MS);
     };
 
     runCycle();
@@ -81,7 +83,7 @@ export function OutboundDraftAssemblyV2({
       stageTimers.forEach((timer) => window.clearTimeout(timer));
       window.clearTimeout(cycleTimer);
     };
-  }, [shouldAnimate]);
+  }, [shouldAnimate, playback]);
 
   return (
     <figure className="pv2-outbound-draft" aria-describedby={scopeId}>

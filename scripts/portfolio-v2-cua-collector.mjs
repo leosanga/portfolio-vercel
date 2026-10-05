@@ -107,7 +107,9 @@ export async function collectReleaseEvidence({
             ["projects", "#projects h2"],
             ["approach", "#approach h2"],
           ]
-        : [["middle", "main > section.pv2-case-section h2"]];
+        : [["middle", row.pathname === "/project-catalog"
+          ? ".pc-project h2"
+          : "main > section.pv2-case-section h2"]];
       for (const [name, selector] of targets) {
         await tab.playwright.locator(selector).first().click();
         sample.scrollSamples.push({ name, ...(await settledCapture(name, selector)) });
