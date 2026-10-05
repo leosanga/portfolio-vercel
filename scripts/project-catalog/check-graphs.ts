@@ -4,6 +4,10 @@
 import { CATALOG_ENTRIES } from "../../src/content/project-catalog/catalog";
 import { GRAPH_LOADERS } from "../../src/content/project-catalog/graphRegistry";
 import {
+  SPECIMEN_LAYOUTS,
+  type SpecimenLayout,
+} from "../../src/components/project-catalog/workflow/specimenLayout";
+import {
   N8N_NODE_TYPES,
   type N8nNodeDefinition,
 } from "../../src/content/project-catalog/n8nNodeTypes";
@@ -17,6 +21,36 @@ import type {
 } from "../../src/content/project-catalog/types";
 
 type Side = "inputs" | "outputs";
+
+export function openingProblems(
+  graph: CatalogGraph,
+  layout: Pick<SpecimenLayout, "openingGroups" | "openingAssembly">,
+): string[] {
+  const problems: string[] = [];
+  const known = new Set(graph.nodes.map((node) => node.id));
+  const seen = new Set<string>();
+  if (!layout.openingGroups.length) problems.push("opening groups must not be empty");
+  for (const group of layout.openingGroups) {
+    if (!group.length) problems.push("opening group must not be empty");
+    for (const id of group) {
+      if (!known.has(id)) problems.push(`opening group references unknown node ${id}`);
+      if (seen.has(id)) problems.push(`opening groups repeat node ${id}`);
+      seen.add(id);
+    }
+  }
+  for (const id of known) if (!seen.has(id)) problems.push(`opening groups omit node ${id}`);
+  const timing = layout.openingAssembly;
+  if (timing) {
+    if (![timing.stepMs, timing.revealMs].every((value) => Number.isFinite(value) && value > 0)) {
+      problems.push("opening timing needs finite positive step and reveal durations");
+    }
+    const end = (layout.openingGroups.length - 1) * timing.stepMs + timing.revealMs;
+    if (graph.presentation.kind !== "flow" || end > graph.presentation.openingMs) {
+      problems.push("opening final reveal exceeds flow opening duration");
+    }
+  }
+  return problems;
+}
 
 /** A beat's groups run together, so every reference in them is checked like a single one. */
 const flatten = (refs: readonly (string | readonly string[])[]): string[] => refs.flat();
@@ -610,6 +644,49 @@ for (const [name, graph, expected, ids = THREE] of INVALID) {
 }
 console.log(`fixtures: ${VALID.length} valid accepted, ${INVALID.length} invalid rejected`);
 
+const ALL_OPENING_NODES = BASE.nodes.map((node) => node.id);
+const VALID_OPENING = { openingGroups: [ALL_OPENING_NODES] };
+if (openingProblems(BASE, VALID_OPENING).length) fail("valid complete opening groups rejected");
+const OPENING_INVALID: [string, Parameters<typeof openingProblems>[1], string][] = [
+  ["unknown opening node", { openingGroups: [[...ALL_OPENING_NODES, "unknown"]] }, "unknown node"],
+  ["empty opening group", { openingGroups: [[], ALL_OPENING_NODES] }, "must not be empty"],
+  ["no opening groups", { openingGroups: [] }, "must not be empty"],
+  [
+    "duplicate opening coverage",
+    { openingGroups: [ALL_OPENING_NODES, [ALL_OPENING_NODES[0]!]] },
+    "repeat node",
+  ],
+  ["incomplete opening coverage", { openingGroups: [ALL_OPENING_NODES.slice(1)] }, "omit node"],
+  [
+    "nonfinite timing",
+    {
+      ...VALID_OPENING,
+      openingAssembly: { stepMs: Infinity, revealMs: 400, emphasizePhases: true },
+    },
+    "finite positive",
+  ],
+  [
+    "zero timing",
+    { ...VALID_OPENING, openingAssembly: { stepMs: 0, revealMs: 400, emphasizePhases: true } },
+    "finite positive",
+  ],
+  [
+    "negative timing",
+    { ...VALID_OPENING, openingAssembly: { stepMs: 480, revealMs: -1, emphasizePhases: true } },
+    "finite positive",
+  ],
+  [
+    "reveal outside opening",
+    { ...VALID_OPENING, openingAssembly: { stepMs: 480, revealMs: 10000, emphasizePhases: true } },
+    "exceeds flow opening",
+  ],
+];
+for (const [name, layout, expected] of OPENING_INVALID) {
+  if (!openingProblems(BASE, layout).some((problem) => problem.includes(expected)))
+    fail(`invalid opening fixture "${name}" was not rejected`);
+}
+console.log(`opening fixtures: 1 valid accepted, ${OPENING_INVALID.length} invalid rejected`);
+
 for (const entry of CATALOG_ENTRIES) {
   const load = GRAPH_LOADERS[entry.id];
   if (!load) {
@@ -617,6 +694,7 @@ for (const entry of CATALOG_ENTRIES) {
     continue;
   }
   const graph = await load();
+  const layout = SPECIMEN_LAYOUTS[entry.id];
   const problems =
     graph.entryId === entry.id
       ? graphProblems(
@@ -624,12 +702,18 @@ for (const entry of CATALOG_ENTRIES) {
           entry.phases.map((phase) => phase.id),
         )
       : [`graph belongs to ${graph.entryId}`];
+  problems.push(
+    ...(layout ? openingProblems(graph, layout) : ["registered graph has no specimen layout"]),
+  );
   if (problems.length) fail(`${entry.id}: ${problems.join("; ")}`);
   else console.log(`${entry.id}: graph valid`);
 }
 for (const id of Object.keys(GRAPH_LOADERS)) {
   if (!CATALOG_ENTRIES.some((entry) => entry.id === id))
     fail(`graph ${id} has no published summary`);
+}
+for (const id of Object.keys(SPECIMEN_LAYOUTS)) {
+  if (!GRAPH_LOADERS[id]) fail(`layout ${id} has no registered graph`);
 }
 
 process.exit(failed ? 1 : 0);

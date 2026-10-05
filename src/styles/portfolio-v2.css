@@ -31,20 +31,20 @@ select {
 
 .portfolio-v2 {
   color-scheme: dark;
-  --pv2-canvas: #0f0e14;
-  --pv2-canvas-soft: #14121a;
-  --pv2-surface: #1a1722;
-  --pv2-surface-raised: #211d2b;
-  --pv2-text-primary: #f7f3fa;
-  --pv2-text-body: #c8c0d0;
-  --pv2-text-muted: #9d94a6;
+  --pv2-canvas: #111820;
+  --pv2-canvas-soft: #171f26;
+  --pv2-surface: #20282f;
+  --pv2-surface-raised: #2a343e;
+  --pv2-text-primary: #edf1f4;
+  --pv2-text-body: #c7cfd5;
+  --pv2-text-muted: #9caab5;
   --pv2-lavender: #cbb7f5;
   --pv2-lavender-hover: #d9c9fa;
   --pv2-mist: #afc9e8;
   --pv2-sage: #b8cdbd;
   --pv2-coral-graphic: #f4998f;
-  --pv2-line: #393341;
-  --pv2-line-strong: #51485d;
+  --pv2-line: #45525d;
+  --pv2-line-strong: #62717d;
   --pv2-button-ink: #17121f;
   --pv2-space-1: 0.25rem;
   --pv2-space-2: 0.5rem;
@@ -11389,5 +11389,267 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
   .pv2-continuation-card__link svg {
     transform: none;
+  }
+}
+
+/* Sequence 2: homepage-only compact case composition and measured sticky fit. */
+.pv2-case-stack {
+  display: grid;
+  gap: 24px;
+  margin-top: 32px;
+  --pv2-case-stack-inset: 24px;
+}
+
+.pv2-case-stack__slot {
+  position: relative;
+  min-width: 0;
+}
+
+.pv2-case-stack[data-enhanced="true"] .pv2-case-stack__slot {
+  position: sticky;
+  top: calc(var(--pv2-case-stack-top) + var(--pv2-case-stack-index) * var(--pv2-case-stack-step));
+  z-index: calc(var(--pv2-case-stack-index) + 1);
+}
+
+.pv2-case-stack[data-enhanced="true"] .pv2-case-stack__slot[data-covered="true"] > article {
+  clip-path: inset(0 0 calc(100% - var(--pv2-case-stack-step)) 0);
+  transition: none;
+}
+
+.pv2-case-stack :is(.pv2-featured-project, .pv2-case-study-project) {
+  position: relative;
+  margin-top: 0;
+}
+
+.pv2-case-stack[data-enhanced="true"] .pv2-case-stack__slot > article {
+  transform-origin: center top;
+  transform: perspective(1600px) rotateX(calc(var(--pv2-case-stack-depth, 0) * -2deg))
+    scale(calc(1 - var(--pv2-case-stack-depth, 0) * 0.035));
+  transition: none;
+}
+
+.pv2-case-stack__hold {
+  display: none;
+}
+
+.pv2-case-stack[data-enhanced="true"] > .pv2-case-stack__hold {
+  display: block;
+  height: var(--pv2-case-stack-hold);
+  pointer-events: none;
+}
+
+.pv2-case-stack :is(.pv2-featured-project__header, .pv2-featured-project__body,
+  .pv2-case-study-project__header, .pv2-case-study-project__body) {
+  padding: var(--pv2-case-stack-inset);
+}
+
+.pv2-case-stack :is(.pv2-featured-project__header, .pv2-case-study-project__header) h3 {
+  grid-column: 1 / -1;
+  max-width: none;
+}
+
+.pv2-case-stack :is(.pv2-featured-project__summary, .pv2-case-study-project__summary) > * + * {
+  margin-top: 16px;
+  padding-top: 16px;
+}
+
+.pv2-case-stack .pv2-project-field__label {
+  margin-bottom: 10px;
+}
+
+.pv2-case-stack :is(.pv2-featured-project__footer, .pv2-case-study-project__footer) {
+  gap: 16px;
+  padding: 16px var(--pv2-case-stack-inset);
+}
+
+.pv2-case-stack :is(.pv2-booking-proof, .pv2-salesforce-routing, .pv2-hubspot-reconciliation) {
+  padding: 20px;
+}
+
+@media (max-width: 1099px) {
+  .pv2-case-stack {
+    --pv2-case-stack-inset: 20px;
+  }
+
+  .pv2-case-stack .pv2-project-proof-experience {
+    margin-top: 24px;
+    padding-top: 24px;
+  }
+}
+
+/* Sequence 3: hero-only responsive branch frame and visibility-paused signal loop. */
+.pv2-hero-frame--wide {
+  display: none;
+  inset: -44px 0 auto;
+  width: 100%;
+  height: calc(100% + 88px);
+}
+
+.pv2-hero-frame__dot {
+  fill: var(--pv2-mist);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pv2-hero-frame__source,
+.pv2-hero-frame__output {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+@media (min-width: 1100px) {
+  .pv2-hero-frame--compact {
+    display: none;
+  }
+
+  .pv2-hero-frame--wide {
+    display: block;
+  }
+}
+
+@keyframes pv2-hero-frame-pulse {
+  0%, 3.235294%, 100% { transform: scale(1); }
+  1.617647% { transform: scale(1.12); }
+}
+
+@keyframes pv2-hero-frame-trunk {
+  0% { opacity: 0; transform: translate(540px, 320px); }
+  0.529412%, 3.794118% { opacity: 1; }
+  4.411765%, 100% { opacity: 0; transform: translate(650px, 320px); }
+}
+
+@keyframes pv2-hero-frame-upper {
+  0% { opacity: 0; transform: translate(650px, 320px); }
+  0.567018% { transform: translate(700px, 320px); }
+  1.094118%, 7.841176% { opacity: 1; }
+  4.014486% { transform: translate(700px, 16px); }
+  9.117647%, 100% { opacity: 0; transform: translate(1150px, 16px); }
+}
+
+@keyframes pv2-hero-frame-lower {
+  0% { opacity: 0; transform: translate(650px, 320px); }
+  0.567018% { transform: translate(700px, 320px); }
+  1.094118%, 7.841176% { opacity: 1; }
+  4.014486% { transform: translate(700px, 624px); }
+  9.117647%, 100% { opacity: 0; transform: translate(1150px, 624px); }
+}
+
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) and (scripting: enabled) {
+  .pv2-hero-frame--wide .pv2-hero-frame__source {
+    animation: pv2-hero-frame-pulse 6800ms var(--ease-out) 680ms infinite both;
+  }
+
+  .pv2-hero-frame--wide .pv2-hero-frame__output {
+    animation: pv2-hero-frame-pulse 6800ms var(--ease-out) 1620ms infinite both;
+  }
+
+  .pv2-hero-frame--wide .pv2-hero-frame__dot--trunk {
+    animation: pv2-hero-frame-trunk 6800ms linear 700ms infinite both;
+  }
+
+  .pv2-hero-frame--wide .pv2-hero-frame__dot--upper {
+    animation: pv2-hero-frame-upper 6800ms linear 1000ms infinite both;
+  }
+
+  .pv2-hero-frame--wide .pv2-hero-frame__dot--lower {
+    animation: pv2-hero-frame-lower 6800ms linear 1000ms infinite both;
+  }
+
+  .pv2-hero-frame--wide :is(.pv2-hero-frame__source, .pv2-hero-frame__output, .pv2-hero-frame__dot) {
+    animation-play-state: paused;
+  }
+
+  .pv2-hero-frame--wide[data-motion-active="true"] :is(.pv2-hero-frame__source, .pv2-hero-frame__output, .pv2-hero-frame__dot) {
+    animation-play-state: running;
+  }
+}
+
+/* Sequence 6: suspend existing decorative loops without replaying content arrivals. */
+.pv2-projects-context[data-pv2-visible] .pv2-projects-credibility::after,
+.pv2-projects-context[data-pv2-visible] .pv2-projects-credibility__item::before,
+.pv2-approach .pv2-frame .pv2-approach-step__node,
+.pv2-approach .pv2-frame .pv2-approach-step .pv2-approach-step__line::after {
+  animation-play-state: paused;
+}
+
+.pv2-projects-context[data-pv2-motion-active="true"] .pv2-projects-credibility::after,
+.pv2-projects-context[data-pv2-motion-active="true"] .pv2-projects-credibility__item::before,
+.pv2-approach .pv2-frame[data-pv2-motion-active="true"] .pv2-approach-step__node,
+.pv2-approach .pv2-frame[data-pv2-motion-active="true"] .pv2-approach-step .pv2-approach-step__line::after {
+  animation-play-state: running;
+}
+
+/* Sequence 7: native case-title continuity, independent of owned canvas transitions. */
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) and (scripting: enabled) {
+  @view-transition {
+    navigation: auto;
+  }
+
+  :root::view-transition {
+    pointer-events: none;
+  }
+
+  :root::view-transition-group(pv2-case-title) {
+    animation-duration: 340ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  :root::view-transition-old(pv2-case-title),
+  :root::view-transition-new(pv2-case-title) {
+    animation-duration: 180ms;
+  }
+
+  :root::view-transition-old(root),
+  :root::view-transition-new(root) {
+    animation-duration: 220ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  :root::view-transition-group(pv2-case-title),
+  :root::view-transition-old(pv2-case-title),
+  :root::view-transition-new(pv2-case-title),
+  :root::view-transition-old(root),
+  :root::view-transition-new(root) {
+    animation: none;
+  }
+}
+
+/* Sequence 8: finite theme reveal owned by the existing shared theme control. */
+@keyframes pv2-theme-reveal {
+  from { clip-path: circle(0px at var(--pv2-theme-x) var(--pv2-theme-y)); }
+  to { clip-path: circle(var(--pv2-theme-radius) at var(--pv2-theme-x) var(--pv2-theme-y)); }
+}
+
+html[data-pv2-theme-transition]::view-transition {
+  pointer-events: none;
+}
+
+html[data-pv2-theme-transition]::view-transition-group(root) {
+  animation: none;
+}
+
+html[data-pv2-theme-transition]::view-transition-image-pair(root) {
+  isolation: auto;
+}
+
+html[data-pv2-theme-transition]::view-transition-old(root),
+html[data-pv2-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html[data-pv2-theme-transition]::view-transition-old(root) {
+  z-index: 0;
+}
+
+html[data-pv2-theme-transition]::view-transition-new(root) {
+  z-index: 1;
+  animation: pv2-theme-reveal 440ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html[data-pv2-theme-transition]::view-transition-new(root) {
+    animation: none;
   }
 }

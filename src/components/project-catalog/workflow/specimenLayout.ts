@@ -6,8 +6,14 @@ interface AnnotationLayout {
   detail?: string;
   path?: string;
 }
+export interface OpeningAssembly {
+  stepMs: number;
+  revealMs: number;
+  emphasizePhases: boolean;
+}
 export interface SpecimenLayout {
   openingGroups: readonly (readonly string[])[];
+  openingAssembly?: OpeningAssembly;
   bounds: readonly [number, number, number, number];
   readable: readonly [number, number];
   labels: Record<string, readonly string[]>;
@@ -92,6 +98,7 @@ export const SPECIMEN_LAYOUTS: Record<string, SpecimenLayout> = {
       NAVIGATION,
   },
   "sales-call-notes-and-next-steps": {
+    openingAssembly: { stepMs: 480, revealMs: 400, emphasizePhases: true },
     openingGroups: [
       ["A01", "A02", "A03", "A04"],
       ["A12", "A05", "A13", "A14", "A15"],

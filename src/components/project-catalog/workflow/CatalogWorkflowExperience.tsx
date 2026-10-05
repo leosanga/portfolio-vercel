@@ -6,6 +6,7 @@ import { usePresentation } from "./usePresentation";
 import { WorkflowCanvas } from "./WorkflowCanvas";
 import { WorkflowPhases } from "./WorkflowPhases";
 import { WorkflowModal } from "./WorkflowModal";
+import { useCanvasTransition } from "./useCanvasTransition";
 
 interface Props {
   entry: CatalogEntrySummary;
@@ -19,6 +20,7 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
   const [failure, setFailure] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const [modal, setModal] = useState(false);
+  const { changeModal, transitioning, cancel } = useCanvasTransition(entry.id, setModal);
   const openerRef = useRef<HTMLButtonElement>(null);
   const presentation = usePresentation(graph, active, modal, onRequestPlay);
   const layout = SPECIMEN_LAYOUTS[entry.id];
@@ -44,11 +46,14 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
   }, [entry.id, attempt, layout]);
 
   useEffect(() => {
-    if (!active) setModal(false);
-  }, [active]);
+    if (!active) {
+      cancel();
+      setModal(false);
+    }
+  }, [active, cancel]);
   const closeModal = () => {
     presentation.pause();
-    setModal(false);
+    changeModal(false);
   };
   const activePhases = entry.phases.filter((phase) =>
     presentation.story?.activePhases.includes(phase.id),
@@ -72,6 +77,7 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
         onPlayback={presentation.toggle}
         onExplore={presentation.pause}
         modal={enlarged}
+        transitionActive={transitioning && (enlarged || !modal)}
       />
     ) : null;
 
@@ -87,7 +93,7 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
           onClick={() => {
             presentation.pause();
             onRequestPlay();
-            setModal(true);
+            changeModal(true);
           }}
         >
           View larger

@@ -1,5 +1,11 @@
 import { ArrowUp, Linkedin, Mail, Moon, Sun } from "lucide-react";
-import { useEffect, useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import {
+  useEffect,
+  useRef,
+  type MouseEvent as ReactMouseEvent,
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode,
+} from "react";
 
 import { CONTACT } from "@/content/portfolio-v2/content";
 
@@ -15,7 +21,7 @@ type DockControlProps = {
   surfaceRef: (element: HTMLSpanElement | null) => void;
 } & (
   | { href: string; external?: boolean; onClick?: never }
-  | { href?: never; external?: never; onClick: () => void }
+  | { href?: never; external?: never; onClick: (event: ReactMouseEvent<HTMLButtonElement>) => void }
 );
 
 function DockControl({ children, label, surfaceRef, ...action }: DockControlProps) {
@@ -139,7 +145,14 @@ export function PortfolioUtilityDockV2({ homeHref = "#top" }: { homeHref?: strin
           <ArrowUp />
         </DockControl>
         <span className="pv2-utility-dock__divider" aria-hidden="true" />
-        <DockControl label={themeLabel} onClick={toggleTheme} surfaceRef={setSurfaceRef(4)}>
+        <DockControl
+          label={themeLabel}
+          onClick={(event) => {
+            const rect = event.currentTarget.getBoundingClientRect();
+            toggleTheme({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+          }}
+          surfaceRef={setSurfaceRef(4)}
+        >
           <span className="pv2-utility-dock__theme-icons">
             <Sun className="pv2-utility-dock__theme-icon pv2-utility-dock__theme-icon--sun" />
             <Moon className="pv2-utility-dock__theme-icon pv2-utility-dock__theme-icon--moon" />

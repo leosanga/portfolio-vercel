@@ -18,7 +18,13 @@ export function ProjectContinuationCardV2({
 
   return (
     <div className="pv2-continuation-card">
-      <h2 id={titleId} className="pv2-continuation-card__title">
+      {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+      <h2
+        suppressHydrationWarning
+        id={titleId}
+        className="pv2-continuation-card__title"
+        data-case-destination={href}
+      >
         {title}
       </h2>
       <p className="pv2-continuation-card__description">{description}</p>

@@ -67,7 +67,16 @@ export function CatalogProjectPanel({
           {CATALOG_CATEGORY_LABELS[entry.category]}
           {entry.kind === "case-study" ? " · Case study" : ""}
         </p>
-        <h2 id={`${id}-title`}>{entry.title}</h2>
+        {/* Native pagereveal temporarily owns this title’s attributes before hydration. */}
+        <h2
+          suppressHydrationWarning={entry.kind === "case-study"}
+          id={`${id}-title`}
+          data-case-destination={
+            entry.kind === "case-study" ? entry.record.caseStudyPath : undefined
+          }
+        >
+          {entry.title}
+        </h2>
         {"purpose" in entry ? <p className="pc-purpose">{entry.purpose}</p> : null}
       </div>
       <div className="pc-overview">
