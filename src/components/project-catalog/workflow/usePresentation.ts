@@ -20,6 +20,7 @@ export function usePresentation(
   const autoPending = useRef(true);
   const requested = useRef(false);
   const duration = graph ? presentationDuration(graph) : 0;
+  const openingMs = graph?.presentation.kind === "flow" ? graph.presentation.openingMs : 0;
   const eligible = !!graph && active && !reduced && !hidden && (visible || modal);
 
   const pause = useCallback(() => {
@@ -85,6 +86,12 @@ export function usePresentation(
     // The frame owns its starting position until playback stops; elapsed updates must not restart it.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status, eligible, duration]);
+
+  // A frame paused inside the opening reveal shows half-faded or invisible nodes (View larger
+  // pauses right after autoplay starts). Hold it at the fully revealed canvas; resume continues there.
+  useEffect(() => {
+    if (status === "paused" && elapsed < openingMs) setElapsed(openingMs);
+  }, [status, elapsed, openingMs]);
 
   const toggle = () => {
     autoPending.current = false;
