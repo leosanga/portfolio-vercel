@@ -25,6 +25,13 @@ Vercel.
 There is no documented active next feature. Establish the desired portfolio
 outcome and review the design before making a non-trivial change.
 
+For dedicated case-study creation or ending revisions, read
+`docs/CASE-STUDY-DESIGN-GUIDELINES.md` and its required closing-section gate.
+The design and execution packet must identify the substantive closing, exact
+copy, evidence and Leo's acceptance before implementation. Next-case/catalog
+navigation does not satisfy that requirement. Current dispatch belongs in
+`docs/REDESIGN-CURRENT-STATE.md`; do not infer it from older approved specs.
+
 The sibling brand repository governs portable identity decisions at working
 version `0.2.0`. This portfolio keeps authority over its layout, behavior,
 content evidence, source files, testing, and release process. Brand consultation

@@ -57,6 +57,18 @@ bun run format           # prettier --write .
 
 No test suite currently configured.
 
+## Case-study closing gate
+
+For dedicated case-study creation or ending revisions, read
+`docs/CASE-STUDY-DESIGN-GUIDELINES.md` and its required closing-section gate.
+Before implementation, the design and execution packet must name the substantive
+closing section, its exact copy, evidence and Leo's acceptance. Next-case/catalog
+navigation is separate and does not satisfy closure. Keep strong existing final
+chapters instead of adding another conclusion. Missing closing acceptance holds
+implementation. Read current dispatch in `docs/REDESIGN-CURRENT-STATE.md`; older
+spec approval does not approve a newly proposed closing. This is an editorial
+review requirement, not an automated Claude hook.
+
 ## Maintenance release checks
 
 Follow `docs/PORTFOLIO-RELEASE-PREVENTION.md` and the scoped maintenance protocol

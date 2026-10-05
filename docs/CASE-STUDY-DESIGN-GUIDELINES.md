@@ -7,7 +7,7 @@ Authority: the approved portfolio goal remains the highest project authority. An
 approved case-study specification may override these general guidelines only
 when the result still satisfies that goal and its invariants.
 
-Last updated: 2026-10-01
+Last updated: 2026-10-04
 
 ## Purpose
 
@@ -26,8 +26,17 @@ different one:
 3. Section 01, Overview, using `The problem`, `What I built`, and
    `The hard part`.
 4. Numbered sections that explain the project in the order a new visitor needs.
-5. A project-specific close that connects the evidence to a hiring or business
-   conversation.
+5. A substantive, project-specific closing section that leaves one memorable,
+   evidence-backed takeaway about the design and its business or operating meaning.
+6. Separate continuation navigation: matched compact next-case and Project Catalog
+   choices, next case left/first in circular homepage order, followed by the footer.
+
+Use the shared continuation component and the latest approved
+[continuation design](./CASE-STUDY-CONTINUATION-DESIGN.md) for this pair. Every
+dedicated project's `caseStudySummary` is one short, evidence-backed supporting
+sentence, reviewed with Leo before registration. Keep it in that project's source
+data, not a per-page next-project caption. The accepted homepage catalog bar keeps
+its own appearance; the compact pair belongs to case-study endings.
 
 The signature visual is part of the opening experience. Do not turn it into a
 numbered content section.
@@ -44,6 +53,55 @@ numbered content section.
 - Do not repeat the same promise in the hero, overview, section heading, and body.
   Each layer should add information.
 - Do not invent outcomes, metrics, production readiness, or transferability.
+
+## Required closing-section gate
+
+Leo required this standard on 2026-10-04. A final result sentence, generic
+Operational result label, next-project link or call action alone does not satisfy
+it. A strong existing final substantive chapter can satisfy it: retain Booking
+Agent's Designed to adapt without rebuilding the core and HubSpot's From sandbox
+testing to live CRM. Do not add a second conclusion to a case that already closes
+well.
+
+Before implementation, the project-specific design and separate execution packet
+must identify:
+
+- The closing heading and exact public copy.
+- The one takeaway a reader should retain, and why it adds meaning after the
+  earlier problem, decisions and proof rather than repeating the hero.
+- Evidence anchors for every substantive claim and any important limits on what
+  was implemented, tested or deployed.
+- Its place in the outline and page budget, followed by separate continuation
+  navigation. A closing may synthesize a verified consequence, adaptability,
+  operating ownership, rollout or another project-specific engineering lesson.
+- Leo's acceptance of the copy and composition, with a date/source reference in
+  current state. Missing acceptance stays pending and holds implementation.
+
+The reviewer checks that the closing connects engineering judgment to a practical
+business consequence, uses plain language, remains within the evidence, and fits
+the case's own story. Impact comes from that meaning, not an exaggerated claim,
+an oversized slogan or a repeated feature list. Avoid another routing diagram or
+test-count recap when the earlier proof already supplies it.
+
+At rendered review, confirm that the section reads as the end of the narrative,
+remains legible on a narrow screen, uses space deliberately and hands off cleanly
+to navigation. Approval of navigation cannot waive this checkpoint. A future
+project-specific exception requires explicit Leo approval; an older spec's generic
+close cannot silently override the new requirement.
+
+This is a mandatory authoring and editorial-review gate for Codex and Claude,
+surfaced in their repository entry points. It is not an automated hook or a claim
+that a script can judge impact. Record the checkpoint and its status in the
+project's execution packet before delegating implementation.
+
+The [continuation design](./CASE-STUDY-CONTINUATION-DESIGN.md) governs the browsing
+paths. The [approved Salesforce closing](./SALESFORCE-CLOSING-SECTION-DESIGN.md)
+is the first bounded application of this checkpoint. Runtime and visual acceptance
+belong to current state.
+
+Use `pv2-case-closing` on the final substantive chapter. The continuation component
+owns the single separator after it. This marker identifies structure and can be
+checked mechanically; it does not prove the takeaway's quality or approval.
 
 ## Transferable principle and platform evidence
 
@@ -161,6 +219,10 @@ topic.
   with the section heading in size or weight.
 
 ## Review standard
+
+Before building and again at rendered acceptance, complete the
+[required closing-section gate](#required-closing-section-gate) in that project's
+design and execution records. Do not substitute navigation acceptance for it.
 
 Review each case study through the relevant senior perspectives before release:
 
@@ -362,8 +424,12 @@ use`. This distinguishes observed behavior from rollout decisions without turnin
 
 ### Close as a case study, not as an agency landing page
 
-- End with the operational result established by the evidence.
-- A related project link can explain how the next case study extends the story.
+- End the substantive narrative with the project-specific takeaway required by
+  the closing gate, grounded in the evidence. An existing strong final chapter
+  can carry it without an added recap.
+- Put the approved next-case and catalog navigation after that closure. Derive
+  the next destination from the homepage's displayed dedicated cases; do not
+  attach an explanation that becomes stale when the sequence changes.
 - Do not add service-package language, a generic sales hook, or a second large call to
   action when the global navigation already supplies one.
 
