@@ -40,13 +40,14 @@ export async function collectReleaseEvidence({
     let endpointRetries = 0;
     let lastEndpointRetry = started;
     while (Date.now() - started < 10_000) {
-      const next = await tab.playwright.evaluate(expression);
+      // Check readiness first: hydration only moves forward, so a later capture cannot be stale.
       const ready = await tab.playwright.evaluate(
         () =>
           document.fonts.status === "loaded" &&
           document.querySelector(".pv2-utility-dock__rail button")?.getAttribute("aria-label") !==
             "Change color theme",
       );
+      const next = await tab.playwright.evaluate(expression);
       let reached = point === "top" ? next.scrollY <= 1 : point === "footer" && next.atBottom;
       if (selector) {
         reached = await tab.playwright
@@ -107,9 +108,14 @@ export async function collectReleaseEvidence({
             ["projects", "#projects h2"],
             ["approach", "#approach h2"],
           ]
-        : [["middle", row.pathname === "/project-catalog"
-          ? ".pc-project h2"
-          : "main > section.pv2-case-section h2"]];
+        : [
+            [
+              "middle",
+              row.pathname === "/project-catalog"
+                ? ".pc-project h2"
+                : "main > section.pv2-case-section h2",
+            ],
+          ];
       for (const [name, selector] of targets) {
         await tab.playwright.locator(selector).first().click();
         sample.scrollSamples.push({ name, ...(await settledCapture(name, selector)) });
