@@ -91,6 +91,7 @@ if (
 const editorialIds = [
   "customer-inquiry-routing",
   "quote-follow-up-reminders",
+  "blog-post-approval-and-scheduling",
   "sales-call-notes-and-next-steps",
   "enterprise-identity-systems-operations",
   "n8n-booking-agent",

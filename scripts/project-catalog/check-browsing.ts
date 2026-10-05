@@ -15,12 +15,13 @@ import type {
   WorkflowCatalogEntry,
 } from "../../src/content/project-catalog/mixed-catalog";
 
-assert.equal(PROJECT_CATALOG_ENTRIES.length, 12, "the public catalog contains twelve records");
+assert.equal(PROJECT_CATALOG_ENTRIES.length, 13, "the public catalog contains thirteen records");
 assert.deepEqual(
   PROJECT_CATALOG_ENTRIES.map((entry) => entry.id),
   [
     "customer-inquiry-routing",
     "quote-follow-up-reminders",
+    "blog-post-approval-and-scheduling",
     "sales-call-notes-and-next-steps",
     "enterprise-identity-systems-operations",
     "n8n-booking-agent",
@@ -39,8 +40,8 @@ assert.deepEqual(
     (counts, entry) => ({ ...counts, [entry.kind]: counts[entry.kind] + 1 }),
     { "case-study": 0, workflow: 0, "homepage-project": 0 },
   ),
-  { "case-study": 4, workflow: 3, "homepage-project": 5 },
-  "the public catalog contains four cases and eight inline entries",
+  { "case-study": 4, workflow: 4, "homepage-project": 5 },
+  "the public catalog contains four cases and nine inline entries",
 );
 for (const project of PROJECTS) {
   const match = PROJECT_CATALOG_ENTRIES.find((entry) => entry.id === project.slug);
@@ -62,16 +63,17 @@ assert.deepEqual(
   "homepage source projects use the approved category mapping",
 );
 
-assert.equal(matchingEntries({ view: "all", categories: [] }).length, 12);
+assert.equal(matchingEntries({ view: "all", categories: [] }).length, 13);
 assert.equal(matchingEntries({ view: "case-studies", categories: [] }).length, 4);
 const workflows = matchingEntries({ view: "workflows", categories: [] });
-assert.equal(workflows.length, 8);
+assert.equal(workflows.length, 9);
 assert.ok(
   workflows.every((entry) => entry.kind !== "case-study"),
   "Workflows excludes all cases",
 );
 assert.deepEqual(populatedCategories(), [
   "sales-leads",
+  "marketing",
   "customer-support",
   "operations",
   "reporting",
@@ -79,6 +81,10 @@ assert.deepEqual(populatedCategories(), [
 assert.deepEqual(
   matchingEntries({ view: "case-studies", categories: ["operations"] }).map((entry) => entry.id),
   ["enterprise-identity-systems-operations"],
+);
+assert.deepEqual(
+  matchingEntries({ view: "all", categories: ["marketing"] }).map((entry) => entry.id),
+  ["blog-post-approval-and-scheduling"],
 );
 
 assert.deepEqual(
@@ -104,7 +110,7 @@ assert.deepEqual(
 
 const combined = validateCatalogSearch({
   view: "workflows",
-  category: "customer-support,invalid,sales-leads,customer-support,marketing",
+  category: "customer-support,invalid,sales-leads,customer-support,finance",
 });
 assert.deepEqual(
   combined,
