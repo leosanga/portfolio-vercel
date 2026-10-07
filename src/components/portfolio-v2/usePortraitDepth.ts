@@ -7,92 +7,88 @@ type PointerSample = {
 
 export function usePortraitDepth() {
   const frameRef = useRef<HTMLDivElement>(null);
-  const animationFrame = useRef(0);
-  const bounds = useRef<DOMRect | null>(null);
-  const sample = useRef<PointerSample>({ x: 0, y: 0 });
 
   useEffect(() => {
     const element = frameRef.current;
-    if (!element) return;
-    let returnTimer = 0;
+    const grid = element?.closest<HTMLElement>(".pv2-hero__grid");
+    const hero = grid?.closest(".pv2-hero");
+    if (!element || !grid || !hero || !("IntersectionObserver" in window)) return;
+    const desktop = window.matchMedia("(min-width: 1100px)");
     const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const forcedColors = window.matchMedia("(forced-colors: active)");
+    const preferences = [desktop, finePointer, reducedMotion, forcedColors];
+    let inView = false;
+    let animationFrame = 0;
+    let sample: PointerSample = { x: 0, y: 0 };
 
-    const eligible = () => finePointer.matches && !reducedMotion.matches;
+    const eligible = () =>
+      desktop.matches &&
+      finePointer.matches &&
+      !reducedMotion.matches &&
+      !forcedColors.matches &&
+      !document.hidden &&
+      inView;
 
     const writeTransform = () => {
-      animationFrame.current = 0;
-      const rect = bounds.current;
-      if (!rect || !eligible()) return;
+      animationFrame = 0;
+      if (!eligible()) return;
+      // Measure the stable grid, never a depth-transformed child.
+      const rect = grid.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
 
-      const normalizedX = Math.max(
-        -1,
-        Math.min(1, ((sample.current.x - rect.left) / rect.width) * 2 - 1),
-      );
-      const normalizedY = Math.max(
-        -1,
-        Math.min(1, ((sample.current.y - rect.top) / rect.height) * 2 - 1),
-      );
-      const translateX = normalizedX * 4;
-      const translateY = normalizedY * 4;
-      const rotateY = normalizedX * 1.25;
-      const rotateX = normalizedY * -1.25;
-
-      element.style.transform = `perspective(900px) translate3d(${translateX}px, ${translateY}px, 0) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const normalizedX = Math.max(-1, Math.min(1, ((sample.x - rect.left) / rect.width) * 2 - 1));
+      const normalizedY = Math.max(-1, Math.min(1, ((sample.y - rect.top) / rect.height) * 2 - 1));
+      grid.style.setProperty("--pv2-depth-x", String(normalizedX));
+      grid.style.setProperty("--pv2-depth-y", String(normalizedY));
+      element.dataset["depthActive"] = "true";
+      grid.dataset["depthActive"] = "true";
     };
 
     const schedule = (event: PointerEvent) => {
-      if (!eligible()) return;
-      sample.current = { x: event.clientX, y: event.clientY };
-      if (!animationFrame.current) {
-        animationFrame.current = window.requestAnimationFrame(writeTransform);
+      if (!eligible() || event.pointerType === "touch") return;
+      sample = { x: event.clientX, y: event.clientY };
+      if (!animationFrame) {
+        animationFrame = window.requestAnimationFrame(writeTransform);
       }
-    };
-
-    const enter = (event: PointerEvent) => {
-      if (!eligible()) return;
-      if (returnTimer) window.clearTimeout(returnTimer);
-      bounds.current = element.getBoundingClientRect();
-      element.dataset["depthActive"] = "true";
-      element.style.willChange = "transform";
-      schedule(event);
     };
 
     const returnToNeutral = () => {
-      if (animationFrame.current) {
-        window.cancelAnimationFrame(animationFrame.current);
-        animationFrame.current = 0;
-      }
-      bounds.current = null;
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      animationFrame = 0;
       element.dataset["depthActive"] = "false";
-      element.style.transform = "perspective(900px) translate3d(0, 0, 0) rotateX(0) rotateY(0)";
-      returnTimer = window.setTimeout(() => {
-        if (element.dataset["depthActive"] !== "true") element.style.willChange = "auto";
-      }, 360);
+      grid.dataset["depthActive"] = "false";
+      grid.style.removeProperty("--pv2-depth-x");
+      grid.style.removeProperty("--pv2-depth-y");
     };
 
-    const handlePreferenceChange = () => {
-      if (!eligible()) returnToNeutral();
-    };
-
-    element.addEventListener("pointerenter", enter);
-    element.addEventListener("pointermove", schedule);
-    element.addEventListener("pointerleave", returnToNeutral);
+    const observer = new IntersectionObserver(([entry]) => {
+      inView = entry?.isIntersecting ?? false;
+      if (!inView) returnToNeutral();
+    });
+    observer.observe(hero);
+    grid.addEventListener("pointerenter", schedule);
+    grid.addEventListener("pointermove", schedule);
+    grid.addEventListener("pointerleave", returnToNeutral);
+    grid.addEventListener("pointercancel", returnToNeutral);
     window.addEventListener("blur", returnToNeutral);
     window.addEventListener("resize", returnToNeutral);
-    finePointer.addEventListener("change", handlePreferenceChange);
-    reducedMotion.addEventListener("change", handlePreferenceChange);
+    document.addEventListener("visibilitychange", returnToNeutral);
+    preferences.forEach((preference) => preference.addEventListener("change", returnToNeutral));
 
     return () => {
-      element.removeEventListener("pointerenter", enter);
-      element.removeEventListener("pointermove", schedule);
-      element.removeEventListener("pointerleave", returnToNeutral);
+      observer.disconnect();
+      grid.removeEventListener("pointerenter", schedule);
+      grid.removeEventListener("pointermove", schedule);
+      grid.removeEventListener("pointerleave", returnToNeutral);
+      grid.removeEventListener("pointercancel", returnToNeutral);
       window.removeEventListener("blur", returnToNeutral);
       window.removeEventListener("resize", returnToNeutral);
-      finePointer.removeEventListener("change", handlePreferenceChange);
-      reducedMotion.removeEventListener("change", handlePreferenceChange);
-      if (animationFrame.current) window.cancelAnimationFrame(animationFrame.current);
-      if (returnTimer) window.clearTimeout(returnTimer);
+      document.removeEventListener("visibilitychange", returnToNeutral);
+      preferences.forEach((preference) =>
+        preference.removeEventListener("change", returnToNeutral),
+      );
+      returnToNeutral();
     };
   }, []);
 

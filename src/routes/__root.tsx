@@ -13,6 +13,7 @@ import type { ReactNode } from "react";
 import instrumentFontUrl from "@/assets/portfolio-v2/fonts/InstrumentSans-Variable.woff2?url";
 import { PORTFOLIO_THEME_BOOTSTRAP_SCRIPT } from "@/components/portfolio-v2/usePortfolioThemeV2";
 import { CASE_NAVIGATION_TRANSITION_SCRIPT } from "@/components/portfolio-v2/caseNavigationTransition";
+import { PortfolioSmoothScrollV2 } from "@/components/portfolio-v2/PortfolioSmoothScrollV2";
 import portfolioV2Css from "@/styles/portfolio-v2.css?url";
 
 function NotFoundComponent() {
@@ -129,6 +130,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PortfolioSmoothScrollV2 />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>

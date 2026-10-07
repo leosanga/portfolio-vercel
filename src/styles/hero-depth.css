@@ -1,0 +1,44 @@
+/* One grid-scoped pointer sample drives the portrait and existing signal planes.
+   The grid, copy, caption and identity assets retain their original geometry. */
+@media (min-width: 1100px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .pv2-hero__grid .pv2-portrait-frame {
+    transform: perspective(900px)
+      translate3d(calc(var(--pv2-depth-x, 0) * 6px), calc(var(--pv2-depth-y, 0) * 6px), 0)
+      rotateX(calc(var(--pv2-depth-y, 0) * -2deg)) rotateY(calc(var(--pv2-depth-x, 0) * 2deg));
+  }
+
+  .pv2-hero-depth-plane {
+    transform-origin: 54.166667% 50%;
+    transform: perspective(1400px)
+      translate3d(
+        calc(var(--pv2-depth-x, 0) * var(--pv2-plane-translation)),
+        calc(var(--pv2-depth-y, 0) * var(--pv2-plane-translation)),
+        calc(var(--pv2-depth-y, 0) * var(--pv2-plane-depth))
+      );
+    transition: transform 360ms var(--ease-out);
+  }
+
+  .pv2-hero-depth-plane--trunk {
+    --pv2-plane-translation: 1px;
+    --pv2-plane-depth: -2px;
+  }
+
+  .pv2-hero-depth-plane--upper {
+    --pv2-plane-translation: 2px;
+    --pv2-plane-depth: -4px;
+  }
+
+  .pv2-hero-depth-plane--lower {
+    --pv2-plane-translation: 3px;
+    --pv2-plane-depth: -6px;
+  }
+
+  .pv2-hero__grid[data-depth-active="true"] .pv2-hero-depth-plane {
+    transition-duration: var(--duration-menu-out);
+    will-change: transform;
+  }
+
+  .pv2-hero__grid .pv2-portrait-frame[data-depth-active="true"] {
+    will-change: transform;
+  }
+}
