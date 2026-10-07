@@ -1,0 +1,4 @@
+/* Only active wheel interpolation owns scroll timing. Native anchors stay native. */
+html.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
