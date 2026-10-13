@@ -1,5 +1,18 @@
 @import "./hero-depth.css";
 @import "./smooth-scroll.css";
+@import "./homepage-case-presentation.css";
+
+html[data-pv2-scroll-to-top],
+html.lenis.lenis-smooth[data-pv2-scroll-to-top] {
+  scroll-behavior: smooth !important;
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html[data-pv2-scroll-to-top],
+  html.lenis.lenis-smooth[data-pv2-scroll-to-top] {
+    scroll-behavior: auto !important;
+  }
+}
 
 @font-face {
   font-family: "Instrument Sans";
@@ -3282,7 +3295,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   }
 }
 
-@media (max-width: 1023px) {
+@media (width < 1024px) {
   .pv2-approach__steps {
     grid-template-columns: 1fr;
     gap: var(--pv2-space-8);
@@ -3951,7 +3964,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 /* Keep the approved document-flow exception limited to very small, short screens. */
-@media (max-width: 359px) and (max-height: 650px) {
+@media (width < 360px) and (height < 651px) {
   .pv2-footer {
     padding-bottom: var(--pv2-space-8);
   }

@@ -11,6 +11,7 @@ import { CONTACT } from "@/content/portfolio-v2/content";
 
 import { SignalMarkV2 } from "./SignalMarkV2";
 import { usePortfolioThemeV2 } from "./usePortfolioThemeV2";
+import { useSmoothBackToTop } from "./useSmoothBackToTop";
 
 const DOCK_MAGNIFICATION_DISTANCE = 112;
 const DOCK_MAX_SCALE = 1.14;
@@ -68,6 +69,7 @@ export function PortfolioUtilityDockV2({ homeHref = "#top" }: { homeHref?: strin
   const animationFrameRef = useRef(0);
   const magnificationEnabledRef = useRef(false);
   const { theme, toggleTheme } = usePortfolioThemeV2();
+  useSmoothBackToTop();
   const themeLabel =
     theme === null ? "Change color theme" : theme === "dark" ? "Use light theme" : "Use dark theme";
 

@@ -1,0 +1,165 @@
+@media (min-width: 1100px) {
+  .pv2-case-stack.pv2-case-stack--compact :is(.pv2-featured-project, .pv2-case-study-project) {
+    overflow: hidden;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__header, .pv2-case-study-project__header) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: start;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__header, .pv2-case-study-project__header)
+    .pv2-project-index {
+    grid-column: 1;
+    margin: 0;
+    align-self: start;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__header, .pv2-case-study-project__header)
+    h3 {
+    grid-column: 1;
+    max-width: none;
+    margin: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__body, .pv2-case-study-project__body) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    padding: 16px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__summary, .pv2-case-study-project__summary) {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-project-proof-experience {
+    grid-column: 2;
+    min-width: 0;
+    align-self: start;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__summary, .pv2-case-study-project__summary)
+    > *
+    + * {
+    margin-top: 12px;
+    padding-top: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-project-field__label {
+    margin-bottom: 6px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-project-field--emphasis > p:last-child {
+    font-size: clamp(1rem, 0.25vw + 0.95rem, 1.0625rem);
+    font-weight: 590;
+    line-height: 1.65;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__footer, .pv2-case-study-project__footer) {
+    gap: 16px;
+    padding: 12px 24px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 12px 16px;
+    height: auto;
+    padding: 16px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-booking-proof__header, .pv2-booking-proof__boundary, .pv2-booking-proof__outcome) {
+    grid-column: 1;
+    margin: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof__header {
+    grid-row: 1;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof__boundary {
+    grid-row: 2;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof__outcome {
+    grid-row: 3;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-record__frame {
+    grid-row: 1 / span 3;
+    grid-column: 2;
+    align-self: start;
+    margin: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof__boundary:empty,
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof__outcome > strong:empty {
+    display: none;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: 12px 16px;
+    height: auto;
+    padding: 16px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__caption {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__canvas {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin-top: 0;
+    row-gap: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__outcome {
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+    margin-top: 0;
+    padding-top: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__caption :is(h2, h4) {
+    max-width: none;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__canvas {
+    margin-top: 12px;
+  }
+}
+
+@media (min-width: 1440px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__history {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__history {
+    display: grid;
+  }
+}
