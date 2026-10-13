@@ -1,5 +1,18 @@
 @import "./hero-depth.css";
 @import "./smooth-scroll.css";
+@import "./homepage-case-presentation.css";
+
+html[data-pv2-scroll-to-top],
+html.lenis.lenis-smooth[data-pv2-scroll-to-top] {
+  scroll-behavior: smooth !important;
+}
+
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html[data-pv2-scroll-to-top],
+  html.lenis.lenis-smooth[data-pv2-scroll-to-top] {
+    scroll-behavior: auto !important;
+  }
+}
 
 @font-face {
   font-family: "Instrument Sans";
