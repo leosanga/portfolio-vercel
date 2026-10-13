@@ -48,6 +48,8 @@ The first actual production-code rendering exposed an import-order difference fr
 
 Actual back-to-top activation from the9441 px footer retained the native#top fragment, enabled smooth behavior, and then reached scrollY0 with the temporary attribute cleared. Frozen installation, TypeScript and five-file normalized lint pass. Existing graph/presentation/browsing/navigation/Identity checks, twelve release contract/collector tests and local catalog SSR/alias/page checks pass. The full production build passes; complete exact-preview evidence and canonical verification still follow this receipt. Physical touch/preferences/200% zoom are not certified by these checks. Generated route output is excluded from the commit.
 
+The first exact-preview19-sample gate failed two unchanged boundary conditions. Root reproduced both on immutable production: innerWidth1023 while max-width1023 is false, and359 x650 while max-width359/max-height650 are false. The browser reports rounded integer viewport sizes while matching fractional CSS sizes. Root corrected only the Approach query to width <1024 and the tiny dock exception to width <360 / height <651. This implements the existing locked breakpoints, rather than changing their design or weakening the validator. Other1023/359 rules and hero styles remain unchanged. The failing artifact is retained separately; a new candidate requires complete fresh evidence. Hosted catalog SSR/alias/page checks also pass after enabling network access for the check command.
+
 Decisions this turn:
 
 - Release only approved adaptive projects and native smooth back-to-top.
