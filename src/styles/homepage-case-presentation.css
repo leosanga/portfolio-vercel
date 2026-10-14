@@ -1,6 +1,13 @@
-@media (min-width: 1100px) {
+@media (width >= 1024px) {
   .pv2-case-stack.pv2-case-stack--compact :is(.pv2-featured-project, .pv2-case-study-project) {
     overflow: hidden;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact[data-enhanced="true"]
+    .pv2-case-stack__slot[data-covered="true"]
+    :is(.pv2-featured-project__header, .pv2-case-study-project__header)
+    h3 {
+    opacity: 0;
   }
 
   .pv2-case-stack.pv2-case-stack--compact
@@ -72,7 +79,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (width >= 1024px) {
   .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof {
     display: grid;
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -152,9 +159,128 @@
   }
 }
 
-@media (min-width: 1440px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+@media (width >= 1024px) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
   .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__history {
     display: none;
+  }
+}
+
+/* Smaller windows keep complete proof and readable type; only composition tightens. */
+@media (1024px <= width < 1440px) {
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(
+      .pv2-featured-project__header,
+      .pv2-case-study-project__header,
+      .pv2-featured-project__body,
+      .pv2-case-study-project__body
+    ) {
+    padding: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__body, .pv2-case-study-project__body) {
+    gap: 20px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-project-proof-experience {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__summary, .pv2-case-study-project__summary)
+    > *
+    + * {
+    margin-top: 8px;
+    padding-top: 8px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-featured-project__footer, .pv2-case-study-project__footer) {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    padding: 8px 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-project-stack {
+    min-width: 0;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(.pv2-booking-proof, .pv2-salesforce-routing, .pv2-hubspot-reconciliation) {
+    padding: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-proof {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 8px 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-record__meta {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    padding-inline: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-record {
+    padding-inline: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-booking-record__row {
+    min-height: 2.75rem;
+    grid-template-columns: minmax(5.75rem, 0.8fr) minmax(0, 1.2fr);
+    gap: 8px;
+    padding-block: 0.5rem;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation {
+    grid-template-columns: minmax(0, 0.65fr) minmax(5rem, 0.45fr) minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__canvas {
+    display: contents;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__assigned {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__routes {
+    grid-column: 3;
+    grid-row: 1;
+    gap: 8px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__comparison {
+    grid-column: 2 / 4;
+    grid-row: 2;
+    grid-template-columns: minmax(0, 1fr) minmax(5.5rem, 0.8fr) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact
+    :is(
+      .pv2-hubspot-reconciliation__assigned,
+      .pv2-hubspot-reconciliation__routes > section,
+      .pv2-hubspot-reconciliation__earlier,
+      .pv2-hubspot-reconciliation__current,
+      .pv2-hubspot-reconciliation__correction
+    ) {
+    padding: 8px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-hubspot-reconciliation__outcome {
+    gap: 8px;
+    margin-top: 0;
+    padding-top: 8px;
+  }
+
+  .pv2-case-stack.pv2-case-stack--compact .pv2-salesforce-routing__canvas {
+    gap: 12px;
+    margin-top: 8px;
   }
 }
 
