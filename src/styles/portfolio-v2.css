@@ -11424,6 +11424,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 .pv2-case-stack[data-enhanced="true"] .pv2-case-stack__slot {
   position: sticky;
   top: calc(var(--pv2-case-stack-top) + var(--pv2-case-stack-index) * var(--pv2-case-stack-step));
+  translate: 0 var(--pv2-case-stack-exit, 0px);
   z-index: calc(var(--pv2-case-stack-index) + 1);
 }
 
