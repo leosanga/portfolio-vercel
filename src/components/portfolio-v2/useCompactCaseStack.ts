@@ -1,4 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import {
+  calculateSharedStackExitOffsets,
+  restoreNativeStackRects,
+  type StackExitRect,
+} from "./case-stack-exit";
 
 const MIN_WIDTH = 1100;
 const HEADER_GAP = 16;
@@ -28,7 +33,7 @@ const INITIAL_STATE: StackState = {
   holds: [],
 };
 
-function pinnedForeground(rects: DOMRect[], top: number, step: number) {
+function pinnedForeground(rects: StackExitRect[], top: number, step: number) {
   let foreground = -1;
   rects.forEach((rect, index) => {
     if (rect.top <= top + index * step + PIN_TOLERANCE) {
@@ -38,7 +43,7 @@ function pinnedForeground(rects: DOMRect[], top: number, step: number) {
   return foreground;
 }
 
-function foregroundOwner(rects: DOMRect[], top: number, bottom: number, step: number) {
+function foregroundOwner(rects: StackExitRect[], top: number, bottom: number, step: number) {
   let owner = pinnedForeground(rects, top, step);
   if (owner < 0) owner = 0;
   const current = rects[owner];
@@ -75,27 +80,51 @@ export function useCompactCaseStack() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const forced = window.matchMedia("(forced-colors: active)");
     const supported =
-      "CSS" in window && CSS.supports("position", "sticky") && "ResizeObserver" in window;
+      "CSS" in window &&
+      CSS.supports("position", "sticky") &&
+      CSS.supports("translate", "0 1px") &&
+      "ResizeObserver" in window;
     let fontsReady = !document.fonts;
     let disposed = false;
     let keyboardFocus = false;
     let correctionPending = false;
     let appliedEnhanced = false;
+    let appliedTop = 0;
     let appliedStep = 0;
+    let appliedRootHeight = 0;
     let appliedHolds: number[] = [];
+    let appliedHeights: number[] = [];
+    let appliedExitOffsets = slots.map(() => 0);
     const depths: (string | undefined)[] = slots.map(() => undefined);
     let frame = 0;
     let focusFrame = 0;
+
+    const writeExitOffsets = (offsets: readonly number[]) => {
+      slots.forEach((slot, index) => {
+        const offset = offsets[index] ?? 0;
+        if (Object.is(appliedExitOffsets[index], offset)) return;
+        if (offset === 0) slot.style.removeProperty("--pv2-case-stack-exit");
+        else slot.style.setProperty("--pv2-case-stack-exit", offset + "px");
+        appliedExitOffsets[index] = offset;
+      });
+    };
 
     const measure = () => {
       frame = 0;
       if (disposed) return;
       const top = (header?.getBoundingClientRect().height ?? 0) + HEADER_GAP;
+      const rootRect = root.getBoundingClientRect();
       const clearance = Math.max(
         MIN_BOTTOM_CLEARANCE,
         (dock?.getBoundingClientRect().height ?? 0) + DOCK_GAP,
       );
-      const rects = slots.map((slot) => slot.getBoundingClientRect());
+      const measuredRects = slots.map((slot) => slot.getBoundingClientRect());
+      const enhancementApplied = root.getAttribute("data-enhanced") === "true";
+      const nativeRects = restoreNativeStackRects(
+        measuredRects,
+        appliedExitOffsets,
+        enhancementApplied,
+      );
       const bands = slots.map((slot) => {
         const article = slot.querySelector<HTMLElement>(":scope > article");
         const label = article?.querySelector<HTMLElement>(".pv2-project-index");
@@ -107,18 +136,18 @@ export function useCompactCaseStack() {
       const validBands =
         bands.length > 0 && bands.every((band) => Number.isFinite(band) && band > 0);
       const edgeStep = validBands ? Math.max(...bands) : 0;
-      const largest = Math.max(...rects.map((rect) => rect.height));
+      const largest = Math.max(...measuredRects.map((rect) => rect.height));
       const staticProofs = reduced.matches || forced.matches;
       const enhanced =
         supported &&
         fontsReady &&
         validBands &&
-        rects.every((rect) => Number.isFinite(rect.height) && rect.height > edgeStep) &&
+        measuredRects.every((rect) => Number.isFinite(rect.height) && rect.height > edgeStep) &&
         !staticProofs &&
         !keyboardFocus &&
         window.innerWidth >= MIN_WIDTH &&
         largest + top + (slots.length - 1) * edgeStep + clearance <= window.innerHeight;
-      const holds = rects.map((rect, index) =>
+      const holds = measuredRects.map((rect, index) =>
         enhanced
           ? Math.ceil(
               Math.max(0, window.innerHeight - (top + index * edgeStep + rect.height)) +
@@ -128,21 +157,41 @@ export function useCompactCaseStack() {
       );
       const geometryChanged =
         enhanced !== appliedEnhanced ||
+        top !== appliedTop ||
         edgeStep !== appliedStep ||
+        rootRect.height !== appliedRootHeight ||
         holds.length !== appliedHolds.length ||
-        holds.some((hold, index) => hold !== appliedHolds[index]);
+        holds.some((hold, index) => hold !== appliedHolds[index]) ||
+        measuredRects.length !== appliedHeights.length ||
+        measuredRects.some((rect, index) => rect.height !== appliedHeights[index]);
+      const exitOffsets =
+        enhanced && !geometryChanged && enhancementApplied
+          ? calculateSharedStackExitOffsets(nativeRects, top, edgeStep, rootRect.bottom)
+          : nativeRects.map(() => 0);
+      if (!enhanced || geometryChanged) writeExitOffsets(nativeRects.map(() => 0));
+      else writeExitOffsets(exitOffsets);
+      const correctedRects = nativeRects.map((rect, index) => {
+        const offset = !enhanced || geometryChanged ? 0 : (exitOffsets[index] ?? 0);
+        return {
+          top: rect.top + offset,
+          bottom: rect.bottom + offset,
+          height: rect.height,
+        };
+      });
       const owner =
         enhanced && !geometryChanged && !document.hidden
-          ? foregroundOwner(rects, top, window.innerHeight - clearance, edgeStep)
+          ? foregroundOwner(correctedRects, top, window.innerHeight - clearance, edgeStep)
           : -1;
       const coveredPrefix =
-        enhanced && !geometryChanged ? Math.max(0, pinnedForeground(rects, top, edgeStep)) : 0;
-      const pairProgress = rects
+        enhanced && !geometryChanged
+          ? Math.max(0, pinnedForeground(correctedRects, top, edgeStep))
+          : 0;
+      const pairProgress = correctedRects
         .slice(0, -1)
         .map((rect, index) =>
           Math.min(
             1,
-            Math.max(0, (rect.bottom - rects[index + 1]!.top) / (rect.height - edgeStep)),
+            Math.max(0, (rect.bottom - correctedRects[index + 1]!.top) / (rect.height - edgeStep)),
           ),
         );
       const nextDepths = slots.map((_, index) =>
@@ -182,10 +231,14 @@ export function useCompactCaseStack() {
       );
       if (geometryChanged) {
         appliedEnhanced = enhanced;
+        appliedTop = top;
         appliedStep = edgeStep;
+        appliedRootHeight = rootRect.height;
         appliedHolds = holds;
+        appliedHeights = measuredRects.map((rect) => rect.height);
         schedule();
       }
+      if (enhanced && !enhancementApplied) schedule();
       if (correctionPending) {
         correctionPending = false;
         window.cancelAnimationFrame(focusFrame);
@@ -232,7 +285,11 @@ export function useCompactCaseStack() {
       observer?.disconnect();
       window.cancelAnimationFrame(frame);
       window.cancelAnimationFrame(focusFrame);
-      slots.forEach((slot) => slot.style.removeProperty("--pv2-case-stack-depth"));
+      slots.forEach((slot) => {
+        slot.style.removeProperty("--pv2-case-stack-depth");
+        slot.style.removeProperty("--pv2-case-stack-exit");
+      });
+      appliedExitOffsets = slots.map(() => 0);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
       document.removeEventListener("visibilitychange", schedule);
