@@ -4,12 +4,11 @@ import {
   restoreNativeStackRects,
   type StackExitRect,
 } from "./case-stack-exit";
-
-const MIN_WIDTH = 1100;
-const HEADER_GAP = 16;
-const LABEL_CLEARANCE = 12;
-const MIN_BOTTOM_CLEARANCE = 88;
-const DOCK_GAP = 32;
+import {
+  CASE_STACK_CLEARANCES,
+  CASE_STACK_WIDTH_QUERY,
+  measureCaseStackFit,
+} from "./case-stack-fit";
 const PIN_TOLERANCE = 1;
 
 type StackState = {
@@ -79,6 +78,7 @@ export function useCompactCaseStack() {
     const dock = document.querySelector<HTMLElement>(".pv2-utility-dock");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
     const forced = window.matchMedia("(forced-colors: active)");
+    const width = window.matchMedia(CASE_STACK_WIDTH_QUERY);
     const supported =
       "CSS" in window &&
       CSS.supports("position", "sticky") &&
@@ -112,46 +112,40 @@ export function useCompactCaseStack() {
     const measure = () => {
       frame = 0;
       if (disposed) return;
-      const top = (header?.getBoundingClientRect().height ?? 0) + HEADER_GAP;
-      const rootRect = root.getBoundingClientRect();
-      const clearance = Math.max(
-        MIN_BOTTOM_CLEARANCE,
-        (dock?.getBoundingClientRect().height ?? 0) + DOCK_GAP,
-      );
-      const measuredRects = slots.map((slot) => slot.getBoundingClientRect());
+      const fitGeometry = measureCaseStackFit(root, header, dock, window.innerHeight);
+      const top =
+        fitGeometry?.top ??
+        (header?.getBoundingClientRect().height ?? 0) + CASE_STACK_CLEARANCES.headerGap;
+      const clearance =
+        fitGeometry?.clearance ??
+        Math.max(
+          CASE_STACK_CLEARANCES.minimumBottomClearance,
+          (dock?.getBoundingClientRect().height ?? 0) + CASE_STACK_CLEARANCES.dockGap,
+        );
+      const measuredRects = fitGeometry?.rects ?? [];
       const enhancementApplied = root.getAttribute("data-enhanced") === "true";
       const nativeRects = restoreNativeStackRects(
         measuredRects,
         appliedExitOffsets,
         enhancementApplied,
       );
-      const bands = slots.map((slot) => {
-        const article = slot.querySelector<HTMLElement>(":scope > article");
-        const label = article?.querySelector<HTMLElement>(".pv2-project-index");
-        if (!article || !label || label.offsetParent !== article) return NaN;
-        return Math.ceil(
-          label.offsetTop + label.offsetHeight + article.clientTop + LABEL_CLEARANCE,
-        );
-      });
-      const validBands =
-        bands.length > 0 && bands.every((band) => Number.isFinite(band) && band > 0);
-      const edgeStep = validBands ? Math.max(...bands) : 0;
-      const largest = Math.max(...measuredRects.map((rect) => rect.height));
+      const edgeStep = fitGeometry?.edgeStep ?? 0;
       const staticProofs = reduced.matches || forced.matches;
       const enhanced =
         supported &&
         fontsReady &&
-        validBands &&
-        measuredRects.every((rect) => Number.isFinite(rect.height) && rect.height > edgeStep) &&
+        fitGeometry !== null &&
+        fitGeometry.fits &&
         !staticProofs &&
         !keyboardFocus &&
-        window.innerWidth >= MIN_WIDTH &&
-        largest + top + (slots.length - 1) * edgeStep + clearance <= window.innerHeight;
-      const holds = measuredRects.map((rect, index) =>
+        width.matches;
+      const holds = slots.map((_, index) =>
         enhanced
           ? Math.ceil(
-              Math.max(0, window.innerHeight - (top + index * edgeStep + rect.height)) +
-                Math.min(480, Math.max(240, window.innerHeight * 0.35)),
+              Math.max(
+                0,
+                window.innerHeight - (top + index * edgeStep + (fitGeometry?.heights[index] ?? 0)),
+              ) + Math.min(480, Math.max(240, window.innerHeight * 0.35)),
             )
           : 0,
       );
@@ -159,14 +153,14 @@ export function useCompactCaseStack() {
         enhanced !== appliedEnhanced ||
         top !== appliedTop ||
         edgeStep !== appliedStep ||
-        rootRect.height !== appliedRootHeight ||
+        (fitGeometry?.rootHeight ?? 0) !== appliedRootHeight ||
         holds.length !== appliedHolds.length ||
         holds.some((hold, index) => hold !== appliedHolds[index]) ||
         measuredRects.length !== appliedHeights.length ||
         measuredRects.some((rect, index) => rect.height !== appliedHeights[index]);
       const exitOffsets =
         enhanced && !geometryChanged && enhancementApplied
-          ? calculateSharedStackExitOffsets(nativeRects, top, edgeStep, rootRect.bottom)
+          ? calculateSharedStackExitOffsets(nativeRects, top, edgeStep, fitGeometry!.rootBottom)
           : nativeRects.map(() => 0);
       if (!enhanced || geometryChanged) writeExitOffsets(nativeRects.map(() => 0));
       else writeExitOffsets(exitOffsets);
@@ -233,7 +227,7 @@ export function useCompactCaseStack() {
         appliedEnhanced = enhanced;
         appliedTop = top;
         appliedStep = edgeStep;
-        appliedRootHeight = rootRect.height;
+        appliedRootHeight = fitGeometry?.rootHeight ?? 0;
         appliedHolds = holds;
         appliedHeights = measuredRects.map((rect) => rect.height);
         schedule();
@@ -267,6 +261,7 @@ export function useCompactCaseStack() {
     });
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", schedule, { passive: true });
+    width.addEventListener("change", schedule);
     document.addEventListener("visibilitychange", schedule);
     root.addEventListener("focusin", onFocusIn);
     root.addEventListener("focusout", onFocusOut);
@@ -292,6 +287,7 @@ export function useCompactCaseStack() {
       appliedExitOffsets = slots.map(() => 0);
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
+      width.removeEventListener("change", schedule);
       document.removeEventListener("visibilitychange", schedule);
       root.removeEventListener("focusin", onFocusIn);
       root.removeEventListener("focusout", onFocusOut);
