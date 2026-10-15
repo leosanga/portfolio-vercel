@@ -228,7 +228,8 @@
   }
 
   .pv2-case-stack.pv2-case-stack--compact .pv2-booking-record__row {
-    min-height: 2.75rem;
+    /* Keep pending and resolved two-line values from changing the stack geometry. */
+    min-height: 3.3125rem;
     grid-template-columns: minmax(5.75rem, 0.8fr) minmax(0, 1.2fr);
     gap: 8px;
     padding-block: 0.5rem;
