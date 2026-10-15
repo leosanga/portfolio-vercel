@@ -5468,7 +5468,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
   .pv2-featured-project__body:not(.pv2-featured-project__body--with-proof)
     .pv2-featured-project__summary,
   .pv2-project-proof-experience {
-    grid-column: 1 / 13;
+    grid-column: 1 / -1;
   }
 
   .pv2-project-proof-experience {
@@ -7183,8 +7183,13 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 }
 
 .pv2-case-study-project__body .pv2-project-proof-experience {
-  grid-column: 6 / 13;
   min-width: 0;
+}
+
+@media (width > 1099px) {
+  .pv2-case-study-project__body .pv2-project-proof-experience {
+    grid-column: 6 / 13;
+  }
 }
 
 .pv2-hubspot-accountability-map {
