@@ -10,4 +10,6 @@ export const GRAPH_LOADERS: Readonly<Record<string, () => Promise<CatalogGraph>>
     import("./entries/sales-call-notes-and-next-steps/graph").then((module) => module.GRAPH),
   "blog-post-approval-and-scheduling": () =>
     import("./entries/blog-post-approval-and-scheduling/graph").then((module) => module.GRAPH),
+  "internal-knowledge-assistant": () =>
+    import("./entries/internal-knowledge-assistant/graph").then((module) => module.GRAPH),
 };

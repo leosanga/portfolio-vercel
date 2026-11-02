@@ -6,9 +6,9 @@ assert.equal(response.status, 200);
 const html = await response.text();
 assert.equal((html.match(/class="pc-project"/g) ?? []).length, 6);
 assert.equal((html.match(/<details /g) ?? []).length, 6);
-assert.equal((html.match(/Read case study/g) ?? []).length, 2);
-assert.equal((html.match(/class="pc-static-phases"/g) ?? []).length, 4);
-for (const signature of ["pv2-booking-proof", "pv2-identity-signature"]) {
+assert.equal((html.match(/Read case study/g) ?? []).length, 1);
+assert.equal((html.match(/class="pc-static-phases"/g) ?? []).length, 5);
+for (const signature of ["pv2-identity-signature"]) {
   assert.ok(html.includes(signature), `${signature} is present before JavaScript`);
 }
 assert.ok(!html.includes("<iframe"), "the catalog consumes actual React components");
@@ -20,18 +20,18 @@ assert.ok(!html.includes("Clear filters"), "default browsing does not show a res
 const cases = await fetch(`${base}/project-catalog?view=case-studies`);
 assert.equal((await cases.text()).match(/class="pc-project"/g)?.length, 4);
 for (const [query, count, caseCount, workflowCount, homepageCount] of [
-  ["view=workflows", 6, 0, 4, 2],
+  ["view=workflows", 6, 0, 5, 1],
   ["category=customer-support", 2, 0, 1, 1],
   ["category=marketing", 1, 0, 1, 0],
   ["view=workflows&category=sales-leads", 4, 0, 2, 2],
   ["view=workflows&category=customer-support,sales-leads", 6, 0, 3, 3],
   ["view=case-studies&category=customer-support,sales-leads", 3, 3, 0, 0],
   ["view=case-studies&category=customer-support", 0, 0, 0, 0],
-  ["category=operations", 2, 1, 0, 1],
+  ["category=operations", 3, 1, 1, 1],
   ["view=case-studies&category=operations", 1, 1, 0, 0],
-  ["view=workflows&category=operations", 1, 0, 0, 1],
+  ["view=workflows&category=operations", 2, 0, 1, 1],
   ["category=reporting", 1, 0, 0, 1],
-  ["view=invalid&category=unknown", 6, 2, 4, 0],
+  ["view=invalid&category=unknown", 6, 1, 5, 0],
   ["view=workflows&category=invalid,customer-support", 2, 0, 1, 1],
 ] as const) {
   const filtered = await fetch(`${base}/project-catalog?${query}`);

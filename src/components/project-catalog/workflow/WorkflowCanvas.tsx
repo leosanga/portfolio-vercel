@@ -233,7 +233,7 @@ export function WorkflowCanvas({
           {graph.edges.map((edge) => {
             const state = story.edges[edge.id]!;
             const source = graph.nodes.find((node) => node.id === edge.from.node)!;
-            const configuration = edge.kind === "ai_languageModel";
+            const configuration = edge.kind !== "main";
             const error =
               source.errorOutput &&
               edge.from.index ===
@@ -312,8 +312,8 @@ export function WorkflowCanvas({
       </div>
       <div className="pc-canvas-legend">
         <span>Execution route</span>
-        {graph.edges.some((edge) => edge.kind === "ai_languageModel") && (
-          <span className="is-dashed">Static model / error relationship</span>
+        {graph.edges.some((edge) => edge.kind !== "main") && (
+          <span className="is-dashed">Static AI configuration / error relationship</span>
         )}
       </div>
     </div>

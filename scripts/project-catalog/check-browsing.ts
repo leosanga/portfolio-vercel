@@ -15,10 +15,11 @@ import type {
   WorkflowCatalogEntry,
 } from "../../src/content/project-catalog/mixed-catalog";
 
-assert.equal(PROJECT_CATALOG_ENTRIES.length, 13, "the public catalog contains thirteen records");
+assert.equal(PROJECT_CATALOG_ENTRIES.length, 14, "the public catalog contains fourteen records");
 assert.deepEqual(
   PROJECT_CATALOG_ENTRIES.map((entry) => entry.id),
   [
+    "internal-knowledge-assistant",
     "customer-inquiry-routing",
     "quote-follow-up-reminders",
     "blog-post-approval-and-scheduling",
@@ -40,8 +41,8 @@ assert.deepEqual(
     (counts, entry) => ({ ...counts, [entry.kind]: counts[entry.kind] + 1 }),
     { "case-study": 0, workflow: 0, "homepage-project": 0 },
   ),
-  { "case-study": 4, workflow: 4, "homepage-project": 5 },
-  "the public catalog contains four cases and nine inline entries",
+  { "case-study": 4, workflow: 5, "homepage-project": 5 },
+  "the public catalog contains four cases and ten inline entries",
 );
 for (const project of PROJECTS) {
   const match = PROJECT_CATALOG_ENTRIES.find((entry) => entry.id === project.slug);
@@ -63,10 +64,10 @@ assert.deepEqual(
   "homepage source projects use the approved category mapping",
 );
 
-assert.equal(matchingEntries({ view: "all", categories: [] }).length, 13);
+assert.equal(matchingEntries({ view: "all", categories: [] }).length, 14);
 assert.equal(matchingEntries({ view: "case-studies", categories: [] }).length, 4);
 const workflows = matchingEntries({ view: "workflows", categories: [] });
-assert.equal(workflows.length, 9);
+assert.equal(workflows.length, 10);
 assert.ok(
   workflows.every((entry) => entry.kind !== "case-study"),
   "Workflows excludes all cases",
