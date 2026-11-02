@@ -104,6 +104,13 @@ export function CatalogProjectPanel({
           if (next === open) return;
           if (next) setGeneration((current) => current + 1);
           onToggle(next);
+          if (next) {
+            requestAnimationFrame(() => {
+              if (detailsRef.current?.open) {
+                summaryRef.current?.scrollIntoView({ block: "center", behavior: "instant" });
+              }
+            });
+          }
         }}
       >
         <summary ref={summaryRef} aria-label={`See how ${entry.title} works`}>
