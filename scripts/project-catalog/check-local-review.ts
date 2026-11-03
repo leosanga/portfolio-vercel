@@ -20,7 +20,7 @@ assert.ok(!html.includes("Clear filters"), "default browsing does not show a res
 const cases = await fetch(`${base}/project-catalog?view=case-studies`);
 assert.equal((await cases.text()).match(/class="pc-project"/g)?.length, 4);
 for (const [query, count, caseCount, workflowCount, homepageCount] of [
-  ["view=workflows", 6, 0, 5, 1],
+  ["view=workflows", 6, 0, 6, 0],
   ["category=customer-support", 2, 0, 1, 1],
   ["category=marketing", 1, 0, 1, 0],
   ["view=workflows&category=sales-leads", 4, 0, 2, 2],
@@ -30,7 +30,7 @@ for (const [query, count, caseCount, workflowCount, homepageCount] of [
   ["category=operations", 3, 1, 1, 1],
   ["view=case-studies&category=operations", 1, 1, 0, 0],
   ["view=workflows&category=operations", 2, 0, 1, 1],
-  ["category=reporting", 1, 0, 0, 1],
+  ["category=reporting", 3, 0, 2, 1],
   ["view=invalid&category=unknown", 6, 1, 5, 0],
   ["view=workflows&category=invalid,customer-support", 2, 0, 1, 1],
 ] as const) {
@@ -75,7 +75,19 @@ for (const [query, count, caseCount, workflowCount, homepageCount] of [
   }
   if (query === "category=reporting") {
     assert.ok(body.includes("pv2-reporting-architecture"));
-    assert.ok(!body.includes('class="pc-purpose"'), "standard projects omit unsupported purpose");
+    // Two Make workflow panels carry a purpose now, so the homepage panel is checked on its own.
+    const panels = body.split('class="pc-project"').slice(1);
+    const homepage = panels.find((panel) => panel.includes("pv2-reporting-architecture"));
+    assert.ok(homepage, "the homepage reporting panel renders");
+    assert.ok(
+      !homepage.includes('class="pc-purpose"'),
+      "standard projects omit unsupported purpose",
+    );
+    assert.equal(
+      panels.filter((panel) => panel.includes('class="pc-purpose"')).length,
+      2,
+      "both Make reporting workflows show their purpose",
+    );
   }
 }
 const alias = await fetch(`${base}/projects?view=case-studies&category=sales-leads`, {

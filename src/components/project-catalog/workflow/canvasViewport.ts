@@ -21,7 +21,9 @@ export function zoomCanvasAt(
   anchor = { x: 0.5, y: 0.5 },
 ): CanvasViewport {
   if (!Number.isFinite(factor) || factor <= 0) return view;
-  const scale = Math.max(MIN_CANVAS_SCALE, Math.min(MAX_CANVAS_SCALE, view.scale * factor));
+  // Fit can sit below the floor for a wide graph on a phone; zooming out then holds at Fit.
+  const floor = Math.min(MIN_CANVAS_SCALE, view.scale);
+  const scale = Math.max(floor, Math.min(MAX_CANVAS_SCALE, view.scale * factor));
   return {
     ...view,
     scale,

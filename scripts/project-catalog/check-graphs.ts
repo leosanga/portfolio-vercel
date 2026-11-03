@@ -14,11 +14,19 @@ import {
 import type {
   AssemblyBeat,
   CatalogGraph,
+  N8nGraph,
   ConnectionKind,
   FlowBeat,
   GraphNode,
   PortRef,
 } from "../../src/content/project-catalog/types";
+import {
+  MAKE_INVALID,
+  MAKE_PHASES,
+  MAKE_VALID,
+  MAKE_VALID_LAYOUT,
+  makeGraphProblems,
+} from "./make-graph-rules";
 
 type Side = "inputs" | "outputs";
 
@@ -108,7 +116,7 @@ function inputCountProblems(node: GraphNode): string[] {
   return valid ? [] : [`inputCount on ${node.id} must be ${MIN_INPUTS} to ${MAX_INPUTS}`];
 }
 
-function unconnectedInputProblems(graph: CatalogGraph): string[] {
+function unconnectedInputProblems(graph: N8nGraph): string[] {
   const problems: string[] = [];
   for (const node of graph.nodes) {
     if (!definitionOf(node)?.variableInputs || inputCountProblems(node).length) continue;
@@ -123,7 +131,7 @@ function unconnectedInputProblems(graph: CatalogGraph): string[] {
 }
 
 // Variable-input nodes (Merge) reachable along main edges, the start node included.
-function mergesReachableFrom(graph: CatalogGraph, start: string): Set<string> {
+function mergesReachableFrom(graph: N8nGraph, start: string): Set<string> {
   const reached = new Set<string>();
   const pending = [start];
   while (pending.length) {
@@ -139,7 +147,7 @@ function mergesReachableFrom(graph: CatalogGraph, start: string): Set<string> {
 }
 
 // Parallel branches must meet again at one Merge, or a later step runs once per branch.
-function fanOutProblems(graph: CatalogGraph): string[] {
+function fanOutProblems(graph: N8nGraph): string[] {
   const targets = new Map<string, string[]>();
   for (const edge of graph.edges.filter((e) => e.kind === "main")) {
     const key = `${edge.from.node} output ${edge.from.index}`;
@@ -154,7 +162,7 @@ function fanOutProblems(graph: CatalogGraph): string[] {
     .map(([key]) => `fan-out from ${key} does not rejoin at one Merge`);
 }
 
-export function graphProblems(graph: CatalogGraph, phaseIds: readonly string[]): string[] {
+export function graphProblems(graph: N8nGraph, phaseIds: readonly string[]): string[] {
   const problems: string[] = [];
   const seen = new Set<string>();
   for (const { id } of [...graph.nodes, ...graph.edges, ...graph.annotations]) {
@@ -265,7 +273,7 @@ const beat = (phases: string[], nodes: FlowBeat["nodes"], edges: FlowBeat["edges
   edges,
 });
 const THREE = ["P1", "P2", "P3"];
-const BASE: CatalogGraph = {
+const BASE: N8nGraph = {
   entryId: "fixture",
   nodes: [
     { id: "T", label: "Trigger", type: "n8n-nodes-base.webhook", version: 2.1, x: 0, y: 0 },
@@ -323,8 +331,8 @@ const BASE: CatalogGraph = {
     ending: "a1",
   },
 };
-const variant = (changes: Partial<CatalogGraph>): CatalogGraph => ({ ...BASE, ...changes });
-const flow = (beats: FlowBeat[], ending = "a1"): CatalogGraph["presentation"] => ({
+const variant = (changes: Partial<N8nGraph>): N8nGraph => ({ ...BASE, ...changes });
+const flow = (beats: FlowBeat[], ending = "a1"): N8nGraph["presentation"] => ({
   kind: "flow",
   openingMs: 0,
   beats,
@@ -332,7 +340,7 @@ const flow = (beats: FlowBeat[], ending = "a1"): CatalogGraph["presentation"] =>
 });
 
 // A parallel read: A fans out to a CRM and a database read that rejoin at one Merge.
-const PARALLEL: CatalogGraph = {
+const PARALLEL: N8nGraph = {
   entryId: "fixture",
   nodes: [
     { id: "T", label: "Trigger", type: "n8n-nodes-base.webhook", version: 2.1, x: 0, y: 0 },
@@ -399,14 +407,14 @@ const PARALLEL: CatalogGraph = {
     ending: "a1",
   },
 };
-const parallel = (changes: Partial<CatalogGraph>): CatalogGraph => ({ ...PARALLEL, ...changes });
-const withNode = (id: string, changes: Partial<GraphNode>): CatalogGraph =>
+const parallel = (changes: Partial<N8nGraph>): N8nGraph => ({ ...PARALLEL, ...changes });
+const withNode = (id: string, changes: Partial<GraphNode>): N8nGraph =>
   parallel({
     nodes: PARALLEL.nodes.map((node) => (node.id === id ? { ...node, ...changes } : node)),
   });
 const withoutEdge = (id: string) => PARALLEL.edges.filter((edge) => edge.id !== id);
 
-const VALID: [string, CatalogGraph, readonly string[]][] = [
+const VALID: [string, N8nGraph, readonly string[]][] = [
   ["parallel read, Merge, alternatives and a grouped beat", PARALLEL, THREE],
   [
     "two business phases",
@@ -482,7 +490,7 @@ const VALID: [string, CatalogGraph, readonly string[]][] = [
   ],
 ];
 
-const INVALID: [string, CatalogGraph, string, (readonly string[])?][] = [
+const INVALID: [string, N8nGraph, string, (readonly string[])?][] = [
   [
     "duplicate id",
     variant({ nodes: [...BASE.nodes, { ...BASE.nodes[1]!, x: 1 }] }),
@@ -496,7 +504,7 @@ const INVALID: [string, CatalogGraph, string, (readonly string[])?][] = [
         // A name no design will pin, so pinning a real node later cannot break this case.
         { id: "S", label: "Not pinned", type: "n8n-nodes-base.notPinned", version: 2, x: 0, y: 0 },
       ],
-    } as unknown as Partial<CatalogGraph>),
+    } as unknown as Partial<N8nGraph>),
     "unknown type",
   ],
   [
@@ -687,6 +695,17 @@ for (const [name, layout, expected] of OPENING_INVALID) {
 }
 console.log(`opening fixtures: 1 valid accepted, ${OPENING_INVALID.length} invalid rejected`);
 
+const makeValid = makeGraphProblems(MAKE_VALID, MAKE_PHASES, MAKE_VALID_LAYOUT);
+if (makeValid.length) fail(`valid Make fixture rejected: ${makeValid.join("; ")}`);
+for (const [name, graph, expected, layout] of MAKE_INVALID) {
+  const problems = makeGraphProblems(graph, MAKE_PHASES, layout ?? MAKE_VALID_LAYOUT);
+  if (!problems.some((problem) => problem.includes(expected)))
+    fail(
+      `invalid Make fixture "${name}" was not rejected (${problems.join("; ") || "no problems"})`,
+    );
+}
+console.log(`Make fixtures: 1 valid accepted, ${MAKE_INVALID.length} invalid rejected`);
+
 for (const entry of CATALOG_ENTRIES) {
   const load = GRAPH_LOADERS[entry.id];
   if (!load) {
@@ -695,13 +714,13 @@ for (const entry of CATALOG_ENTRIES) {
   }
   const graph = await load();
   const layout = SPECIMEN_LAYOUTS[entry.id];
+  const phaseIds = entry.phases.map((phase) => phase.id);
   const problems =
-    graph.entryId === entry.id
-      ? graphProblems(
-          graph,
-          entry.phases.map((phase) => phase.id),
-        )
-      : [`graph belongs to ${graph.entryId}`];
+    graph.entryId !== entry.id
+      ? [`graph belongs to ${graph.entryId}`]
+      : graph.platform === "make"
+        ? makeGraphProblems(graph, phaseIds, layout)
+        : graphProblems(graph, phaseIds);
   problems.push(
     ...(layout ? openingProblems(graph, layout) : ["registered graph has no specimen layout"]),
   );

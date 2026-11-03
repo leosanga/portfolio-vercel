@@ -15,7 +15,7 @@ import type {
   WorkflowCatalogEntry,
 } from "../../src/content/project-catalog/mixed-catalog";
 
-assert.equal(PROJECT_CATALOG_ENTRIES.length, 14, "the public catalog contains fourteen records");
+assert.equal(PROJECT_CATALOG_ENTRIES.length, 16, "the public catalog contains sixteen records");
 assert.deepEqual(
   PROJECT_CATALOG_ENTRIES.map((entry) => entry.id),
   [
@@ -28,6 +28,8 @@ assert.deepEqual(
     "n8n-booking-agent",
     "salesforce-trial-demo-routing",
     "hubspot-lead-routing",
+    "weekly-sales-funnel-changes",
+    "contact-reasons-for-support-tickets",
     "automated-client-implementation-delivery",
     "ai-assisted-lead-qualification",
     "ai-assisted-outbound-prospecting",
@@ -41,8 +43,8 @@ assert.deepEqual(
     (counts, entry) => ({ ...counts, [entry.kind]: counts[entry.kind] + 1 }),
     { "case-study": 0, workflow: 0, "homepage-project": 0 },
   ),
-  { "case-study": 4, workflow: 5, "homepage-project": 5 },
-  "the public catalog contains four cases and ten inline entries",
+  { "case-study": 4, workflow: 7, "homepage-project": 5 },
+  "the public catalog contains four cases and twelve inline entries",
 );
 for (const project of PROJECTS) {
   const match = PROJECT_CATALOG_ENTRIES.find((entry) => entry.id === project.slug);
@@ -64,10 +66,10 @@ assert.deepEqual(
   "homepage source projects use the approved category mapping",
 );
 
-assert.equal(matchingEntries({ view: "all", categories: [] }).length, 14);
+assert.equal(matchingEntries({ view: "all", categories: [] }).length, 16);
 assert.equal(matchingEntries({ view: "case-studies", categories: [] }).length, 4);
 const workflows = matchingEntries({ view: "workflows", categories: [] });
-assert.equal(workflows.length, 10);
+assert.equal(workflows.length, 12);
 assert.ok(
   workflows.every((entry) => entry.kind !== "case-study"),
   "Workflows excludes all cases",
@@ -157,7 +159,15 @@ assert.equal(
 );
 assert.equal(matchingEntries({ view: "workflows", categories: ["customer-support"] }).length, 2);
 assert.equal(matchingEntries({ view: "workflows", categories: ["sales-leads"] }).length, 4);
-assert.equal(matchingEntries({ view: "workflows", categories: ["reporting"] }).length, 1);
+assert.deepEqual(
+  matchingEntries({ view: "workflows", categories: ["reporting"] }).map((entry) => entry.id),
+  [
+    "weekly-sales-funnel-changes",
+    "contact-reasons-for-support-tickets",
+    "executive-reporting-dashboard-automation",
+  ],
+  "the Make reporting workflows lead Reporting, ahead of the homepage project",
+);
 
 function workflow(id: string, category: WorkflowCatalogEntry["category"]): WorkflowCatalogEntry {
   return {

@@ -25,6 +25,11 @@ close(reversed.y, initial.y);
 close(reversed.scale, initial.scale);
 assert.equal(zoomCanvasAt(initial, 100).scale, MAX_CANVAS_SCALE);
 assert.equal(zoomCanvasAt(initial, 0.001).scale, MIN_CANVAS_SCALE);
+// A wide graph's Fit on a phone sits below the floor; zooming out from there must not zoom in.
+const PHONE_FIT_SCALE = 0.086;
+const phoneFit = { ...initial, scale: PHONE_FIT_SCALE };
+assert.equal(zoomCanvasAt(phoneFit, 1 / 1.2).scale, PHONE_FIT_SCALE, "zoom out holds at Fit");
+close(zoomCanvasAt(phoneFit, 1.2).scale, PHONE_FIT_SCALE * 1.2);
 assert.equal(zoomCanvasAt(initial, Number.NaN), initial);
 close(wheelZoomFactor(0, -100, 370)!, 1.2);
 close(wheelZoomFactor(1, -6.25, 370)!, 1.2);

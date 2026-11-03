@@ -12,4 +12,8 @@ export const GRAPH_LOADERS: Readonly<Record<string, () => Promise<CatalogGraph>>
     import("./entries/blog-post-approval-and-scheduling/graph").then((module) => module.GRAPH),
   "internal-knowledge-assistant": () =>
     import("./entries/internal-knowledge-assistant/graph").then((module) => module.GRAPH),
+  "weekly-sales-funnel-changes": () =>
+    import("./entries/weekly-sales-funnel-changes/graph").then((module) => module.GRAPH),
+  "contact-reasons-for-support-tickets": () =>
+    import("./entries/contact-reasons-for-support-tickets/graph").then((module) => module.GRAPH),
 };

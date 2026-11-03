@@ -10,6 +10,7 @@ import {
 import type { CatalogGraph } from "@/content/project-catalog/types";
 import { N8N_NODE_TYPES } from "@/content/project-catalog/n8nNodeTypes";
 import { NativeNode } from "./NativeNode";
+import { MakeDiagram } from "./MakeDiagram";
 import type { PresentationState } from "./presentation";
 import type { SpecimenLayout } from "./specimenLayout";
 import { CANVAS_ZOOM_FACTOR, zoomCanvasAt, type CanvasViewport } from "./canvasViewport";
@@ -166,7 +167,11 @@ export function WorkflowCanvas({
     .node;
 
   return (
-    <div className="pc-canvas-frame" style={palette} data-pc-transition-active={transitionActive}>
+    <div
+      className={graph.platform === "make" ? "pc-canvas-frame is-make" : "pc-canvas-frame"}
+      style={palette}
+      data-pc-transition-active={transitionActive}
+    >
       <div className="pc-canvas-toolbar">
         {!modal && (
           <div className="pc-canvas-name">
@@ -222,92 +227,105 @@ export function WorkflowCanvas({
             </pattern>
           </defs>
           <rect x="-6000" y="-6000" width="12000" height="12000" fill={`url(#${id}-dots)`} />
-          {graph.edges.map((edge) => {
-            const state = story.edges[edge.id]!;
-            const source = graph.nodes.find((node) => node.id === edge.from.node)!;
-            const configuration = edge.kind !== "main";
-            const error =
-              source.errorOutput &&
-              edge.from.index ===
-                N8N_NODE_TYPES[source.type].outputs.filter((kind) => kind === "main").length;
-            return (
-              <path
-                key={edge.id}
-                data-edge={edge.id}
-                className={`pc-canvas-edge${configuration || error ? " is-dashed" : ""}${!trace.has(edge.id) ? " is-static" : ""}${state.covered ? " is-covered" : ""}`}
-                d={edge.path}
-                opacity={state.reveal}
-              >
-                <title>{`${source.label} output ${edge.from.index} to ${graph.nodes.find((node) => node.id === edge.to.node)!.label} ${edge.kind} input ${edge.to.index}`}</title>
-              </path>
-            );
-          })}
-          {[...trace].map((edgeId) => (
-            <path
-              key={edgeId}
-              className="pc-canvas-edge-sweep"
-              d={graph.edges.find((edge) => edge.id === edgeId)!.path}
-              pathLength="1"
-              strokeDasharray="1 1"
-              strokeDashoffset={1 - story.edges[edgeId]!.sweep}
-              opacity={story.edges[edgeId]!.sweep > 0 ? 1 : 0}
-            />
-          ))}
-          {layout.lanes.map((lane) => (
-            <text key={lane.text} className="pc-canvas-lane-label" x={lane.x} y={lane.y}>
-              {lane.text}
-            </text>
-          ))}
-          {graph.nodes.map((node) => (
-            <NativeNode
-              key={node.id}
-              node={node}
-              state={story.nodes[node.id]!}
-              lines={layout.labels[node.id]}
-              ending={endingNode === node.id}
-            />
-          ))}
-          {graph.annotations.map((annotation) => {
-            const item = layout.annotations[annotation.id];
-            if (!item) return null;
-            return (
-              <g
-                key={annotation.id}
-                opacity={story.nodes[annotation.at.node]!.reveal}
-                className={
-                  story.ending === annotation.id
-                    ? "pc-canvas-outcome is-ending"
-                    : "pc-canvas-outcome"
-                }
-              >
-                {item.path && <path className="pc-canvas-edge is-static" d={item.path} />}
-                <g transform={`translate(${item.x} ${item.y})`}>
-                  <rect
-                    className="pc-canvas-annotation"
-                    width={item.width}
-                    height={item.detail ? 68 : 44}
-                    rx="5"
-                  />
-                  <text className="pc-canvas-annotation-title" x="14" y="27">
-                    {annotation.text}
-                  </text>
-                  {item.detail && (
-                    <text className="pc-canvas-annotation-text" x="14" y="49">
-                      {item.detail}
-                    </text>
-                  )}
-                </g>
-              </g>
-            );
-          })}
+          {graph.platform === "make" ? (
+            <MakeDiagram graph={graph} story={story} trace={trace} />
+          ) : (
+            <>
+              {graph.edges.map((edge) => {
+                const state = story.edges[edge.id]!;
+                const source = graph.nodes.find((node) => node.id === edge.from.node)!;
+                const configuration = edge.kind !== "main";
+                const error =
+                  source.errorOutput &&
+                  edge.from.index ===
+                    N8N_NODE_TYPES[source.type].outputs.filter((kind) => kind === "main").length;
+                return (
+                  <path
+                    key={edge.id}
+                    data-edge={edge.id}
+                    className={`pc-canvas-edge${configuration || error ? " is-dashed" : ""}${!trace.has(edge.id) ? " is-static" : ""}${state.covered ? " is-covered" : ""}`}
+                    d={edge.path}
+                    opacity={state.reveal}
+                  >
+                    <title>{`${source.label} output ${edge.from.index} to ${graph.nodes.find((node) => node.id === edge.to.node)!.label} ${edge.kind} input ${edge.to.index}`}</title>
+                  </path>
+                );
+              })}
+              {[...trace].map((edgeId) => (
+                <path
+                  key={edgeId}
+                  className="pc-canvas-edge-sweep"
+                  d={graph.edges.find((edge) => edge.id === edgeId)!.path}
+                  pathLength="1"
+                  strokeDasharray="1 1"
+                  strokeDashoffset={1 - story.edges[edgeId]!.sweep}
+                  opacity={story.edges[edgeId]!.sweep > 0 ? 1 : 0}
+                />
+              ))}
+              {layout.lanes.map((lane) => (
+                <text key={lane.text} className="pc-canvas-lane-label" x={lane.x} y={lane.y}>
+                  {lane.text}
+                </text>
+              ))}
+              {graph.nodes.map((node) => (
+                <NativeNode
+                  key={node.id}
+                  node={node}
+                  state={story.nodes[node.id]!}
+                  lines={layout.labels[node.id]}
+                  ending={endingNode === node.id}
+                />
+              ))}
+              {graph.annotations.map((annotation) => {
+                const item = layout.annotations[annotation.id];
+                if (!item) return null;
+                return (
+                  <g
+                    key={annotation.id}
+                    opacity={story.nodes[annotation.at.node]!.reveal}
+                    className={
+                      story.ending === annotation.id
+                        ? "pc-canvas-outcome is-ending"
+                        : "pc-canvas-outcome"
+                    }
+                  >
+                    {item.path && <path className="pc-canvas-edge is-static" d={item.path} />}
+                    <g transform={`translate(${item.x} ${item.y})`}>
+                      <rect
+                        className="pc-canvas-annotation"
+                        width={item.width}
+                        height={item.detail ? 68 : 44}
+                        rx="5"
+                      />
+                      <text className="pc-canvas-annotation-title" x="14" y="27">
+                        {annotation.text}
+                      </text>
+                      {item.detail && (
+                        <text className="pc-canvas-annotation-text" x="14" y="49">
+                          {item.detail}
+                        </text>
+                      )}
+                    </g>
+                  </g>
+                );
+              })}
+            </>
+          )}
         </svg>
       </div>
-      <div className="pc-canvas-legend">
-        <span>Execution route</span>
-        {graph.edges.some((edge) => edge.kind !== "main") && (
-          <span className="is-dashed">Static AI configuration / error relationship</span>
-        )}
-      </div>
+      {graph.platform === "make" ? (
+        <div className="pc-canvas-legend">
+          <span>Route</span>
+          <span className="is-ringed">Error handler route</span>
+        </div>
+      ) : (
+        <div className="pc-canvas-legend">
+          <span>Execution route</span>
+          {graph.edges.some((edge) => edge.kind !== "main") && (
+            <span className="is-dashed">Static AI configuration / error relationship</span>
+          )}
+        </div>
+      )}
     </div>
   );
 }
