@@ -169,7 +169,11 @@ export function NativeNode({
               <>
                 <path
                   className="pc-canvas-port"
-                  d={configuredInputs.includes("ai_tool") ? "M72 91 L77 96 L72 101 L67 96 Z" : "M128 91 L133 96 L128 101 L123 96 Z"}
+                  d={
+                    configuredInputs.includes("ai_tool")
+                      ? "M72 91 L77 96 L72 101 L67 96 Z"
+                      : "M128 91 L133 96 L128 101 L123 96 Z"
+                  }
                 />
                 <text
                   className="pc-canvas-port-label"
