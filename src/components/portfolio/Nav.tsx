@@ -32,10 +32,7 @@ export function Nav() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-6">
-        <a
-          href="#top"
-          className="font-display text-xl font-bold tracking-tight text-foreground"
-        >
+        <a href="#top" className="font-display text-xl font-bold tracking-tight text-foreground">
           Leo Sanga
         </a>
 

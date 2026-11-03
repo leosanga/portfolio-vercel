@@ -100,6 +100,10 @@ mock.module("../../src/components/project-catalog/useCatalogReadingState", () =>
     save() {},
   }),
 }));
+// Static markup has no RouterProvider; scrolling is outside this scale fixture.
+mock.module("../../src/components/portfolio-v2/useSmoothBackToTop", () => ({
+  useSmoothBackToTop: () => {},
+}));
 const { ProjectCatalogPage } =
   await import("../../src/components/project-catalog/ProjectCatalogPage");
 const renderPage = (selection: CatalogSelection) =>
@@ -200,6 +204,7 @@ console.log(
       collapsedProofMountsAtExhaustion: proofMounts,
       limits: [
         "Reading hook mocked for pagination states; no browser interaction or effects executed",
+        "Back-to-top hook mocked because static markup has no router or scroll state",
         "Collapsed case/homepage static proofs remain mounted; closed workflow canvases are absent",
         "No wall-clock benchmark, memory profiling, keyboard/focus/history or 100-entry browser acceptance",
       ],

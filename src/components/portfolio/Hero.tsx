@@ -16,10 +16,10 @@ export function Hero() {
             className="hero-rise mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground"
             style={{ animationDelay: "120ms" }}
           >
-            I design and build systems that connect the tools, data, and processes a business
-            relies on. My background across cross-functional business operations and technical
-            systems gives me a practical understanding of how the work gets done and where
-            systems can improve it.
+            I design and build systems that connect the tools, data, and processes a business relies
+            on. My background across cross-functional business operations and technical systems
+            gives me a practical understanding of how the work gets done and where systems can
+            improve it.
           </p>
 
           <div className="hero-rise mt-8 flex flex-wrap gap-3" style={{ animationDelay: "240ms" }}>
@@ -35,7 +35,10 @@ export function Hero() {
         </div>
 
         <div className="hero-rise-scale relative" style={{ animationDelay: "360ms" }}>
-          <div className="absolute inset-6 rounded-3xl bg-lavender/20 blur-3xl" aria-hidden="true" />
+          <div
+            className="absolute inset-6 rounded-3xl bg-lavender/20 blur-3xl"
+            aria-hidden="true"
+          />
           <div className="relative rounded-3xl border border-border bg-panel p-5 lavender-glow">
             <img
               src={portrait}

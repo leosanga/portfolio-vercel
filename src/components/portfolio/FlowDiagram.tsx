@@ -33,9 +33,7 @@ function Node({ node }: { node: FlowNode }) {
 export function FlowDiagram({ flow }: { flow: Flow }) {
   return (
     <figure className="flow-figure">
-      {flow.summary && (
-        <figcaption className="flow-summary">{flow.summary}</figcaption>
-      )}
+      {flow.summary && <figcaption className="flow-summary">{flow.summary}</figcaption>}
       <ol className="flow-diagram">
         {flow.rows.map((row, i) => {
           const [head, ...rest] = row;

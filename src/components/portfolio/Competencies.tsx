@@ -15,9 +15,7 @@ export function Competencies() {
   return (
     <section id="skills" className="py-24 md:py-28">
       <div className="container-page">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">
-          Skills
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">Skills</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           What I Build Across
         </h2>

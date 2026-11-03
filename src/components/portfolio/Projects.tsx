@@ -12,9 +12,7 @@ export function Projects() {
   return (
     <section id="projects" className="py-24 md:py-28">
       <div className="container-page">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">
-          Projects
-        </p>
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-lavender">Projects</p>
         <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
           Proof of Work
         </h2>
@@ -138,8 +136,7 @@ export function Projects() {
           {/* The list is a selection, not the whole of the work. Without this
               line the heading reads as the full inventory. */}
           <p className="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-            The builds involved enough to earn a place here, chosen from many
-            more.
+            The builds involved enough to earn a place here, chosen from many more.
           </p>
           {/* The measure lives on the list, not the rows, so the top rule and
               every row rule end at the same place. */}
