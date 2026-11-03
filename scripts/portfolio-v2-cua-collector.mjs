@@ -66,11 +66,19 @@ export async function collectReleaseEvidence({
         next.width === previous.width &&
         next.height === previous.height &&
         Math.abs(next.scrollY - previous.scrollY) < 0.5 &&
-        Math.abs(next.footerContentBottom - previous.footerContentBottom) < 0.5
+        Math.abs(next.footerContentBottom - previous.footerContentBottom) < 0.5 &&
+        next.horizontalOverflow === previous.horizontalOverflow
       )
         stable++;
       else stable = 0;
-      if (ready && reached && stable >= 2 && Date.now() - started >= 250) return next;
+      if (
+        ready &&
+        reached &&
+        !next.horizontalOverflow &&
+        stable >= 2 &&
+        Date.now() - started >= 250
+      )
+        return next;
       // A long browser-assisted scroll can stop short of a distant heading.
       if (
         ready &&
