@@ -3,6 +3,9 @@ import assert from "node:assert/strict";
 import { GRAPH as sales } from "../../src/content/project-catalog/entries/sales-call-notes-and-next-steps/graph";
 import { GRAPH as quotes } from "../../src/content/project-catalog/entries/quote-follow-up-reminders/graph";
 import { GRAPH as knowledge } from "../../src/content/project-catalog/entries/internal-knowledge-assistant/graph";
+import { GRAPH as weekly } from "../../src/content/project-catalog/entries/weekly-sales-funnel-changes/graph";
+import { GRAPH as supportReasons } from "../../src/content/project-catalog/entries/contact-reasons-for-support-tickets/graph";
+import type { MakeGraph } from "../../src/content/project-catalog/types";
 import { SPECIMEN_LAYOUTS } from "../../src/components/project-catalog/workflow/specimenLayout";
 import {
   advancePresentation,
@@ -95,6 +98,55 @@ assert.equal(knowledgeAt(1700).edges["E13"]!.sweep, 0);
 assert.deepEqual(knowledgeAt(5000).activePhases, ["P3"]);
 assert.equal(knowledgeAt(8600).edges["E34"]!.sweep, 0);
 assert.equal(knowledgeAt(presentationDuration(knowledge)).ending, "N6");
+
+// Make: the same engine. Modules activate one after another, handlers and error routes never.
+function checkMake(
+  graph: MakeGraph,
+  duration: number,
+  phaseTwo: { start: number; length: number; order: readonly string[] },
+  ending: string,
+) {
+  const layout = SPECIMEN_LAYOUTS[graph.entryId]!;
+  const at = (elapsed: number) =>
+    derivePresentation(graph, elapsed, false, layout.openingGroups, layout.openingAssembly);
+  const last = layout.openingGroups.at(-1)![0]!;
+  assert(
+    at(MAKE_OPENING_MS - 1).nodes[last]!.reveal < 1,
+    `${last} still revealing before opening ends`,
+  );
+  assert(
+    graph.nodes.every((node) => at(MAKE_OPENING_MS).nodes[node.id]!.reveal === 1),
+    "opening reveals every module and handler by its end",
+  );
+  phaseTwo.order.forEach((id, index) => {
+    const sample = phaseTwo.start + ((index + 0.5) / phaseTwo.order.length) * phaseTwo.length;
+    const state = at(sample);
+    assert.equal(state.nodes[id]!.active, true, `${id} active at ${sample}`);
+    for (const other of phaseTwo.order.filter((item) => item !== id))
+      assert.equal(state.nodes[other]!.active, false, `${other} idle at ${sample}`);
+  });
+  const handlers = graph.nodes.filter((node) => node.role === "handler");
+  const routes = graph.edges.filter((edge) => edge.kind === "error");
+  for (let elapsed = 0; elapsed <= duration; elapsed += 25) {
+    const state = at(elapsed);
+    for (const node of handlers)
+      assert.equal(state.nodes[node.id]!.active, false, `${node.id} at ${elapsed}`);
+    for (const edge of routes)
+      assert.equal(state.edges[edge.id]!.sweep, 0, `${edge.id} at ${elapsed}`);
+  }
+  assert.equal(presentationDuration(graph), duration);
+  const end = at(duration);
+  assert.deepEqual(end.activePhases, ["P4"]);
+  assert.equal(end.ending, ending);
+}
+const MAKE_OPENING_MS = 1160;
+checkMake(weekly, 8160, { start: 1160 + 2800, length: 1600, order: ["M08", "M09"] }, "M11");
+checkMake(
+  supportReasons,
+  8260,
+  { start: 1160 + 2600, length: 2000, order: ["M07", "M08", "M09", "M10"] },
+  "M12",
+);
 console.log(
-  "presentation checks passed: layers, phases, config, edges, static fallback, hold, wrapping, legacy opening and knowledge route",
+  "presentation checks passed: layers, phases, config, edges, static fallback, hold, wrapping, legacy opening, knowledge route and Make chains",
 );

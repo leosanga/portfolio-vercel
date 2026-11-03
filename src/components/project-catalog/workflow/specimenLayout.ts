@@ -23,6 +23,8 @@ export interface SpecimenLayout {
 }
 const NAVIGATION =
   " Focus this canvas to pan with arrows, zoom with plus and minus, or Fit with zero. The business phases accompany each view.";
+/** A Make scenario assembles phase by phase without phase emphasis (execution.md Part A step 7). */
+const MAKE_OPENING: OpeningAssembly = { stepMs: 260, revealMs: 380, emphasizePhases: false };
 export const SPECIMEN_LAYOUTS: Record<string, SpecimenLayout> = {
   "internal-knowledge-assistant": {
     openingGroups: [
@@ -241,6 +243,42 @@ export const SPECIMEN_LAYOUTS: Record<string, SpecimenLayout> = {
     lanes: [],
     description:
       "Sixteen execution nodes in three rows read left to right. The first row checks the content calendar, reads the blog post draft, records the review request and waits for the reviewer's decision. The second row reads the draft again, records the approval, checks that the approved blog post is still current, formats it, schedules it on the website, saves its link and marks it scheduled in the content calendar. A blog post that is not approved is recorded on the third row and returned to its writer. A draft that changed after approval ends at Blog post not scheduled, and a repeat check ends without a new review request." +
+      NAVIGATION,
+  },
+  // Make entries: bounds equal each graph's computed bounds (checked by make-graph-rules);
+  // readable centres the first module's circle and label block in the 370px phone window.
+  "weekly-sales-funnel-changes": {
+    openingGroups: [
+      ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "H02", "H04", "H06"],
+      ["M08", "M09", "H08", "H09"],
+      ["M10"],
+      ["M11"],
+    ],
+    openingAssembly: MAKE_OPENING,
+    bounds: [51.15, 14, 3502.55, 671],
+    readable: [64, 266],
+    labels: {},
+    annotations: {},
+    lanes: [],
+    description:
+      "Eleven modules in one line, read left to right, with five error handlers above it. A weekly schedule starts the scenario at Set the five weeks to compare. Three CRM searches read new leads, meetings booked and deals won for the five weeks, each followed by an Array aggregator that collects its results into one bundle. Two reads get the Google Ads and Meta campaign changes for last week and the week before. Make Code finds where each number moved and what changed with it, and Slack posts the explanation to the sales channel. Each of the five reads has a Resume error handler, so a read that fails is reported as could not be read and the message is still posted. Make runs the modules one after another; nothing runs in parallel." +
+      NAVIGATION,
+  },
+  "contact-reasons-for-support-tickets": {
+    openingGroups: [
+      ["M01", "M02", "M03", "M04", "M05", "M06", "H02", "H03", "H05"],
+      ["M07", "M08", "M09", "M10", "H08", "H09"],
+      ["M11"],
+      ["M12"],
+    ],
+    openingAssembly: MAKE_OPENING,
+    bounds: [51.15, 14, 4152.55, 631],
+    readable: [64, 266],
+    labels: {},
+    annotations: {},
+    lanes: [],
+    description:
+      "Twelve modules in one line, read left to right, with five error handlers above it. A weekly schedule starts the scenario at Set last week and the four weeks before. Zendesk's Contact reason field options and the support manager's list in Google Sheets are read, and an Array aggregator turns the list into the model's categories. An HTTP request reads the last five weeks of tickets, collected by a second aggregator. An Iterator goes through the tickets, and a filter passes only tickets without a reason. The Make AI Toolkit chooses one reason, a second filter passes only a reason that is an option on the field, and Zendesk writes it on the ticket unless an agent changed the ticket since it was read. A third aggregator collects the reasons given this run, Make Code works out which contact reasons rose, and Slack posts them to the support channel. Modules 2, 3, 5, 8 and 9 each have a Resume error handler. Make runs the modules one after another; nothing runs in parallel." +
       NAVIGATION,
   },
 };

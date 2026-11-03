@@ -605,3 +605,176 @@ html[data-pc-canvas-transition]::view-transition-new(pc-workflow-canvas) {
     animation: none;
   }
 }
+
+/* Make's Scenario Builder (execution.md Part A step 5). It follows Make's own light and dark. */
+.pc-canvas-frame.is-make {
+  --canvas-bg: light-dark(#f1f1f1, #373537);
+  --canvas-dot: light-dark(#d9d9dd, #4b484d);
+  --canvas-edge: light-dark(#c9c9ce, #68636b);
+  --make-ink: light-dark(#27272b, #f1eff3);
+  --make-muted: light-dark(#56565d, #cbc7cd);
+  --make-surface: light-dark(#fff, #2b292c);
+  --make-number: light-dark(#e3e3e6, #4a474c);
+  --presentation-active: light-dark(#7955a5, #cbb7f5);
+  --presentation-covered: light-dark(color-mix(in srgb, #7955a5 45%, #f1f1f1), #8f7fa8);
+}
+.pc-make-band {
+  fill: light-dark(rgb(0 0 0 / 0.06), rgb(255 255 255 / 0.07));
+}
+.pc-make-link,
+.pc-make-sweep {
+  fill: none;
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+.pc-make-link {
+  stroke: light-dark(var(--make-link), #b5a1bc);
+  stroke-dasharray: 1 14;
+}
+.pc-make-link.is-covered {
+  stroke: var(--presentation-covered);
+}
+.pc-make-sweep {
+  stroke: var(--presentation-active);
+  pointer-events: none;
+}
+.pc-make-route-ring,
+.pc-make-route-hole {
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 0 16;
+}
+/* The handler grey, not the line colour: the line colour is 1.46:1 on Make's light field. */
+.pc-make-route-ring {
+  stroke: #8a8a92;
+  stroke-width: 9;
+}
+.pc-make-route-hole {
+  stroke: var(--canvas-bg);
+  stroke-width: 4;
+}
+.pc-make-plate {
+  color: var(--make-muted);
+}
+.pc-make-plate rect {
+  fill: var(--make-surface);
+  stroke: var(--canvas-edge);
+  stroke-width: 1.5;
+}
+.pc-make-plate text {
+  fill: var(--make-ink);
+  font:
+    600 13px Arial,
+    sans-serif;
+}
+.pc-make-port {
+  fill: color-mix(in srgb, var(--make-fill) 45%, var(--canvas-bg));
+}
+.pc-make-ring {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 3;
+}
+.pc-make-module.is-active .pc-make-ring {
+  stroke: var(--presentation-active);
+}
+.pc-make-module.is-covered .pc-make-ring {
+  stroke: var(--presentation-covered);
+  stroke-width: 2;
+}
+/* Slack and Zendesk fall to about 1.1:1 on the dark field, so dark mode adds a keyline (3.35:1). */
+.pc-make-body {
+  fill: var(--make-fill);
+  stroke: light-dark(transparent, #878687);
+  stroke-width: 2;
+}
+.pc-make-module.is-handler .pc-make-body {
+  fill: var(--canvas-bg);
+  stroke: var(--make-fill);
+  stroke-width: 6;
+}
+.pc-make-glyph {
+  color: var(--make-glyph);
+}
+.pc-make-badge {
+  color: var(--make-muted);
+}
+.pc-make-badge circle {
+  fill: var(--make-surface);
+  stroke: var(--canvas-edge);
+  stroke-width: 2;
+}
+.pc-make-name {
+  fill: var(--make-ink);
+  font:
+    600 18px Arial,
+    sans-serif;
+}
+.pc-make-action {
+  fill: var(--make-muted);
+  font:
+    14px Arial,
+    sans-serif;
+}
+.pc-make-number rect {
+  fill: var(--make-number);
+}
+.pc-make-number text {
+  fill: var(--make-muted);
+  font:
+    600 12px Arial,
+    sans-serif;
+}
+.pc-canvas-frame.is-make .pc-canvas-legend span::before {
+  border-top: 3px dotted var(--presentation-covered);
+}
+.pc-canvas-frame.is-make .pc-canvas-legend .is-ringed::before {
+  height: 8px;
+  border-top: 0;
+  background: radial-gradient(circle, transparent 1.5px, #8a8a92 2px 3.5px, transparent 4px) 0 50% /
+    9px 8px repeat-x;
+}
+@media (forced-colors: active) {
+  .pc-make-body,
+  .pc-make-module.is-handler .pc-make-body,
+  .pc-make-plate rect,
+  .pc-make-badge circle {
+    fill: Canvas;
+    stroke: CanvasText;
+    stroke-width: 2;
+  }
+  .pc-make-port,
+  .pc-make-band,
+  .pc-make-number rect {
+    fill: none;
+  }
+  .pc-make-band {
+    stroke: GrayText;
+    stroke-width: 2;
+    stroke-dasharray: 8 6;
+  }
+  .pc-make-name,
+  .pc-make-action,
+  .pc-make-plate text,
+  .pc-make-number text {
+    fill: CanvasText;
+  }
+  .pc-make-link,
+  .pc-make-link.is-covered,
+  .pc-make-module.is-covered .pc-make-ring,
+  .pc-make-route-ring {
+    stroke: CanvasText;
+  }
+  .pc-make-route-hole {
+    stroke: Canvas;
+  }
+  .pc-make-glyph,
+  .pc-make-badge,
+  .pc-make-plate {
+    color: CanvasText;
+  }
+  .pc-make-module.is-active .pc-make-ring,
+  .pc-make-sweep {
+    stroke: Highlight;
+  }
+}

@@ -98,6 +98,8 @@ const editorialIds = [
   "n8n-booking-agent",
   "salesforce-trial-demo-routing",
   "hubspot-lead-routing",
+  "weekly-sales-funnel-changes",
+  "contact-reasons-for-support-tickets",
   "automated-client-implementation-delivery",
   "ai-assisted-lead-qualification",
   "ai-assisted-outbound-prospecting",
