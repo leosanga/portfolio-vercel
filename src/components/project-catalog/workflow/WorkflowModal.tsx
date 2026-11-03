@@ -69,6 +69,7 @@ export function WorkflowModal({ title, children, onClose, onModalChange, opener 
     document.addEventListener("focusin", focusin);
     const overlay = overlayRef.current;
     const wheel = (event: WheelEvent) => {
+      if (event.ctrlKey) return;
       const dialog = dialogRef.current;
       if (
         !dialog ||

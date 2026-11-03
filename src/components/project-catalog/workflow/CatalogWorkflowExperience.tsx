@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import type { CatalogEntrySummary, CatalogGraph } from "@/content/project-catalog/types";
 import { GRAPH_LOADERS } from "@/content/project-catalog/graphRegistry";
 import { SPECIMEN_LAYOUTS } from "./specimenLayout";
@@ -7,6 +7,7 @@ import { WorkflowCanvas } from "./WorkflowCanvas";
 import { WorkflowPhases } from "./WorkflowPhases";
 import { WorkflowModal } from "./WorkflowModal";
 import { useCanvasTransition } from "./useCanvasTransition";
+import { CANVAS_VIEWPORT_HINT } from "./canvasViewport";
 
 interface Props {
   entry: CatalogEntrySummary;
@@ -22,6 +23,7 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
   const [modal, setModal] = useState(false);
   const { changeModal, transitioning, cancel } = useCanvasTransition(entry.id, setModal);
   const openerRef = useRef<HTMLButtonElement>(null);
+  const hintId = useId();
   const presentation = usePresentation(graph, active, modal, onRequestPlay);
   const layout = SPECIMEN_LAYOUTS[entry.id];
 
@@ -76,6 +78,7 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
         reduced={presentation.reduced}
         onPlayback={presentation.toggle}
         onExplore={presentation.pause}
+        hintId={`${hintId}-${enlarged ? "modal" : "inline"}`}
         modal={enlarged}
         transitionActive={transitioning && (enlarged || !modal)}
       />
@@ -117,8 +120,8 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
           </div>
         )}
       </div>
-      <p className="pc-workflow-viewport-hint">
-        Drag to pan. Focus the canvas to use arrows, + / − to zoom, and 0 to Fit.
+      <p className="pc-workflow-viewport-hint" id={`${hintId}-inline`}>
+        {CANVAS_VIEWPORT_HINT}
       </p>
       {!modal && (
         <p className="pc-workflow-feedback" role="status">
@@ -134,6 +137,9 @@ export function CatalogWorkflowExperience({ entry, active, onRequestPlay, onModa
         >
           <WorkflowPhases phases={entry.phases} story={presentation.story} modal />
           {canvas(true)}
+          <p className="pc-workflow-viewport-hint" id={`${hintId}-modal`}>
+            {CANVAS_VIEWPORT_HINT}
+          </p>
           <p className="pc-workflow-feedback" role="status">
             {presentation.feedback}
           </p>

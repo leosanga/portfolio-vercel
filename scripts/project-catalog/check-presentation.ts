@@ -2,6 +2,7 @@
 import assert from "node:assert/strict";
 import { GRAPH as sales } from "../../src/content/project-catalog/entries/sales-call-notes-and-next-steps/graph";
 import { GRAPH as quotes } from "../../src/content/project-catalog/entries/quote-follow-up-reminders/graph";
+import { GRAPH as knowledge } from "../../src/content/project-catalog/entries/internal-knowledge-assistant/graph";
 import { SPECIMEN_LAYOUTS } from "../../src/components/project-catalog/workflow/specimenLayout";
 import {
   advancePresentation,
@@ -83,6 +84,17 @@ assert.equal(legacy.nodes["R01"]!.reveal, 1 - Math.pow(1 - 260 / 380, 3));
 assert.equal(legacy.nodes["R03"]!.reveal, 1 - Math.pow(1 - 130 / 380, 3));
 assert.equal(legacy.nodes["R05"]!.reveal, 0);
 assert.deepEqual(legacy.activePhases, []);
+const knowledgeLayout = SPECIMEN_LAYOUTS[knowledge.entryId]!;
+const knowledgeAt = (elapsed: number) =>
+  derivePresentation(knowledge, elapsed, false, knowledgeLayout.openingGroups);
+assert.equal(knowledge.presentation.kind, "flow");
+assert(Object.values(knowledgeAt(1100).nodes).every((node) => node.reveal === 1));
+assert(knowledgeAt(1700).edges["E03"]!.sweep > 0);
+assert.equal(knowledgeAt(1700).edges["C01"]!.sweep, 0);
+assert.equal(knowledgeAt(1700).edges["E13"]!.sweep, 0);
+assert.deepEqual(knowledgeAt(5000).activePhases, ["P3"]);
+assert.equal(knowledgeAt(8600).edges["E34"]!.sweep, 0);
+assert.equal(knowledgeAt(presentationDuration(knowledge)).ending, "N6");
 console.log(
-  "presentation checks passed: layers, phases, config, edges, static fallback, hold, wrapping and legacy opening",
+  "presentation checks passed: layers, phases, config, edges, static fallback, hold, wrapping, legacy opening and knowledge route",
 );

@@ -113,8 +113,11 @@ export function CatalogProjectPanel({
           }
         }}
       >
-        <summary ref={summaryRef} aria-label={`See how ${entry.title} works`}>
-          <span>See how it works</span>
+        <summary
+          ref={summaryRef}
+          aria-label={open ? `Hide ${entry.title} details` : `See how ${entry.title} works`}
+        >
+          <span>{open ? "Hide details" : "See how it works"}</span>
           <span className="pc-disclosure-symbol" aria-hidden="true" />
         </summary>
         <div className="pc-expanded">

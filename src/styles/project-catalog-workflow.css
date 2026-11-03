@@ -198,6 +198,7 @@
 .pc-canvas-holder {
   height: 780px;
   overflow: hidden;
+  overflow-anchor: none;
 }
 .pc-canvas-svg {
   display: block;

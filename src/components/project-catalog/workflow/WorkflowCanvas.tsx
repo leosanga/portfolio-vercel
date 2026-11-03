@@ -12,14 +12,9 @@ import { N8N_NODE_TYPES } from "@/content/project-catalog/n8nNodeTypes";
 import { NativeNode } from "./NativeNode";
 import type { PresentationState } from "./presentation";
 import type { SpecimenLayout } from "./specimenLayout";
+import { CANVAS_ZOOM_FACTOR, zoomCanvasAt, type CanvasViewport } from "./canvasViewport";
+import { useCanvasWheelZoom } from "./useCanvasWheelZoom";
 
-interface Viewport {
-  x: number;
-  y: number;
-  scale: number;
-  width: number;
-  height: number;
-}
 interface Props {
   graph: CatalogGraph;
   title: string;
@@ -30,14 +25,12 @@ interface Props {
   reduced: boolean;
   onPlayback: () => void;
   onExplore: () => void;
+  hintId: string;
   modal?: boolean;
   transitionActive?: boolean;
 }
-const MIN_SCALE = 0.15;
-const MAX_SCALE = 2;
-const ZOOM_FACTOR = 1.2;
 
-function fit(view: Viewport, layout: SpecimenLayout): Viewport {
+function fit(view: CanvasViewport, layout: SpecimenLayout): CanvasViewport {
   const [x, y, width, height] = layout.bounds;
   const scale = Math.min(view.width / width, view.height / height) * 0.97;
   return {
@@ -58,6 +51,7 @@ export function WorkflowCanvas({
   reduced,
   onPlayback,
   onExplore,
+  hintId,
   modal = false,
   transitionActive = false,
 }: Props) {
@@ -65,7 +59,7 @@ export function WorkflowCanvas({
   const id = useId();
   const drag = useRef<{ pointer: number; x: number; y: number } | null>(null);
   const [dragging, setDragging] = useState(false);
-  const [view, setView] = useState<Viewport>({
+  const [view, setView] = useState<CanvasViewport>({
     x: layout.bounds[0],
     y: layout.bounds[1],
     scale: 1,
@@ -73,6 +67,7 @@ export function WorkflowCanvas({
     height: layout.bounds[3],
   });
   const initialized = useRef(false);
+  useCanvasWheelZoom(svgRef, onExplore, setView);
 
   useEffect(() => {
     const svg = svgRef.current;
@@ -95,15 +90,7 @@ export function WorkflowCanvas({
 
   const zoom = (factor: number) => {
     onExplore();
-    setView((current) => {
-      const scale = Math.max(MIN_SCALE, Math.min(MAX_SCALE, current.scale * factor));
-      return {
-        ...current,
-        scale,
-        x: current.x + current.width / current.scale / 2 - current.width / scale / 2,
-        y: current.y + current.height / current.scale / 2 - current.height / scale / 2,
-      };
-    });
+    setView((current) => zoomCanvasAt(current, factor));
   };
   const pan = (x: number, y: number) =>
     setView((current) => ({
@@ -116,6 +103,7 @@ export function WorkflowCanvas({
     setView((current) => fit(current, layout));
   };
   const onKeyDown = (event: KeyboardEvent<SVGSVGElement>) => {
+    if (event.ctrlKey || event.metaKey || event.altKey) return;
     const moves: Record<string, [number, number]> = {
       ArrowLeft: [-90, 0],
       ArrowRight: [90, 0],
@@ -132,11 +120,12 @@ export function WorkflowCanvas({
     if (["+", "=", "-", "0"].includes(event.key)) {
       event.preventDefault();
       if (event.key === "0") fitView();
-      else zoom(event.key === "-" ? 1 / ZOOM_FACTOR : ZOOM_FACTOR);
+      else zoom(event.key === "-" ? 1 / CANVAS_ZOOM_FACTOR : CANVAS_ZOOM_FACTOR);
     }
   };
   const onPointerDown = (event: PointerEvent<SVGSVGElement>) => {
     if (event.button !== 0) return;
+    event.preventDefault();
     onExplore();
     event.currentTarget.focus({ preventScroll: true });
     event.currentTarget.setPointerCapture(event.pointerId);
@@ -146,6 +135,7 @@ export function WorkflowCanvas({
   const onPointerMove = (event: PointerEvent<SVGSVGElement>) => {
     const start = drag.current;
     if (!start || start.pointer !== event.pointerId) return;
+    event.preventDefault();
     pan(start.x - event.clientX, start.y - event.clientY);
     drag.current = { ...start, x: event.clientX, y: event.clientY };
   };
@@ -194,11 +184,11 @@ export function WorkflowCanvas({
               {playbackLabel}
             </button>
           )}
-          <button type="button" onClick={() => zoom(1 / ZOOM_FACTOR)} aria-label="Zoom out">
+          <button type="button" onClick={() => zoom(1 / CANVAS_ZOOM_FACTOR)} aria-label="Zoom out">
             −
           </button>
           <span className="pc-canvas-zoom">{Math.round(view.scale * 100)}%</span>
-          <button type="button" onClick={() => zoom(ZOOM_FACTOR)} aria-label="Zoom in">
+          <button type="button" onClick={() => zoom(CANVAS_ZOOM_FACTOR)} aria-label="Zoom in">
             +
           </button>
           <button type="button" onClick={fitView}>
@@ -213,6 +203,7 @@ export function WorkflowCanvas({
           tabIndex={0}
           role="img"
           aria-labelledby={`${id}-title ${id}-description`}
+          aria-describedby={hintId}
           viewBox={`${view.x} ${view.y} ${view.width / view.scale} ${view.height / view.scale}`}
           preserveAspectRatio="none"
           onKeyDown={onKeyDown}
@@ -221,6 +212,7 @@ export function WorkflowCanvas({
           onPointerUp={finishPointer}
           onPointerCancel={finishPointer}
           onLostPointerCapture={finishPointer}
+          onDragStart={(event) => event.preventDefault()}
         >
           <title id={`${id}-title`}>{title} workflow</title>
           <desc id={`${id}-description`}>{layout.description}</desc>
