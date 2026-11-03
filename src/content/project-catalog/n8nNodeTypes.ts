@@ -10,9 +10,9 @@ export interface N8nNodeDefinition {
   variableInputs?: boolean;
 }
 
-// Pinned at n8n-io/n8n@cbaea9852139ceabdd629d582291965f924d9de1; see each design's native
-// mapping (Schedule Trigger: quote follow-up reminders B08; blog post approval and scheduling B08).
-// Add a type only after verifying its ports.
+// Original catalog nodes were pinned at n8n-io/n8n@cbaea9852139ceabdd629d582291965f924d9de1.
+// The internal knowledge design records the later AI Agent, Chat Trigger, Qdrant tool and
+// embedding pins. Add a type only after verifying its ports.
 export const N8N_NODE_TYPES = {
   "n8n-nodes-base.webhook": { version: 2.1, shape: "trigger", inputs: [], outputs: ["main"] },
   "n8n-nodes-base.scheduleTrigger": {
@@ -58,6 +58,12 @@ export const N8N_NODE_TYPES = {
   "n8n-nodes-base.highLevel": { version: 2, shape: "square", inputs: ["main"], outputs: ["main"] },
   "n8n-nodes-base.googleDrive": {
     version: 3,
+    shape: "square",
+    inputs: ["main"],
+    outputs: ["main"],
+  },
+  "n8n-nodes-base.httpRequest": {
+    version: 4.2,
     shape: "square",
     inputs: ["main"],
     outputs: ["main"],
@@ -114,6 +120,30 @@ export const N8N_NODE_TYPES = {
     shape: "circle",
     inputs: [],
     outputs: ["ai_languageModel"],
+  },
+  "@n8n/n8n-nodes-langchain.chatTrigger": {
+    version: 1.5,
+    shape: "trigger",
+    inputs: [],
+    outputs: ["main"],
+  },
+  "@n8n/n8n-nodes-langchain.agent": {
+    version: 3.1,
+    shape: "wide",
+    inputs: ["main", "ai_languageModel", "ai_tool"],
+    outputs: ["main"],
+  },
+  "@n8n/n8n-nodes-langchain.vectorStoreQdrant": {
+    version: 1.3,
+    shape: "circle",
+    inputs: ["ai_embedding"],
+    outputs: ["ai_tool"],
+  },
+  "@n8n/n8n-nodes-langchain.embeddingsOpenAi": {
+    version: 1.2,
+    shape: "circle",
+    inputs: [],
+    outputs: ["ai_embedding"],
   },
 } as const satisfies Record<string, N8nNodeDefinition>;
 

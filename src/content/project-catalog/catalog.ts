@@ -3,9 +3,11 @@ import { CUSTOMER_INQUIRY_ROUTING } from "./entries/customer-inquiry-routing/sum
 import { QUOTE_FOLLOW_UP_REMINDERS } from "./entries/quote-follow-up-reminders/summary";
 import { SALES_CALL_NEXT_STEPS } from "./entries/sales-call-notes-and-next-steps/summary";
 import { BLOG_POST_APPROVAL_AND_SCHEDULING } from "./entries/blog-post-approval-and-scheduling/summary";
+import { INTERNAL_KNOWLEDGE_ASSISTANT } from "./entries/internal-knowledge-assistant/summary";
 
 /** Published entries in catalog order. Drafts and private source evidence never go here. */
 export const CATALOG_ENTRIES: readonly CatalogEntrySummary[] = [
+  INTERNAL_KNOWLEDGE_ASSISTANT,
   CUSTOMER_INQUIRY_ROUTING,
   QUOTE_FOLLOW_UP_REMINDERS,
   SALES_CALL_NEXT_STEPS,

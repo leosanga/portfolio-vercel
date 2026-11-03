@@ -19,7 +19,7 @@ export interface CatalogPhase {
 }
 
 /** n8n connection kinds the catalog draws. Only `main` carries execution. */
-export type ConnectionKind = "main" | "ai_languageModel";
+export type ConnectionKind = "main" | "ai_languageModel" | "ai_tool" | "ai_embedding";
 
 /** A port as n8n numbers it: the index among that node's ports of the same kind. */
 export interface PortRef {

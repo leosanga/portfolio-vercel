@@ -29,8 +29,7 @@ export function useActiveSection(ids: string[]) {
       // loop is left exactly as-is, per the algorithm note in CLAUDE.md.
       const last = sections[sections.length - 1];
       const atBottom =
-        window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 2;
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2;
       if (atBottom && last) {
         current = last.id;
       }

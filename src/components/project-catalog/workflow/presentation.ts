@@ -101,7 +101,7 @@ export function derivePresentation(
         graph.phases.findIndex((phase) => phase.nodes.includes(node.id)),
       );
       const configTarget = graph.edges.find(
-        (edge) => edge.kind === "ai_languageModel" && edge.from.node === node.id,
+        (edge) => edge.kind !== "main" && edge.from.node === node.id,
       );
       const group = configTarget
         ? Math.max(

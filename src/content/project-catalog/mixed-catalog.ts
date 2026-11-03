@@ -89,6 +89,7 @@ if (
 
 // Explicit editorial order is independent of homepage placement and filters.
 const editorialIds = [
+  "internal-knowledge-assistant",
   "customer-inquiry-routing",
   "quote-follow-up-reminders",
   "blog-post-approval-and-scheduling",

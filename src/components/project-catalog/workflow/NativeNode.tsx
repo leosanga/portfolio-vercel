@@ -1,4 +1,5 @@
 import {
+  Bot,
   CalendarDays,
   Clock,
   CodeXml,
@@ -14,11 +15,13 @@ import {
   Merge,
   MessageSquare,
   MessagesSquare,
+  Search,
+  Sparkles,
   Webhook,
   type LucideIcon,
 } from "lucide-react";
 import { N8N_NODE_TYPES, type N8nNodeType } from "@/content/project-catalog/n8nNodeTypes";
-import type { GraphNode } from "@/content/project-catalog/types";
+import type { ConnectionKind, GraphNode } from "@/content/project-catalog/types";
 import type { ItemState } from "./presentation";
 
 /** Lucide 0.575 functional icons; licenses retained by the installed dependency and specimen source record. */
@@ -36,6 +39,7 @@ const GLYPHS: Record<N8nNodeType, { icon: LucideIcon; name: string; color?: stri
   "n8n-nodes-base.salesforce": { icon: ContactRound, name: "Salesforce" },
   "n8n-nodes-base.highLevel": { icon: ContactRound, name: "GHL" },
   "n8n-nodes-base.googleDrive": { icon: Folder, name: "Google Drive" },
+  "n8n-nodes-base.httpRequest": { icon: Globe, name: "HTTP Request" },
   "n8n-nodes-base.microsoftSharePoint": { icon: Folder, name: "Microsoft SharePoint" },
   "n8n-nodes-base.airtable": { icon: CalendarDays, name: "Airtable" },
   "n8n-nodes-base.googleSheets": { icon: CalendarDays, name: "Google Sheets" },
@@ -48,6 +52,16 @@ const GLYPHS: Record<N8nNodeType, { icon: LucideIcon; name: string; color?: stri
   "n8n-nodes-base.merge": { icon: Merge, name: "Merge" },
   "@n8n/n8n-nodes-langchain.chainLlm": { icon: Link, name: "Basic LLM Chain" },
   "@n8n/n8n-nodes-langchain.lmChatOpenAi": { icon: MessageSquare, name: "Chat model" },
+  "@n8n/n8n-nodes-langchain.chatTrigger": { icon: MessageSquare, name: "Chat Trigger" },
+  "@n8n/n8n-nodes-langchain.agent": { icon: Bot, name: "AI Agent" },
+  "@n8n/n8n-nodes-langchain.vectorStoreQdrant": {
+    icon: Search,
+    name: "Qdrant search tool",
+  },
+  "@n8n/n8n-nodes-langchain.embeddingsOpenAi": {
+    icon: Sparkles,
+    name: "Embeddings OpenAI",
+  },
 };
 
 export function NativeNode({
@@ -62,6 +76,7 @@ export function NativeNode({
   ending: boolean;
 }) {
   const definition = N8N_NODE_TYPES[node.type];
+  const configuredInputs: readonly ConnectionKind[] = definition.inputs;
   const glyph = GLYPHS[node.type];
   const Glyph = glyph.icon;
   const wide = definition.shape === "wide";
@@ -122,7 +137,12 @@ export function NativeNode({
             />
           ))}
         {circle ? (
-          <path className="pc-canvas-port" d="M40 -5 L45 0 L40 5 L35 0 Z" />
+          <>
+            <path className="pc-canvas-port" d="M40 -5 L45 0 L40 5 L35 0 Z" />
+            {configuredInputs.includes("ai_embedding") && (
+              <path className="pc-canvas-port" d="M40 75 L45 80 L40 85 L35 80 Z" />
+            )}
+          </>
         ) : (
           Array.from({ length: outputs }, (_, index) => (
             <g key={index}>
@@ -145,10 +165,33 @@ export function NativeNode({
         )}
         {wide && (
           <>
-            <path className="pc-canvas-port" d="M128 91 L133 96 L128 101 L123 96 Z" />
-            <text className="pc-canvas-port-label" x="143" y="90">
-              Model
-            </text>
+            {configuredInputs.includes("ai_languageModel") && (
+              <>
+                <path
+                  className="pc-canvas-port"
+                  d={
+                    configuredInputs.includes("ai_tool")
+                      ? "M72 91 L77 96 L72 101 L67 96 Z"
+                      : "M128 91 L133 96 L128 101 L123 96 Z"
+                  }
+                />
+                <text
+                  className="pc-canvas-port-label"
+                  x={configuredInputs.includes("ai_tool") ? 87 : 143}
+                  y="90"
+                >
+                  Model
+                </text>
+              </>
+            )}
+            {configuredInputs.includes("ai_tool") && (
+              <>
+                <path className="pc-canvas-port" d="M184 91 L189 96 L184 101 L179 96 Z" />
+                <text className="pc-canvas-port-label" x="199" y="90">
+                  Tool
+                </text>
+              </>
+            )}
           </>
         )}
         <text

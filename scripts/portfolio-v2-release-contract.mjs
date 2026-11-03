@@ -3,10 +3,12 @@ const DOCK_LINK_LABELS = ["Home", "Email", "LinkedIn", "Back to top"];
 const THEME_LABELS = ["Use light theme", "Use dark theme"];
 
 function hasApprovedDockControls(controls) {
-  return Array.isArray(controls) &&
+  return (
+    Array.isArray(controls) &&
     controls.length === DOCK_LINK_LABELS.length + 1 &&
     DOCK_LINK_LABELS.every((label, index) => controls[index]?.label === label) &&
-    THEME_LABELS.includes(controls[DOCK_LINK_LABELS.length]?.label);
+    THEME_LABELS.includes(controls[DOCK_LINK_LABELS.length]?.label)
+  );
 }
 
 export function validateReleaseLayout(sample) {
@@ -35,8 +37,9 @@ export function validateReleaseLayout(sample) {
   require([dock.top, dock.bottom, dock.left, dock.right].every(
     Number.isFinite,
   ), "Initial dock geometry is missing");
-  require(hasApprovedDockControls(dock.controls),
-    "Dock must contain Home, Email, LinkedIn, Back to top and a hydrated theme control");
+  require(hasApprovedDockControls(
+    dock.controls,
+  ), "Dock must contain Home, Email, LinkedIn, Back to top and a hydrated theme control");
   for (const control of Array.isArray(dock.controls) ? dock.controls : []) {
     require(Number.isFinite(control?.width) &&
       control.width >= 44 &&

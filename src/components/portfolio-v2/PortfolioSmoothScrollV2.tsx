@@ -136,6 +136,9 @@ export function PortfolioSmoothScrollV2() {
       destroy();
       reconcile();
     };
+    const onWheelCapture = (event: WheelEvent) => {
+      if (event.ctrlKey) cancelInertia();
+    };
     const observer = new MutationObserver(reconcile);
     // Ignore Lenis class changes, and inspect modal styles before the next paint.
     const observation = { attributes: true, attributeFilter: ["style"] };
@@ -151,6 +154,7 @@ export function PortfolioSmoothScrollV2() {
     window.addEventListener("pointerdown", cancelInertia, true);
     window.addEventListener("keydown", cancelInertia, true);
     window.addEventListener("click", cancelInertia, true);
+    window.addEventListener("wheel", onWheelCapture, { capture: true, passive: true });
     window.addEventListener("blur", cancelInertia);
     const unsubscribeNavigation = router.subscribe("onBeforeNavigate", cancelInertia);
     reconcile();
@@ -167,6 +171,7 @@ export function PortfolioSmoothScrollV2() {
       window.removeEventListener("pointerdown", cancelInertia, true);
       window.removeEventListener("keydown", cancelInertia, true);
       window.removeEventListener("click", cancelInertia, true);
+      window.removeEventListener("wheel", onWheelCapture, true);
       window.removeEventListener("blur", cancelInertia);
       unsubscribeNavigation();
       destroy();

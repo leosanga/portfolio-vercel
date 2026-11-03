@@ -47,9 +47,11 @@ function measured(width = 390, height = 844) {
     bottom: height - 16,
     left: 80,
     right: 280,
-    controls: ["Home", "Email", "LinkedIn", "Back to top", "Use dark theme"].map(
-      (label) => ({ width: 44, height: 44, label }),
-    ),
+    controls: ["Home", "Email", "LinkedIn", "Back to top", "Use dark theme"].map((label) => ({
+      width: 44,
+      height: 44,
+      label,
+    })),
   };
   return {
     width,
@@ -177,8 +179,8 @@ test("catalog requires desktop and phone release evidence", () => {
       (sample) => !(sample.pathname === pathname && sample.requestedWidth === width),
     );
     assert.ok(
-      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some(
-        (failure) => failure.includes(`Missing required coverage: ${pathname}:${width}x`),
+      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some((failure) =>
+        failure.includes(`Missing required coverage: ${pathname}:${width}x`),
       ),
     );
   }
@@ -192,8 +194,8 @@ test("identity case requires desktop and phone release evidence", () => {
       (sample) => !(sample.pathname === pathname && sample.requestedWidth === width),
     );
     assert.ok(
-      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some(
-        (failure) => failure.includes(`Missing required coverage: ${pathname}:${width}x`),
+      validateReleaseEvidence(evidence, evidenceUrl, evidenceSha, evidenceTime).some((failure) =>
+        failure.includes(`Missing required coverage: ${pathname}:${width}x`),
       ),
     );
   }
