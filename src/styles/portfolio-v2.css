@@ -10949,10 +10949,12 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
     padding-left: var(--pv2-space-8);
   }
 
+  /* --pv2-credibility-tail (set by usePortfolioV2Motion) ends the line and its signal
+     at the last circle; the last label wraps, so that distance is measured. */
   .pv2-projects-credibility::before {
     top: 0.375rem;
     right: auto;
-    bottom: 0.375rem;
+    bottom: var(--pv2-credibility-tail, 0.375rem);
     left: calc(var(--pv2-credibility-axis) - 0.5px);
     width: 1px;
     height: auto;
@@ -11005,7 +11007,7 @@ html[data-pv2-theme="light"] .pv2-utility-dock__theme-icon--moon {
 
     21%,
     100% {
-      top: calc(100% - 0.625rem);
+      top: calc(100% - var(--pv2-credibility-tail, 0.375rem) - 0.25rem);
       opacity: 0;
     }
   }
