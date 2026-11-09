@@ -92,11 +92,16 @@ export function useCasePresentation() {
       frame = window.requestAnimationFrame(() => {
         frame = 0;
         if (disposed) return;
-        setState((previous) => ({
-          mode: "original",
-          phase: "measuring-original",
-          revision: previous.revision + 1,
-        }));
+        // Without a compact trial the outcome is always "original", so a reset
+        // would only drop `settled` for a frame and restart every proof animation.
+        // Phones hit this on each scroll reversal, when the URL bar resizes the viewport.
+        // ponytail: wide touch tablets (trial available) still re-measure on URL-bar
+        // resizes; ignore height-only resizes there if that shows up.
+        setState((previous) =>
+          previous.phase === "settled" && previous.mode === "original" && !canTrialCompact()
+            ? previous
+            : { mode: "original", phase: "measuring-original", revision: previous.revision + 1 },
+        );
       });
     };
     const observer = "ResizeObserver" in window ? new ResizeObserver(measureAgain) : null;
