@@ -1,6 +1,26 @@
 import { useEffect } from "react";
 
 export function usePortfolioV2Motion() {
+  // On phones the credibility line runs vertically and must end at the last circle.
+  // The last label wraps, so publish the list-bottom-to-circle-center distance for CSS.
+  useEffect(() => {
+    const list = document.querySelector<HTMLElement>(".pv2-projects-credibility");
+    const last = list?.lastElementChild;
+    if (!list || !(last instanceof HTMLElement) || !("ResizeObserver" in window)) return;
+    const measure = () => {
+      const dot = getComputedStyle(last, "::before");
+      const dotCenter = last.offsetTop + parseFloat(dot.top) + parseFloat(dot.height) / 2;
+      if (!Number.isFinite(dotCenter)) return;
+      list.style.setProperty("--pv2-credibility-tail", `${list.clientHeight - dotCenter}px`);
+    };
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => {
+      observer.disconnect();
+      list.style.removeProperty("--pv2-credibility-tail");
+    };
+  }, []);
+
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-pv2-observe]"));
     const loopSurfaces = Array.from(
